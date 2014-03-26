@@ -54,7 +54,7 @@ namespace Zero.Service.Cates
         /// <summary>
         /// 更新类别信息
         /// </summary>
-        public ResultInfo Update(Cate cate, int oldPid)
+        public ResultInfo Update(Cate cate,int oldPid)
         {
             //是否存在父节点
             if (cate.Pid > 0)
@@ -63,7 +63,7 @@ namespace Zero.Service.Cates
 
                 if (parentCate == null)
                 {
-                    return new ResultInfo((int)ResultStatus.Error, "所属类别不存在或者已删除，请选中其他");
+                    return new ResultInfo(1, "所属类别不存在或者已删除，请选中其他");
                 }
 
                 cate.Depth = parentCate.Depth + 1;
@@ -72,7 +72,7 @@ namespace Zero.Service.Cates
             //同一父节点并且同级别的类目不能出现同名
             if (_cateRepository.ExistNameByUpdate(cate))
             {
-                return new ResultInfo((int)ResultStatus.Error, "所属类别不存在或者已删除，请选中其他");
+                return new ResultInfo(1, "所属类别不存在或者已删除，请选中其他");
             }
 
             //移动类目到指定的父类目下
@@ -83,7 +83,7 @@ namespace Zero.Service.Cates
 
             _cateRepository.Update(cate);
 
-            return new ResultInfo("添加成功");
+            return new ResultInfo("修改成功");
         }
 
         /// <summary>

@@ -44,10 +44,8 @@ function ajaxSubmitForm3(form, url) {
             return true;
         },
         success: function (data) {
-            //$.messager.alert('提醒', responseText.Message);
-            //window.parent.comeBack(data.type);
 
-            alert(responseText.Message);
+            alert(data.Message);
         },
         error: function () {
             //$.messager.alert('提醒', '系统异常，请重试或联系技术');

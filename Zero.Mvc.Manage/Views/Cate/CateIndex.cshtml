@@ -43,6 +43,7 @@
         $.messager.show({
             title: '提醒',
             msg: msg,
+            timeout: 3000,
             showType: 'show'
         });
     }
@@ -80,7 +81,7 @@
             title: '分类列表',
             collapsible: true,
             rownumbers: true,
-            url: '/Cate/CateListJson',
+            url: '/Cate/CateList',
             method: 'get',
             idField: 'id',
             treeField: 'text',
@@ -105,15 +106,23 @@
         $('#edit').bind('click', function () {
             var row = $('#grid').datagrid('getSelected');
             if (row) {
-                openWindow('#window', '修改', '/Cate/CateAdd?pid=' + row.id);
+                openWindow('#window', '修改', '/Cate/CateEdit?CateId=' + row.id);
             }
             else {
                 show('请选中要编辑的项目');
+
             }
         });
 
         $('#remove').bind('click', function () {
-           
+            var row = $('#grid').datagrid('getSelected');
+            if (row) {
+                var params = { action: 'delete', ids: row.id };
+                operateAjax(params);
+            }
+            else {
+                show('请选中要编辑的项目');
+            }
         });
         
         $('#reload').bind('click', function () {
@@ -131,13 +140,14 @@
 
         function operateFormat(value, row, index) {
             var html = openParentTabLinkButton('添加子分类', '/Cate/CateAdd?CateId=' + row.CateId, row.CateId);
-
-           
-
             html += " | ";
             html += openParentTabLinkButton('修改分类', '/Cate/CateEdit?CateId=' + row.CateId, row.CateId);
             html += " | ";
-            html += '<a href="javascript:void(0);" onclick="del(' + row.CateId + ')">删除该类别</a>';
+            //html += '<a href="javascript:void(0);" onclick="del(' + row.CateId + ')">删除该类别</a>';
+
+            var deleteStr = { action: 'delete', ids: row.id };
+            html += '<a href="javascript:void(0);" onclick="operateAjax(' + deleteStr + ')">删除该类别</a>';
+
             return html;
         }
 
@@ -148,12 +158,20 @@
 
     })
 
-    function del(ids) {
-        var params = {};
-        params.action = "delete";
-        params.ids = ids;
-        $.post("/Cate/CateOperate", params, function (data) {
-            $.messager.alert('提醒', data.Message);
+    function operateAjax(params) {
+        $.messager.alert('提醒', '确定删除该类别？');
+        $.ajax({
+            url: "/Cate/CateOperate",
+            type: "Post",
+            data: params,
+            dataType: "json",
+            success: function (data) {
+                show(data.Message);
+                $("#grid").treegrid('reload');
+            },
+            error: function () {
+                show('系统异常，请重试或联系技术');
+            }
         });
     }
 

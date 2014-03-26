@@ -26,7 +26,7 @@ namespace Zero.Mvc.Manage.Controllers.Cates
             return View();
         }
 
-        public ActionResult CateListJson()
+        public ActionResult CateList()
         {
             Func<List<Cate>, dynamic> getJson = null;
             getJson = (List) =>
@@ -41,13 +41,41 @@ namespace Zero.Mvc.Manage.Controllers.Cates
             return Json(getJson(cateList), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult CateAdd(int? pid)
+        public ActionResult CateDropList()
         {
-            if (pid != null && pid > 0)
+            Func<List<Cate>, dynamic> getJson = null;
+            getJson = (List) =>
             {
-                Cate cate = _cateService.GetById(pid.Value);
-                ViewBag.Pid = cate != null ? pid.ToString() : "";
+                return List.Select(c => new
+                {
+                    id = c.CateId,
+                    text = c.CateName
+                    ,
+                    ChildCount = c.ChildCount,
+                    CreateTiem = c.CreateTime,
+                    UpdateTime = c.UpdateTime
+                    ,
+                    children = c.children == null ? null : getJson(c.children)
+                });
+            };
+
+            List<Cate> cateList = _cateService.GetList(0, 0);
+            cateList = _cateService.ConvertCateListToTree(cateList);
+            cateList.Insert(0, new Cate() { CateId = 0, CateName = "请选择" });
+            return Json(getJson(cateList), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult CateAdd(int? cateId)
+        {
+            Cate cate = null;
+
+            if (cateId != null && cateId > 0)
+            {
+                cate = _cateService.GetById(cateId.Value);
             }
+
+            ViewBag.Pid = cate != null ? cateId : 0;
+
             return View();
         }
 
@@ -71,42 +99,27 @@ namespace Zero.Mvc.Manage.Controllers.Cates
             return View(cate);
         }
 
-        public void GetForm(Cate cate, StringBuilder ms)
-        {
-        }
-
         [HttpPost]
-        public ActionResult CateEditPost()
+        public ActionResult CateEdit(Cate cate)
         {
-            ResultInfo resultInfo;
-            StringBuilder errorMsg = new StringBuilder();
-            int cateId = RequestHelper.QueryInt("cateId");
-            int oldPid = 0;
+            ResultInfo resultInfo = new ResultInfo(1, "验证不通过");
 
-            Cate cate = null;
-
-            if (cateId > 0)
+            if (ModelState.IsValid)
             {
-                cate = _cateService.GetById(cateId);
+                Cate oldCate = _cateService.GetById(cate.CateId);
+
+                if (oldCate == null)
+                {
+                    resultInfo = new ResultInfo(1, "该信息已被删除或不存在，请刷新列表！");
+                }
+
+                int oldPid = oldCate.Pid;
+                oldCate.CateId = cate.CateId;
+                oldCate.CateName = cate.CateName;
+                oldCate.Pid = cate.Pid;
+
+                resultInfo = _cateService.Update(oldCate, oldPid);
             }
-
-            if (cateId == 0 || cate == null)
-            {
-                resultInfo = new ResultInfo((int)ResultStatus.Error, "未找到该类别信息,请选择其他或刷新");
-                return Json(resultInfo);
-            }
-
-            oldPid = cate.Pid;
-
-            GetForm(cate, errorMsg);
-
-            if (errorMsg.Length > 0)
-            {
-                resultInfo = new ResultInfo((int)ResultStatus.Error, errorMsg.ToString());
-                return Json(resultInfo);
-            }
-
-            resultInfo = _cateService.Update(cate, oldPid);
 
             return Json(resultInfo);
         }
