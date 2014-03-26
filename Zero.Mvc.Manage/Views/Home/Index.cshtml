@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>淘鞋管理</title>
+	@*<link rel="stylesheet" type="text/css" href="Content/easyui/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="Content/easyui/icon.css">
+    <link rel="stylesheet" type="text/css" href="Content/zTreeStyle/zTreeStyle.css">
+	<script type="text/javascript" src="Scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="Scripts/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="Scripts/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src="Scripts/base.js"></script>*@
+
+
+    @Styles.Render("~/content/easyui/default/easyui.css")
+	@Styles.Render("~/content/easyui/icon.css")
+    @Styles.Render("~/content/zTreeStyle/zTreeStyle.css")
+    @Styles.Render("~/content/base.css")
+
+	@Scripts.Render("~/scripts/jquery.min.js")
+	@Scripts.Render("~/scripts/jquery.easyui.min.js")
+    @Scripts.Render("~/scripts/easyui-lang-zh_CN.js")
+	@Scripts.Render("~/scripts/jquery.ztree.all.min.js")
+    @Scripts.Render("~/scripts/base.js")
+
+   
+</head>
+<body class="easyui-layout">
+
+	<div data-options="region:'north',border:false" style="height:60px;padding:10px;background:#dfe8f6"><div style=""></div></div>
+	<div data-options="region:'west',split:true,title:'系统菜单'" style="width:200px;padding:10px;">
+        <ul id="treeMenu" class="ztree">
+            <!--<li>
+                <span>商品中心</span>
+                <ul>
+                    <li><a href="#" onclick="openTab('商品管理','grid.html')">商品管理</a></li>
+                    <li><a href="#" onclick="openTab('属性管理','http://www.taoxie.com')">属性管理</a></li>
+                    <li><a href="#" onclick="openTab('类别管理','http://www.youku.com')">类别管理</a></li>
+                </ul>
+            </li>
+            <li>用户中心</li>
+            <li>管理员</li>-->
+        </ul>
+	</div>
+	<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;"></div>
+	<div data-options="region:'south',border:false" style="height:25px;padding:5px;text-align:center;">By pzw 2014-1-23</div>
+	<div data-options="region:'center'">
+         <div id="tabMenu"  class="easyui-tabs" data-options="fit:true,border:false"></div>
+	</div>
+     <script>
+
+         $(function () {
+             //$('#tabMenu').tabs({
+             //    onLoad: function (panel) {
+             //        var plugin = panel.panel('options').title;
+             //        panel.find('textarea[name="code-' + plugin + '"]').each(function () {
+             //            var data = $(this).val();
+             //            data = data.replace(/(\r\n|\r|\n)/g, '\n');
+             //            if (data.indexOf('\t') == 0) {
+             //                data = data.replace(/^\t/, '');
+             //                data = data.replace(/\n\t/g, '\n');
+             //            }
+             //            data = data.replace(/\t/g, '    ');
+             //            var pre = $('<pre name="code" class="prettyprint linenums"></pre>').insertAfter(this);
+             //            pre.text(data);
+             //            $(this).remove();
+             //        });
+             //        prettyPrint();
+             //    }
+             //});
+
+             //$('#tabMenu').tabs({
+             //    tools: [{
+             //        iconCls: 'icon-add',
+             //        handler: function () {
+             //            alert('add')
+             //        }
+             //    }, {
+             //        iconCls: 'icon-save',
+             //        handler: function () {
+             //            alert('save')
+             //        }
+             //    }]
+             //});
+
+             
+         });    
+
+         function openTab(plugin, url) {
+             var tabMenu = $('#tabMenu');
+             if (tabMenu.tabs('exists', plugin)) {
+                 tabMenu.tabs('select', plugin);
+             } else {
+                 tabMenu.tabs('add', {
+                     title: plugin,
+                     closable: true,
+                     content: '<div style="width:100%;height:100%;overflow:hidden"><iframe frameborder="0" src=' + url + ' style="width:100%;height:100%;"></iframe></div>',
+                 });
+             }
+         }
+
+         function onClick(event, treeId, treeNode, clickFlag) {
+             if (treeNode.path != undefined) {
+                 openTab(treeNode.name, treeNode.path);
+             }
+         }
+
+         $(function () {
+
+             var setting = {
+                 view: {
+                     showLine: false
+                 },
+                 data: {
+                     key: {
+                         title: "t"
+                     }
+                 },
+                 callback: {
+                     onClick: onClick
+                 }
+             };
+
+             var nodes = [
+                 {
+                     name: "商品中心", open: true,
+                     children: [
+                         {
+                             name: "商品管理", t: "只有运营部才可以编辑", open: true,
+                             children: [
+                                 { name: "商品列表", path: "product/productIndex" },
+                                 { name: "商品添加", path: "product/productAdd" },
+                                 { name: "商品拆分添加", path: "product/productAddPart" },
+                             ]
+                         },
+                         {
+                             name: "属性管理", t: "只有技术部才可以编辑",
+                             children: [
+                                 { name: "属性列表" },
+                                 { name: "属性添加" },
+                                 { name: "属性值列表" },
+                                 { name: "属性值添加" },
+                                 { name: "类别属性列表" },
+                                 { name: "类别属性添加" },
+                                 { name: "类别属性值列表" },
+                                 { name: "类别属性值添加" }
+                             ]
+                         },
+                         {
+                             name: "类别管理", t: "SB哇网管", open: true,
+                             children: [
+                                 { name: "类别列表", path: "cate/cateIndex" },
+                                 { name: "类别添加", path: "cate/cateAdd" },
+                             ]
+                         }
+                     ]
+                 },
+                 { name: "没有子节点" }
+             ];
+
+             $.fn.zTree.init($("#treeMenu"), setting, nodes);
+
+             openTab("主页", "home/main");
+         });
+
+    </script>
+</body>
+</html>

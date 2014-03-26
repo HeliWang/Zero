@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "CateIndex";
+}
+
+<!-- 商品类别列表-->
+@*<table id="datagrid" title="商品类别" class="easyui-treegrid"
+            data-options="
+            url: '/Cate/CateListJson',
+            method: 'get',
+            rownumbers: true,
+            idField: 'CateId',
+            treeField: 'CateName',
+            toolbar:toolbar ,
+            collapsible:true
+        ">
+    <thead>
+        <tr>
+            <th data-options="field:'CateId',width:100,align:'center'">编号</th>
+            <th data-options="field:'CateName',width:200,align:'center'">名称</th>
+            <th data-options="field:'ChildCount',width:100,align:'center'">子节点总数</th>
+            <th data-options="field:'Lid',width:100,align:'center'">左路径</th>
+
+            <th data-options="field:'Rid',width:100,align:'center'">右路径</th>
+            <th data-options="field:'Depth',width:200,align:'center'">深度</th>
+            <th data-options="field:'Pid',width:100,align:'center'">父节点</th>
+        </tr>
+    </thead>
+</table>*@
+
+<!-- 商品类别列表-->
+<table id="datagrid" title="商品类别" class="easyui-treegrid"
+            data-options="
+            url: '/Cate/CateListJson',
+            method: 'get',
+            rownumbers: true,
+            idField: 'id',
+            treeField: 'name',
+            toolbar:toolbar ,
+            collapsible:true
+        ">
+    <thead>
+        <tr>
+            <th data-options="field:'name',width:200,align:'center'">名称</th>
+            <th data-options="field:'date',width:100,align:'center'">修改日期</th>
+            <th data-options="field:'date',width:100,align:'center'">创建日期</th>
+        </tr>
+    </thead>
+</table>
+<!-- 商品类别列表 -->
+
+<!-- 商品类别添加或修改-->
+<div id="cateCreateDialog" class="easyui-dialog" buttons="#dlg-buttons" closed="true" style="height:180px;width:300px;">
+    <form id="ff" method="post">
+        <table class="z-tb-form">
+            <tr>
+                <th>所属分类：</th>
+                <td>
+                    <input class="easyui-combotree" data-options="url:'tree_data1.json',method:'get',required:true" style="width:150px;">
+                </td>
+            </tr>
+            
+            <tr>
+                <th>名称：</th>
+                <td><input type="text" name="name" class="easyui-validatebox" data-options="required:true" style="width:100px;"/></td>
+            </tr>
+        </table>
+    </form>
+
+    <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="save()">保存</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#cateCreateDialog').dialog('close')">取消</a>
+    </div>
+</div>
+<!-- 商品类别添加或修改-->
+
+<script type="text/javascript">
+    ///----操作----///
+    var toolbar = [{
+        text: '添加',
+        iconCls: 'icon-add',
+        handler: function () {
+            $('#cateCreateDialog').dialog('open').dialog('setTitle', '商品类目添加');
+            //$('#fm').form('clear');
+            //url = 'save_user.php';
+        }
+    }, {
+        text: '修改',
+        iconCls: 'icon-edit',
+        handler: function () {
+            var row = $('#datagrid').datagrid('getSelected');
+            if (row) {
+                $('#cateCreateDialog').dialog('open').dialog('setTitle', '商品类目修改');
+                //$('#fm').form('load', row);
+                //url = 'update_user.php?id=' + row.id;
+            }
+        }
+    }, '-', {
+        text: '展开',
+        iconCls: 'icon-tip',
+        handler: function () {
+            $("#datagrid").treegrid('expandAll');
+        }
+    }, {
+        text: '收起',
+        iconCls: 'icon-tip',
+        handler: function () {
+            $("#datagrid").treegrid('collapseAll');
+        }
+    }, {
+        text: '刷新',
+        iconCls: 'icon-reload',
+        handler: function () { alert('刷新') }
+    }];
+    ///----操作----///
+
+    ///----绑定网格----///
+    //在调整了窗口大小以后，设置easyui gridview也调整宽度
+    $(window).resize(function () {
+        $('#datagrid').datagrid('resize');
+    });
+    ///----绑定网格----///
+</script>

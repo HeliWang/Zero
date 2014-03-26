@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="2a43ddd5-200f-4450-85db-2fb9bb35200d" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="51c2fb49-a466-4872-90c8-2704a1808598" name="表示层&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="11870862-39d2-45fb-9e0f-d4a6cf530a43" direction="Forward">
+          <layerMoniker Id="0012eb00-357f-443d-b83c-dc238c0abea7" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="7008398c-add5-4c79-b2e9-ff20db546ddd" direction="Forward">
+          <layerMoniker Id="1ddc87e6-9418-4bb1-ae9a-fdf214a5e53e" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="be628044-df0e-4925-a9cd-21e67f6f207c" name="UI界面层">
+          <childLayers>
+            <layer Id="5bee5a2d-a741-4725-8c35-ee47b82915b8" name="webform" />
+            <layer Id="aa514b3c-c7da-4c8a-a744-dea9a368817d" name="winform" />
+            <layer Id="c0bca869-e78b-4ac4-89b2-b8951b2b7090" name="wpf" />
+            <layer Id="9b8a379a-5e8d-42af-bc6f-6c2b2b5c9ff1" name="mobile" />
+            <layer Id="573bd47c-1637-43f0-9886-64fcf8fec1e6" name="智能设备&#xD;&#xA;" />
+            <layer Id="0f6b4da5-e2a1-4fc3-8869-a73c198e8f7f" name="flash&#xD;&#xA;" />
+          </childLayers>
+        </layer>
+        <layer Id="c836c266-a77e-4957-87ce-7080d290a52d" name="UI逻辑层">
+          <childLayers>
+            <layer Id="4347b929-a2dc-48b1-874e-d007d9598c01" name="MVC模式&#xD;&#xA;" />
+            <layer Id="9942957d-869c-4cf3-b650-39c108ffc12f" name="MVP模式&#xD;&#xA;" />
+            <layer Id="c8c2cb96-7acf-42a0-9070-a1fa1f1633d2" name="PM模式&#xD;&#xA;" />
+          </childLayers>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="b9b852a7-58c4-4519-a3e1-4532a2b464f0" name="业务层&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="91c49a83-25d4-4dfd-9890-7fee54ff0b0f" direction="Forward">
+          <layerMoniker Id="efaebb7f-e0f0-4b0b-894e-3a0bddd8d6a5" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="04cca77e-77dc-492d-a820-dec5100319e7" direction="Forward">
+          <layerMoniker Id="1ddc87e6-9418-4bb1-ae9a-fdf214a5e53e" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="c1f8ff2e-87d6-4f41-a52b-41322423d574" name="领域模型&#xD;&#xA;Domain&#xD;&#xA;model&#xD;&#xA;" />
+        <layer Id="cddfdfb1-4b95-4373-86b6-1f6958dc75f2" name="DTO映射&#xD;&#xA;" />
+        <layer Id="d327359a-de99-4e2e-82d5-e08f2627dafd" name="业务逻辑&#xD;&#xA;" />
+        <layer Id="d531d1e7-a15c-4cda-a818-15907bcf62ef" name="业务规则&#xD;&#xA;" />
+      </childLayers>
+    </layer>
+    <layer Id="efaebb7f-e0f0-4b0b-894e-3a0bddd8d6a5" name="数据层&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="1937cf2c-40bd-47c3-ace7-85b54e46cedf" direction="Forward">
+          <layerMoniker Id="ba9028da-6b39-435f-8063-da4013bfeac9" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="b2691bcd-3db1-4c7f-8056-49b26058091e" direction="Forward">
+          <layerMoniker Id="1ddc87e6-9418-4bb1-ae9a-fdf214a5e53e" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="0ff26ff6-49bb-45be-b62c-f9a269575e00" name="ORM持久化方式&#xD;&#xA;">
+          <childLayers>
+            <layer Id="e22d0f54-559f-45a8-a629-c78bc38de2c7" name="存储仓库接口&#xD;&#xA;&#xD;&#xA;" />
+            <layer Id="01fdfe1c-f195-4b8e-b5bb-bafd8beb870e" name="SQLServer&#xD;&#xA;存储仓库&#xD;&#xA;" />
+            <layer Id="30929340-ec73-49d8-aabd-dd6a82b38d31" name="Oracle&#xD;&#xA;存储仓库&#xD;&#xA;" />
+          </childLayers>
+        </layer>
+        <layer Id="add0ff75-c5f7-4648-a793-0a77c8889053" name="ADO.NET">
+          <childLayers>
+            <layer Id="dd954cf2-d93f-4bfa-bd26-146967923ac0" name="数据库操作接口&#xD;&#xA;" />
+            <layer Id="f60fc940-f4b4-458b-bd93-d2bb5ca2cb4d" name="SQL&#xD;&#xA;代码生成&#xD;&#xA;" />
+            <layer Id="01b33a2f-4843-4cda-a3dd-b6bd1fe7fdca" name="存储过程&#xD;&#xA;" />
+          </childLayers>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="1ddc87e6-9418-4bb1-ae9a-fdf214a5e53e" name="公共库&#xD;&#xA;">
+      <childLayers>
+        <layer Id="d4860668-e9b0-4127-858e-ea26c7ed4909" name="Config&#xD;&#xA;" />
+        <layer Id="fd4c9ad7-1224-4685-b2c8-a72cae1000a9" name="Exception&#xD;&#xA;" />
+        <layer Id="b867a28c-9b4e-4492-9d50-fae7764492f7" name="Unit" />
+        <layer Id="385dbd6a-0444-49f0-8467-aa80b6092187" name="Log" />
+        <layer Id="b278e6d5-c18f-4cec-96fb-2cbc85f2e8dc" name="Common" />
+      </childLayers>
+    </layer>
+    <layer Id="0012eb00-357f-443d-b83c-dc238c0abea7" name="服务层&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="1e36f123-8694-4579-aa6f-ba914105d29b" direction="Forward">
+          <layerMoniker Id="b9b852a7-58c4-4519-a3e1-4532a2b464f0" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="72c232e5-d1e0-4a73-b9f1-6b124506c977" direction="Forward">
+          <layerMoniker Id="1ddc87e6-9418-4bb1-ae9a-fdf214a5e53e" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="51286c81-a88b-41a1-b847-75fdb536ca45" name="DTO模型&#xD;&#xA;" />
+        <layer Id="32990c21-709d-4e0b-9882-a05e4027ee6e" name="service 接口" />
+        <layer Id="9d654e6c-6c55-4f6a-8c1f-4dbfea9d79b6" name="service实现">
+          <childLayers>
+            <layer Id="ec5733cc-0747-46f7-96cd-8f7c8f3be303" name="web服务&#xD;&#xA;&#xD;&#xA;" />
+            <layer Id="855923e6-c080-4bd0-8a31-ab03f2638e3f" name="WCF" />
+            <layer Id="2afa76a2-be2d-455b-a070-447881187209" name="Remoting" />
+            <layer Id="e296a17b-2377-4126-a308-d3c75fea2d44" name="REST" />
+          </childLayers>
+        </layer>
+      </childLayers>
+    </layer>
+    <layer Id="99d48e57-c25b-4c0c-a8a4-9ff7fc2d0bfa" name="模式指导&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="bcf22cc9-a489-419a-88de-cecf025b301d" direction="Forward">
+          <layerMoniker Id="b9b852a7-58c4-4519-a3e1-4532a2b464f0" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <childLayers>
+        <layer Id="59ae6cf0-c6da-4217-a89f-4029eb2a990e" name="事物脚本&#xD;&#xA;" />
+        <layer Id="494e99fb-2324-4e9c-8992-b3e4f49e6099" name="表模块&#xD;&#xA;" />
+        <layer Id="68da802b-9bcd-404a-8f7c-7819a9611283" name="活动记录&#xD;&#xA;" />
+        <layer Id="8533ab7c-a3b5-41db-b7e6-fcccb6ababdd" name="领域驱动&#xD;&#xA;" />
+      </childLayers>
+    </layer>
+    <layer Id="ba9028da-6b39-435f-8063-da4013bfeac9" name="数据库&#xD;&#xA;">
+      <childLayers>
+        <layer Id="477cc776-bde9-4162-be1b-2f4f7c1f30a1" name="MSSQL" />
+        <layer Id="00ec1fa0-9bec-4c93-8e34-d93ef2c4a9e4" name="Oracle" />
+        <layer Id="5ce460d8-7439-475a-93e1-414ff47d1c57" name="MySQL" />
+      </childLayers>
+    </layer>
+  </layers>
+</layerModel>

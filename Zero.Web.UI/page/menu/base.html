@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无限极树形菜单</title>
+    <link rel="stylesheet" href="/css/base.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/zero.js"></script>
+</head>
+<body>
+    <div class="z-content">
+        <!--<div class="z-panel">
+            <div class="z-panel-header clearfix">
+                <div class="z-panel-header-title">Window</div>
+            </div>
+            <div class="z-panel-content">
+                
+            </div>
+        </div>-->
+        <dl class="z-left-menu" style="margin:auto;width:500px;">
+            <dt>panel</dt>
+			<dd>
+				<ul>
+					<li><a href="/page/panel/base.html" target="z-right">基本</a></li>
+                    <li><a href="/page/panel/window.html" target="z-right">窗口</a></li>
+				</ul>
+			</dd>
+			<dt>Grid</dt>
+			<dd>
+				<ul>
+					<li><a href="/page/grid/base.html" target="z-right">基本</a></li>
+                    <li><a href="/page/grid/tree.html" target="z-right">树形</a></li>
+                    <li><a href="/page/grid/radio.html" target="z-right">单选</a></li>
+                    <li><a href="/page/grid/checkable.html" target="z-right">多选</a></li>
+                    <li><a href="/page/grid/checkonly.html" target="z-right">限制多选</a></li>
+                    <li><a href="/page/grid/open.html" target="z-right">展开</a></li>
+				</ul>
+			</dd>
+            <dt>Grid Expand</dt>
+			<dd>
+				<ul>
+					<li><a href="/page/grid.html" target="z-right">行编辑</a></li>
+                    <li><a href="/page/grid.html" target="z-right">单元格编辑</a></li>
+                    <li><a href="/page/grid.html" target="z-right">弹出框编辑</a></li>
+                    <li><a href="/page/grid.html" target="z-right">选中并批量格编辑</a></li>
+                    <li><a href="/page/grid.html" target="z-right">带滚动条</a></li>
+				</ul>
+			</dd>
+            <dt>Tip</dt>
+			<dd>
+				<ul>
+					<li><a href="/page/tip/base.html" target="z-right">基本</a></li>
+                    <li><a href="/page/tip/expand.html" target="z-right">扩展</a></li>
+				</ul>
+			</dd>
+            <dt>tree</dt>
+			<dd>
+				<ul>
+					<li><a href="/page/tree/base.html" target="z-right">基本</a></li>
+                    <li><a href="/page/tree/checkbox.html" target="z-right">网格</a></li>
+                    <li><a href="/page/tree/expand.html" target="z-right">扩展</a></li>
+				</ul>
+			</dd>
+            <dt>menu</dt>
+			<dd>
+				<ul>
+					<li><a href="/page/grid.html" target="z-right">网格</a></li>
+				</ul>
+			</dd>
+		</dl>
+	    <script type="text/javascript">
+		    $(document).ready(function () {
+			    $(".z-left-menu dt").click(function () {
+				    $(this).next().toggleClass("hidden");
+			    });
+
+			    var a = $(".z-left-menu li a");
+
+			    a.mouseenter(function () {
+				    $(this).addClass("over");
+			    });
+
+			    a.mouseleave(function () {
+				    $(this).removeClass("over");
+			    });
+
+			    a.click(function () {
+				    $(".z-left-menu li .selected").removeClass("selected");
+				    $(this).addClass("selected");
+			    });
+		    });
+	    </script>
+    </div>
+</body>
+</html>

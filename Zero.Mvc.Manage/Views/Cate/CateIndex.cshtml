@@ -1,0 +1,160 @@
+﻿@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+    ViewBag.Title = "CateIndex";
+}
+
+<!-- 商品类别列表 -->
+<table id="grid"></table>
+
+<!-- 工具栏 -->
+<div id="toolbar">
+    <div>
+        <a href="#" id="add"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="#" id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="#" id="remove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除</a>
+        <a href="#" id="expand" class="easyui-linkbutton" iconCls="icon-tip" plain="true">展开</a>
+        <a href="#" id="collapse" class="easyui-linkbutton" iconCls="icon-tip" plain="true">收起</a>
+        <a href="#" id="reload" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+        
+    </div>
+   @* <div>
+        Date From: <input class="easyui-datebox" style="width:80px">
+        To: <input class="easyui-datebox" style="width:80px">
+        Language: 
+        <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+            <option value="java">Java</option>
+            <option value="c">C</option>
+            <option value="basic">Basic</option>
+            <option value="perl">Perl</option>
+            <option value="python">Python</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+    </div>*@
+</div>
+
+<!-- 弹出框-->
+<div id="window" class="easyui-window" data-options="closed:true,iconCls:'icon-save'" style="width:500px;height:200px;padding:10px;">
+     <iframe id="iframe" style="width:100%;height:100%;border:0;"></iframe>
+</div>
+
+<script type="text/javascript">
+
+    function show(msg) {
+        $.messager.show({
+            title: '提醒',
+            msg: msg,
+            showType: 'show'
+        });
+    }
+    function slide(msg) {
+        $.messager.show({
+            title: 'My Title',
+            msg: msg,
+            timeout: 3000,
+            showType: 'slide'
+        });
+    }
+    function fade(msg) {
+        $.messager.show({
+            title: 'My Title',
+            msg: msg,
+            timeout: 3000,
+            showType: 'fade'
+        });
+    }
+
+    function closeWindow(msg) {
+        $("#grid").treegrid('reload');
+        $('#window').window('close');
+    }
+
+    function openWindow(id, title, url) {
+        $(id).window({ title: title });
+        $(id + '>iframe').attr("src", url);
+        $(id).window('open');
+    }
+
+    $(function () {
+
+        $('#grid').treegrid({
+            title: '分类列表',
+            collapsible: true,
+            rownumbers: true,
+            url: '/Cate/CateListJson',
+            method: 'get',
+            idField: 'id',
+            treeField: 'text',
+            columns: [[
+                { title: '编号', field: 'id', width: 60, align: 'center' },
+                { title: '名称', field: 'text', width: 200, align: 'left' },
+                { title: '子类总数', field: 'ChildCount', width: 80, align: 'center' },
+                { title: '创建时间', field: 'CreateTime', width: 140, align: 'center', formatter: timeFormat },
+                { title: '更新时间', field: 'UpdateTime', width: 140, align: 'center', formatter: timeFormat },
+                { title: '操作', field: 'operate', width: 220, align: 'center', formatter: operateFormat },
+            ]],
+            onLoadError: function () {
+                alert('数据加载错误，请重新登陆系统');
+            },
+            toolbar: '#toolbar',
+        });
+
+        $('#add').bind('click', function () {
+            openWindow('#window', '添加', '/Cate/CateAdd');
+        });
+
+        $('#edit').bind('click', function () {
+            var row = $('#grid').datagrid('getSelected');
+            if (row) {
+                openWindow('#window', '修改', '/Cate/CateAdd?pid=' + row.id);
+            }
+            else {
+                show('请选中要编辑的项目');
+            }
+        });
+
+        $('#remove').bind('click', function () {
+           
+        });
+        
+        $('#reload').bind('click', function () {
+            $("#grid").treegrid('reload');
+        });
+
+        $('#expand').bind('click', function () {
+            $("#grid").treegrid('expandAll');
+        });
+
+        $('#collapse').bind('click', function () {
+            $("#grid").treegrid('collapseAll');
+        });
+
+
+        function operateFormat(value, row, index) {
+            var html = openParentTabLinkButton('添加子分类', '/Cate/CateAdd?CateId=' + row.CateId, row.CateId);
+
+           
+
+            html += " | ";
+            html += openParentTabLinkButton('修改分类', '/Cate/CateEdit?CateId=' + row.CateId, row.CateId);
+            html += " | ";
+            html += '<a href="javascript:void(0);" onclick="del(' + row.CateId + ')">删除该类别</a>';
+            return html;
+        }
+
+        //在调整了窗口大小以后，设置easyui gridview也调整宽度
+        $(window).resize(function () {
+            $('#CateList').datagrid('resize');
+        });
+
+    })
+
+    function del(ids) {
+        var params = {};
+        params.action = "delete";
+        params.ids = ids;
+        $.post("/Cate/CateOperate", params, function (data) {
+            $.messager.alert('提醒', data.Message);
+        });
+    }
+
+</script>

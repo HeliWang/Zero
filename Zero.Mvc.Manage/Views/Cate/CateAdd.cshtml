@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Add.cshtml";
+    ViewBag.Title = "CateAdd";
+}
+
+<form id="Form" action="@Url.Action("CateAdd","Cate")" method="post">
+    <table class="z-tb-form">
+        <tr>
+            <th>所属分类：</th>
+            <td>
+               <input name="Pid"  data-options="url:'@Url.Action("CateListJson","Cate")'" value="@ViewBag.Pid" class="easyui-combotree"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>名称：</th>
+            <td><input type="text" name="CateName" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
+        </tr>
+    </table>
+</form>

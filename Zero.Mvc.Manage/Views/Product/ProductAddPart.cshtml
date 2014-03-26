@@ -1,0 +1,211 @@
+﻿@{
+    Layout = "~/Views/Shared/_Add.cshtml";
+    ViewBag.Title = "CreatePart";
+}
+
+@section Scripts {
+
+
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+    <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
+    <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+    <!-- 扩展验证文件 -->
+    <script type="text/javascript" src="/Scripts/validate.js"></script>
+}
+
+<div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
+    <div title="商品基本">
+        <form id="Form" action="/Product/ProductAddPartPost" method="post">
+            <table class="z-tb-form">
+                <tr>
+                    <th>所属分类：</th>
+                    <td>
+                        <input id="ParentCateData" type="hidden" value="@ViewBag.CateListJson"/>
+                        <select id="ParentCate" name="ParentCate" class="easyui-combotree" style="width:200px;"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>所属类型：</th>
+                    <td>
+                        <input type="radio" id="New" name="ProductType" value="0" checked="checked" /><label for="New">全新</label>
+                        <input type="radio" id="Old" name="ProductType"  value="0" /><label for="Old">二手</label>
+                        <input type="radio" id="Auction" name="ProductType" value="0" /><label for="Auction">拍卖</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>商品名称：</th>
+                    <td><input type="text" name="ProductName"  data-options="required:true,validType:['length[2,30]']" class="easyui-validatebox" style="width:600px;"/></td>
+                </tr>
+                <tr>
+                    <th>商品卖点：</th>
+                    <td><input type="text" name="SubName"  data-options="validType:['length[0,30]']" class="easyui-validatebox" style="width:600px;"/></td>
+                </tr>
+                <tr>
+                    <th>商品编码：</th>
+                    <td><input type="text" name="Zsc"  data-options="validType:['length[0,10]']" class="easyui-validatebox" style="width:100px;"/></td>
+                </tr>
+                <tr>
+                    <th>一口价：</th>
+                    <td><input type="text" name="Price"  data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox" style="width:100px;"/></td>
+                </tr>
+                <tr>
+                    <th>商品数量：</th>
+                    <td><input type="text" name="Amount" data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox"  style="width:100px;"/>件</td>
+                </tr>
+                <tr>
+                    <th>商品详细：</th>
+                    <td>
+                        <script id="Desc" name="Desc"  type="text/plain" style="width:800px;height:200px;"></script><!---->
+                    </td>
+                </tr>
+                <!--
+                <tr>
+                    <td></td>
+                    <td>
+                        <div style="text-align:left;padding:10px 0 15px 0px">
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
+                        </div>
+                    </td>
+                </tr>
+                -->
+            </table>
+        </form>
+    </div>
+
+    <div title="商品属性">
+        <table class="z-tb-form">
+            <tr>
+                <th>商品属性：</th>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th>商品销售属性：</th>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="商品组图">
+        <table class="z-tb-form">
+            <tr>
+                <th>商品组图：</th>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="物流信息">
+        <table class="z-tb-form">
+            <tr>
+                <th>重量：</th>
+                <td><input type="text" name="subject" class="easyui-validatebox" data-options="validType:'email'" style="width:50px;"/>千克</td>
+            </tr>
+            <tr>
+                <th>体积：</th>
+                <td><input type="text" name="subject" class="easyui-validatebox" data-options="validType:'email'" style="width:50px;"/>立方米</td>
+            </tr>
+            <tr>
+                <th>运费：</th>
+                <td>
+                    <input type="radio" id="seller" name="fee" /><label for="seller">卖家承担运费</label><br />
+                    <input type="radio" id="buyer" name="fee" /><label for="buyer">买家承担运费</label><br />
+                    <br />运费模版<br />
+                    <input type="radio" id="buyer_1" name="feeTemp" /><label for="buyer_1">请选择模版：</label><br />
+                    <input type="radio" id="buyer_2" name="feeTemp" /><label for="buyer_2">平邮：</label>
+                    <input type="text" name="subject" class="easyui-validatebox" data-options="validType:'email'" style="width:50px;"/>元
+                    快递：<input type="text" name="subject" class="easyui-validatebox" data-options="validType:'email'" style="width:50px;"/>元
+                    EMS:<input type="text" name="subject" class="easyui-validatebox" data-options="validType:'email'" style="width:50px;"/>元
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="售后服务">
+        <table class="z-tb-form">
+            <tr>
+                <th>发票：</th>
+                <td>
+                    <input type="radio" id="hasInvoice_no" name="hasInvoice" /><label for="hasInvoice_no">无</label>
+                    <input type="radio" id="hasInvoice_yes" name="hasInvoice" /><label for="hasInvoice_yes">有</label>
+                </td>
+            </tr>
+            <tr>
+                <th>保修：</th>
+                <td>
+                    <input type="radio" id="hasWarranty_no" name="hasWarranty" /><label for="hasWarranty_no">无</label>
+                    <input type="radio" id="hasWarranty_yes" name="hasWarranty" /><label for="hasWarranty_yes">有</label>
+                </td>
+            </tr>
+            <tr>
+                <th>退换货：</th>
+                <td>
+                    <input type="checkbox" id="sellPromise" name="sellPromise" /><label for="sellPromise">凡购买的商品，若存在质量问题或与描述不符，本店将主动提供退换货服务并承担来回邮费!</label>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div title="其他信息">
+        <table class="z-tb-form">
+            <tr>
+                <th>库存计数：</th>
+                <td>
+                    <input type="radio" id="hasInvoice_no" name="hasInvoice" /><label for="hasInvoice_no">拍下减库存</label>
+                    <input type="radio" id="hasInvoice_yes" name="hasInvoice" /><label for="hasInvoice_yes">付款减库存</label>
+                </td>
+            </tr>
+            <tr>
+                <th>有效时间：</th>
+                <td>
+                    开始时间：<input class="easyui-datetimebox" style="width:150px">
+                    结束时间：<input class="easyui-datetimebox" style="width:150px">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div style="text-align:left;padding:10px 0 15px 0px">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@*<div class="easyui-tabs-foot">
+    <a id="add" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+    <a id="reset" href="javascript:void(0)" class="easyui-linkbutton">重置</a>
+</div>*@
+
+<script>
+    //easyui-comboxtree不支持特定字段的绑定，暂时在程序里面转成json再替换主要字段，输出到前台最后加载
+    $(function () {
+        var parentCateData = $('#ParentCateData').val();
+        if (parentCateData != '') {
+            parentCateData = eval('(' + parentCateData + ')');
+            $('#ParentCate').combotree('loadData', parentCateData);
+        }
+
+        UE.getEditor('Desc');
+
+        $('#add').bind('click', function () {
+            ajaxSubmitForm('Form', '/Product/ProductAddPartPost');
+        });
+
+        $('#reset').bind('click', function () {
+            $("Form").form('clear');
+        });
+    });
+</script>

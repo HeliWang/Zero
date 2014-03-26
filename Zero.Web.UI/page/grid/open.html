@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="/css/base.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/zero.js"></script>
+    <title>展开网格</title>
+</head>
+<body>
+    <div class="z-content">
+        <div class="z-grid z-grid-tree">
+            <div class="z-grid-toolbar clearfix">
+                <a class="z-button z-button-add"><span class="z-icon-add"></span>添加根节点</a>
+                <a class="z-button z-button-edit"><span class="z-icon-edit"></span>修改</a>
+            </div>
+            <div class="z-grid-header">
+                <table>
+                    <colgroup>
+                        <col style="width:30px;"/>
+                        <col style="width:50px;"/>
+                        <col />
+                        <col style="width:100px;"/>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th><div class="node">&nbsp;</div></th>
+                            <th>编号</th>
+                            <th class="left">类别</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="z-grid-content">
+                <table>
+                    <colgroup>
+                        <col style="width:30px;"/>
+                        <col style="width:50px;"/>
+                        <col />
+                        <col style="width:100px;"/>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td><div class="node end">&nbsp;</div></td>
+                            <td>1</td>
+                            <td class="left">鞋子</td>
+                            <td>
+                                <a class="z-add"></a>
+                                <a class="z-edit"></a>
+                                <a class="z-delete"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="padding:10px;">
+                                <div class="z-grid"  style="width:99%">
+                                    <div class="z-grid-header">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:30px;"/>
+                                                <col style="width:50px;"/>
+                                                <col />
+                                                <col style="width:100px;"/>
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th><input type="checkbox"/></th>
+                                                    <th>编号</th>
+                                                    <th class="left">类别</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="z-grid-content">
+                                        <table>
+                                            <colgroup>
+                                                <col style="width:30px;"/>
+                                                <col style="width:50px;"/>
+                                                <col />
+                                                <col style="width:100px;"/>
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td><input type="checkbox"/></td>
+                                                    <td>1</td>
+                                                    <td class="left">鞋子</td>
+                                                    <td>
+                                                        <a class="z-add"></a>
+                                                        <a class="z-edit"></a>
+                                                        <a class="z-delete"></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="checkbox"/></td>
+                                                    <td>2</td>
+                                                    <td class="left">男鞋</td>
+                                                    <td>
+                                                        <a class="z-add"></a>
+                                                        <a class="z-edit"></a>
+                                                        <a class="z-delete"></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="checkbox"/></td>
+                                                    <td>3</td>
+                                                    <td class="left">女鞋</td>
+                                                    <td>
+                                                        <a class="z-add"></a>
+                                                        <a class="z-edit"></a>
+                                                        <a class="z-delete"></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="node end">&nbsp;</div></td>
+                            <td>2</td>
+                            <td class="left">男鞋</td>
+                            <td>
+                                <a class="z-add"></a>
+                                <a class="z-edit"></a>
+                                <a class="z-delete"></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div class="node end">&nbsp;</div></td>
+                            <td>3</td>
+                            <td class="left">女鞋</td>
+                            <td>
+                                <a class="z-add"></a>
+                                <a class="z-edit"></a>
+                                <a class="z-delete"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="z-operate">
+            <div class="hidden">
+                <em>状态：</em>
+                <input type="radio" name="targetStatus" id="targetStatus_已通过" value="1"/><label for="targetStatus_已通过">已通过</label> <input type="radio" name="targetStatus" id="targetStatus_待审核" value="0" checked=""><label for="targetStatus_待审核">待审核</label> <input type="radio" name="targetStatus" id="targetStatus_未通过" value="-1"><label for="targetStatus_未通过">未通过</label> <input type="radio" name="targetStatus" id="targetStatus_回收站" value="-100"><label for="targetStatus_回收站">回收站</label> 
+            </div>
+            <div class="hidden">
+                <em>类别：</em>
+                <select>
+                    <option>鞋子</option>
+                    <option>鞋子</option>
+				</select>
+            </div>
+            <div>
+                <em>批量操作：</em>
+                <input type="checkbox" id="checkAll" class="checkAll"/><label for="checkAll">全选</label>	
+				<input type="radio" id="action_0" name="action" value="audit" onclick="checkAction('#audit')"/><label for="action_0">审核</label>	
+				<input type="radio" id="action_1" name="action" value="selectCategory" onclick="checkAction('#selectCategory')"/><label for="action_1">分类</label>
+                <input type="radio" id="action_2" name="action" value="delete" onclick="checkAction('#delete')"/><label for="action_2">删除</label>
+				<input type="submit" class="z-button3" value="执行操作"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

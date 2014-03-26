@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24977296-3630-4A39-8AB0-68B93DBDBF9C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zero.Web.Manage</RootNamespace>
+    <AssemblyName>Zero.Web.Manage</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\AdminEdit.aspx" />
+    <Content Include="Admin\AdminIndex.aspx" />
+    <Content Include="Category\AttrEdit.aspx" />
+    <Content Include="Category\AttrIndex.aspx" />
+    <Content Include="Category\CateAttrEdit.aspx" />
+    <Content Include="Category\CateAttrIndex.aspx" />
+    <Content Include="Category\CateAttrValueIndex.aspx" />
+    <Content Include="Category\CateEdit.aspx" />
+    <Content Include="Category\CateIndex.aspx" />
+    <Content Include="Category\AttrValueEdit.aspx" />
+    <Content Include="Category\AttrValueIndex.aspx" />
+    <Content Include="ImageList.aspx" />
+    <Content Include="images\add.gif" />
+    <Content Include="images\delete.gif" />
+    <Content Include="images\edit.gif" />
+    <Content Include="images\error.gif" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\refresh.gif" />
+    <Content Include="images\table_edit.gif" />
+    <Content Include="images\tree\elbow-end-minus-nl.gif" />
+    <Content Include="images\tree\elbow-end-minus.gif" />
+    <Content Include="images\tree\elbow-end-plus-nl.gif" />
+    <Content Include="images\tree\elbow-end-plus.gif" />
+    <Content Include="images\tree\elbow-end.gif" />
+    <Content Include="images\tree\elbow-line.gif" />
+    <Content Include="images\tree\elbow-minus-nl.gif" />
+    <Content Include="images\tree\elbow-minus.gif" />
+    <Content Include="images\tree\elbow-plus-nl.gif" />
+    <Content Include="images\tree\elbow-plus.gif" />
+    <Content Include="images\tree\elbow.gif" />
+    <Content Include="js\attr.js" />
+    <Content Include="css\base.css" />
+    <Content Include="Index.aspx" />
+    <Content Include="js\jquery.form.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\zero.js" />
+    <Content Include="Product\ProductEdit.aspx" />
+    <Content Include="Product\ProductIndex.aspx" />
+    <None Include="Service References\Service.Img\configuration91.svcinfo" />
+    <None Include="Service References\Service.Img\configuration.svcinfo" />
+    <Content Include="Service References\Service.Img\FileUploadService1.wsdl" />
+    <None Include="Service References\Service.Img\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Service References\Service.Img\FileUploadService1.disco" />
+    <Content Include="Service References\ServiceReference1\shoesnet.disco" />
+    <Content Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <Content Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <Content Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Upload.aspx" />
+    <Content Include="Upload2.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\AdminEdit.aspx.cs">
+      <DependentUpon>AdminEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEdit.aspx.designer.cs">
+      <DependentUpon>AdminEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminIndex.aspx.cs">
+      <DependentUpon>AdminIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminIndex.aspx.designer.cs">
+      <DependentUpon>AdminIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\AttrEdit.aspx.cs">
+      <DependentUpon>AttrEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\AttrEdit.aspx.designer.cs">
+      <DependentUpon>AttrEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\AttrIndex.aspx.cs">
+      <DependentUpon>AttrIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\AttrIndex.aspx.designer.cs">
+      <DependentUpon>AttrIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\CateAttrEdit.aspx.cs">
+      <DependentUpon>CateAttrEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\CateAttrEdit.aspx.designer.cs">
+      <DependentUpon>CateAttrEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\CateAttrIndex.aspx.cs">
+      <DependentUpon>CateAttrIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\CateAttrIndex.aspx.designer.cs">
+      <DependentUpon>CateAttrIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\CateAttrValueIndex.aspx.cs">
+      <DependentUpon>CateAttrValueIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\CateAttrValueIndex.aspx.designer.cs">
+      <DependentUpon>CateAttrValueIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\CateEdit.aspx.cs">
+      <DependentUpon>CateEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\CateEdit.aspx.designer.cs">
+      <DependentUpon>CateEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\CateIndex.aspx.cs">
+      <DependentUpon>CateIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\CateIndex.aspx.designer.cs">
+      <DependentUpon>CateIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\AttrValueEdit.aspx.cs">
+      <DependentUpon>AttrValueEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\AttrValueEdit.aspx.designer.cs">
+      <DependentUpon>AttrValueEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category\AttrValueIndex.aspx.cs">
+      <DependentUpon>AttrValueIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Category\AttrValueIndex.aspx.designer.cs">
+      <DependentUpon>AttrValueIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImageList.aspx.cs">
+      <DependentUpon>ImageList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImageList.aspx.designer.cs">
+      <DependentUpon>ImageList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Product\ProductEdit.aspx.cs">
+      <DependentUpon>ProductEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Product\ProductEdit.aspx.designer.cs">
+      <DependentUpon>ProductEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Product\ProductIndex.aspx.cs">
+      <DependentUpon>ProductIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Product\ProductIndex.aspx.designer.cs">
+      <DependentUpon>ProductIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Service.Img\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Upload.aspx.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Upload.aspx.designer.cs">
+      <DependentUpon>Upload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Upload2.aspx.cs">
+      <DependentUpon>Upload2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Upload2.aspx.designer.cs">
+      <DependentUpon>Upload2.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Service References\Service.Img\Zero.Web.Manage.Service.Img.UploadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\shoesnet.wsdl" />
+    <Content Include="Service References\ServiceReference1\Zero.Web.Manage.ServiceReference1.Brand.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Zero.Web.Manage.ServiceReference1.GetBrandListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Zero.Web.Manage.ServiceReference1.GetProductCountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Zero.Web.Manage.ServiceReference1.GetProductInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Zero.Web.Manage.ServiceReference1.GetProductListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceReference1\Zero.Web.Manage.ServiceReference1.ProductInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zero\Zero.csproj">
+      <Project>{9d40f1d1-0dfa-4a42-b7c2-dbabc7074614}</Project>
+      <Name>Zero</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Service.Img\" />
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>9924</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:13087/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,43 @@
+初始化分为:ajax请求，html初始化，js初始化
+
+Zero.Util 
+
+Zero.Menu					菜单
+
+Zero.Tab
+Zero.Tab.Tab				选项卡
+Zero.Tab.Nav				导航条
+Zero.Tab.Panel				选项板块
+
+Zero.Form				    表单			     
+
+Zero.Panel					板块
+
+Zero.Grid					网格
+
+Zero.Tip					提示信息
+
+Zero.Dialog					弹出框
+
+Zero.List
+Zero.List.Simple			列表(单选，多选，状态)
+
+Zero.Select
+Zero.Select.Combox          多选
+Zero.Select.Suggest         选择提示
+
+Zero.Calendar
+Zero.Calendar.Calendar		日历
+Zero.Calendar.DatePicker	日期
+
+Zero.Message
+Zero.Message.Alert			提醒
+Zero.Message.Confirm		确认
+
+Zero.Tool					工具
+
+Zero.Progress               进度条
+
+Zero.Split					分割条
+
+可以直接用js创建出控件，也可以直接编写html

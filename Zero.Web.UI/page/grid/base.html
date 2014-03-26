@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>基本网格</title>
+    <link rel="stylesheet" href="/css/base.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/zero.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.zero.grid();
+
+            //$.zero.paging({
+            //    renderTo: "#paging",
+            //    name: "test",
+            //    recordCount: 200,
+            //    showPageCount: 7,
+            //    urlMode: "adminIndex.aspx?page={page}",
+            //    botton: { visible: [false/*第一页和最末页*/, true/*上一页和下一页*/] }
+            //});  
+
+            //$(function () {
+            //    $.zero.popUpBox({
+            //        title: "这是弹出框的标题",
+            //        context: "这里是内容",
+            //        width: 500,
+            //        height: 250,
+            //        ok: { name: "确定", enable: false, click: function () { alert("ok"); } },
+            //        cancel: { name: "取消", enable: true, click: function () { alert("cancel"); } }
+            //    });
+            //});
+        })
+    </script>
+</head>
+<body>
+   <div class="z-content">
+        <div class="z-search">
+            <div class="z-search-title">
+                用户搜索
+            </div>
+            <div class="z-search-content">
+                <!--<table>
+                    <colgroup>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                        <col style="width:200px;"/>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>用户名：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名：</th>
+                            <td>
+                                <select>
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                            <th>用户名：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名：</th>
+                            <td><input type="text" /></td>
+                           
+                        </tr>
+                        <tr>
+                            <th>用户名ddd：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名：</th>
+                            <td>
+                                <select>
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                            <th>用户名aaaaaaa：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名aaa：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名：</th>
+                            <td><input type="text" /></td>
+                       
+                        </tr>
+                        <tr>
+                            <th>用户名ddd：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名：</th>
+                            <td>
+                                <select>
+                                    <option>请选择</option>
+                                </select>
+                            </td>
+                            <th>用户名aaaaaaa：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名aaa：</th>
+                            <td><input type="text" /></td>
+                            <th>用户名：</th>
+                            <td><input type="text" /></td>
+                      
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="10">
+                                <div class="button">
+                                    <a class="z-button z-button-add"><span class="z-icon-add"></span>搜索</a>
+                                    <a class="z-button z-button-add"><span class="z-icon-add"></span>统计</a>
+                                    <a class="z-button z-button-add"><span class="z-icon-add"></span>导出数据</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>-->
+                <ul class="clearfix">
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+                    <li>
+                        <div>用户名：</div>
+                        <div>
+                            <select>
+                                <option>请选择</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li>
+                        <div>用户名11133：</div>
+                        <div><input type="text" /></div>
+                    </li>
+
+                    <li>
+                        <div><a class="z-button z-button-add"><span class="z-icon-add"></span>搜索</a></div>
+                    </li>
+                </ul>
+            </div>
+         </div>
+
+        <div class="z-grid">
+            <div class="z-grid-toolbar clearfix">
+                <a class="z-button z-button-add"><span class="z-icon-add"></span>添加</a>
+                <a class="z-button z-button-edit"><span class="z-icon-edit"></span>修改</a>
+            </div>
+            <div class="z-grid-header">
+                <table>
+                    <colgroup>
+                        <col style="width:30px;"/>
+                        <col style="width:100px;"/>
+                        <col />
+                        <col style="width:100px;"/>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox"/></th>
+                            <th>编号</th>
+                            <th>性别</th>
+                            <th>学校</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="z-grid-content">
+                <table>
+                    <colgroup>
+                        <col style="width:30px;"/>
+                        <col style="width:100px;"/>
+                        <col />
+                        <col style="width:100px;"/>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>编号</td>
+                            <td>性别</td>
+                            <td>学校</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>编号</td>
+                            <td>性别</td>
+                            <td>学校</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>编号</td>
+                            <td>性别</td>
+                            <td>学校性别性别性别性别性别性别性别性别性别</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>编号</td>
+                            <td>性别</td>
+                            <td>学校</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>编号</td>
+                            <td>性别</td>
+                            <td>学校</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>编号</td>
+                            <td>性别</td>
+                            <td>学校</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"/></td>
+                            <td>编号</td>
+                            <td>性别</td>
+                            <td>学校性别性别性别性别性别性别性别性别性别</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="paging" class="z-grid-paging">
+                <script type="text/javascript">$(function () { $.zero.paging({ name: "paging", renderTo: "#paging", pageIndex: 1, pageSize: 30, recordCount: 7, showPageCount: 7, button: { visible: [false, true] } }); })</script>
+            </div>
+
+            <!--<div class="z-grid-toolbar">
+                <div id="paging" class="z-paging clearfix"></div>
+                <script type="text/javascript">$(function () { $.zero.paging({ name: "paging", renderTo: "#paging", pageIndex: 1, pageSize: 30, recordCount: 7, showPageCount: 7, button: { visible: [false, true] } }); })</script>
+            </div>-->
+        </div>
+
+        <div class="z-operate">
+            <div class="hidden">
+                <em>状态：</em>
+                <input type="radio" name="targetStatus" id="targetStatus_已通过" value="1"/><label for="targetStatus_已通过">已通过</label> <input type="radio" name="targetStatus" id="targetStatus_待审核" value="0" checked=""><label for="targetStatus_待审核">待审核</label> <input type="radio" name="targetStatus" id="targetStatus_未通过" value="-1"><label for="targetStatus_未通过">未通过</label> <input type="radio" name="targetStatus" id="targetStatus_回收站" value="-100"><label for="targetStatus_回收站">回收站</label> 
+            </div>
+            <div class="hidden">
+                <em>类别：</em>
+                <select>
+                    <option>鞋子</option>
+                    <option>鞋子</option>
+				</select>
+            </div>
+            <div>
+                <em>批量操作：</em>
+                <input type="checkbox" id="checkAll" class="checkAll"/><label for="checkAll">全选</label>	
+				<input type="radio" id="action_0" name="action" value="audit" onclick="checkAction('#audit')"/><label for="action_0">审核</label>	
+				<input type="radio" id="action_1" name="action" value="selectCategory" onclick="checkAction('#selectCategory')"/><label for="action_1">分类</label>
+                <input type="radio" id="action_2" name="action" value="delete" onclick="checkAction('#delete')"/><label for="action_2">删除</label>
+				<input type="submit" class="z-button3" value="执行操作"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

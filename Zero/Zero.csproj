@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9D40F1D1-0DFA-4A42-B7C2-DBABC7074614}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zero</RootNamespace>
+    <AssemblyName>Zero</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Category\Bll\AttrService.cs" />
+    <Compile Include="Category\Bll\CateAttrService.cs" />
+    <Compile Include="Category\Bll\CateAttrValueService.cs" />
+    <Compile Include="Category\Bll\CateService.cs" />
+    <Compile Include="Category\Bll\AttrValueService.cs" />
+    <Compile Include="Category\Bll\IAtrrService.cs" />
+    <Compile Include="Category\Data\AttrMapper.cs" />
+    <Compile Include="Category\Data\AttrValueMapper.cs" />
+    <Compile Include="Category\Data\CateAttrMapper.cs" />
+    <Compile Include="Category\Data\CateAttrValueMapper.cs" />
+    <Compile Include="Category\Data\CateBaseMapper.cs" />
+    <Compile Include="Category\Data\CateMapper.cs" />
+    <Compile Include="Category\Model\AttrInfo.cs" />
+    <Compile Include="Category\Model\AttrValueInfo.cs" />
+    <Compile Include="Category\Model\CateAttrInfo.cs" />
+    <Compile Include="Category\Model\CateAttrValueInfo.cs" />
+    <Compile Include="Category\Model\CateInfo.cs" />
+    <Compile Include="Category\Model\EasyTreeInfo.cs" />
+    <Compile Include="Credit\Model\ProductRateInfo.cs" />
+    <Compile Include="Img\Bll\AttachmentCtrl.cs" />
+    <Compile Include="Img\Bll\CateCtrl.cs" />
+    <Compile Include="Img\Model\AttachmentInfo.cs" />
+    <Compile Include="Img\Model\CateInfo.cs" />
+    <Compile Include="Pages\ManagePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Payment\NVPCodec.cs" />
+    <Compile Include="Payment\Model\CheckoutRequestInfo.cs" />
+    <Compile Include="Payment\PayPayApi.cs" />
+    <Compile Include="Product\Bll\ProductService.cs" />
+    <Compile Include="Product\Data\ProductMapper.cs" />
+    <Compile Include="Product\Enum\ProductEnum.cs" />
+    <Compile Include="Product\Model\ProductPhotoInfo.cs" />
+    <Compile Include="Product\Model\ProductInfo.cs" />
+    <Compile Include="Product\Model\SkuInfo.cs" />
+    <Compile Include="Product\Model\ProductDescInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Category\Bll\CateBaseService.cs" />
+    <Compile Include="Category\Model\CateBaseInfo.cs" />
+    <Compile Include="Sys\Bll\ErrorCtrl.cs" />
+    <Compile Include="Sys\Model\ErrorInfo.cs" />
+    <Compile Include="Trade\Model\CartInfo.cs" />
+    <Compile Include="Trade\Model\OrderInfo.cs" />
+    <Compile Include="Trade\Model\PaymentInfo.cs" />
+    <Compile Include="Trade\Model\RefundInfo.cs" />
+    <Compile Include="Trade\Model\SnapshotInfo.cs" />
+    <Compile Include="User\Bll\AdminCtrl.cs" />
+    <Compile Include="User\Model\AdminInfo.cs" />
+    <Compile Include="User\Model\AdminLoginInfo.cs" />
+    <Compile Include="User\Model\UserInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Credit\Bll\" />
+    <Folder Include="Credit\Dal\" />
+    <Folder Include="Img\Dal\" />
+    <Folder Include="Logistics\Bll\" />
+    <Folder Include="Logistics\Dal\" />
+    <Folder Include="Logistics\Model\" />
+    <Folder Include="RBAC\" />
+    <Folder Include="Shop\Bll\" />
+    <Folder Include="Shop\Dal\" />
+    <Folder Include="Shop\Model\" />
+    <Folder Include="Sys\Dal\" />
+    <Folder Include="Trade\Bll\" />
+    <Folder Include="Trade\Dal\" />
+    <Folder Include="User\Dal\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PetaPoco\Zero.Orm.csproj">
+      <Project>{0d7aed0d-c9ab-483b-a7b2-817b6070a1ec}</Project>
+      <Name>Zero.Orm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zero.Core\Zero.Core.csproj">
+      <Project>{c5288e7c-1d40-4c1a-a15e-bf20d69af585}</Project>
+      <Name>Zero.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zero.Data\Zero.Data.csproj">
+      <Project>{9110e3e4-d7cf-4d57-b766-ad2d71a4f9d7}</Project>
+      <Name>Zero.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

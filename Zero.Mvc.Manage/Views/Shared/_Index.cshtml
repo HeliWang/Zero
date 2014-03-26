@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>@ViewBag.Title</title>
+
+    @Styles.Render("~/content/easyui/default/easyui.css")
+	@Styles.Render("~/content/easyui/icon.css")
+    @Styles.Render("~/content/base.css")
+
+
+	@Scripts.Render("~/scripts/jquery.min.js")
+	@Scripts.Render("~/scripts/jquery.easyui.min.js")
+    @Scripts.Render("~/scripts/easyui-lang-zh_CN.js")
+    @Scripts.Render("~/scripts/base.js")
+
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+	@RenderBody()
+</body>
+</html>
