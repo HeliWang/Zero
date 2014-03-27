@@ -1,39 +1,47 @@
 ﻿@{
-    Layout = "~/Views/Shared/Tab/_Index.cshtml";
+    Layout = "~/Views/Shared/_Index.cshtml";
     ViewBag.Title = "ProductIndex";
 }
 
-<!-- 列表 -->
+@*<table id="productList" class="easyui-datagrid" title="商品列表"
+        data-options="
+        loadMsg:'正在加载.....',
+        rownumbers:true,
+        collapsible:true,
+        pagination:true,
+        url:'datagrid_data1.json',
+        method:'get',toolbar:toolbar
+        ">
+		<thead data-options="frozen:true">
+            <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+				<th data-options="field:'itemid',width:80,align:'center'">商品编号</th>
+                <th data-options="field:'productid',align:'left'">商品编号名称</th>
+            </tr>
+        </thead>
+        <thead>
+			<tr>
+				<th data-options="field:'listprice',width:80,align:'center'">商品价格</th>
+				<th data-options="field:'unitcost',width:80,align:'center'">商品数量</th>
+				<th data-options="field:'attr1',width:250,align:'center'">商品属性</th>
+				<th data-options="field:'status',width:60,align:'center'">商品状态</th>
+			</tr>
+		</thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td>001</td>
+                <td>李宁球鞋热卖可是大家分开就</td>
+                <td>100.00</td>
+                <td>50</td>
+                <td>耐寒</td>
+                <td>已上架</td>
+            </tr>
+        </tbody>
+</table>*@
 <table id="datagrid"></table>
 
-<!-- 工具栏 -->
-<div id="toolbar">
-    <div>
-        @*<a href="#" id="add"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>*@
-        <a href="#" id="addPart"  class="easyui-linkbutton" iconCls="icon-add" plain="true">商品添加部分</a>
-        <a href="#" id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
-        <a href="#" id="remove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除</a>
-        <a href="#" id="reload" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
-        
-    </div>
-   @* <div>
-        Date From: <input class="easyui-datebox" style="width:80px">
-        To: <input class="easyui-datebox" style="width:80px">
-        Language: 
-        <select class="easyui-combobox" panelHeight="auto" style="width:100px">
-            <option value="java">Java</option>
-            <option value="c">C</option>
-            <option value="basic">Basic</option>
-            <option value="perl">Perl</option>
-            <option value="python">Python</option>
-        </select>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
-    </div>*@
-</div>
-
 <script type="text/javascript">
-
-    var controller = "Product";
 
     $(function () {
 
@@ -74,9 +82,49 @@
             onLoadError: function () {
                 $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
             },
-            toolbar: '#toolbar',
-
-            //openParentTab('商品添加部分', '/Product/ProductAddPart');
+            toolbar: [{
+                text: '添加',
+                iconCls: 'icon-add',
+                handler: function () {
+                    openParentTab('商品添加', '/Product/ProductAdd');
+                }
+            }, {
+                text: '添加部分',
+                iconCls: 'icon-add',
+                handler: function () {
+                    openParentTab('商品添加部分', '/Product/ProductAddPart');
+                }
+            }, {
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: function () {
+                    var row = $('#datagrid').datagrid('getSelected');
+                    if (row) {
+                        openParentTab('商品修改-' + row.CateId, '/Product/ProductEdit');
+                    }
+                    else {
+                        alert('未选中任何项目');
+                    }
+                }
+            }, {
+                text: '删除',
+                iconCls: 'icon-remove',
+                handler: function () {
+                    var row = $('#datagrid').datagrid('getSelected');
+                    if (row) {
+                        openParentTab('类别修改-' + row.CateId, '/Product/ProductDelete');
+                    }
+                    else {
+                        alert('未选中任何项目');
+                    }
+                }
+            }, {
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: function () {
+                    $("#datagrid").datagrid('reload');
+                }
+            }],
         });
 
         function operateFormat(value, row, index) {
@@ -89,18 +137,12 @@
         function idFormat(value, row, index) {
             return row.ProductId;
         }
-
-        function photoFormat(value, row, index) {
-            if (value == null) return '';
-            return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value + '"></img></a>';
-        }
-
-        $('#addPart').bind('click', function () {
-            openParentTab('商品添加部分', '/Product/ProductAddPart');
-        });
     });
 
-    
+    function photoFormat(value, row, index) {
+        if (value == null) return '';
+        return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value + '"></img></a>';
+    }
 
     ////设置分页控件  
     //var p = $('#list_data').datagrid('getPager');

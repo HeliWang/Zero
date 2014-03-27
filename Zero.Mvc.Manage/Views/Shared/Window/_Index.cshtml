@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>@ViewBag.Title</title>
+
+    @Styles.Render("~/content/easyui/default/easyui.css")
+	@Styles.Render("~/content/easyui/icon.css")
+    @Styles.Render("~/content/zTreeStyle/zTreeStyle.css")
+    @Styles.Render("~/content/base.css")
+
+	@Scripts.Render("~/scripts/jquery.min.js")
+	@Scripts.Render("~/scripts/jquery.easyui.min.js")
+    @Scripts.Render("~/scripts/easyui-lang-zh_CN.js")
+	@Scripts.Render("~/scripts/jquery.ztree.all.min.js")
+    @Scripts.Render("~/scripts/jquery.form.js")
+    @Scripts.Render("~/scripts/base.js")
+    @Scripts.Render("~/scripts/string.js")
+
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+	@RenderBody()
+
+    <!-- 弹出框-->
+    <div id="window" class="easyui-window" data-options="closed:true,iconCls:'icon-save'" style="width:500px;height:200px;padding:10px;">
+         <iframe id="iframe" style="width:100%;height:100%;border:0;"></iframe>
+    </div>
+
+    <script type="text/javascript">
+
+        function GetAddUrl() {
+            return String.format('/{0}/{0}Add', controller);
+        }
+        function GetEditUrl(id) {
+            return String.format('/{0}/{0}Edit?{0}Id={1}', controller, id);
+        }
+        function GetOperateUrl() {
+            return String.format('/{0}/{0}Operate', controller);
+        }
+
+
+        $(function () {
+            
+
+            $('#add').bind('click', function () {
+                openWindow('添加', GetAddUrl());
+            });
+
+            $('#edit').bind('click', function () {
+                var row = $('#datagrid').datagrid('getSelected');
+                if (row) {
+                    openWindow('修改', GetEditUrl(row.id));
+                }
+                else {
+                    show('请选中要编辑的项目');
+
+                }
+            });
+
+            $('#remove').bind('click', function () {
+                var row = $('#datagrid').datagrid('getSelected');
+                if (row) {
+                    var params = { action: 'delete', ids: row.id };
+                    operateAjax(params);
+                }
+                else {
+                    show('请选中要编辑的项目');
+                }
+            });
+
+            $('#reload').bind('click', function () {
+                $("#datagrid").treegrid('reload');
+            });
+
+            $('#expand').bind('click', function () {
+                $("#datagrid").treegrid('expandAll');
+            });
+
+            $('#collapse').bind('click', function () {
+                $("#datagrid").treegrid('collapseAll');
+            });
+
+            //在调整了窗口大小以后，设置easyui gridview也调整宽度
+            $(window).resize(function () {
+                $('#datagrid').datagrid('resize');
+            });
+
+        });
+
+        function show(msg) {
+            $.messager.show({
+                title: '提醒',
+                msg: msg,
+                timeout: 3000,
+                showType: 'show'
+            });
+        }
+
+        function closeWindow(msg) {
+            $("#datagrid").treegrid('reload');
+            $('#window').window('close');
+        }
+
+        function openWindow(title, url) {
+            $('#window').window({ title: title });
+            $('#window>iframe').attr("src", url);
+            $('#window').window('open');
+        }
+
+        function operateAjax(params) {
+            $.messager.confirm('提醒', '您确定删除该信息？', function (r) {
+                if (r) {
+                    $.ajax({
+                        url: GetOperateUrl(),
+                        type: "Post",
+                        data: params,
+                        dataType: "json",
+                        success: function (data) {
+                            show(data.Message);
+                            $("#datagrid").treegrid('reload');
+                        },
+                        error: function () {
+                            show('系统异常，请重试或联系技术');
+                        }
+                    });
+                }
+            });
+        }
+
+</script>
+</body>
+</html>

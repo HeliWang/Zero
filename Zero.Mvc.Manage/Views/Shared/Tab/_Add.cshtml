@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Full Layout - jQuery EasyUI Demo</title>
+
+    @Styles.Render("~/content/easyui/default/easyui.css")
+	@Styles.Render("~/content/easyui/icon.css")
+    @Styles.Render("~/content/zTreeStyle/zTreeStyle.css")
+    @Styles.Render("~/content/base.css")
+
+	@Scripts.Render("~/scripts/jquery.min.js")
+	@Scripts.Render("~/scripts/jquery.easyui.min.js")
+    @Scripts.Render("~/scripts/easyui-lang-zh_CN.js")
+	@Scripts.Render("~/scripts/jquery.ztree.all.min.js")
+    @Scripts.Render("~/scripts/jquery.form.js")
+    @Scripts.Render("~/scripts/base.js")
+
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    
+	@RenderBody()
+
+    <div class="easyui-tabs-foot">
+        <a id="add" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+        <a id="reset" href="javascript:void(0)" class="easyui-linkbutton">重置</a>
+    </div>
+
+    <script type="text/ecmascript">
+
+        $('#add').bind('click', function () {
+            ajaxSubmitForm('Form');
+        });
+
+        $('#reset').bind('click', function () {
+            $("Form").form('clear');
+        });
+
+        //jquery.form提交方式
+        function ajaxSubmitForm(form) {
+            var options = {};
+
+            $(form).ajaxSubmit({
+                beforeSubmit: function (formData, jqForm, options) {
+                    if (!$(form).form('validate')) return false;
+                    return true;
+                },
+                success: function (responseText, statusText, xhr, $form) {
+                    if (responseText.Status == 0) {
+                        window.parent.closeWindow();
+                    }
+                    window.parent.slide(responseText.Message);
+                },
+                error: function () {
+                    $.messager.alert('提醒', '系统异常，请重试或联系技术');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
