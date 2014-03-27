@@ -24,7 +24,7 @@ namespace Zero.Mvc.Manage.Controllers.Products
             productService = Singleton<ProductService>.GetInstance();
         }
 
-        public ActionResult ProductListJson()
+        public ActionResult ProductList()
         {
             int pageIndex = RequestHelper.QueryInt("page");
             int pageSize = RequestHelper.QueryInt("rows");
@@ -34,10 +34,6 @@ namespace Zero.Mvc.Manage.Controllers.Products
 
             IPage<Product> productPage = productService.GetList(pageIndex, pageSize);
 
-            //Grid<ProductInfo> grid = new Grid<ProductInfo>();
-            //grid.total = productPage.TotalItems;
-            //grid.rows = productPage.Items;
-
             return Json(productPage, JsonRequestBehavior.AllowGet);
         }
 
@@ -46,62 +42,28 @@ namespace Zero.Mvc.Manage.Controllers.Products
             return View();
         }
 
-        public ActionResult ProductAdd()
-        {
-            //CateService cateService = Singleton<CateService>.GetInstance();
-
-            //int pid = RequestHelper.QueryInt("CateId");
-
-            //ViewBag.Pid = pid > 0 ? pid.ToString() : "";
-
-            //List<CateInfo> cateList = cateService.GetList(0, 0);
-            //cateList = cateService.ConvertCateListToTree(cateList);
-            //string cateJson = JsonHelper.Serialize<List<CateInfo>>(cateList);
-
-            //ViewBag.CateListJson = cateJson.Replace("CateId", "id").Replace("CateName", "text");
-
-            return View();
-        }
-
         public ActionResult ProductAddPart()
         {
-            //CateService cateService = Singleton<CateService>.GetInstance();
-
-            //int pid = RequestHelper.QueryInt("CateId");
-
-            //ViewBag.Pid = pid > 0 ? pid.ToString() : "";
-
-            //List<CateInfo> cateList = cateService.GetList(0, 0);
-            //cateList = cateService.ConvertCateListToTree(cateList);
-            //string cateJson = JsonHelper.Serialize<List<CateInfo>>(cateList);
-
-            //ViewBag.CateListJson = cateJson.Replace("CateId", "id").Replace("CateName", "text");
-
             return View();
         }
+
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult ProductAddPartPost()
+        public ActionResult ProductAdd(Product product)
         {
-            ResultInfo result;
-            Product product = new Product();
-            ProductDesc productDetail = new ProductDesc();
-            List<ProductPhoto> productPhotoList = new List<ProductPhoto>();
-            List<Sku> skuList = new List<Sku>();
-            StringBuilder errorMsg = new StringBuilder();
+            ResultInfo resultInfo = new ResultInfo(1, "验证不通过");
 
-            GetFrom(product, productDetail, productPhotoList, skuList, errorMsg);
-
-            if (errorMsg.Length > 0)
+            if (ModelState.IsValid)
             {
-                result = new ResultInfo((int)ResultStatus.Error, errorMsg.ToString());
-                return Json(result);
+                ProductDesc productDetail = new ProductDesc();
+                List<ProductPhoto> productPhotoList = new List<ProductPhoto>();
+                List<Sku> skuList = new List<Sku>();
+
+                resultInfo = productService.Add(product, productDetail, productPhotoList, skuList);
             }
 
-            result = productService.Add(product, productDetail, productPhotoList, skuList);
-
-            return Json(result);
+            return Json(resultInfo);
         }
 
         public void GetFrom(Product product, ProductDesc productDesc, List<ProductPhoto> productPhotoList, List<Sku> skuList, StringBuilder errorMsg)

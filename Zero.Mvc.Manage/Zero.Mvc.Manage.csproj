@@ -211,6 +211,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\easyui-lang-zh_CN.js" />
+    <Content Include="Scripts\string.js" />
     <Content Include="Scripts\validate.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
     <Content Include="Scripts\jquery.form.js" />
@@ -518,11 +519,11 @@
     <Content Include="Views\Cate\CateEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Index.cshtml" />
+    <Content Include="Views\Shared\Tab\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_Add.cshtml" />
-    <Content Include="Views\Shared\_Edit.cshtml" />
+    <Content Include="Views\Shared\Window\_Add.cshtml" />
+    <Content Include="Views\Shared\Window\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ueditor\net\fileUp.ashx" />
@@ -536,6 +537,18 @@
     <Content Include="ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="ueditor\third-party\video-js\font\vjs.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\副本 ProductIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Tab\_Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Tab\_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Window\_Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

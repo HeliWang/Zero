@@ -7,19 +7,19 @@
 
 
     <!-- 配置文件 -->
-    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    @Scripts.Render("~/ueditor/ueditor.config.js")
     <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="/ueditor/ueditor.all.min.js"></script>
+    @Scripts.Render("~/ueditor/ueditor.all.min.js")
     <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
-    <script type="text/javascript" src="/ueditor/lang/zh-cn/zh-cn.js"></script>
+    @Scripts.Render("~/ueditor/lang/zh-cn/zh-cn.js")
 
     <!-- 扩展验证文件 -->
-    <script type="text/javascript" src="/Scripts/validate.js"></script>
+    @Scripts.Render("~/scripts/validate.js")
 }
 
 <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
     <div title="商品基本">
-        <form id="Form" action="/Product/ProductAddPartPost" method="post">
+        <form id="Form" action="/Product/ProductAddPart" method="post">
             <table class="z-tb-form">
                 <tr>
                     <th>所属分类：</th>
@@ -189,20 +189,6 @@
 <script>
     //easyui-comboxtree不支持特定字段的绑定，暂时在程序里面转成json再替换主要字段，输出到前台最后加载
     $(function () {
-        var parentCateData = $('#ParentCateData').val();
-        if (parentCateData != '') {
-            parentCateData = eval('(' + parentCateData + ')');
-            $('#ParentCate').combotree('loadData', parentCateData);
-        }
-
         UE.getEditor('Desc');
-
-        $('#add').bind('click', function () {
-            ajaxSubmitForm('Form', '/Product/ProductAddPartPost');
-        });
-
-        $('#reset').bind('click', function () {
-            $("Form").form('clear');
-        });
     });
 </script>

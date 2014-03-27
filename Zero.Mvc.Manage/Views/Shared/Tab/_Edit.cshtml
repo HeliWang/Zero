@@ -48,6 +48,15 @@
             });
         });
 
+        function show(msg) {
+            $.messager.show({
+                title: '提醒',
+                msg: msg,
+                timeout: 3000,
+                showType: 'show'
+            });
+        }
+
 
         //jquery.form提交方式
         function ajaxSubmitForm(form) {
@@ -59,13 +68,10 @@
                     return true;
                 },
                 success: function (responseText, statusText, xhr, $form) {
-                    if (responseText.Status == 0) {
-                        window.parent.closeWindow();
-                    }
-                    window.parent.slide(responseText.Message);
+                    show(responseText.Message);
                 },
                 error: function () {
-                    window.parent.slide('系统异常，请重试或联系技术');
+                    show('系统异常，请重试或联系技术');
                 }
             });
         }

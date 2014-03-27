@@ -31,9 +31,15 @@ namespace Zero.Mvc.Manage.Controllers.Cates
             Func<List<Cate>, dynamic> getJson = null;
             getJson = (List) =>
             {
-                return List.Select(c => new { id = c.CateId, text = c.CateName
-                    ,ChildCount=c.ChildCount,CreateTiem=c.CreateTime,UpdateTime=c.UpdateTime
-                    ,children = c.children == null ? null : getJson(c.children) });
+                return List.Select(c => new
+                {
+                    id = c.CateId,
+                    text = c.CateName,
+                    ChildCount = c.ChildCount,
+                    CreateTiem = c.CreateTime,
+                    UpdateTime = c.UpdateTime,
+                    children = c.children == null ? null : getJson(c.children)
+                });
             };
 
             List<Cate> cateList = _cateService.GetList(0, 0);
@@ -49,12 +55,10 @@ namespace Zero.Mvc.Manage.Controllers.Cates
                 return List.Select(c => new
                 {
                     id = c.CateId,
-                    text = c.CateName
-                    ,
+                    text = c.CateName,
                     ChildCount = c.ChildCount,
                     CreateTiem = c.CreateTime,
-                    UpdateTime = c.UpdateTime
-                    ,
+                    UpdateTime = c.UpdateTime,
                     children = c.children == null ? null : getJson(c.children)
                 });
             };
