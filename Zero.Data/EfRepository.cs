@@ -37,6 +37,7 @@ namespace Zero.Data
 
         public void Update(T entity)
         {
+            this._entities.Attach(entity);
             this._context.SaveChanges();
         }
 

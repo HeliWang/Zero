@@ -10,6 +10,9 @@ namespace Zero.Data.Mapping.Products
         {
             this.ToTable("Product");
             this.HasKey(p => p.ProductId);
+
+            //Ignore
+            this.Ignore(t => t.id);
         }
     }
 }

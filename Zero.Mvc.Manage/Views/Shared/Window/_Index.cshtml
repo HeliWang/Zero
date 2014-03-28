@@ -48,7 +48,7 @@
             });
 
             $('#edit').bind('click', function () {
-                var row = $('#datagrid').datagrid('getSelected');
+                var row = $('#grid').datagrid('getSelected');
                 if (row) {
                     openWindow('修改', GetEditUrl(row.id));
                 }
@@ -59,7 +59,7 @@
             });
 
             $('#remove').bind('click', function () {
-                var row = $('#datagrid').datagrid('getSelected');
+                var row = $('#grid').datagrid('getSelected');
                 if (row) {
                     var params = { action: 'delete', ids: row.id };
                     operateAjax(params);
@@ -70,20 +70,20 @@
             });
 
             $('#reload').bind('click', function () {
-                $("#datagrid").treegrid('reload');
+                $("#grid").treegrid('reload');
             });
 
             $('#expand').bind('click', function () {
-                $("#datagrid").treegrid('expandAll');
+                $("#grid").treegrid('expandAll');
             });
 
             $('#collapse').bind('click', function () {
-                $("#datagrid").treegrid('collapseAll');
+                $("#grid").treegrid('collapseAll');
             });
 
             //在调整了窗口大小以后，设置easyui gridview也调整宽度
             $(window).resize(function () {
-                $('#datagrid').datagrid('resize');
+                $('#grid').datagrid('resize');
             });
 
         });
@@ -98,7 +98,7 @@
         }
 
         function closeWindow(msg) {
-            $("#datagrid").treegrid('reload');
+            $("#grid").treegrid('reload');
             $('#window').window('close');
         }
 
@@ -118,7 +118,7 @@
                         dataType: "json",
                         success: function (data) {
                             show(data.Message);
-                            $("#datagrid").treegrid('reload');
+                            $("#grid").treegrid('reload');
                         },
                         error: function () {
                             show('系统异常，请重试或联系技术');

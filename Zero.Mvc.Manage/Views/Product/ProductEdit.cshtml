@@ -1,31 +1,30 @@
 ﻿@{
-    Layout = "~/Views/Shared/Tab/_Add.cshtml";
-    ViewBag.Title = "CreatePart";
+    Layout = "~/Views/Shared/Tab/_Edit.cshtml";
+    ViewBag.Title = "ProductAdd";
 }
 
 @section Scripts {
-
-
     <!-- 配置文件 -->
     @Scripts.Render("~/ueditor/ueditor.config.js")
     <!-- 编辑器源码文件 -->
     @Scripts.Render("~/ueditor/ueditor.all.min.js")
     <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
     @Scripts.Render("~/ueditor/lang/zh-cn/zh-cn.js")
-
-    <!-- 扩展验证文件 -->
-    @Scripts.Render("~/scripts/validate.js")
 }
 
+@model Zero.Domain.Products.Product
+
+
+@if(Model!=null)
+{
 <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
     <div title="商品基本">
-        <form id="Form" action="/Product/ProductAddPart" method="post">
+        <form id="Form" action="/Product/ProductEdit" method="post">
             <table class="z-tb-form">
                 <tr>
                     <th>所属分类：</th>
                     <td>
-                        <input id="ParentCateData" type="hidden" value="@ViewBag.CateListJson"/>
-                        <select id="ParentCate" name="ParentCate" class="easyui-combotree" style="width:200px;"></select>
+                        <input name="Pid"  data-options="url:'@Url.Action("CateList","Cate")'" value="@Model.CateId" class="easyui-combotree"  style="width:200px;">
                     </td>
                 </tr>
                 <tr>
@@ -38,28 +37,32 @@
                 </tr>
                 <tr>
                     <th>商品名称：</th>
-                    <td><input type="text" name="ProductName"  data-options="required:true,validType:['length[2,30]']" class="easyui-validatebox" style="width:600px;"/></td>
+                    <td>
+                        <input type="hidden"  name="ProductId" value="@Model.ProductId"/>
+                        <input type="text" name="ProductName" value="@Model.ProductName"  data-options="required:true,validType:['length[2,30]']" class="easyui-validatebox" style="width:600px;"/>
+                    </td>
                 </tr>
                 <tr>
                     <th>商品卖点：</th>
-                    <td><input type="text" name="SubName"  data-options="validType:['length[0,30]']" class="easyui-validatebox" style="width:600px;"/></td>
+                    <td><input type="text" name="SubName" value="@Model.SubName"  data-options="validType:['length[0,30]']" class="easyui-validatebox" style="width:600px;"/></td>
                 </tr>
                 <tr>
                     <th>商品编码：</th>
-                    <td><input type="text" name="Zsc"  data-options="validType:['length[0,10]']" class="easyui-validatebox" style="width:100px;"/></td>
+                    <td><input type="text" name="Zsc" value="@Model.Zsc" data-options="validType:['length[0,10]']" class="easyui-validatebox" style="width:100px;"/></td>
                 </tr>
                 <tr>
                     <th>一口价：</th>
-                    <td><input type="text" name="Price"  data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox" style="width:100px;"/></td>
+                    <td><input type="text" name="Price" value="@Math.Round(@Model.Price,0)"  data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox" style="width:100px;"/></td>
                 </tr>
                 <tr>
                     <th>商品数量：</th>
-                    <td><input type="text" name="Amount" data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox"  style="width:100px;"/>件</td>
+                    <td><input type="text" name="Amount" value="@Math.Round(@Model.Amount,0)" data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox"  style="width:100px;"/>件</td>
                 </tr>
                 <tr>
                     <th>商品详细：</th>
                     <td>
-                        <script id="Desc" name="Desc"  type="text/plain" style="width:800px;height:200px;"></script><!---->
+                        <textarea id="Desc" name="Desc" style="width:800px;height:200px;"></textarea>
+                        <script>$(function () { UE.getEditor('Desc'); });</script>
                     </td>
                 </tr>
                 <!--
@@ -176,19 +179,12 @@
                 <td></td>
                 <td>
                     <div style="text-align:left;padding:10px 0 15px 0px">
-                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
-                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton">确定</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton">重置</a>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
 </div>
-
-
-<script>
-    //easyui-comboxtree不支持特定字段的绑定，暂时在程序里面转成json再替换主要字段，输出到前台最后加载
-    $(function () {
-        UE.getEditor('Desc');
-    });
-</script>
+}

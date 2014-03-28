@@ -9,6 +9,8 @@ namespace Zero.Domain.Products
     /// </summary>
     public partial class Product : BaseEntity
     {
+        public int id { get { return ProductId; }}
+
         /// <summary>
         /// 商品自增ID
         /// </summary>

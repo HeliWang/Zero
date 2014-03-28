@@ -23,11 +23,6 @@ namespace Zero.Service.Products
         {
             product = _productRepository.Add(product);
 
-            if (product != null)
-            {
-
-            }
-
             //if (productInfo != null)
             //{
             //    productDetailInfo.ProductId = productInfo.ProductId;
@@ -49,11 +44,31 @@ namespace Zero.Service.Products
             return new ResultInfo("添加成功");
         }
 
+        public ResultInfo Edit(Product product, ProductDesc productDesc, List<ProductPhoto> productPhotoList, List<Sku> skuList)
+        {
+            _productRepository.Update(product);
+
+            return new ResultInfo("修改成功");
+        }
+
+        public ResultInfo Delete(string ids)
+        {
+            Product product = _productRepository.GetById(Utils.StrToInt(ids));
+            _productRepository.Delete(product);
+
+            return new ResultInfo("删除成功");
+        }
+
         public IPage<Product> GetList(int pageIndex, int pageSize)
         {
             var query = _productRepository.Table;
             query = query.OrderByDescending(b => b.CreateTime);
             return new Page<Product>(query, pageIndex, pageSize);
+        }
+
+        public Product GetById(int productId)
+        {
+            return _productRepository.GetById(productId);
         }
 
     }

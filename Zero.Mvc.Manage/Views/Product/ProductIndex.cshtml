@@ -4,13 +4,13 @@
 }
 
 <!-- 列表 -->
-<table id="datagrid"></table>
+<table id="grid"></table>
 
 <!-- 工具栏 -->
 <div id="toolbar">
     <div>
-        @*<a href="#" id="add"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>*@
-        <a href="#" id="addPart"  class="easyui-linkbutton" iconCls="icon-add" plain="true">商品添加部分</a>
+        <a href="#" id="add"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        @*<a href="#" id="addAll"  class="easyui-linkbutton" iconCls="icon-add" plain="true">商品添加完整</a>*@
         <a href="#" id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
         <a href="#" id="remove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除</a>
         <a href="#" id="reload" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
@@ -38,7 +38,7 @@
     $(function () {
 
         //加载网格(搜索中文版对照属性，来配置)
-        $('#datagrid').datagrid({
+        $('#grid').datagrid({
             title: '商品列表',
             collapsible: true,
             rownumbers: true,
@@ -55,7 +55,7 @@
             frozenColumns: [[
                 { field: 'ProductId', checkbox: true },
                 //{ field: 'ProductId', title: '商品编号', width: 50, algin: 'center' },//会绑定checkbox
-                { field: 'id', title: '商品编号', width: 60, align: 'center', formatter: idFormat },
+                { field: 'id', title: '商品编号', width: 60, align: 'center' },
                 { field: 'Photo', title: '商品图片', width: 140, algin: 'center', formatter: photoFormat },
                 { field: 'ProductName', title: '商品名称', width: 180, algin: 'center' },
             ]],
@@ -94,10 +94,6 @@
             if (value == null) return '';
             return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value + '"></img></a>';
         }
-
-        $('#addPart').bind('click', function () {
-            openParentTab('商品添加部分', '/Product/ProductAddPart');
-        });
     });
 
     

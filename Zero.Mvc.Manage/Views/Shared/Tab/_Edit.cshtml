@@ -3,11 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Full Layout - jQuery EasyUI Demo</title>
-
     @Styles.Render("~/content/easyui/default/easyui.css")
 	@Styles.Render("~/content/easyui/icon.css")
     @Styles.Render("~/content/zTreeStyle/zTreeStyle.css")
     @Styles.Render("~/content/base.css")
+    @RenderSection("styles", required: false)
 
 	@Scripts.Render("~/scripts/jquery.min.js")
 	@Scripts.Render("~/scripts/jquery.easyui.min.js")
@@ -15,27 +15,27 @@
 	@Scripts.Render("~/scripts/jquery.ztree.all.min.js")
     @Scripts.Render("~/scripts/jquery.form.js")
     @Scripts.Render("~/scripts/base.js")
-
+    @Scripts.Render("~/scripts/validate.js")
     @RenderSection("scripts", required: false)
 </head>
 <body>
     
-    <div class="z-tb-foot">
-        <a id="add" href="javascript:void(0)" class="easyui-linkbutton">保存</a>
+    @RenderBody()
+
+    <div class="easyui-tabs-foot">
+        <a id="add" href="javascript:void(0)" class="easyui-linkbutton">确定</a>
         <a id="reset" href="javascript:void(0)" class="easyui-linkbutton">重置</a>
     </div>
-
-    @RenderBody()
 
     <p id="msg" style="vertical-align:middle;text-align:center;"></p>
 
     <script type="text/ecmascript">
 
         $(function () {
-            //隐藏操作组件       
+            //隐藏操作组件
             var existInfo = $("#Form");
             if (existInfo.length==0) {
-                $(".z-tb-foot").hide();
+                $(".easyui-tabs-foot").hide();
                 $("#msg").html("该信息已被删除或不存在,请刷新列表页面！");
             }
 
@@ -56,7 +56,6 @@
                 showType: 'show'
             });
         }
-
 
         //jquery.form提交方式
         function ajaxSubmitForm(form) {

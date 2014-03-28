@@ -487,10 +487,10 @@
     <Content Include="Views\Product\ProductIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Product\ProductAdd.cshtml" />
+    <Content Include="Views\Product\ProductAddAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Product\ProductAddPart.cshtml" />
+    <Content Include="Views\Product\ProductAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Zero.Core\Zero.Core.csproj">
@@ -549,6 +549,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Window\_Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\ProductEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\MyHelper.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

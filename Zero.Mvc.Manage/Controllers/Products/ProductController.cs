@@ -17,11 +17,11 @@ namespace Zero.Mvc.Manage.Controllers.Products
 {
     public class ProductController : BaseController
     {
-        ProductService productService;
+        ProductService _productService;
 
         public ProductController()
         {
-            productService = Singleton<ProductService>.GetInstance();
+            _productService = Singleton<ProductService>.GetInstance();
         }
 
         public ActionResult ProductList()
@@ -32,7 +32,7 @@ namespace Zero.Mvc.Manage.Controllers.Products
             pageIndex = pageIndex <= 0 ? 0 : pageIndex - 1;
             if (pageSize <= 0) pageSize = 10;
 
-            IPage<Product> productPage = productService.GetList(pageIndex, pageSize);
+            IPage<Product> productPage = _productService.GetList(pageIndex, pageSize);
 
             return Json(productPage, JsonRequestBehavior.AllowGet);
         }
@@ -42,7 +42,7 @@ namespace Zero.Mvc.Manage.Controllers.Products
             return View();
         }
 
-        public ActionResult ProductAddPart()
+        public ActionResult ProductAdd()
         {
             return View();
         }
@@ -60,10 +60,71 @@ namespace Zero.Mvc.Manage.Controllers.Products
                 List<ProductPhoto> productPhotoList = new List<ProductPhoto>();
                 List<Sku> skuList = new List<Sku>();
 
-                resultInfo = productService.Add(product, productDetail, productPhotoList, skuList);
+                resultInfo = _productService.Add(product, productDetail, productPhotoList, skuList);
             }
 
             return Json(resultInfo);
+        }
+
+        public ActionResult ProductEdit()
+        {
+            int productId = RequestHelper.QueryInt("productId");
+            Product product = _productService.GetById(productId);
+            return View(product);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult ProductEdit(Product product)
+        {
+            ResultInfo resultInfo = new ResultInfo(1, "验证不通过");
+
+            if (ModelState.IsValid)
+            {
+                Product oldProduct = _productService.GetById(product.ProductId);
+                ProductDesc productDetail = new ProductDesc();
+                List<ProductPhoto> productPhotoList = new List<ProductPhoto>();
+                List<Sku> skuList = new List<Sku>();
+
+                if (oldProduct == null)
+                {
+                    return Json(new ResultInfo(1, "该信息已被删除或不存在，请刷新列表！"));
+                }
+
+                resultInfo = _productService.Edit(oldProduct, productDetail, productPhotoList, skuList);
+            }
+
+            return Json(resultInfo);
+        }
+
+        [HttpPost]
+        public ActionResult CateOperate()
+        {
+            ResultInfo resultInfo;
+
+            string action = RequestHelper.All("action").ToLower();
+            string ids = RequestHelper.All("ids").ToLower();
+
+            if (action == "")
+            {
+                resultInfo = new ResultInfo((int)ResultStatus.Error, "未选择任何操作！");
+                return Json(resultInfo);
+            }
+
+            if (ids == "")
+            {
+                resultInfo = new ResultInfo((int)ResultStatus.Error, "未选择任何操作项！");
+                return Json(resultInfo);
+            }
+
+            switch (action)
+            {
+                case "delete":
+                    _productService.Delete();
+                    break;
+            }
+
+            return Json(new ResultInfo("操作成功"));
         }
 
         public void GetFrom(Product product, ProductDesc productDesc, List<ProductPhoto> productPhotoList, List<Sku> skuList, StringBuilder errorMsg)

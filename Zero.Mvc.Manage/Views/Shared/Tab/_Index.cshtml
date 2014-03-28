@@ -41,24 +41,40 @@
 
 
         $(function () {
+
+            function getSelected() {
+                var row = $('#dg').datagrid('getSelected');
+                if (row) {
+                    $.messager.alert('Info', row.itemid + ":" + row.productid + ":" + row.attr1);
+                }
+            }
+
+            function getSelections() {
+                var ss = [];
+                var rows = $('#dg').datagrid('getSelections');
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    ss.push('<span>' + row.itemid + ":" + row.productid + ":" + row.attr1 + '</span>');
+                }
+                $.messager.alert('Info', ss.join('<br/>'));
+            }
            
             $('#add').bind('click', function () {
                 openParentTab('商品添加', GetAddUrl());
             });
 
             $('#edit').bind('click', function () {
-                var row = $('#datagrid').datagrid('getSelected');
+                var row = $('#grid').datagrid('getSelected');
                 if (row) {
                     openParentTab('商品修改-' + row.id, GetEditUrl(row.id));
                 }
                 else {
                     show('请选中要编辑的项目');
-
                 }
             });
 
             $('#remove').bind('click', function () {
-                var row = $('#datagrid').datagrid('getSelected');
+                var row = $('#grid').datagrid('getSelected');
                 if (row) {
                     var params = { action: 'delete', ids: row.id };
                     operateAjax(params);
@@ -69,12 +85,12 @@
             });
 
             $('#reload').bind('click', function () {
-                $("#datagrid").datagrid('reload');
+                $("#grid").datagrid('reload');
             });
 
             //在调整了窗口大小以后，设置easyui gridview也调整宽度
             $(window).resize(function () {
-                $('#datagrid').datagrid('resize');
+                $('#grid').datagrid('resize');
             });
         });
 
@@ -97,7 +113,7 @@
                         dataType: "json",
                         success: function (data) {
                             show(data.Message);
-                            $("#datagrid").treegrid('reload');
+                            $("#grid").treegrid('reload');
                         },
                         error: function () {
                             show('系统异常，请重试或联系技术');

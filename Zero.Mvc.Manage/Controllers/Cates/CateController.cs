@@ -69,16 +69,17 @@ namespace Zero.Mvc.Manage.Controllers.Cates
             return Json(getJson(cateList), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult CateAdd(int? cateId)
+        public ActionResult CateAdd()
         {
-            Cate cate = null;
+            int cateId = RequestHelper.QueryInt("cateId");
 
-            if (cateId != null && cateId > 0)
+            if (cateId > 0)
             {
-                cate = _cateService.GetById(cateId.Value);
+                Cate cate = _cateService.GetById(cateId);
+                cateId = cate != null ? cateId : 0;
             }
 
-            ViewBag.Pid = cate != null ? cateId : 0;
+            ViewBag.Pid = cateId;
 
             return View();
         }
@@ -115,6 +116,7 @@ namespace Zero.Mvc.Manage.Controllers.Cates
                 if (oldCate == null)
                 {
                     resultInfo = new ResultInfo(1, "该信息已被删除或不存在，请刷新列表！");
+                    return Json(resultInfo);
                 }
 
                 int oldPid = oldCate.Pid;
