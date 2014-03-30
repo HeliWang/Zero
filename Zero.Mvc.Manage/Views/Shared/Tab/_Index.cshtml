@@ -74,14 +74,15 @@
             });
 
             $('#remove').bind('click', function () {
-                var row = $('#grid').datagrid('getSelected');
-                if (row) {
-                    var params = { action: 'delete', ids: row.id };
-                    operateAjax(params);
-                }
-                else {
-                    show('请选中要编辑的项目');
-                }
+                var row = $('#grid').datagrid('getSelections');
+                alert(row);
+                //if (row) {
+                //    var params = { action: 'delete', ids: row.id };
+                //    operateAjax(params);
+                //}
+                //else {
+                //    show('请选中要编辑的项目');
+                //}
             });
 
             $('#reload').bind('click', function () {
@@ -113,7 +114,7 @@
                         dataType: "json",
                         success: function (data) {
                             show(data.Message);
-                            $("#grid").treegrid('reload');
+                            $("#grid").datagrid('reload');
                         },
                         error: function () {
                             show('系统异常，请重试或联系技术');

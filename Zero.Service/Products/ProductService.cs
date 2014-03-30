@@ -47,15 +47,12 @@ namespace Zero.Service.Products
         public ResultInfo Edit(Product product, ProductDesc productDesc, List<ProductPhoto> productPhotoList, List<Sku> skuList)
         {
             _productRepository.Update(product);
-
             return new ResultInfo("修改成功");
         }
 
         public ResultInfo Delete(string ids)
         {
-            Product product = _productRepository.GetById(Utils.StrToInt(ids));
-            _productRepository.Delete(product);
-
+            _productRepository.Delete(ids);
             return new ResultInfo("删除成功");
         }
 

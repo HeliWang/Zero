@@ -62,10 +62,10 @@
                     if (responseText.Status == 0) {
                         window.parent.closeWindow();
                     }
-                    window.parent.slide(responseText.Message);
+                    window.parent.show(responseText.Message);
                 },
                 error: function () {
-                    window.parent.slide('系统异常，请重试或联系技术');
+                    window.parent.show('系统异常，请重试或联系技术');
                 }
             });
         }

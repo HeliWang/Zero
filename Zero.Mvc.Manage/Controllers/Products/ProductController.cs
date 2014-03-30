@@ -91,6 +91,7 @@ namespace Zero.Mvc.Manage.Controllers.Products
                     return Json(new ResultInfo(1, "该信息已被删除或不存在，请刷新列表！"));
                 }
 
+                oldProduct.ProductName = product.ProductName;
                 resultInfo = _productService.Edit(oldProduct, productDetail, productPhotoList, skuList);
             }
 
@@ -98,7 +99,7 @@ namespace Zero.Mvc.Manage.Controllers.Products
         }
 
         [HttpPost]
-        public ActionResult CateOperate()
+        public ActionResult ProductOperate()
         {
             ResultInfo resultInfo;
 
@@ -120,7 +121,7 @@ namespace Zero.Mvc.Manage.Controllers.Products
             switch (action)
             {
                 case "delete":
-                    _productService.Delete();
+                    _productService.Delete(ids);
                     break;
             }
 

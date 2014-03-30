@@ -49,7 +49,7 @@
                     if (responseText.Status == 0) {
                         window.parent.closeWindow();
                     }
-                    window.parent.slide(responseText.Message);
+                    window.parent.show(responseText.Message);
                 },
                 error: function () {
                     $.messager.alert('提醒', '系统异常，请重试或联系技术');

@@ -54,6 +54,13 @@ namespace Zero.Data
         /// <summary>
         /// 删除类别
         /// </summary>
+        public void Delete(string cateIds)
+        {
+        }
+
+        /// <summary>
+        /// 删除类别
+        /// </summary>
         public void Delete(int cateId)
         {
             _context.Database.ExecuteSqlCommand("execute [SB_CategoryDelete] {0},{1}", cateId, this.TableName);

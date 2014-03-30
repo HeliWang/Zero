@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using System.Data.Entity;
 using System.Linq.Expressions;
 using Zero.Domain;
-
+using Zero.Core.Web;
 
 namespace Zero.Data
 {
@@ -37,7 +38,6 @@ namespace Zero.Data
 
         public void Update(T entity)
         {
-            this._entities.Attach(entity);
             this._context.SaveChanges();
         }
 
@@ -45,6 +45,21 @@ namespace Zero.Data
         {
             this._entities.Remove(entity);
             this._context.SaveChanges();
+        }
+
+        public void Delete(string ids)
+        {
+            var idArray = ids.Split(',');
+
+            foreach (string id in idArray)
+            {
+                T entity = this.Entities.Find(Utils.StrToInt(id));
+                if (entity != null)
+                {
+                    this._entities.Remove(entity);
+                    this._context.SaveChanges();
+                }
+            }
         }
 
         public T GetById(object id)

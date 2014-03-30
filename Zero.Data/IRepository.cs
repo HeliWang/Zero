@@ -11,6 +11,7 @@ namespace Zero.Data
         T Add(T entity);
         void Update(T entity);
         void Delete(T entity);
+        void Delete(string ids);
         IQueryable<T> Table { get; }
         DbSet<T> Entities { get; }
     }
