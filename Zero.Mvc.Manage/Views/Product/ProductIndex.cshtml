@@ -80,9 +80,10 @@
         });
 
         function operateFormat(value, row, index) {
-            var html= openParentTabLinkButton('修改', '/Cate/CateEdit?CateId=' + row.CateId, row.CateId);
-            html += "<br/>";
-            html += '<a href="javascript:void(0);" onclick="del(' + row.CateId + ')">删除</a>';
+            var html = "";
+            html += openParentTabLinkButton('修改', '/Product/ProductEdit?ProductId=' + row.id, row.id);
+            html += " | ";
+            html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除</a>";
             return html;
         }
 
@@ -122,39 +123,6 @@
     ////重新加载datagrid的数据  
     //$("#cxdm").datagrid('reload');
 
-
-
-    //var toolbar = [{
-    //    text: '添加',
-    //    iconCls: 'icon-add',
-    //    handler: function () {
-    //        $('#dd').dialog({
-    //            title: 'My Dialog',
-    //            width: 400,
-    //            height: 200,
-    //            closed: false,
-    //            cache: false,
-    //            href: 'form.html',
-    //            modal: true
-    //        });
-    //    }
-    //}, {
-    //    text: '修改',
-    //    iconCls: 'icon-edit',
-    //    handler: function () { alert('修改') }
-    //}, {
-    //    text: '查看',
-    //    iconCls: 'icon-tip',
-    //    handler: function () { alert('删除') }
-    //}, {
-    //    text: '删除',
-    //    iconCls: 'icon-remove',
-    //    handler: function () { alert('删除') }
-    //}, '-', {
-    //    text: '刷新',
-    //    iconCls: 'icon-reload',
-    //    handler: function () { alert('刷新') }
-    //}];
 
     //在调整了窗口大小以后，设置easyui gridview也调整宽度
     $(window).resize(function () {

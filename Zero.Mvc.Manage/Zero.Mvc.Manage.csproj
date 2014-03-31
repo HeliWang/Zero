@@ -112,6 +112,7 @@
     <Compile Include="Controllers\Cates\CateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Products\ProductController.cs" />
+    <Compile Include="Controllers\Upload\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -555,6 +556,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\MyHelper.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Upload\Photo.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

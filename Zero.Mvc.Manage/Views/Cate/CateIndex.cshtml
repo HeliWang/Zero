@@ -55,7 +55,6 @@
             html += "<a href=\"javascript:void(0);\" onclick=\"openWindow('修改', '/Cate/CateEdit?CateId=" + row.id + "')\">修改类别</a>";
             html += " | ";           
             html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除类别</a>";
-
             return html;
         }
 

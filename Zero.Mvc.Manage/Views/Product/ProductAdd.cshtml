@@ -15,9 +15,6 @@
     @Scripts.Render("~/scripts/validate.js")
 }
 
-
-
-dsdfasdf 
 <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
     <div title="商品基本">
         <form id="Form" action="/Product/ProductAdd" method="post">
@@ -55,6 +52,12 @@ dsdfasdf
                 <tr>
                     <th>商品数量：</th>
                     <td><input type="text" name="Amount" data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox"  style="width:100px;"/>件</td>
+                </tr>
+                <tr>
+                    <th>商品组图：</th>
+                    <td>
+                        <img /><img />
+                    </td>
                 </tr>
                 <tr>
                     <th>商品详细：</th>
