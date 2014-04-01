@@ -57,10 +57,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FileNotFound.aspx" />
     <Content Include="FileUploadService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileNotFound.aspx.cs">
+      <DependentUpon>FileNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FileNotFound.aspx.designer.cs">
+      <DependentUpon>FileNotFound.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FileUploadService.asmx.cs">
       <DependentUpon>FileUploadService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -74,6 +82,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zero.Core\Zero.Core.csproj">
+      <Project>{c5288e7c-1d40-4c1a-a15e-bf20d69af585}</Project>
+      <Name>Zero.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zero.Service\Zero.Service.csproj">
+      <Project>{80395694-332c-40b1-a3b7-e1874b1768ab}</Project>
+      <Name>Zero.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

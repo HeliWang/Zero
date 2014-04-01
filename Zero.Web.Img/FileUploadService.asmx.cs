@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 
+using Zero.Core.Pattern;
+using Zero.Service.Upload;
+
 namespace Zero.Web.Img
 {
     public class CredentialSoapHeader : System.Web.Services.Protocols.SoapHeader
@@ -46,23 +49,14 @@ namespace Zero.Web.Img
         }
 
         [WebMethod]
-        public bool Upload(string key, byte[] image, string path)
+        public bool Upload(byte[] image, string path)
         {
-            //if (key != Patch.Core.Security.Encrypt.EncodeMD5("jiass234ji4"))
-            //{
-            //    return false;
-            //}
+            if (!CheckUser())
+            {
+                return false;
+            }
 
-            //try
-            //{
-            //    Patch.Img.AttachmentCtrl.SaveFile(image, path);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Patch.Sys.ErrorCtrl.CreateErrorInfo(ex.ToString(), path);
-            //    return false;
-            //}
-            //return true;
+            Singleton<PhotoService>.GetInstance().SaveFile(image, path);
 
             return true;
         }
