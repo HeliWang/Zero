@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 using Zero.Core.Web;
 using Zero.Core.Pattern;
@@ -29,20 +30,9 @@ namespace Zero.Mvc.Manage.Controllers.Upload
         [HttpPost]
         public ActionResult PhotoAdd(Photo photo)
         {
-            PhotoCate cate = new PhotoCate();
-            cate.AllowCount = 5;
-            cate.AllowExt = "gif,jpg";
-            cate.AllowSize = 100;
-
-            HttpFileCollectionBase files = Request.Files;
-
-            if (files.Count == 0)
-            {
-                return Json(new ResultInfo(1, "请选择上传文件"));
-            }
-
-
-            return Json(new ResultInfo("上传成功"));
+            
+            ResultInfo result = _photoService.Add(Request.Files);
+            return Json(result);
         }
 
         public ActionResult PhotoList()

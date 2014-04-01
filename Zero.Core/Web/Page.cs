@@ -28,7 +28,8 @@ namespace Zero.Core.Web
 
             this.PageSize = pageSize;
             this.PageIndex = pageIndex;
-            this.Items.AddRange(source.Skip(pageIndex * pageSize).Take(pageSize).ToList());
+            if (total > 0)
+                this.Items.AddRange(source.Skip(pageIndex * pageSize).Take(pageSize).ToList());
         }
 
         /// <summary>
