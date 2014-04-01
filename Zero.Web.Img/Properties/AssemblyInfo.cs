@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Zero.Web.Img")]
-[assembly: AssemblyCopyright("版权所有(C)  2013")]
+[assembly: AssemblyCopyright("版权所有(C)  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("b36e6882-ddad-464f-aca0-45bafe5ac08c")]
+[assembly: Guid("85037eee-550f-4f39-82c3-f7ca24239cb2")]
 
 // 程序集的版本信息由下列四个值组成:
 //

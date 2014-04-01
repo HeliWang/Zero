@@ -50,6 +50,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="Mapping\Cates\CateMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
+    <Compile Include="Mapping\Upload\PhotoMap.cs" />
     <Compile Include="Migrations\201403191608268_DeleteId.cs" />
     <Compile Include="Migrations\201403191608268_DeleteId.Designer.cs">
       <DependentUpon>201403191608268_DeleteId.cs</DependentUpon>
@@ -57,6 +58,18 @@
     <Compile Include="Migrations\201403191614016_AddDataAllowNull.cs" />
     <Compile Include="Migrations\201403191614016_AddDataAllowNull.Designer.cs">
       <DependentUpon>201403191614016_AddDataAllowNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404010604079_AddPhoto.cs" />
+    <Compile Include="Migrations\201404010604079_AddPhoto.Designer.cs">
+      <DependentUpon>201404010604079_AddPhoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404010610104_updateProduct.cs" />
+    <Compile Include="Migrations\201404010610104_updateProduct.Designer.cs">
+      <DependentUpon>201404010610104_updateProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404010640413_UpdatePhoto.cs" />
+    <Compile Include="Migrations\201404010640413_UpdatePhoto.Designer.cs">
+      <DependentUpon>201404010640413_UpdatePhoto.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -83,6 +96,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201403191614016_AddDataAllowNull.resx">
       <DependentUpon>201403191614016_AddDataAllowNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404010604079_AddPhoto.resx">
+      <DependentUpon>201404010604079_AddPhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404010610104_updateProduct.resx">
+      <DependentUpon>201404010610104_updateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404010640413_UpdatePhoto.resx">
+      <DependentUpon>201404010640413_UpdatePhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

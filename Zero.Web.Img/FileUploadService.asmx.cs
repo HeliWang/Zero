@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using System.Web.Services.Protocols;
 
 namespace Zero.Web.Img
 {
-    public class CredentialSoapHeader : SoapHeader
+    public class CredentialSoapHeader : System.Web.Services.Protocols.SoapHeader
     {
         //帐户
         public string UserName { get; set; }
@@ -25,36 +24,47 @@ namespace Zero.Web.Img
     // [System.Web.Script.Services.ScriptService]
     public class FileUploadService : System.Web.Services.WebService
     {
-        public CredentialSoapHeader header = new CredentialSoapHeader();
+        public CredentialSoapHeader header;
 
         public bool CheckUser()
         {
-            if (header.UserName == "admin" && header.Password == "admin")
+            if (header.UserName == "admin" && header.Password == "panzhongwei")
             {
                 return true;
             }
             return false;
         }
 
-        [SoapHeader("header")] 
         [WebMethod]
-        public string Upload(byte[] image, string path)
+        public string HelloWorld()
         {
             if (!CheckUser())
             {
-                return "上传授权账户或密码错误，请检查";
+                return "errory";
             }
+            return "Hello World";
+        }
 
-            try
-            {
-                Zero.Core.Web.FileHelper.SaveFile(image, path);
-                return "上传成功";
-            }
-            catch (Exception ex)
-            {
-                Zero.Sys.Bll.ErrorCtrl.AddErrorInfo(ex.ToString(), path);
-                return "上传失败";
-            }
+        [WebMethod]
+        public bool Upload(string key, byte[] image, string path)
+        {
+            //if (key != Patch.Core.Security.Encrypt.EncodeMD5("jiass234ji4"))
+            //{
+            //    return false;
+            //}
+
+            //try
+            //{
+            //    Patch.Img.AttachmentCtrl.SaveFile(image, path);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Patch.Sys.ErrorCtrl.CreateErrorInfo(ex.ToString(), path);
+            //    return false;
+            //}
+            //return true;
+
+            return true;
         }
     }
 }

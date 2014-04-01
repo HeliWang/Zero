@@ -12,7 +12,7 @@ namespace Zero.Data.Mapping.Products
             this.HasKey(p => p.ProductId);
 
             //Ignore
-            this.Ignore(t => t.id);
+            this.Ignore(p => p.id);
         }
     }
 }

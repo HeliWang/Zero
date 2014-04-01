@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+using Zero.Core.Web;
+using Zero.Core.Pattern;
+using Zero.Domain.Upload;
+using Zero.Service.Upload;
+
+
+namespace Zero.Mvc.Manage.Controllers.Upload
+{
+    public class PhotoController : BaseController
+    {
+        PhotoService _photoService;
+
+        public PhotoController()
+        {
+            _photoService = Singleton<PhotoService>.GetInstance();
+        }
+
+        public ActionResult PhotoIndex()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PhotoAdd(Photo photo)
+        {
+            PhotoCate cate = new PhotoCate();
+            cate.AllowCount = 5;
+            cate.AllowExt = "gif,jpg";
+            cate.AllowSize = 100;
+
+            HttpFileCollectionBase files = Request.Files;
+
+            if (files.Count == 0)
+            {
+                return Json(new ResultInfo(1, "请选择上传文件"));
+            }
+
+
+            return Json(new ResultInfo("上传成功"));
+        }
+
+        public ActionResult PhotoList()
+        {
+            int pageIndex = RequestHelper.QueryInt("page");
+            int pageSize = RequestHelper.QueryInt("rows");
+
+            pageIndex = pageIndex <= 0 ? 0 : pageIndex - 1;
+            if (pageSize <= 0) pageSize = 10;
+
+            IPage<Photo> PhotoPage = _photoService.GetList(pageIndex, pageSize);
+
+            return Json(PhotoPage, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

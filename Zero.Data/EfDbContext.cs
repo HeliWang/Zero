@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Zero.Data.Mapping.Products;
 using Zero.Data.Mapping.Cates;
-using Zero.Domain.Cates;
-using Zero.Domain.Products;
-
+using Zero.Data.Mapping.Upload;
 namespace Zero.Data
 {
     public class EfDbContext : DbContext
@@ -27,6 +25,7 @@ namespace Zero.Data
         {
             modelBuilder.Configurations.Add(new CateMap());
             modelBuilder.Configurations.Add(new ProductMap());
+            modelBuilder.Configurations.Add(new PhotoMap());
         }
     }
 

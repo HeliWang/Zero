@@ -48,10 +48,13 @@
     <Compile Include="Products\ProductPhoto.cs" />
     <Compile Include="Products\Sku.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Upload\Photo.cs" />
+    <Compile Include="Upload\PhotoCate.cs" />
     <Compile Include="User\AdminInfo.cs" />
     <Compile Include="User\AdminLoginInfo.cs" />
     <Compile Include="User\UserInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
