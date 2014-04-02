@@ -91,7 +91,7 @@
             columns: [[
                 { field: 'Id', checkbox: true },
                 { field: 'FileId', title: '编号', width: 100, align: 'center' },
-                { field: 'Url', title: '图片', width: 100, align: 'center' },
+                { field: 'Url', title: '图片', width: 100, align: 'center', formatter: photoFormat },
                 { field: 'CateName', title: '所属类目', width: 80, align: 'center' },
                 { field: 'Uploader', title: '上传人', width: 80, align: 'center' },
             ]],
@@ -100,11 +100,18 @@
             },
             toolbar: '#toolbar',
         });
+
+        function photoFormat(value, row, index) {
+            if (value == null) return '';
+            return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value + '"></img></a>';
+        }
+
+        $('#add').bind('click', function () {
+            ajaxSubmitForm('Form');
+        });
     });
 
-    $('#add').bind('click', function () {
-        ajaxSubmitForm('Form');
-    });
+   
 
     function show(msg) {
         $.messager.show({
