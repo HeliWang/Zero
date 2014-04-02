@@ -28,9 +28,8 @@ namespace Zero.Mvc.Manage.Controllers.Upload
         }
 
         [HttpPost]
-        public ActionResult PhotoAdd(Photo photo)
+        public ActionResult PhotoAdd()
         {
-            
             ResultInfo result = _photoService.Add(Request.Files);
             return Json(result);
         }

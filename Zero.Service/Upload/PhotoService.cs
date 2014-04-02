@@ -28,28 +28,72 @@ namespace Zero.Service.Upload
             cate.AllowExt = "gif,jpg";
             cate.AllowSize = 100;
 
-            string result = CheckFiles(files,cate);
+            string result = CheckFiles(files, cate);
 
             if (result.Length > 0)
             {
                 return new ResultInfo(1, result);
             }
 
-            var i=0;
-            foreach (HttpPostedFile file in files)
+            for (var i = 0; i < files.Count; i++)
             {
-                Photo photo = new Photo(); i++;
-                byte[] input = GetFileByte(file, photo, i);
-                SaveFile(input, photo.Url);
-                _photoRepository.Add(photo);
+                Photo photo = new Photo();
+                byte[] input = GetFileByte(files[i], photo, i);
+
+                img.FileUploadService service = new img.FileUploadService();
+                result = service.Upload(input, photo.Url);
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    _photoRepository.Add(photo);
+                }
             }
             return new ResultInfo("上传成功");
         }
 
+        //public ResultInfo Post(HttpFileCollectionBase files)
+        //{
+        //    PhotoCate cate = new PhotoCate();
+        //    cate.AllowCount = 5;
+        //    cate.AllowExt = "gif,jpg";
+        //    cate.AllowSize = 100;
+
+        //    string result = CheckFiles(files,cate);
+
+        //    if (result.Length > 0)
+        //    {
+        //        return new ResultInfo(1, result);
+        //    }
+
+        //    //for (var i = 0; i < files.Count; i++)
+        //    //{
+        //    //    Photo photo = new Photo();
+        //    //    byte[] input = GetFileByte(files[i], photo, i);
+        //    //    SaveFile(input, photo.Url);
+        //    //    _photoRepository.Add(photo);
+        //    //}
+
+        //    var i = 0;
+        //    foreach (HttpPostedFile file in files)
+        //    {
+        //        i++;
+        //        Photo photo = new Photo(); 
+        //        byte[] input = GetFileByte(file, photo, i);
+
+        //        FileUploadService.FileUploadServiceSoapClient webService =new  FileUploadService.FileUploadServiceSoapClient();
+
+        //        if (webService.Upload(input, photo.Url))
+        //        {
+        //            _photoRepository.Add(photo);
+        //        }
+        //    }
+        //    return new ResultInfo("上传成功");
+        //}
+
         /// <summary>
         /// 保存图片
         /// </summary>
-        public byte[] GetFileByte(HttpPostedFile file, Photo info, int i)
+        public byte[] GetFileByte(HttpPostedFileBase file, Photo info, int i)
         {
             //生成路径
             DateTime dt = DateTime.Now;
@@ -110,24 +154,22 @@ namespace Zero.Service.Upload
                 return string.Format("最多可以上传{}张图片", cate.AllowCount);
             }
 
-            var i = 0;
-            foreach (HttpPostedFile file in files)
+            for (var i = 0; i < files.Count; i++)
             {
-                i++;
                 //验证文件名是否为空
-                if (file == null || file.ContentLength == 0)
+                if (files[i] == null || files[i].ContentLength == 0)
                 {
                     return string.Format("第{0}张图片无数据", i);
                 }
 
                 //验证文件大小
-                if (file.ContentLength > cate.AllowSize * 1024)
+                if (files[i].ContentLength > cate.AllowSize * 1024)
                 {
                     return string.Format("第{0}张图片超过{0}kb", i, cate.AllowSize);
                 }
 
                 //验证扩展名
-                if (!CheckFileExt(cate.AllowExt, Path.GetExtension(file.FileName)))
+                if (!CheckFileExt(cate.AllowExt, Path.GetExtension(files[i].FileName)))
                 {
                     return string.Format("第{0}张图片格式不正确", i, cate.AllowSize);
                 }

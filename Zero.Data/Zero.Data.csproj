@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201404010640413_UpdatePhoto.Designer.cs">
       <DependentUpon>201404010640413_UpdatePhoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404020529097_UpdatePhoto1.cs" />
+    <Compile Include="Migrations\201404020529097_UpdatePhoto1.Designer.cs">
+      <DependentUpon>201404020529097_UpdatePhoto1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -105,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404010640413_UpdatePhoto.resx">
       <DependentUpon>201404010640413_UpdatePhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404020529097_UpdatePhoto1.resx">
+      <DependentUpon>201404020529097_UpdatePhoto1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

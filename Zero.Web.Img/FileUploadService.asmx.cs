@@ -27,38 +27,38 @@ namespace Zero.Web.Img
     // [System.Web.Script.Services.ScriptService]
     public class FileUploadService : System.Web.Services.WebService
     {
-        public CredentialSoapHeader header;
+        public CredentialSoapHeader header { get; set; }
+
+        public CredentialSoapHeader Header
+        {
+            get { return header; }
+            set { header = value; }
+        }
 
         public bool CheckUser()
         {
             if (header.UserName == "admin" && header.Password == "panzhongwei")
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
         [WebMethod]
         public string HelloWorld()
         {
-            if (!CheckUser())
-            {
-                return "errory";
-            }
-            return "Hello World";
+            if (CheckUser()) return "无访问的权限";
+            return string.Empty;
         }
 
         [WebMethod]
-        public bool Upload(byte[] image, string path)
+        public string Upload(byte[] image, string path)
         {
-            if (!CheckUser())
-            {
-                return false;
-            }
+            //if (CheckUser()) return "无上传文件的权限";
 
             Singleton<PhotoService>.GetInstance().SaveFile(image, path);
 
-            return true;
+            return string.Empty;
         }
     }
 }

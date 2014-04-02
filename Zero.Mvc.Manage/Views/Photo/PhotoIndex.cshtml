@@ -102,6 +102,35 @@
         });
     });
 
+    $('#add').bind('click', function () {
+        ajaxSubmitForm('Form');
+    });
 
+    function show(msg) {
+        $.messager.show({
+            title: '提醒',
+            msg: msg,
+            timeout: 3000,
+            showType: 'show'
+        });
+    }
+
+    //jquery.form提交方式
+    function ajaxSubmitForm(form) {
+        var options = {};
+
+        $(form).ajaxSubmit({
+            beforeSubmit: function (formData, jqForm, options) {
+                if (!$(form).form('validate')) return false;
+                return true;
+            },
+            success: function (responseText, statusText, xhr, $form) {
+                show(responseText.Message);
+            },
+            error: function () {
+                show('系统异常，请重试或联系技术');
+            }
+        });
+    }
 
 </script>
