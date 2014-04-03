@@ -95,10 +95,10 @@
   </wsdl:binding>
   <wsdl:service name="FileUploadService">
     <wsdl:port name="FileUploadServiceSoap" binding="tns:FileUploadServiceSoap">
-      <soap:address location="http://localhost:2330/FileUploadService.asmx" />
+      <soap:address location="http://img.zero.com/FileUploadService.asmx" />
     </wsdl:port>
     <wsdl:port name="FileUploadServiceSoap12" binding="tns:FileUploadServiceSoap12">
-      <soap12:address location="http://localhost:2330/FileUploadService.asmx" />
+      <soap12:address location="http://img.zero.com/FileUploadService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

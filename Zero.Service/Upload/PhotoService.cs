@@ -51,45 +51,6 @@ namespace Zero.Service.Upload
             return new ResultInfo("上传成功");
         }
 
-        //public ResultInfo Post(HttpFileCollectionBase files)
-        //{
-        //    PhotoCate cate = new PhotoCate();
-        //    cate.AllowCount = 5;
-        //    cate.AllowExt = "gif,jpg";
-        //    cate.AllowSize = 100;
-
-        //    string result = CheckFiles(files,cate);
-
-        //    if (result.Length > 0)
-        //    {
-        //        return new ResultInfo(1, result);
-        //    }
-
-        //    //for (var i = 0; i < files.Count; i++)
-        //    //{
-        //    //    Photo photo = new Photo();
-        //    //    byte[] input = GetFileByte(files[i], photo, i);
-        //    //    SaveFile(input, photo.Url);
-        //    //    _photoRepository.Add(photo);
-        //    //}
-
-        //    var i = 0;
-        //    foreach (HttpPostedFile file in files)
-        //    {
-        //        i++;
-        //        Photo photo = new Photo(); 
-        //        byte[] input = GetFileByte(file, photo, i);
-
-        //        FileUploadService.FileUploadServiceSoapClient webService =new  FileUploadService.FileUploadServiceSoapClient();
-
-        //        if (webService.Upload(input, photo.Url))
-        //        {
-        //            _photoRepository.Add(photo);
-        //        }
-        //    }
-        //    return new ResultInfo("上传成功");
-        //}
-
         /// <summary>
         /// 保存图片
         /// </summary>
@@ -204,7 +165,7 @@ namespace Zero.Service.Upload
         public IPage<Photo> GetList(int pageIndex, int pageSize)
         {
             var query = _photoRepository.Table;
-            query = query.OrderByDescending(b => b.CreateTime);
+            query = query.OrderByDescending(b => b.FileId);
             return new Page<Photo>(query, pageIndex, pageSize);
         }
     }

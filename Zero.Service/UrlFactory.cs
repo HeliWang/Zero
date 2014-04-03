@@ -36,13 +36,19 @@ namespace Zero.Service
         /// <returns></returns>
         public static string GetPhotoUrl(string path, int width, int height, int model)
         {
+            if (path.Contains("http"))
+            {
+                return path;
+            }
+
             string size = string.Format("_{0}x{1}_{2}", width, height, model);
             string name = path.Substring(path.LastIndexOf("/") + 1);
             string format = name.Substring(name.IndexOf("."));
             path = path.Substring(0, path.Length - name.Length);
             name = name.Substring(0, name.Length - format.Length);
             //return path + Zero.Core.Security.Encrypt.EncodeDES(name + size, "aaaaaaaaaa") + format;
-            return PhotoSiteUrl + "tb/" + path + HttpUtility.HtmlEncode(name + size) + format;
+            //return PhotoSiteUrl + "tb/" + path + HttpUtility.HtmlEncode(name + size) + format;
+            return PhotoSiteUrl + "tb/" + path + name + size + format;
         }
     }
 }

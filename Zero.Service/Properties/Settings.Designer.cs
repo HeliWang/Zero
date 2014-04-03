@@ -26,7 +26,7 @@ namespace Zero.Service.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:2330/FileUploadService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://img.zero.com/FileUploadService.asmx")]
         public string Zero_Service_img_FileUploadService {
             get {
                 return ((string)(this["Zero_Service_img_FileUploadService"]));
