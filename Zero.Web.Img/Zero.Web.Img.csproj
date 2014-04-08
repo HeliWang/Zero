@@ -61,6 +61,7 @@
   <ItemGroup>
     <Content Include="FileNotFound.aspx" />
     <Content Include="FileUploadService.asmx" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -76,6 +77,9 @@
     <Compile Include="FileUploadService.asmx.cs">
       <DependentUpon>FileUploadService.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
