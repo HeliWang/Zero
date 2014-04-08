@@ -212,10 +212,11 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\base.js" />
     <Content Include="Scripts\easyui-lang-zh_CN.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\string.js" />
     <Content Include="Scripts\validate.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
-    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.form.103.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.min33.js" />
     <Content Include="Scripts\jquery.ztree.all.min.js" />

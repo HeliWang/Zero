@@ -15,6 +15,10 @@
     @Scripts.Render("~/scripts/validate.js")
 }
 
+<style>
+    .z-select-img li{float:left;margin-right:5px;width:100px;height:100px; line-height:100px;border: 1px solid #dbd5d5;text-align:center; vertical-align:middle;font-size:large;}
+</style>
+
 <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
     <div title="商品基本">
         <form id="Form" action="/Product/ProductAdd" method="post">
@@ -56,27 +60,17 @@
                 <tr>
                     <th>商品组图：</th>
                     <td>
-                        <img /><img />
+                        <ul class="z-select-img"></ul>
+                        <input type="hidden" id="Photo" name="Photo"/>
                     </td>
                 </tr>
                 <tr>
                     <th>商品详细：</th>
                     <td>
-                        <script id="Desc" name="Desc"  type="text/plain" style="width:800px;height:200px;"></script>
-                        <script>$(function () { UE.getEditor('Desc'); });</script>
+                       <textarea id="Desc" name="Desc" style="width:800px;height:200px;"></textarea>
+                       <script>$(function () { UE.getEditor('Desc'); });</script>
                     </td>
                 </tr>
-                <!--
-                <tr>
-                    <td></td>
-                    <td>
-                        <div style="text-align:left;padding:10px 0 15px 0px">
-                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">确定</a>
-                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">重置</a>
-                        </div>
-                    </td>
-                </tr>
-                -->
             </table>
         </form>
     </div>
@@ -103,7 +97,6 @@
             <tr>
                 <th>商品组图：</th>
                 <td>
-
                 </td>
             </tr>
         </table>
@@ -188,3 +181,56 @@
         </table>
     </div>
 </div>
+<!-- 弹出框-->
+<div id="window" class="easyui-window" data-options="closed:true,iconCls:'icon-save'" style="width:560px;height:560px;padding:10px;">
+        <iframe id="iframe" style="width:100%;height:100%;border:0;"></iframe>
+</div>
+<script type="text/javascript">
+    $(function () {
+        PhotoInit();
+    });
+
+    function closeWindow(msg) {
+        $('#window').window('close');
+        PhotoInit();
+    }
+
+    function openWindow(title, url) {
+        $('#window').window({ title: title });
+        $('#window>iframe').attr("src", url);
+        $('#window').window('open');
+    }
+
+    function PhotoInit() {
+        var li = [];
+        var img = [];
+        var photoList = "";
+        var photoUrl = $("#Photo").val();//图片列表(1.jpg|2.jpg)
+        var allowCount =5;//允许选择的图片总数
+        if (photoUrl.length > 0) {
+            photoList = photoUrl.split("|");
+        }
+        
+        //初始化，取默认数值列表
+        for (var i = 0; i < allowCount; i++) {
+            li[i] = $("<li></li>").text("上传");
+            li[i].click(function () {
+                openWindow('选择图片', "/Photo/PhotoIndex");
+            });
+        }
+
+        allowCount = photoList.length > allowCount ? allowCount : photoList.length;
+
+        //初始化，取已选中的插入图片列表
+        for (var i = 0; i < allowCount; i++) {
+            img[i] = $("<img/>").attr("src", photoList[i]);
+            li[i].text("").append(img[i]);
+        }
+        $(".z-select-img li").remove();
+        $(".z-select-img").append(li);
+    }
+
+    $(".z-select-img li").bind('click', function () {
+        openWindow('选择图片', "/Photo/PhotoIndex");
+    });
+</script>

@@ -120,19 +120,19 @@ namespace Zero.Service.Upload
                 //验证文件名是否为空
                 if (files[i] == null || files[i].ContentLength == 0)
                 {
-                    return string.Format("第{0}张图片无数据", i);
+                    return string.Format("第{0}张图片无数据", i + 1);
                 }
 
                 //验证文件大小
                 if (files[i].ContentLength > cate.AllowSize * 1024)
                 {
-                    return string.Format("第{0}张图片超过{0}kb", i, cate.AllowSize);
+                    return string.Format("第{0}张图片超过{1}kb", i + 1, cate.AllowSize);
                 }
 
                 //验证扩展名
                 if (!CheckFileExt(cate.AllowExt, Path.GetExtension(files[i].FileName)))
                 {
-                    return string.Format("第{0}张图片格式不正确", i, cate.AllowSize);
+                    return string.Format("第{0}张图片格式不正确", i + 1, cate.AllowSize);
                 }
             }
 

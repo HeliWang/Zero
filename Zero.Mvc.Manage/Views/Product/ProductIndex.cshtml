@@ -56,7 +56,7 @@
                 { field: 'ProductId', checkbox: true },
                 //{ field: 'ProductId', title: '商品编号', width: 50, algin: 'center' },//会绑定checkbox
                 { field: 'id', title: '商品编号', width: 60, align: 'center' },
-                { field: 'Photo', title: '商品图片', width: 140, algin: 'center', formatter: photoFormat },
+                { field: 'Photo', title: '商品图片', width: 140,algin: 'center', formatter: photoFormat },
                 { field: 'ProductName', title: '商品名称', width: 180, algin: 'center' },
             ]],
             columns: [[
@@ -93,8 +93,14 @@
 
         function photoFormat(value, row, index) {
             if (value == null) return '';
-            return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value + '"></img></a>';
+            return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value.split("|")[0] + '"></img></a>';
         }
+
+        //在调整了窗口大小以后，设置easyui gridview也调整宽度
+        $(window).resize(function () {
+            $('#datagrid').datagrid('resize');
+            //alert("结束了");
+        });
     });
 
     
@@ -124,9 +130,5 @@
     //$("#cxdm").datagrid('reload');
 
 
-    //在调整了窗口大小以后，设置easyui gridview也调整宽度
-    $(window).resize(function () {
-        $('#datagrid').datagrid('resize');
-        //alert("结束了");
-    });
+    
 </script>

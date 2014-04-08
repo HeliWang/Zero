@@ -1,3 +1,8 @@
+body, iframe, ul {margin:0; padding:0; font-weight: normal;font-style: normal;font-size: 100%; font-family: inherit;}
+ol, ul ,li{list-style: none;}
+a{text-decoration:none; color:#000;cursor:pointer;}
+
+
 body{margin:0; padding:5px; background-color: #ffffff; color: #000000;font-size: 12px;}
 .z-tb-form {width:100%;}
 .z-tb-form th{width:100px; height:30px; text-align:right; font-weight:200;}

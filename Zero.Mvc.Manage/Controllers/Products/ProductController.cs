@@ -92,6 +92,7 @@ namespace Zero.Mvc.Manage.Controllers.Products
                 }
 
                 oldProduct.ProductName = product.ProductName;
+                oldProduct.Photo = product.Photo;
                 resultInfo = _productService.Edit(oldProduct, productDetail, productPhotoList, skuList);
             }
 
