@@ -109,6 +109,8 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\Cates\AttrController.cs" />
+    <Compile Include="Controllers\Cates\AttrValueController.cs" />
     <Compile Include="Controllers\Cates\CateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Products\ProductController.cs" />
@@ -560,6 +562,42 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Photo\PhotoIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attr\AttrIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attr\AttrAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attr\AttrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Dialog\_Add.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Dialog\_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Dialog\_Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\副本 Attr\AttrAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\副本 Attr\AttrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\副本 Attr\AttrIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AttrValue\AttrValueEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AttrValue\AttrValueAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\AttrValue\AttrValueIndex.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

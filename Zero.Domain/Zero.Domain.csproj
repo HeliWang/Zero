@@ -40,9 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Cates\Attr.cs" />
+    <Compile Include="Cates\AttrValue.cs" />
+    <Compile Include="Cates\Brand.cs" />
+    <Compile Include="Cates\CateAttr.cs" />
+    <Compile Include="Cates\CateAttrValue.cs" />
     <Compile Include="Cates\CateBase.cs" />
     <Compile Include="Cates\Cate.cs" />
-    <Compile Include="Cates\EasyTreeInfo.cs" />
     <Compile Include="Products\Product.cs" />
     <Compile Include="Products\ProductDesc.cs" />
     <Compile Include="Products\ProductPhoto.cs" />

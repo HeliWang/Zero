@@ -49,6 +49,8 @@
     <Compile Include="EfCateRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Mapping\Cates\CateMap.cs" />
+    <Compile Include="Mapping\Cates\AttrMap.cs" />
+    <Compile Include="Mapping\Cates\AttrValueMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
     <Compile Include="Mapping\Upload\PhotoMap.cs" />
     <Compile Include="Migrations\201403191608268_DeleteId.cs" />
@@ -74,6 +76,22 @@
     <Compile Include="Migrations\201404020529097_UpdatePhoto1.cs" />
     <Compile Include="Migrations\201404020529097_UpdatePhoto1.Designer.cs">
       <DependentUpon>201404020529097_UpdatePhoto1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404090652331_AddAttr.cs" />
+    <Compile Include="Migrations\201404090652331_AddAttr.Designer.cs">
+      <DependentUpon>201404090652331_AddAttr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404100204313_UpdateAttr.cs" />
+    <Compile Include="Migrations\201404100204313_UpdateAttr.Designer.cs">
+      <DependentUpon>201404100204313_UpdateAttr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404100207346_UpdateAttr2.cs" />
+    <Compile Include="Migrations\201404100207346_UpdateAttr2.Designer.cs">
+      <DependentUpon>201404100207346_UpdateAttr2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404100533495_AddAttrValue.cs" />
+    <Compile Include="Migrations\201404100533495_AddAttrValue.Designer.cs">
+      <DependentUpon>201404100533495_AddAttrValue.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -112,6 +130,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404020529097_UpdatePhoto1.resx">
       <DependentUpon>201404020529097_UpdatePhoto1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404090652331_AddAttr.resx">
+      <DependentUpon>201404090652331_AddAttr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404100204313_UpdateAttr.resx">
+      <DependentUpon>201404100204313_UpdateAttr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404100207346_UpdateAttr2.resx">
+      <DependentUpon>201404100207346_UpdateAttr2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404100533495_AddAttrValue.resx">
+      <DependentUpon>201404100533495_AddAttrValue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

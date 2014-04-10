@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/Dialog/_Add.cshtml";
+    ViewBag.Title = "AttrEdit";
+}
+
+@model Zero.Domain.Cates.Attr
+
+@if (Model != null)
+{
+<form id="Form" action="@Url.Action("AttrEdit","Attr")" method="post">
+   <table class="z-tb-form">
+        <tr>
+            <th>属性名称：</th>
+            <td>
+               <input  type="text" name="AttrName" value="@Model.AttrName"  data-options="required:true,validType:['length[2,30]']" style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>排列序号：</th>
+            <td><input type="text" name="Oid" value="@Model.Oid" class="easyui-validatebox" data-options="validType:['number','size[0,100000]']" style="width:150px;"/></td>
+        </tr>
+    </table>
+</form>
+ }

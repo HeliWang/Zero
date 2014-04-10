@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/Dialog/_Add.cshtml";
+    ViewBag.Title = "AttrAdd";
+}
+
+<form id="Form" action="@Url.Action("AttrValueAdd","AttrValue")" method="post">
+    <table class="z-tb-form">
+        <tr>
+            <th>属性值名称：</th>
+            <td>
+               <input type="hidden" id="AttrId"  name="AttrId" value="0"/>
+               <input type="text" name="ValueName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>排列序号：</th>
+            <td><input type="text" name="Oid" value="0" class="easyui-validatebox" data-options="validType:['number','size[0,100000]']" style="width:150px;"/></td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    $(function () {
+        $("#AttrId").val(window.parent.attrId);
+    });
+</script>

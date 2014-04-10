@@ -95,12 +95,6 @@
             if (value == null) return '';
             return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value.split("|")[0] + '" width="100" height="100"/></a>';
         }
-
-        //在调整了窗口大小以后，设置easyui gridview也调整宽度
-        $(window).resize(function () {
-            $('#datagrid').datagrid('resize');
-            //alert("结束了");
-        });
     });
 
     
