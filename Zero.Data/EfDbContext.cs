@@ -13,7 +13,7 @@ namespace Zero.Data
     public class EfDbContext : DbContext
     {
         public EfDbContext()
-            : base("ZeroData")
+            : base(@"ZeroData")
         {
         }
 
@@ -24,10 +24,11 @@ namespace Zero.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new CateMap());
-            modelBuilder.Configurations.Add(new ProductMap());
-            modelBuilder.Configurations.Add(new PhotoMap());
+            modelBuilder.Configurations.Add(new CateAttrMap());
             modelBuilder.Configurations.Add(new AttrMap());
             modelBuilder.Configurations.Add(new AttrValueMap());
+            modelBuilder.Configurations.Add(new ProductMap());
+            modelBuilder.Configurations.Add(new PhotoMap());
         }
     }
 

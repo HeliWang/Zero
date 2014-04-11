@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/Dialog/_Edit.cshtml";
+    ViewBag.Title = "CateAttrEdit";
+}
+
+@model Zero.Domain.Cates.CateAttr
+
+@if (Model != null)
+{
+<form id="Form" action="@Url.Action("CateAttrEdit","CateAttr")" method="post">
+    <table class="z-tb-form">        
+        <tr>
+            <th>类名：</th>
+            <td><input type="text" name="CateName" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
+        </tr>
+        <tr>
+            <th>属性：</th>
+            <td><input type="text" name="AttrName" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
+        </tr>
+        <tr>
+            <th>类型：</th>
+            <td><input type="text" name="Type" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
+        </tr>
+        <tr>
+            <th>是否必填：</th>
+            <td><input name="IsMust" type="checkbox" value="1"/></td>
+        </tr>
+        <tr>
+            <th>是否关键属性：</th>
+            <td><input name="IsKey" type="checkbox" value="1"/></td>
+        </tr>
+        <tr>
+            <th>是否销售属性：</th>
+            <td><input name="IsSale" type="checkbox" value="1"/></td>
+        </tr>
+        <tr>
+            <th>是否允许别名：</th>
+            <td><input name="IsAllowAlias" type="checkbox" value="1"/></td>
+        </tr>
+    </table>
+</form>
+}

@@ -159,5 +159,10 @@ namespace Zero.Mvc.Manage.Controllers.Cates
 
             return Json(new ResultInfo("操作成功"));
         }
+
+        public ActionResult CateAttrIndex()
+        {
+            return View();
+        }
     }
 }

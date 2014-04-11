@@ -6,6 +6,8 @@ namespace Zero.Domain.Cates
 {
     public class CateAttr : BaseEntity
     {
+        public int id { get { return CAID; } }
+
         /// <summary>
         /// 类别属性编号
         /// </summary>

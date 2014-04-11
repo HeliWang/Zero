@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "~/Views/Shared/Dialog/_Index.cshtml";
+    ViewBag.Title = "CateAttrIndex";
+}
+<style>
+    .z-cate-attr li{float:left;margin-right:10px;}
+    .easyui-tree li{float:none;}
+</style>
+<ul class="z-cate-attr">
+    <li>
+        <table id="tree"></table>
+    </li>
+    <li>
+        <!-- 工具栏 -->
+        <div id="toolbar">
+            <div>
+                <a href="#" id="add2"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+                <a href="#" id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+                <a href="#" id="remove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除</a>
+                <a href="#" id="reload" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+            </div>
+        </div>
+        <!--列表-->
+        <table id="grid"></table>
+    </li>
+    <li>属性值</li>
+</ul>
+
+<script type="text/javascript">
+
+    var controller = "CateAttr";
+
+    $(function () {
+
+        $('#tree').treegrid({
+            title: '分类列表',
+            collapsible: true,
+            rownumbers: true,
+            url: '/Cate/CateList',
+            method: 'get',
+            idField: 'id',
+            treeField: 'text',
+            width: 300,
+            height: 630,
+            columns: [[
+                { title: '编号', field: 'id', width: 60, align: 'center' },
+                { title: '名称', field: 'text', width: 200, align: 'left' },
+                //{ title: '操作', field: 'operate', width: 180, align: 'center', formatter: operateFormat },
+            ]],
+            onLoadError: function () {
+                $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
+            },
+            //toolbar: '#toolbar',
+        });
+
+        //加载网格(搜索中文版对照属性，来配置)
+        $('#grid').datagrid({
+            title: '类别属性列表',
+            collapsible: true,
+            rownumbers: true,
+            url: '/CateAttr/CateAttrList',
+            method: 'get',
+            loadMsg: '正在加载数据...',
+            //idField: 'ProductId',
+            fitColumns: false,
+            width: 500,
+            height: 630,
+            pagination: true,
+            pageSize: 30,
+            pageList: [10, 20, 30, 40, 50, 100],
+            columns: [[
+                { field: 'AttrId', checkbox: true },
+                { field: 'id', title: '属性编号', width: 60, align: 'center' },
+                { field: 'AttrName', title: '属性名称', width: 140, algin: 'center'},
+                { field: 'operate', title: '操作', width: 160, align: 'center', formatter: operateFormat },
+            ]],
+            onLoadError: function () {
+                $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
+            },
+            toolbar: '#toolbar',
+        });
+
+        function operateFormat(value, row, index) {
+            var html = "";
+            html += openParentTabLinkButton('属性值管理', '/AttrValue/AttrValueIndex?AttrId=' + row.AttrId, row.AttrId);
+            html += " | ";
+            html += "<a href=\"javascript:void(0);\" onclick=\"openWindow('修改', '/Attr/AttrEdit?AttrId=" + row.id + "')\">修改</a>";
+            html += " | ";
+            html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除</a>";
+            return html;
+        }
+
+        $('#add2').bind('click', function () {
+            var row = $('#tree').treegrid('getSelected');
+            if (row) {
+                openWindow('添加', String.format('/CateAttr/CateAttrAdd?CateId={0}&CateName={1}',row.id,row.CateName));
+            }
+            else {
+                show('请选中类目');
+            }
+        });
+    });
+</script>

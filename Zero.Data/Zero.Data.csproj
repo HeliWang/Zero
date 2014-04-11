@@ -51,6 +51,7 @@
     <Compile Include="Mapping\Cates\CateMap.cs" />
     <Compile Include="Mapping\Cates\AttrMap.cs" />
     <Compile Include="Mapping\Cates\AttrValueMap.cs" />
+    <Compile Include="Mapping\Cates\CateAttrMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
     <Compile Include="Mapping\Upload\PhotoMap.cs" />
     <Compile Include="Migrations\201403191608268_DeleteId.cs" />
@@ -92,6 +93,14 @@
     <Compile Include="Migrations\201404100533495_AddAttrValue.cs" />
     <Compile Include="Migrations\201404100533495_AddAttrValue.Designer.cs">
       <DependentUpon>201404100533495_AddAttrValue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404110139143_UpdateAttrValue2.cs" />
+    <Compile Include="Migrations\201404110139143_UpdateAttrValue2.Designer.cs">
+      <DependentUpon>201404110139143_UpdateAttrValue2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201404110644480_AddCateAttr3.cs" />
+    <Compile Include="Migrations\201404110644480_AddCateAttr3.Designer.cs">
+      <DependentUpon>201404110644480_AddCateAttr3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -142,6 +151,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404100533495_AddAttrValue.resx">
       <DependentUpon>201404100533495_AddAttrValue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404110139143_UpdateAttrValue2.resx">
+      <DependentUpon>201404110139143_UpdateAttrValue2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404110644480_AddCateAttr3.resx">
+      <DependentUpon>201404110644480_AddCateAttr3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

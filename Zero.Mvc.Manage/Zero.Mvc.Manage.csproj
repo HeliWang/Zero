@@ -111,6 +111,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Cates\AttrController.cs" />
     <Compile Include="Controllers\Cates\AttrValueController.cs" />
+    <Compile Include="Controllers\Cates\CateAttrController.cs" />
     <Compile Include="Controllers\Cates\CateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Products\ProductController.cs" />
@@ -582,15 +583,6 @@
     <Content Include="Views\Shared\Dialog\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\副本 Attr\AttrAdd.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\副本 Attr\AttrEdit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\副本 Attr\AttrIndex.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\AttrValue\AttrValueEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -598,6 +590,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\AttrValue\AttrValueIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CateAttr\CateAttrIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CateAttr\CateAttrEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CateAttr\CateAttrAdd.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -613,14 +614,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>14691</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:15348/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>http://manage.zero.com</CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://m.zero.com</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
