@@ -48,7 +48,13 @@ namespace Zero.Mvc.Manage.Controllers.Cates
             int cateId = RequestHelper.QueryInt("cateId");
             Cate cate = _cateService.GetById(cateId);
 
-            return View();
+            CateAttrExpand cateAttrExpand = new CateAttrExpand();
+            if (cate != null)
+            {
+                cateAttrExpand.CateId = cateId;
+                cateAttrExpand.CateName = cate.CateName;
+            }
+            return View(cateAttrExpand);
         }
 
         [HttpPost]

@@ -3,11 +3,16 @@
     ViewBag.Title = "CateAttrAdd";
 }
 
+@model Zero.Domain.Cates.CateAttrExpand
+
 <form id="Form" action="@Url.Action("CateAttrAdd","CateAttr")" method="post">
     <table class="z-tb-form">        
         <tr>
             <th>类名：</th>
-            <td><input type="text" name="CateName" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
+            <td>
+                @Model.CateName
+                <input type="hidden" id="CateId" name="AttrIds" value="@Model.CateId">
+            </td>
         </tr>
         <tr>
             <th>属性：</th>

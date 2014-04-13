@@ -7,13 +7,13 @@ namespace Zero.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.2-21211")]
-    public sealed partial class AddAttr : IMigrationMetadata
+    public sealed partial class AddNewAttr : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddAttr));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddNewAttr));
         
         string IMigrationMetadata.Id
         {
-            get { return "201404090652331_AddAttr"; }
+            get { return "201404130653167_AddNewAttr"; }
         }
         
         string IMigrationMetadata.Source
