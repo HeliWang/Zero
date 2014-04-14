@@ -27,6 +27,7 @@ namespace Zero.Data
         public EfRepository(DbContext context)
         {
             this._context = context;
+            this._entities = _context.Set<T>();
         }
 
         public T Add(T entity)

@@ -54,9 +54,9 @@
     <Compile Include="Mapping\Cates\CateAttrMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
     <Compile Include="Mapping\Upload\PhotoMap.cs" />
-    <Compile Include="Migrations\201404130653167_AddNewAttr.cs" />
-    <Compile Include="Migrations\201404130653167_AddNewAttr.Designer.cs">
-      <DependentUpon>201404130653167_AddNewAttr.cs</DependentUpon>
+    <Compile Include="Migrations\201404140804452_Update AttrName.cs" />
+    <Compile Include="Migrations\201404140804452_Update AttrName.Designer.cs">
+      <DependentUpon>201404140804452_Update AttrName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -78,8 +78,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201404130653167_AddNewAttr.resx">
-      <DependentUpon>201404130653167_AddNewAttr.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201404140804452_Update AttrName.resx">
+      <DependentUpon>201404140804452_Update AttrName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

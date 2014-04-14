@@ -33,7 +33,8 @@ namespace Zero.Mvc.Manage.Controllers.Cates
             pageIndex = pageIndex <= 0 ? 0 : pageIndex - 1;
             if (pageSize <= 0) pageSize = 10;
 
-            IPage<CateAttr> productPage = _cateAttrService.GetList(pageIndex, pageSize);
+            CateAttrSearch search = new CateAttrSearch();
+            IPage<CateAttrExpand> productPage = _cateAttrService.GetExpandList(search, pageIndex, pageSize);
 
             return Json(productPage, JsonRequestBehavior.AllowGet);
         }

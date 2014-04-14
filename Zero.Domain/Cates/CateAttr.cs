@@ -52,14 +52,14 @@ namespace Zero.Domain.Cates
         /// 排列序号
         /// </summary>
         public int Oid { get; set; }
+
+        //public virtual Cate cate { get; set; }
     }
 
     public class CateAttrExpand : CateAttr
     {
-        public string Attr { get; set; }
+        public string AttrName { get; set; }
 
         public string CateName { get; set; }
-
-        public List<AttrValue> AttrValueList { get; set; }
     }
 }
