@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Zero.Domain.Cates
 {
+    //如果关联了ef会自动加载, 未关联可以用Include来关联
     public class CateAttr : BaseEntity
     {
         public int id { get { return CAID; } }
@@ -53,7 +54,15 @@ namespace Zero.Domain.Cates
         /// </summary>
         public int Oid { get; set; }
 
-        //public virtual Cate cate { get; set; }
+        /// <summary>
+        /// 类别
+        /// </summary>
+        public virtual Cate Cate { get; set; }
+
+        /// <summary>
+        /// 属性
+        /// </summary>
+        public virtual Attr Attr { get; set; }
     }
 
     public class CateAttrExpand : CateAttr

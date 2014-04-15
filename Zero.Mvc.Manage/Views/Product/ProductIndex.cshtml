@@ -47,7 +47,7 @@
             loadMsg: '正在加载数据...',
             //idField: 'ProductId',
             fitColumns: false,
-        width: 1180,
+            width: 1180,
             height: 630,
             pagination: true,
             pageSize: 30,
@@ -85,10 +85,6 @@
             html += " | ";
             html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除</a>";
             return html;
-        }
-
-        function idFormat(value, row, index) {
-            return row.ProductId;
         }
 
         function photoFormat(value, row, index) {

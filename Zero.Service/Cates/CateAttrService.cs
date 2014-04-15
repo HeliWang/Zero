@@ -57,7 +57,6 @@ namespace Zero.Service.Cates
         public IPage<CateAttr> GetList(int pageIndex, int pageSize)
         {
             var query = _cateAttrRepository.Table;
-
             query = query.OrderByDescending(q => q.CateId);
             return new Page<CateAttr>(query, pageIndex, pageSize);
         }

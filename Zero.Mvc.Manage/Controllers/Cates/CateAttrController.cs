@@ -29,12 +29,15 @@ namespace Zero.Mvc.Manage.Controllers.Cates
         {
             int pageIndex = RequestHelper.QueryInt("page");
             int pageSize = RequestHelper.QueryInt("rows");
+            int cateId = RequestHelper.QueryInt("cateId");
+
+            
 
             pageIndex = pageIndex <= 0 ? 0 : pageIndex - 1;
             if (pageSize <= 0) pageSize = 10;
 
             CateAttrSearch search = new CateAttrSearch();
-            IPage<CateAttrExpand> productPage = _cateAttrService.GetExpandList(search, pageIndex, pageSize);
+            IPage<CateAttr> productPage = _cateAttrService.GetList(pageIndex, pageSize);
 
             return Json(productPage, JsonRequestBehavior.AllowGet);
         }

@@ -9,13 +9,22 @@ namespace Zero.Data.Mapping.Cates
         public CateAttrMap()
         {
             // Primary Key
-            this.HasKey(m => m.CAID);
+            this.HasKey(ca => ca.CAID);
 
             // Table & Column Mappings
             this.ToTable("CateAttr");
 
             //Ignore
-            this.Ignore(m => m.id);
+            this.Ignore(ca => ca.id);
+
+            //
+            this.HasRequired(ca => ca.Cate)
+                .WithMany()
+                .HasForeignKey(ca=>ca.CateId);
+
+            this.HasRequired(ca => ca.Attr)
+                .WithMany()
+                .HasForeignKey(ca => ca.AttrId);
         }
     }
 }

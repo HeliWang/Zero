@@ -50,6 +50,16 @@
             onLoadError: function () {
                 $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
             },
+            onClickRow: function () {
+                var row = $('#tree').treegrid('getSelected');
+                if (row) {
+                    //配置参数
+                    var queryParams = $('#grid').datagrid('options').queryParams;
+                    queryParams.CateId = row.id;
+                    //重新加载
+                    $("#grid").datagrid('reload');
+                }
+            },
             //toolbar: '#toolbar',
         });
 
@@ -71,7 +81,8 @@
             columns: [[
                 { field: 'AttrId', checkbox: true },
                 { field: 'id', title: '属性编号', width: 60, align: 'center' },
-                { field: 'AttrName', title: '属性名称', width: 140, algin: 'center'},
+                { field: 'attrName', title: '属性名称', width: 80, algin: 'center', formatter: attrFormat },
+                { field: 'cateName', title: '类别名称', width: 80, algin: 'center', formatter: cateFormat },
                 { field: 'operate', title: '操作', width: 160, align: 'center', formatter: operateFormat },
             ]],
             onLoadError: function () {
@@ -79,6 +90,16 @@
             },
             toolbar: '#toolbar',
         });
+
+        function attrFormat(value, row, index) {
+            if (row.Attr != undefined)
+            return row.Attr.AttrName;
+        }
+
+        function cateFormat(value, row, index) {
+            if (row.Cate != undefined)
+            return row.Cate.CateName;
+        }
 
         function operateFormat(value, row, index) {
             var html = "";
