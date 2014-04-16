@@ -54,9 +54,21 @@ namespace Zero.Service.Cates
             return _cateAttrRepository.GetById(productId);
         }
 
-        public IPage<CateAttr> GetList(int pageIndex, int pageSize)
+        public IPage<CateAttr> GetList(CateAttrSearch search, int pageIndex, int pageSize)
         {
-            var query =  _cateAttrRepository.Entities.Include("Cate").Include("Attr").AsQueryable();
+            Cate cate = null;
+            if (search.CateId > 0)
+                cate = _cateRepository.GetById(search.CateId);
+
+            var query = _cateAttrRepository.Entities.Include("Cate").Include("Attr").AsQueryable();
+
+            if (cate != null)
+            {
+                query = from a in query
+                        join c in _cateRepository.Table on a.CateId equals c.CateId
+                        select a;
+            }
+
             //var query = _cateAttrRepository.Table;
             query = query.OrderByDescending(q => q.CateId);
             return new Page<CateAttr>(query, pageIndex, pageSize);
@@ -75,59 +87,6 @@ namespace Zero.Service.Cates
 
             query = query.OrderByDescending(q => q.CateId);
             return new Page<CateAttr>(query, pageIndex, pageSize);
-        }
-
-        public IPage<CateAttrExpand> GetExpandList(CateAttrSearch search, int pageIndex, int pageSize)
-        {
-            //if (search.CateId > 0)
-            //{
-            //    Cate cate = _cateRepository.GetById(search.CateId);
-            //}
-
-            //获取类别
-
-            //根据条件检索cateAttr
-
-            //关联Cate
-
-            //关联AttrName
-
-            //进行排序
-
-            //var query = _cateAttrRepository.Table;
-
-           //var query = from ca in _cateAttrRepository.Table
-           //         from a in _attrRepository.Table
-           //         where ca.AttrId == a.AttrId
-           //         select new CateAttrExpand
-           //         {
-           //             CateId = ca.CateId,
-           //             AttrName = a.AttrName,
-           //         };
-
-            var query = from ca in _cateAttrRepository.Table
-                        join a in _attrRepository.Table on ca.AttrId equals a.AttrId
-                        select new CateAttrExpand
-                        {
-                            CateId = ca.CateId,
-                            AttrName = a.AttrName,
-                        };
-             
-
-
-           //var query = from ca in _cateAttrRepository.Table
-           //         from c in _cateRepository.Table
-           //         select new CateAttrExpand
-           //         {
-           //             CateId = ca.CateId,
-           //             CateName = c.CateName,
-           //         };
-
-            query = query.OrderByDescending(q => q.CAID);
-
-            int count = query.Count();
-
-            return new Page<CateAttrExpand>(query, pageIndex, pageSize);
         }
     }
 }
