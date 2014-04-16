@@ -56,21 +56,22 @@ namespace Zero.Service.Cates
 
         public IPage<CateAttr> GetList(CateAttrSearch search, int pageIndex, int pageSize)
         {
-            Cate cate = null;
-            if (search.CateId > 0)
-                cate = _cateRepository.GetById(search.CateId);
-
             var query = _cateAttrRepository.Entities.Include("Cate").Include("Attr").AsQueryable();
 
-            if (cate != null)
+            if (search.CateId > 0)
             {
-                query = from a in query
-                        join c in _cateRepository.Table on a.CateId equals c.CateId
-                        select a;
+                Cate cate = _cateRepository.GetById(search.CateId);
+
+                if (cate != null)
+                {
+                    query = from a in query
+                            join c in _cateRepository.Table on a.CateId equals c.CateId
+                            where c.Lid >= cate.Lid && c.Rid <= cate.Rid
+                            select a;
+                }
             }
 
-            //var query = _cateAttrRepository.Table;
-            query = query.OrderByDescending(q => q.CateId);
+            query = query.OrderByDescending(q => q.CAID);
             return new Page<CateAttr>(query, pageIndex, pageSize);
         }
 

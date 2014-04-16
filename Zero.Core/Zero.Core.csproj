@@ -61,7 +61,7 @@
     <Compile Include="Task\TaskManager.cs" />
     <Compile Include="Web\AuthCode.cs" />
     <Compile Include="Web\BaseStatus.cs" />
-    <Compile Include="Web\EnumHelper.cs" />
+    <Compile Include="Task\EnumHelper.cs" />
     <Compile Include="Web\FileHelper.cs" />
     <Compile Include="Web\FormItem.cs" />
     <Compile Include="Web\FormValidate.cs" />
