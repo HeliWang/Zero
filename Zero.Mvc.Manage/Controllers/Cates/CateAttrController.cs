@@ -16,13 +16,24 @@ namespace Zero.Mvc.Manage.Controllers.Cates
     /// </summary>
     public partial class CateAttrController : BaseController
     {
-        CateAttrService _cateAttrService;
         CateService _cateService;
+        CateAttrService _cateAttrService;
+        AttrValueService _attrValueService;
 
         public CateAttrController()
         {
-            _cateAttrService = Singleton<CateAttrService>.GetInstance();
             _cateService = Singleton<CateService>.GetInstance();
+            _cateAttrService = Singleton<CateAttrService>.GetInstance();
+            _attrValueService = Singleton<AttrValueService>.GetInstance();
+        }
+
+        public ActionResult AttrValueList()
+        {
+            int attrId = RequestHelper.QueryInt("attrId");
+
+            List<AttrValue> productList = _attrValueService.GetList(attrId);
+
+            return Json(productList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult CateAttrList()
@@ -48,16 +59,7 @@ namespace Zero.Mvc.Manage.Controllers.Cates
 
         public ActionResult CateAttrAdd()
         {
-            int cateId = RequestHelper.QueryInt("cateId");
-            Cate cate = _cateService.GetById(cateId);
-
-            CateAttrExpand cateAttrExpand = new CateAttrExpand();
-            if (cate != null)
-            {
-                cateAttrExpand.CateId = cateId;
-                cateAttrExpand.CateName = cate.CateName;
-            }
-            return View(cateAttrExpand);
+            return View();
         }
 
         [HttpPost]

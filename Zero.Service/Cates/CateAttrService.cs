@@ -71,7 +71,7 @@ namespace Zero.Service.Cates
                 }
             }
 
-            query = query.OrderByDescending(q => q.CAID);
+            query = query.OrderByDescending(q => q.CateId);
             return new Page<CateAttr>(query, pageIndex, pageSize);
         }
 

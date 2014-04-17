@@ -43,6 +43,14 @@ namespace Zero.Service.Cates
             return _attrValueRepository.GetById(productId);
         }
 
+        public List<AttrValue> GetList(int attrId)
+        {
+            var query = from av in _attrValueRepository.Table
+                        where av.AttrId==attrId
+                        select av;
+            return query.ToList();
+        }
+
         public IPage<AttrValue> GetList(int AttrId, int pageIndex, int pageSize)
         {
             var query = _attrValueRepository.Table;

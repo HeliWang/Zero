@@ -3,14 +3,14 @@
     ViewBag.Title = "CateAttrAdd";
 }
 
-@model Zero.Domain.Cates.CateAttrExpand
+@model Zero.Mvc.Manage.Models.CateAttrModel
 
 <form id="Form" action="@Url.Action("CateAttrAdd","CateAttr")" method="post">
     <table class="z-tb-form">        
         <tr>
             <th>类名：</th>
             <td>
-                <input name="Pid"  data-options="url:'@Url.Action("CateList","Cate")'" value="@Model.CateId" class="easyui-combotree"  style="width:200px;">
+                <input name="CateId"  data-options="url:'@Url.Action("CateList","Cate")'" class="easyui-combotree"  style="width:200px;">
             </td>
         </tr>
         <tr>
@@ -20,8 +20,11 @@
             </td>
         </tr>
         <tr>
-            <th>属性值</th>
-            <td>根据属性变动</td>
+            <th>属性值：</th>
+            <td>
+                <input type="hidden" id="AttrValue" name="AttrValue">
+                <div id="selectValue">请选择属性</div>
+            </td>
         </tr>
         <tr>
             <th>类型：</th>
@@ -53,13 +56,15 @@
 </form>
 <script>
     $(function () {
+
+        //加载属性列表
         $('#Attr').combogrid({
             panelWidth: 420,
             idField: 'AttrId',
             textField: 'AttrName',
             url: '/Attr/AttrList',
             method: 'get',
-            multiple: true,
+            //multiple: true,
             pagination: true,
             pageSize: 30,
             pageList: [10, 20, 30, 40, 50, 100],
@@ -67,7 +72,53 @@
                 { field: 'AttrId', checkbox: true },
                 { field: 'id', title: '属性编号', width: 60, align: 'center' },
                 { field: 'AttrName', title: '属性名称', width: 140, algin: 'center' },
-            ]]
+            ]],
+            onClickRow: function () {
+                var row = $(this).datagrid('getSelected');
+                if (row) {
+                    LoadAttrValue(row.AttrId)
+                }
+            },
         });
+
+        //异步调用属性值 
+        function LoadAttrValue(attrId) {
+            $.ajax({
+                type: "get",
+                data: { attrId: attrId }, //与获取数据保持一致
+                url: "/CateAttr/AttrValueList", 
+                dataType: "json", 
+                success: function (data) {
+                    var list=[];
+                    for (var i = 0; i < data.length; i++) {
+                        var checkbox = String.format("<input id=\"Value_{0}\" name=\"ValueId\" type=\"checkbox\" value=\"{0}:{1}\" /><label for=\"\Value_{0}\">{1}</label>",data[i].ValueId,data[i].ValueName);
+                        list[i] = $(checkbox);
+                    }
+                    $("#selectValue").empty();
+                    $("#selectValue").append(list);
+                }
+            });
+        }
+
     });
+
+    var validate = function () {
+
+        var attrValue = "";
+
+        $("#selectValue>input:checked").each(function () {
+            attrValue += String.format('{0};', $(this).val());
+        });
+
+        if (attrValue.length > 0) {
+            attrValue = attrValue.substring(0, attrValue.length - 1);
+            $("#AttrValue").val(attrValue);
+        }
+        else {
+            window.parent.show("请至少选择一个属性值");
+            return false;
+        }
+
+        return true;
+    }
 </script>

@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201404150627475_UpdateAttr33.Designer.cs">
       <DependentUpon>201404150627475_UpdateAttr33.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404170627106_UpdateCateAttr.cs" />
+    <Compile Include="Migrations\201404170627106_UpdateCateAttr.Designer.cs">
+      <DependentUpon>201404170627106_UpdateCateAttr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -80,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201404150627475_UpdateAttr33.resx">
       <DependentUpon>201404150627475_UpdateAttr33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404170627106_UpdateCateAttr.resx">
+      <DependentUpon>201404170627106_UpdateCateAttr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

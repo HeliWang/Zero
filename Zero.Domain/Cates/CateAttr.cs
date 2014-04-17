@@ -63,6 +63,11 @@ namespace Zero.Domain.Cates
         /// 属性
         /// </summary>
         public virtual Attr Attr { get; set; }
+
+        /// <summary>
+        /// 属性值
+        /// </summary>
+        public string AttrValue { get; set; }
     }
 
     public class CateAttrExpand : CateAttr

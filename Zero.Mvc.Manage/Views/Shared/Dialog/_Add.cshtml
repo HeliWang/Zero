@@ -17,6 +17,7 @@
     @Scripts.Render("~/scripts/jquery.form.js")
     @Scripts.Render("~/scripts/base.js")
     @Scripts.Render("~/scripts/validate.js")
+    @Scripts.Render("~/scripts/string.js")
     @RenderSection("scripts", required: false)
 </head>
 <body>
@@ -37,12 +38,13 @@
         });
 
         //jquery.form提交方式
-        function ajaxSubmitForm(form) {
+        function ajaxSubmitForm(form,callbak) {
             var options = {};
 
             $(form).ajaxSubmit({
                 beforeSubmit: function (formData, jqForm, options) {
                     if (!$(form).form('validate')) return false;
+                    if (typeof (validate) != "undefined" && !validate())return false
                     return true;
                 },
                 success: function (responseText, statusText, xhr, $form) {

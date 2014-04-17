@@ -8,35 +8,120 @@
 @if (Model != null)
 {
 <form id="Form" action="@Url.Action("CateAttrEdit","CateAttr")" method="post">
-    <table class="z-tb-form">        
-        <tr>
-            <th>类名：</th>
-            <td><input type="text" name="CateName" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
-        </tr>
-        <tr>
-            <th>属性：</th>
-            <td><input type="text" name="AttrName" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
-        </tr>
-        <tr>
-            <th>类型：</th>
-            <td><input type="text" name="Type" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
-        </tr>
-        <tr>
-            <th>是否必填：</th>
-            <td><input name="IsMust" type="checkbox" value="1"/></td>
-        </tr>
-        <tr>
-            <th>是否关键属性：</th>
-            <td><input name="IsKey" type="checkbox" value="1"/></td>
-        </tr>
-        <tr>
-            <th>是否销售属性：</th>
-            <td><input name="IsSale" type="checkbox" value="1"/></td>
-        </tr>
-        <tr>
-            <th>是否允许别名：</th>
-            <td><input name="IsAllowAlias" type="checkbox" value="1"/></td>
-        </tr>
-    </table>
+<table class="z-tb-form">        
+    <tr>
+        <th>类名：</th>
+        <td>
+            <input name="CateId"  data-options="url:'@Url.Action("CateList","Cate")'" value="@Model.CateId" class="easyui-combotree"  style="width:200px;">
+        </td>
+    </tr>
+    <tr>
+        <th>属性：</th>
+        <td>
+            <input type="text" id="Attr" name="AttrId" value="@Model.AttrId">
+        </td>
+    </tr>
+    <tr>
+        <th>属性值：</th>
+        <td>
+            <input type="hidden" id="AttrValue" name="AttrValue" value="@Model.AttrValue">
+            <div id="selectValue">请选择属性</div>
+        </td>
+    </tr>
+    <tr>
+        <th>类型：</th>
+        <td>
+            <input type="radio" id="multiCheck" name="Type" checked="checked" value="1"/><label for="multiCheck">多选</label>
+            <input type="radio" id="optional" name="Type" value="2"/><label for="optional">单选</label>
+            <input type="radio" id="multiCheckText" name="Type" value="3"/><label for="multiCheckText">可输入多选</label>
+            <input type="radio" id="optionalText" name="Type" value="4"/><label for="optionalText">可输入单选</label>
+            <input type="radio" id="text" name="Type" value="5"/><label for="text">可输入</label>
+        </td>
+    </tr>
+    <tr>
+        <th>是否必填：</th>
+        <td><input name="IsMust" type="checkbox" value="1" @if(Model.IsMust==1){<text>checked</text>} /></td>
+    </tr>
+    <tr>
+        <th>是否关键属性：</th>
+        <td><input name="IsKey" type="checkbox" value="1" @if(Model.IsKey==1){<text>checked</text>} /></td>
+    </tr>
+    <tr>
+        <th>是否销售属性：</th>
+        <td><input name="IsSale" type="checkbox" value="1" @if(Model.IsSale==1){<text>checked</text>} /></td>
+    </tr>
+    <tr>
+        <th>是否允许别名：</th>
+        <td><input name="IsAllowAlias" type="checkbox" value="1" @if(Model.IsAllowAlias==1){<text>checked</text>} /></td>
+    </tr>
+</table>
 </form>
+<script>
+    $(function () {
+
+        //加载属性列表
+        $('#Attr').combogrid({
+            panelWidth: 420,
+            idField: 'AttrId',
+            textField: 'AttrName',
+            url: '/Attr/AttrList',
+            method: 'get',
+            //multiple: true,
+            pagination: true,
+            pageSize: 30,
+            pageList: [10, 20, 30, 40, 50, 100],
+            columns: [[
+                { field: 'AttrId', checkbox: true },
+                { field: 'id', title: '属性编号', width: 60, align: 'center' },
+                { field: 'AttrName', title: '属性名称', width: 140, algin: 'center' },
+            ]],
+            onClickRow: function () {
+                var row = $(this).datagrid('getSelected');
+                if (row) {
+                    LoadAttrValue(row.AttrId)
+                }
+            },
+        });
+
+        //异步调用属性值 
+        function LoadAttrValue(attrId) {
+            $.ajax({
+                type: "get",
+                data: { attrId: attrId }, //与获取数据保持一致
+                url: "/CateAttr/AttrValueList", 
+                dataType: "json", 
+                success: function (data) {
+                    var list=[];
+                    for (var i = 0; i < data.length; i++) {
+                        var checkbox = String.format("<input id=\"Value_{0}\" name=\"ValueId\" type=\"checkbox\" value=\"{0}:{1}\" /><label for=\"\Value_{0}\">{1}</label>",data[i].ValueId,data[i].ValueName);
+                        list[i] = $(checkbox);
+                    }
+                    $("#selectValue").empty();
+                    $("#selectValue").append(list);
+                }
+            });
+        }
+
+    });
+
+    var validate = function () {
+
+        var attrValue = "";
+
+        $("#selectValue>input:checked").each(function () {
+            attrValue += String.format('{0};', $(this).val());
+        });
+
+        if (attrValue.length > 0) {
+            attrValue = attrValue.substring(0, attrValue.length - 1);
+            $("#AttrValue").val(attrValue);
+        }
+        else {
+            window.parent.show("请至少选择一个属性值");
+            return false;
+        }
+
+        return true;
+    }
+</script>
 }

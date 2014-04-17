@@ -119,6 +119,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CateAttrModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ueditor\net\Config.cs" />
     <Compile Include="ueditor\net\Uploader.cs" />
@@ -471,7 +472,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

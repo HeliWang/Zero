@@ -103,9 +103,7 @@
 
         function operateFormat(value, row, index) {
             var html = "";
-            html += openParentTabLinkButton('属性值管理', '/AttrValue/AttrValueIndex?AttrId=' + row.AttrId, row.AttrId);
-            html += " | ";
-            html += "<a href=\"javascript:void(0);\" onclick=\"openWindow('修改', '/Attr/AttrEdit?AttrId=" + row.id + "')\">修改</a>";
+            html += "<a href=\"javascript:void(0);\" onclick=\"openWindow('修改', '/CateAttr/CateAttrEdit?CateAttrId=" + row.id + "')\">修改</a>";
             html += " | ";
             html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除</a>";
             return html;
@@ -114,7 +112,7 @@
         $('#add2').bind('click', function () {
             var row = $('#tree').treegrid('getSelected');
             if (row) {
-                openWindow('添加', String.format('/CateAttr/CateAttrAdd?CateId={0}&CateName={1}',row.id,row.CateName));
+                openWindow('添加', String.format('/CateAttr/CateAttrAdd?CateId={0}',row.id,row.CateName));
             }
             else {
                 show('请选中类目');
