@@ -40,7 +40,7 @@ namespace Zero.Service.Cates
         public ResultInfo Edit(CateAttr cateAttr)
         {
             _cateAttrRepository.Update(cateAttr);
-            return new ResultInfo("添加成功");
+            return new ResultInfo("修改成功");
         }
 
         public ResultInfo Delete(string ids)

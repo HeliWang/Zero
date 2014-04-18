@@ -38,13 +38,14 @@
         });
 
         //jquery.form提交方式
-        function ajaxSubmitForm(form,callbak) {
-            var options = {};
+        function ajaxSubmitForm(form) {
+            if (!$(form).form('validate')) return false;
+            if (typeof (validate) != "undefined" && !validate()) return false
 
+            var options = {};
             $(form).ajaxSubmit({
                 beforeSubmit: function (formData, jqForm, options) {
-                    if (!$(form).form('validate')) return false;
-                    if (typeof (validate) != "undefined" && !validate())return false
+                    //无法自动赋值，提交时数据为原来的数据，表单验证和自定义验证需提到外部
                     return true;
                 },
                 success: function (responseText, statusText, xhr, $form) {

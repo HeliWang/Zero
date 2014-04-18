@@ -18,6 +18,7 @@
     <tr>
         <th>属性：</th>
         <td>
+            <input type="hidden" name="CAID" value="@Model.CAID">
             <input type="text" id="Attr" name="AttrId" value="@Model.AttrId">
         </td>
     </tr>
@@ -83,6 +84,8 @@
             },
         });
 
+        LoadAttrValue(@Model.AttrId);
+
         //异步调用属性值 
         function LoadAttrValue(attrId) {
             $.ajax({
@@ -91,10 +94,22 @@
                 url: "/CateAttr/AttrValueList", 
                 dataType: "json", 
                 success: function (data) {
+                    var attrValue = $("#AttrValue").val();
+                    var insertValue=[];
+                    if (attrValue != "") {
+                        insertValue = attrValue.split(";");
+                    }
+
                     var list=[];
                     for (var i = 0; i < data.length; i++) {
                         var checkbox = String.format("<input id=\"Value_{0}\" name=\"ValueId\" type=\"checkbox\" value=\"{0}:{1}\" /><label for=\"\Value_{0}\">{1}</label>",data[i].ValueId,data[i].ValueName);
                         list[i] = $(checkbox);
+
+                        for (var j = 0; j < insertValue.length; j++) {
+                            if (data[i].ValueId == insertValue[j].split(":")[0]) {
+                                list[i].attr("checked", 'true');
+                            }
+                        }
                     }
                     $("#selectValue").empty();
                     $("#selectValue").append(list);

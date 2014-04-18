@@ -89,9 +89,18 @@ namespace Zero.Mvc.Manage.Controllers.Cates
 
             if (ModelState.IsValid)
             {
-                CateAttr oldCateAttr = _cateAttrService.GetById(cateAttr.CateId);
+                CateAttr oldCateAttr = _cateAttrService.GetById(cateAttr.CAID);
                 oldCateAttr.CateId = cateAttr.CateId;
+                oldCateAttr.AttrId = cateAttr.AttrId;
+                oldCateAttr.AttrValue = cateAttr.AttrValue;
+                oldCateAttr.Type = cateAttr.Type;
+                oldCateAttr.IsMust = cateAttr.IsMust;
+                oldCateAttr.IsKey = cateAttr.IsKey;
+                oldCateAttr.IsSale = cateAttr.IsSale;
+                oldCateAttr.IsAllowAlias = cateAttr.IsAllowAlias;
+                
                 oldCateAttr.Oid = cateAttr.Oid;
+
                 resultInfo = _cateAttrService.Edit(oldCateAttr);
             }
 

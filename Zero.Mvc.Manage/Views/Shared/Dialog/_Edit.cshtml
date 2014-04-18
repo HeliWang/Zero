@@ -52,11 +52,13 @@
 
         //jquery.form提交方式
         function ajaxSubmitForm(form) {
-            var options = {};
+            if (!$(form).form('validate')) return false;
+            if (typeof (validate) != "undefined" && !validate()) return false
 
+            var options = {};
             $(form).ajaxSubmit({
                 beforeSubmit: function (formData, jqForm, options) {
-                    if (!$(form).form('validate')) return false;
+                    //无法自动赋值，提交时数据为原来的数据，表单验证和自定义验证需提到外部
                     return true;
                 },
                 success: function (responseText, statusText, xhr, $form) {
@@ -66,7 +68,7 @@
                     window.parent.show(responseText.Message);
                 },
                 error: function () {
-                    window.parent.show('系统异常，请重试或联系技术');
+                    $.messager.alert('提醒', '系统异常，请重试或联系技术');
                 }
             });
         }
