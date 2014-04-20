@@ -26,7 +26,7 @@
                 <tr>
                     <th>所属分类：</th>
                     <td>
-                        <input name="Pid"  data-options="url:'@Url.Action("CateList","Cate")'" class="easyui-combotree"  style="width:200px;">
+                        <input name="CateId"  data-options="url:'@Url.Action("CateList","Cate")'" class="easyui-combotree"  style="width:200px;">
                     </td>
                 </tr>
                 <tr>
@@ -188,6 +188,7 @@
 <script type="text/javascript">
     $(function () {
         PhotoInit();
+        AttrInit();
     });
 
     function closeWindow(msg) {
@@ -228,6 +229,26 @@
         }
         $(".z-select-img li").remove();
         $(".z-select-img").append(li);
+    }
+
+    function AttrInit() {
+        var cateId = $("#CateId").val();
+
+        $.ajax({
+            type: "get",
+            data: { cateId: cateId, page: 1, rows: 999 }, //与获取数据保持一致
+            url: "/CateAttr/CateAttrList",
+            dataType: "json",
+            success: function (data) {
+                //var list = [];
+                //for (var i = 0; i < data.length; i++) {
+                //    var checkbox = String.format("<input id=\"Value_{0}\" name=\"ValueId\" type=\"checkbox\" value=\"{0}:{1}\" /><label for=\"\Value_{0}\">{1}</label>", data[i].ValueId, data[i].ValueName);
+                //    list[i] = $(checkbox);
+                //}
+                //$("#selectValue").empty();
+                //$("#selectValue").append(list);
+            }
+        });
     }
 
     $(".z-select-img li").bind('click', function () {

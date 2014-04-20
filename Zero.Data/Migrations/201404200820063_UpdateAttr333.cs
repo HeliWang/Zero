@@ -3,7 +3,7 @@ namespace Zero.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UpdateCateAttr : DbMigration
+    public partial class UpdateAttr333 : DbMigration
     {
         public override void Up()
         {

@@ -54,13 +54,9 @@
     <Compile Include="Mapping\Cates\CateAttrMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
     <Compile Include="Mapping\Upload\PhotoMap.cs" />
-    <Compile Include="Migrations\201404150627475_UpdateAttr33.cs" />
-    <Compile Include="Migrations\201404150627475_UpdateAttr33.Designer.cs">
-      <DependentUpon>201404150627475_UpdateAttr33.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404170627106_UpdateCateAttr.cs" />
-    <Compile Include="Migrations\201404170627106_UpdateCateAttr.Designer.cs">
-      <DependentUpon>201404170627106_UpdateCateAttr.cs</DependentUpon>
+    <Compile Include="Migrations\201404200820063_UpdateAttr333.cs" />
+    <Compile Include="Migrations\201404200820063_UpdateAttr333.Designer.cs">
+      <DependentUpon>201404200820063_UpdateAttr333.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -82,11 +78,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201404150627475_UpdateAttr33.resx">
-      <DependentUpon>201404150627475_UpdateAttr33.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404170627106_UpdateCateAttr.resx">
-      <DependentUpon>201404170627106_UpdateCateAttr.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201404200820063_UpdateAttr333.resx">
+      <DependentUpon>201404200820063_UpdateAttr333.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
