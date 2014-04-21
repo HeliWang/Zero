@@ -23,12 +23,7 @@
     <div title="商品基本">
         <form id="Form" action="/Product/ProductAdd" method="post">
             <table class="z-tb-form">
-                <tr>
-                    <th>所属分类：</th>
-                    <td>
-                        <input name="CateId"  data-options="url:'@Url.Action("CateList","Cate")'" class="easyui-combotree"  style="width:200px;">
-                    </td>
-                </tr>
+                
                 <tr>
                     <th>所属类型：</th>
                     <td>
@@ -78,15 +73,21 @@
     <div title="商品属性">
         <table class="z-tb-form">
             <tr>
-                <th>商品属性：</th>
+                <th>所属分类：</th>
                 <td>
-
+                    <input id="CateId" name="CateId"  data-options="url:'@Url.Action("CateList","Cate")'" class="easyui-combotree"  style="width:200px;">
                 </td>
             </tr>
             <tr>
-                <th>商品销售属性：</th>
+                <th>基本属性：</th>
                 <td>
-
+                    <table id="baseAttr" style="width:600px;"></table>
+                </td>
+            </tr>
+            <tr>
+                <th>销售属性：</th>
+                <td>
+                    <table id="saleAttr" style="width:600px;"></table>
                 </td>
             </tr>
         </table>
@@ -186,9 +187,33 @@
         <iframe id="iframe" style="width:100%;height:100%;border:0;"></iframe>
 </div>
 <script type="text/javascript">
+    //$("#parents_add").combotree({
+    //    onChange: function () {
+    //        alert("进入事件触发");
+    //        $("#parents_add_warn").html('');
+    //    }
+    //});
+    //$("#parents_add").combotree({
+    //    onSelect: function () {
+    //        alert("进入事件触发1");
+    //        //var parents_add = $("#parents_add").find("option:selected").text();
+    //        var parents_add = $("#parents_add").combobox("getValue");
+    //        alert("checkevent:  " + parents_add);
+    //        if (parents_add == "") {
+    //            $("#parents_add_warn").html("父节点不能为空！");
+    //        };
+    //    }
+    //});
+
     $(function () {
         PhotoInit();
-        AttrInit();
+
+        $("#CateId").combotree({
+            onChange: function () {
+                AttrInit();
+            }
+        });
+
     });
 
     function closeWindow(msg) {
@@ -232,23 +257,67 @@
     }
 
     function AttrInit() {
-        var cateId = $("#CateId").val();
+        var cateId = $("#CateId").combobox("getValue");
 
         $.ajax({
             type: "get",
-            data: { cateId: cateId, page: 1, rows: 999 }, //与获取数据保持一致
+            data: { cateId: cateId, page: 1, rows: 999 },
             url: "/CateAttr/CateAttrList",
             dataType: "json",
             success: function (data) {
-                //var list = [];
-                //for (var i = 0; i < data.length; i++) {
-                //    var checkbox = String.format("<input id=\"Value_{0}\" name=\"ValueId\" type=\"checkbox\" value=\"{0}:{1}\" /><label for=\"\Value_{0}\">{1}</label>", data[i].ValueId, data[i].ValueName);
-                //    list[i] = $(checkbox);
-                //}
-                //$("#selectValue").empty();
-                //$("#selectValue").append(list);
+                AttrLoad(data.Items);
             }
         });
+    }
+
+    function AttrLoad(items) {
+        var saleIndex = 0;
+        var baseIndex = 0;
+        var sale = [];
+        var base = [];
+        for (var i = 0; i < items.length; i++) {
+            alert(items[i].AttrValue);
+            var values = items[i].AttrValue.split(";");
+            var selectValue = [];
+
+            alert(items[i].Type);
+
+            for (var j = 0; j < values.length; j++) {
+                var value = values[j].split(":");
+                var name="";
+                switch (items[i].Type) {
+                    case 1://单选
+                        name = String.format("<input id=\"{0}_{1}\" name=\"{0}\" type=\"radio\" /><label for=\"{0}_{1}\">{2}</label>", items[i].AttrId, value[0], value[1]);
+                        break;
+                    case 2://多选
+                        name = String.format("<input id=\"{0}_{1}\" name=\"{0}\" type=\"checkbox\" /><label for=\"{0}_{1}\">{2}</label>", items[i].AttrId, value[0], value[1]);
+                        break;
+                    case 3://单选可输入
+                        name = String.format("<input type=\"radio\" /><input type=\"text\" value=\"{0}\" style=\"width:50px\" />", value[1]);
+                        break;
+                    case 4://多选可输入
+                        name = String.format("<input type=\"checkbox\" /><input type=\"text\" value=\"{0}\" style=\"width:50px\" />", value[1]);
+                        break;
+                    case 5://输入
+                        name = String.format("<input type=\"text\" style=\"width:50px\" >");
+                        break;
+                }
+                selectValue[j] = $(name);
+            }
+
+            if (items[i].IsSale == 0) {
+                var th = $("<th></th>").text(items[i].Attr.AttrName + "：");
+                var td = $("<td></td>").append(selectValue);
+                base[baseIndex] = $("<tr></tr>").append(th).append(td);
+            }
+            else {
+                var th = $("<th></th>").text(items[i].Attr.AttrName + "：");
+                var td = $("<td></td>").append(selectValue);
+                sale[saleIndex] = $("<tr></tr>").append(th).append(td);
+            }
+        }
+        $("#baseAttr").empty().append(base);
+        $("#saleAttr").empty().append(sale);
     }
 
     $(".z-select-img li").bind('click', function () {
