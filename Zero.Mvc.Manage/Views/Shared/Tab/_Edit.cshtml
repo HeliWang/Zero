@@ -60,11 +60,12 @@
 
         //jquery.form提交方式
         function ajaxSubmitForm(form) {
-            var options = {};
+            if (!$(form).form('validate')) return false;
+            if (typeof (validate) != "undefined" && !validate()) return false;
 
+            var options = {};
             $(form).ajaxSubmit({
                 beforeSubmit: function (formData, jqForm, options) {
-                    if (!$(form).form('validate')) return false;
                     return true;
                 },
                 success: function (responseText, statusText, xhr, $form) {

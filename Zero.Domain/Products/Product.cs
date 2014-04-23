@@ -83,7 +83,7 @@ namespace Zero.Domain.Products
 
         /// <summary>
         /// 所选的属性
-        /// kid:vid:key:value|1:1:颜色:白色|
+        /// kid:vid:key:value;1:1:颜色:白色;
         /// </summary>
         public string Attr { get; set; }
 

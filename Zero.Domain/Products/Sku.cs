@@ -20,7 +20,7 @@ namespace Zero.Domain.Products
         public int ProductId { get; set; }
 
         /// <summary>
-        /// 产品属性(kid:vid:key:value；kid:vid:key:value；....)
+        /// 产品属性(kid:vid:key:value;kid:vid:key:value;....)
         /// 1:1:品牌:盈讯;2:2:型号:F908;自定义属性1:属性值1
         /// </summary>
         public string Attr { get; set; }
