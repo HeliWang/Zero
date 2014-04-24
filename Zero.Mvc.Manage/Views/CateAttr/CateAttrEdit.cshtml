@@ -32,11 +32,11 @@
     <tr>
         <th>类型：</th>
         <td>
-            <input type="radio" id="optional" name="Type" value="1"/><label for="optional">单选</label>
-            <input type="radio" id="multiCheck" name="Type" checked="checked" value="2"/><label for="multiCheck">多选</label>
-            <input type="radio" id="optionalText" name="Type" value="3"/><label for="optionalText">可输入单选</label>
-            <input type="radio" id="multiCheckText" name="Type" value="4"/><label for="multiCheckText">可输入多选</label>
-            <input type="radio" id="text" name="Type" value="5"/><label for="text">可输入</label>
+            <input type="radio" id="optional" name="Type" value="1" @if(Model.Type==1){<text>checked</text>} /><label for="optional">单选</label>
+            <input type="radio" id="multiCheck" name="Type" value="2" @if(Model.Type==2){<text>checked</text>} /><label for="multiCheck">多选</label>
+            <input type="radio" id="optionalText" name="Type" value="3" @if(Model.Type==3){<text>checked</text>} /><label for="optionalText">可输入单选</label>
+            <input type="radio" id="multiCheckText" name="Type" value="4" @if(Model.Type==4){<text>checked</text>} /><label for="multiCheckText">可输入多选</label>
+            <input type="radio" id="text" name="Type" value="5" @if(Model.Type==5){<text>checked</text>} /><label for="text">可输入</label>
         </td>
     </tr>
     <tr>
@@ -131,10 +131,10 @@
             attrValue = attrValue.substring(0, attrValue.length - 1);
             $("#AttrValue").val(attrValue);
         }
-        else {
-            window.parent.show("请至少选择一个属性值");
-            return false;
-        }
+        //else {
+        //    window.parent.show("请至少选择一个属性值");
+        //    return false;
+        //}
 
         return true;
     }
