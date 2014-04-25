@@ -17,15 +17,17 @@
 
 <style>
     .z-select-img li{float:left;margin-right:5px;width:100px;height:100px; line-height:100px;border: 1px solid #dbd5d5;text-align:center; vertical-align:middle;font-size:large;}
-    .z-tb-attr { width:600px;}
+    .z-tb-attr { width:600px;border: 1px solid #dbd5d5;}
     .z-tb-attr th{width:50px;}
+
+    .z-tb-sku { border-collapse: collapse;}
+    .z-tb-sku td{border: 1px solid #dbd5d5;text-align:center;height:30px;line-height:25px;padding:0 10px;}
 </style>
 
 <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
     <div title="商品基本">
         <form id="Form" action="/Product/ProductAdd" method="post">
             <table class="z-tb-form">
-                
                 <tr>
                     <th>所属类型：</th>
                     <td>
@@ -90,6 +92,55 @@
                 <th>销售属性：</th>
                 <td>
                     <table id="saleAttr" class="z-tb-attr"></table>
+                </td>
+            </tr>
+            <tr>
+                <th>规格信息：</th>
+                <td>
+                    <table id="sku" class="z-tb-sku">
+                        <thead>
+                            <tr>
+                                <td>颜色</td>
+                                <td>尺码</td>
+                                <td>价格</td>
+                                <td>数量</td>
+                                <td>商家编码</td>
+                                <td>条形码</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td rowspan="2">白色</td>
+                                <td>15</td>
+                                <td><input type="text" name="price" style="width:50px;"/></td>
+                                <td><input type="text" name="quantity" style="width:50px;"/></td>
+                                <td><input type="text" name="code" style="width:50px;"/></td>
+                                <td><input type="text" name="barcode" style="width:50px;"/></td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td><input type="text" name="price" style="width:50px;"/></td>
+                                <td><input type="text" name="quantity" style="width:50px;"/></td>
+                                <td><input type="text" name="code" style="width:50px;"/></td>
+                                <td><input type="text" name="barcode" style="width:50px;"/></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">黑色</td>
+                                <td>15</td>
+                                <td><input type="text" name="price" style="width:50px;"/></td>
+                                <td><input type="text" name="quantity" style="width:50px;"/></td>
+                                <td><input type="text" name="code" style="width:50px;"/></td>
+                                <td><input type="text" name="barcode" style="width:50px;"/></td>
+                            </tr>
+                            <tr>
+                                <td>16</td>
+                                <td><input type="text" name="price" style="width:50px;"/></td>
+                                <td><input type="text" name="quantity" style="width:50px;"/></td>
+                                <td><input type="text" name="code" style="width:50px;"/></td>
+                                <td><input type="text" name="barcode" style="width:50px;"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </td>
             </tr>
         </table>
@@ -286,11 +337,8 @@
         var sale = [];
         var base = [];
         for (var i = 0; i < items.length; i++) {
-            //alert(items[i].AttrValue);
-            alert(items[i].Type);
             if (items[i].Type == 5) {
-                items[i].AttrValue = ";";
-                alert(items[i].AttrValue);
+                items[i].AttrValue = "";
             }
 
             var values = items[i].AttrValue.split(";");
@@ -328,6 +376,8 @@
                 var th = $("<th></th>").text(items[i].Attr.AttrName + "：");
                 var td = $("<td></td>").append(selectValue);
                 sale[saleIndex] = $("<tr></tr>").append(th).append(td);
+
+                
             }
             baseIndex++;
             saleIndex++;
@@ -342,10 +392,7 @@
         var saleAttr = "";
 
         for (var i = 0; i < items.length; i++) {
-            //var name=String.format("input[name='{0}']:checked", items[i].AttrId);
-            //alert($(name).length);
-            //kid:vid:key:value;1:1:颜色:白色           
-
+            //kid:vid:key:value;1:1:颜色:白色
             var attr = [];
 
             switch (items[i].Type) {
@@ -366,7 +413,9 @@
                     break;
                 case 5://输入
                     name = String.format("input[name='{0}']", items[i].AttrId);
-                    attr[i] = String.format("{0}:{1}:{2}:{3}", items[i].AttrId, 0, items[i].Attr.AttrName, $(name).val());
+                    if ($(name).val().length > 0) {
+                        attr[0] = String.format("{0}:{1}:{2}:{3}", items[i].AttrId, 0, items[i].Attr.AttrName, $(name).val());
+                    }
                     break;
             }
 
@@ -383,6 +432,7 @@
 
         alert(baseAttr);
     }
+
 
 
     var validate = function () {
