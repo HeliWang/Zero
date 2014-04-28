@@ -17,11 +17,11 @@
 
 <style>
     .z-select-img li{float:left;margin-right:5px;width:100px;height:100px; line-height:100px;border: 1px solid #dbd5d5;text-align:center; vertical-align:middle;font-size:large;}
-    .z-tb-attr { width:600px;border: 1px solid #dbd5d5;}
-    .z-tb-attr th{width:50px;}
+    .z-attr{ width:600px;border: 1px solid #dbd5d5;}
+    .z-attr th{width:50px;}
 
-    .z-tb-sku { border-collapse: collapse;}
-    .z-tb-sku td{border: 1px solid #dbd5d5;text-align:center;height:30px;line-height:25px;padding:0 10px;}
+    .z-sku { border-collapse: collapse;}
+    .z-sku td{border: 1px solid #dbd5d5;text-align:center;height:30px;line-height:25px;padding:0 10px;}
 </style>
 
 <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
@@ -85,19 +85,20 @@
             <tr>
                 <th>基本属性：</th>
                 <td>
-                    <table id="baseAttr" class="z-tb-attr" ></table>
+                    <table id="baseAttr" class="z-attr z-attr-base" ></table>
                 </td>
             </tr>
             <tr>
                 <th>销售属性：</th>
                 <td>
-                    <table id="saleAttr" class="z-tb-attr"></table>
+                    <table id="saleAttr" class="z-attr z-attr-sale"></table>
                 </td>
             </tr>
             <tr>
                 <th>规格信息：</th>
                 <td>
-                    <table id="sku" class="z-tb-sku">
+                    <table id="sku" class="z-sku"></table>
+                    @*<table id="sku" class="z-sku">
                         <thead>
                             <tr>
                                 <td>颜色</td>
@@ -140,7 +141,7 @@
                                 <td><input type="text" name="barcode" style="width:50px;"/></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table>*@
                 </td>
             </tr>
         </table>
@@ -365,6 +366,12 @@
                         break;
                 }
                 selectValue[j] = $(name);
+
+                if (items[i].IsSale == 1) {
+                    selectValue[j].bind('click', function () {
+                        SkuLoad();
+                    });
+                }
             }
 
             if (items[i].IsSale == 0) {
@@ -376,7 +383,6 @@
                 var th = $("<th></th>").text(items[i].Attr.AttrName + "：");
                 var td = $("<td></td>").append(selectValue);
                 sale[saleIndex] = $("<tr></tr>").append(th).append(td);
-
                 
             }
             baseIndex++;
@@ -387,10 +393,109 @@
         $("#saleAttr").empty().append(sale);
     }
 
+    //sku构建
     function SkuLoad() {
-        $("#z-tb-attr tr td").each(function (i) {
-
+        //获取选中项
+        var index = 0;
+        var attr = [];
+        var saleAttr = $(".z-attr-sale tr td");
+        saleAttr.each(function (i) {
+            var checked = $(this).find("input:checked");
+            if (checked.length > 0) {
+                attr[index] = [];
+                checked.each(function (j) {
+                    attr[index][j] = $(this).val();
+                });
+                index++;
+            }
         });
+
+        
+        if (attr.length == saleAttr.length && attr.length > 0) {
+            //排列组合
+            var res = combine(attr.reverse());
+            //alert("共有：" + res.length + "种组合！");
+            //alert(res.join("|"));
+
+            //合并单元格  
+            var row = [];
+            var rowspan = res.length;
+            for (var n = attr.length - 1; n > -1; n--) {
+                row[n] = parseInt(rowspan / attr[n].length);
+                rowspan = row[n];
+            }
+            row.reverse();
+
+            //构建表格
+            var th = [];
+            var tr = [];
+            for (var i = 0; i < res.length; i++) {
+                var td = [];
+                for (var j = 0; j < res[i].length; j++) {
+                    var item = res[i][j].split(":");
+                    th[j] = $("<td></td>").text(item[2]);
+
+                    if (i % row[j] == 0 && row[j] > 1) {
+                        td[j] = $("<td></td>").text(item[3]).attr("rowspan", row[j]);
+                    }
+                    else if (row[j] == 1) {
+                        td[j] = $("<td></td>").text(item[3])
+                    }
+                }
+                tr[i] = $("<tr></tr>").append(td);
+                tr[i].append("<td><input type=\"text\" name=\"price\" style=\"width:50px;\"/></td>");
+                tr[i].append("<td><input type=\"text\" name=\"quantity\" style=\"width:50px;\"/></td>");
+                tr[i].append("<td><input type=\"text\" name=\"code\" style=\"width:50px;\"/></td>");
+                tr[i].append("<td><input type=\"text\" name=\"barcode\" style=\"width:50px;\"/></td>");
+            }
+
+            var thead = $("<thead><tr></tr></thead>");
+            thead.append(th).append($("<td>价格</td><td>数量</td><td>商品编码</td><td>条形码</td>"));
+            var tbody = $("<tbody></tbody>");
+            tbody.append(tr);
+
+            $(".z-sku").empty().append(thead).append(tbody);
+        }
+    }
+
+    //二维数组递归算法简化
+    function combine(arr) {
+        var r = [];
+        (function f(t, a, n) {
+            if (n == 0) return r.push(t);
+            for (var i = 0; i < a[n - 1].length; i++) {
+                f(t.concat(a[n - 1][i]), a, n - 1);
+            }
+        })([], arr, arr.length);
+        return r;
+    }
+
+    //二维数组递归算法
+    function doExchange(doubleArrays) {
+        var len = doubleArrays.length;
+        if (len >= 2) {
+            var len1 = doubleArrays[0].length;
+            var len2 = doubleArrays[1].length;
+            var newlen = len1 * len2;
+            var temp = new Array(newlen);
+            var index = 0;
+            for (var i = 0; i < len1; i++) {
+                for (var j = 0; j < len2; j++) {
+                    temp[index] = doubleArrays[0][i] +
+                        doubleArrays[1][j];
+                    index++;
+                }
+            }
+            var newArray = new Array(len - 1);
+            for (var i = 2; i < len; i++) {
+                newArray[i - 1] = doubleArrays[i];
+            }
+            newArray[0] = temp;
+            return doExchange(newArray);
+        }
+        else {
+            return doubleArrays[0];
+        }
     }
 
     function GetAttrValue(items) {
@@ -438,8 +543,6 @@
 
         alert(baseAttr);
     }
-
-
 
     var validate = function () {
         GetAttrValue(allAttr.Items);
