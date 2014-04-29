@@ -427,16 +427,19 @@
             row.reverse();
 
             //构建表格
+            var photoTd = [];//图片表格
             var th = [];
             var tr = [];
             for (var i = 0; i < res.length; i++) {
                 var td = [];
+                var photoTd=[];
                 for (var j = 0; j < res[i].length; j++) {
                     var item = res[i][j].split(":");
                     th[j] = $("<td></td>").text(item[2]);
 
                     if (i % row[j] == 0 && row[j] > 1) {
                         td[j] = $("<td></td>").text(item[3]).attr("rowspan", row[j]);
+                        photoTd[0] = $("<td></td>").text(item[2]);
                     }
                     else if (row[j] == 1) {
                         td[j] = $("<td></td>").text(item[3])
@@ -453,6 +456,8 @@
             thead.append(th).append($("<td>价格</td><td>数量</td><td>商品编码</td><td>条形码</td>"));
             var tbody = $("<tbody></tbody>");
             tbody.append(tr);
+
+            var photoTable = $("<table></table>");
 
             $(".z-sku").empty().append(thead).append(tbody);
         }
