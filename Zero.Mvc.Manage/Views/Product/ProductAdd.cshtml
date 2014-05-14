@@ -17,61 +17,64 @@
 
 <style>
     .z-select-img li{float:left;margin-right:5px;width:100px;height:100px; line-height:100px;border: 1px solid #dbd5d5;text-align:center; vertical-align:middle;font-size:large;}
-    .z-attr{ width:600px;border: 1px solid #dbd5d5;}
+    .z-attr{ width:700px;border: 1px solid #dbd5d5;}
     .z-attr th{width:50px;}
 
     .z-sku { border-collapse: collapse;}
     .z-sku td{border: 1px solid #dbd5d5;text-align:center;height:30px;line-height:25px;padding:0 10px;}
-</style>
 
+    .z-sku-img { border-collapse: collapse;}
+    .z-sku-img td{border: 1px solid #dbd5d5;text-align:center;height:30px;line-height:25px;padding:5px;}
+    .z-sku-img li {padding:5px;}
+</style>
+<form id="Form" action="/Product/ProductAdd" method="post">
 <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
+    
     <div title="商品基本">
-        <form id="Form" action="/Product/ProductAdd" method="post">
-            <table class="z-tb-form">
-                <tr>
-                    <th>所属类型：</th>
-                    <td>
-                        <input type="radio" id="New" name="ProductType" value="0" checked="checked" /><label for="New">全新</label>
-                        <input type="radio" id="Old" name="ProductType"  value="0" /><label for="Old">二手</label>
-                        <input type="radio" id="Auction" name="ProductType" value="0" /><label for="Auction">拍卖</label>
-                    </td>
-                </tr>
-                <tr>
-                    <th>商品名称：</th>
-                    <td><input type="text" name="ProductName"  data-options="required:true,validType:['length[2,30]']" class="easyui-validatebox" style="width:600px;"/></td>
-                </tr>
-                <tr>
-                    <th>商品卖点：</th>
-                    <td><input type="text" name="SubName"  data-options="validType:['length[0,30]']" class="easyui-validatebox" style="width:600px;"/></td>
-                </tr>
-                <tr>
-                    <th>商品编码：</th>
-                    <td><input type="text" name="Zsc"  data-options="validType:['length[0,10]']" class="easyui-validatebox" style="width:100px;"/></td>
-                </tr>
-                <tr>
-                    <th>一口价：</th>
-                    <td><input type="text" name="Price"  data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox" style="width:100px;"/></td>
-                </tr>
-                <tr>
-                    <th>商品数量：</th>
-                    <td><input type="text" name="Amount" data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox"  style="width:100px;"/>件</td>
-                </tr>
-                <tr>
-                    <th>商品组图：</th>
-                    <td>
-                        <ul class="z-select-img"></ul>
-                        <input type="hidden" id="Photo" name="Photo"/>
-                    </td>
-                </tr>
-                <tr>
-                    <th>商品详细：</th>
-                    <td>
-                       <textarea id="Desc" name="Desc" style="width:800px;height:200px;"></textarea>
-                       <script>$(function () { UE.getEditor('Desc'); });</script>
-                    </td>
-                </tr>
-            </table>
-        </form>
+        <table class="z-tb-form">
+            <tr>
+                <th>所属类型：</th>
+                <td>
+                    <input type="radio" id="New" name="ProductType" value="0" checked="checked" /><label for="New">全新</label>
+                    <input type="radio" id="Old" name="ProductType"  value="0" /><label for="Old">二手</label>
+                    <input type="radio" id="Auction" name="ProductType" value="0" /><label for="Auction">拍卖</label>
+                </td>
+            </tr>
+            <tr>
+                <th>商品名称：</th>
+                <td><input type="text" name="ProductName"  data-options="required:true,validType:['length[2,30]']" class="easyui-validatebox" style="width:600px;"/></td>
+            </tr>
+            <tr>
+                <th>商品卖点：</th>
+                <td><input type="text" name="SubName"  data-options="validType:['length[0,30]']" class="easyui-validatebox" style="width:600px;"/></td>
+            </tr>
+            <tr>
+                <th>商品编码：</th>
+                <td><input type="text" name="Zsc"  data-options="validType:['length[0,10]']" class="easyui-validatebox" style="width:100px;"/></td>
+            </tr>
+            <tr>
+                <th>一口价：</th>
+                <td><input type="text" name="Price"  data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox" style="width:100px;"/></td>
+            </tr>
+            <tr>
+                <th>商品数量：</th>
+                <td><input type="text" name="Amount" data-options="required:true,validType:['number','size[0,100000]']" class="easyui-validatebox"  style="width:100px;"/>件</td>
+            </tr>
+            @*<tr>
+                <th>商品组图：</th>
+                <td>
+                    <ul class="z-select-img"></ul>
+                    <input type="hidden" id="Photo" name="Photo"/>
+                </td>
+            </tr>*@
+            <tr>
+                <th>商品详细：</th>
+                <td>
+                    <textarea id="Desc" name="Desc[0].Desc" style="width:800px;height:200px;"></textarea>
+                    <script>$(function () { UE.getEditor('Desc'); });</script>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div title="商品属性">
@@ -85,21 +88,22 @@
             <tr>
                 <th>基本属性：</th>
                 <td>
-                    <table id="baseAttr" class="z-attr z-attr-base" ></table>
+                    <input type="hidden" id="BaseAttr" name="BaseAttr"/>
+                    <table class="z-attr z-attr-base" ></table>
                 </td>
             </tr>
             <tr>
                 <th>销售属性：</th>
                 <td>
-                    <table id="saleAttr" class="z-attr z-attr-sale"></table>
+                    <input type="hidden" id="SaleAttr" name="SaleAttr"/>
+                    <table class="z-attr z-attr-sale"></table>
                 </td>
             </tr>
             <tr>
                 <th>规格信息：</th>
                 <td>
-                    <table id="sku" class="z-sku"></table>
-                    @*<table id="sku" class="z-sku">
-                        <thead>
+                    <table id="sku" class="z-sku">
+                        @*<thead>
                             <tr>
                                 <td>颜色</td>
                                 <td>尺码</td>
@@ -140,8 +144,8 @@
                                 <td><input type="text" name="code" style="width:50px;"/></td>
                                 <td><input type="text" name="barcode" style="width:50px;"/></td>
                             </tr>
-                        </tbody>
-                    </table>*@
+                        </tbody>*@
+                    </table>
                 </td>
             </tr>
         </table>
@@ -152,6 +156,7 @@
             <tr>
                 <th>商品组图：</th>
                 <td>
+                    <table class="z-attr z-sku-img"></table>
                 </td>
             </tr>
         </table>
@@ -235,7 +240,9 @@
             </tr>
         </table>
     </div>
+
 </div>
+</form>
 <!-- 弹出框-->
 <div id="window" class="easyui-window" data-options="closed:true,iconCls:'icon-save'" style="width:560px;height:560px;padding:10px;">
         <iframe id="iframe" style="width:100%;height:100%;border:0;"></iframe>
@@ -260,7 +267,9 @@
     //});
 
     $(function () {
-        PhotoInit();
+        //PhotoInit();
+
+        //AttrInit();
 
         $("#CateId").combotree({
             onChange: function () {
@@ -277,7 +286,6 @@
 
     function closeWindow(msg) {
         $('#window').window('close');
-        PhotoInit();
     }
 
     function openWindow(title, url) {
@@ -286,40 +294,39 @@
         $('#window').window('open');
     }
 
-    function PhotoInit() {
-        var li = [];
-        var img = [];
-        var photoList = "";
-        var photoUrl = $("#Photo").val();//图片列表(1.jpg|2.jpg)
-        var allowCount =5;//允许选择的图片总数
-        if (photoUrl.length > 0) {
-            photoList = photoUrl.split("|");
-        }
+    //function PhotoInit() {
+    //    var li = [];
+    //    var img = [];
+    //    var photoList = "";
+    //    var photoUrl = $("#Photo").val();//图片列表(1.jpg|2.jpg)
+    //    var allowCount =5;//允许选择的图片总数
+    //    if (photoUrl.length > 0) {
+    //        photoList = photoUrl.split("|");
+    //    }
         
-        //初始化，取默认数值列表
-        for (var i = 0; i < allowCount; i++) {
-            li[i] = $("<li></li>").text("上传");
-            li[i].click(function () {
-                openWindow('选择图片', "/Photo/PhotoIndex");
-            });
-        }
+    //    //初始化，取默认数值列表
+    //    for (var i = 0; i < allowCount; i++) {
+    //        li[i] = $("<li></li>").text("上传");
+    //        li[i].click(function () {
+    //            openWindow('选择图片', "/Photo/PhotoIndex");
+    //        });
+    //    }
 
-        allowCount = photoList.length > allowCount ? allowCount : photoList.length;
+    //    allowCount = photoList.length > allowCount ? allowCount : photoList.length;
 
-        //初始化，取已选中的插入图片列表
-        for (var i = 0; i < allowCount; i++) {
-            img[i] = $("<img/>").attr("src", photoList[i]);
-            li[i].text("").append(img[i]);
-        }
-        $(".z-select-img li").remove();
-        $(".z-select-img").append(li);
-    }
+    //    //初始化，取已选中的插入图片列表
+    //    for (var i = 0; i < allowCount; i++) {
+    //        img[i] = $("<img/>").attr("src", photoList[i]);
+    //        li[i].text("").append(img[i]);
+    //    }
+    //    $(".z-select-img").empty().append(li);
+    //}
 
     var allAttr;
 
     function AttrInit() {
         var cateId = $("#CateId").combobox("getValue");
-
+        //cateId = 3;
         $.ajax({
             type: "get",
             data: { cateId: cateId, page: 1, rows: 999 },
@@ -389,8 +396,75 @@
             saleIndex++;
         }
 
-        $("#baseAttr").empty().append(base);
-        $("#saleAttr").empty().append(sale);
+        $(".z-attr-base").empty().append(base);
+        $(".z-attr-sale").empty().append(sale);
+    }
+
+   
+
+    function PhotoInit(id, photoUrl) {
+        var li = [];
+        var photoList = [];
+        var allowCount = 5;
+
+        if (photoUrl.length > 0) {
+            photoList = photoUrl.split("|");//图片列表(1.jpg|2.jpg)
+        }
+
+        //初始化，取已选中的插入图片列表
+        for (var i = 0; i < allowCount; i++) {
+            li[i] = $("<li></li>");
+            if (i < photoList.length) {
+                var img = $("<img/>").attr("src", photoList[i]);
+                li[i].append(img);
+            }
+            else {
+                li[i].text("上传");
+            }
+
+            li[i].click(function () {
+                openWindow('选择图片', String.format("/Photo/PhotoIndex?id={0}", id));
+            });
+        }
+        $("#photo-" + id).val(photoUrl);
+        $("#img-" + id).empty().append(li);
+    }
+
+    function PhotoSet(j, allowCount) {
+        var li = [];
+        //初始化，取默认数值列表
+        for (var i = 0; i < allowCount; i++) {
+            li[i] = $("<li></li>").text("上传");
+            li[i].click(function () {
+                openWindow('选择图片', String.format("/Photo/PhotoIndex?id={0}", j));
+            });
+        }
+        var div = $("<div></div>");
+        var input = $(String.format("<input type=\"hidden\" name=\"PhotoList[{0}].Url\"/>", j)).attr("id", "photo-" + j);
+        var ul = $("<ul class=\"z-select-img\"></ul>").attr("id", "img-" + j).append(li);
+        div.append(input).append(ul);
+        return div;
+    }
+
+    function PhotoLoad(attr) {
+        var tr = [];
+        var th = [];
+        for (j = 0; j < attr[0].length; j++) {
+            var item = attr[0][j].split(":");
+            th[0] = $("<td></td>").text(item[2]);
+            var td = $("<td></td>").text(item[3]);
+            var input = $(String.format("<input type=\"hidden\" name=\"PhotoList[{0}].Attr\"/>", j)).val(attr[0][j]);
+            td.append(input);
+
+            tr[j] = $("<tr></tr>").append(td);
+            tr[j].append(($("<td></td>").append(PhotoSet(j, 5))));
+        }
+
+        var thead = $("<thead><tr></tr></thead>").append(th);
+        thead.append($("<td>图片上传</td>"));
+        var tbody = $("<tbody></tbody>").append(tr);
+
+        $(".z-sku-img").empty().append(thead).append(tbody);
     }
 
     //sku构建
@@ -412,6 +486,9 @@
 
         
         if (attr.length == saleAttr.length && attr.length > 0) {
+            //图片加载
+            PhotoLoad(attr);
+
             //排列组合
             var res = combine(attr.reverse());
             //alert("共有：" + res.length + "种组合！");
@@ -427,29 +504,29 @@
             row.reverse();
 
             //构建表格
-            var photoTd = [];//图片表格
+            var photoTr = [];//图片表格
             var th = [];
             var tr = [];
             for (var i = 0; i < res.length; i++) {
                 var td = [];
-                var photoTd=[];
                 for (var j = 0; j < res[i].length; j++) {
                     var item = res[i][j].split(":");
                     th[j] = $("<td></td>").text(item[2]);
 
                     if (i % row[j] == 0 && row[j] > 1) {
                         td[j] = $("<td></td>").text(item[3]).attr("rowspan", row[j]);
-                        photoTd[0] = $("<td></td>").text(item[2]);
                     }
                     else if (row[j] == 1) {
                         td[j] = $("<td></td>").text(item[3])
                     }
                 }
-                tr[i] = $("<tr></tr>").append(td);
-                tr[i].append("<td><input type=\"text\" name=\"price\" style=\"width:50px;\"/></td>");
-                tr[i].append("<td><input type=\"text\" name=\"quantity\" style=\"width:50px;\"/></td>");
-                tr[i].append("<td><input type=\"text\" name=\"code\" style=\"width:50px;\"/></td>");
-                tr[i].append("<td><input type=\"text\" name=\"barcode\" style=\"width:50px;\"/></td>");
+
+                var input = $(String.format("<input type=\"hidden\" name=\"SkuList[{0}].Attr\"/>", i)).val(res[i]);
+                tr[i] = $("<tr></tr>").append(input).append(td);
+                tr[i].append(String.format("<td><input type=\"text\" name=\"SkuList[{0}].Price\" style=\"width:50px;\"/></td>", i));
+                tr[i].append(String.format("<td><input type=\"text\" name=\"SkuList[{0}].Quantity\" style=\"width:50px;\"/></td>", i));
+                tr[i].append(String.format("<td><input type=\"text\" name=\"SkuList[{0}].OuterId\" style=\"width:50px;\"/></td>", i));
+                tr[i].append(String.format("<td><input type=\"text\" name=\"SkuList[{0}].Barcode\" style=\"width:50px;\"/></td>", i));
             }
 
             var thead = $("<thead><tr></tr></thead>");
@@ -457,9 +534,8 @@
             var tbody = $("<tbody></tbody>");
             tbody.append(tr);
 
-            var photoTable = $("<table></table>");
-
             $(".z-sku").empty().append(thead).append(tbody);
+            
         }
     }
 
@@ -536,22 +612,21 @@
             }
 
             if (items[i].IsSale == 0) {
-                if(attr.length>0)
-                baseAttr += String.format("{0};", attr.join(";"));
+                if (attr.length > 0)
+                    baseAttr += String.format("{0};", attr.join(";"));
             }
             else {
                 if (attr.length > 0)
-                saleAttr += String.format("{0};", attr.join(";"));
+                    saleAttr += String.format("{0};", attr.join(";"));
             }
-
         }
-
-        alert(baseAttr);
+        $("BaseAttr").val(baseAttr);
+        $("SaleAttr").val(saleAttr);
     }
 
     var validate = function () {
         GetAttrValue(allAttr.Items);
-        return false;
+        return true;
     }
 
     $(".z-select-img li").bind('click', function () {

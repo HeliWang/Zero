@@ -56,11 +56,7 @@ namespace Zero.Mvc.Manage.Controllers.Products
 
             if (ModelState.IsValid)
             {
-                ProductDesc productDetail = new ProductDesc();
-                List<ProductPhoto> productPhotoList = new List<ProductPhoto>();
-                List<Sku> skuList = new List<Sku>();
-
-                resultInfo = _productService.Add(product, productDetail, productPhotoList, skuList);
+                resultInfo = _productService.Add(product);
             }
 
             return Json(resultInfo);

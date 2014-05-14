@@ -7,7 +7,7 @@ namespace Zero.Domain.Products
     /// <summary>
     /// 库存信息
     /// </summary>
-    public class Sku
+    public class Sku : BaseEntity
     {
         /// <summary>
         /// 库存编号
@@ -50,12 +50,17 @@ namespace Zero.Domain.Products
         /// <summary>
         /// 可购买数量
         /// </summary>
-        public int Amount { get; set; }
+        public int Quantity { get; set; }
 
         /// <summary>
-        /// 已购买数量
+        /// 商家编码
         /// </summary>
-        public int SaleAmount { get; set; }
+        public string OuterId { get; set; }
+
+        /// <summary>
+        /// 条形码
+        /// </summary>
+        public string Barcode { get; set; }
 
         /// <summary>
         /// 正常(1)|删除(0)
@@ -65,11 +70,11 @@ namespace Zero.Domain.Products
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CreateTime { get; set; }
+        public DateTime? CreateTime { get; set; }
 
         /// <summary>
         /// 更新时间
         /// </summary>
-        public DateTime UpdateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
     }
 }

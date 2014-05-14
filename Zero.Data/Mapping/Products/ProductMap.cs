@@ -13,6 +13,9 @@ namespace Zero.Data.Mapping.Products
 
             //Ignore
             this.Ignore(p => p.id);
+            this.Ignore(p=>p.SkuList);
+            this.Ignore(p => p.PhotoList);
+            this.Ignore(p => p.Desc);
         }
     }
 }

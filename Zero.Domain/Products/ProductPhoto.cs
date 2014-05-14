@@ -7,7 +7,7 @@ namespace Zero.Domain.Products
     /// <summary>
     /// 根据某个商品属性添加一组图片
     /// </summary>
-    public class ProductPhoto
+    public class ProductPhoto : BaseEntity
     {
         /// <summary>
         /// 产品图片编号
@@ -44,11 +44,11 @@ namespace Zero.Domain.Products
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime CreateTime { get; set; }
+        public DateTime? CreateTime { get; set; }
 
         /// <summary>
         /// 更新时间
         /// </summary>
-        public DateTime UpdateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
     }
 }

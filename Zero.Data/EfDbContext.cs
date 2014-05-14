@@ -27,8 +27,11 @@ namespace Zero.Data
             modelBuilder.Configurations.Add(new CateAttrMap());
             modelBuilder.Configurations.Add(new AttrMap());
             modelBuilder.Configurations.Add(new AttrValueMap());
-            modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new PhotoMap());
+            modelBuilder.Configurations.Add(new ProductMap());
+            modelBuilder.Configurations.Add(new SkuMap());
+            modelBuilder.Configurations.Add(new ProductPhotoMap());
+            modelBuilder.Configurations.Add(new ProductDescMap());
         }
     }
 

@@ -117,7 +117,7 @@
 
                 if (photoUrl.length > 0) {
                     photoUrl = photoUrl.substring(0, photoUrl.length - 1);
-                    $("#Photo", window.parent.document).val(photoUrl);
+                    window.parent.PhotoInit(getQuery("id"), photoUrl);
                     window.parent.closeWindow();
                 }
             }

@@ -52,11 +52,26 @@
     <Compile Include="Mapping\Cates\AttrMap.cs" />
     <Compile Include="Mapping\Cates\AttrValueMap.cs" />
     <Compile Include="Mapping\Cates\CateAttrMap.cs" />
+    <Compile Include="Mapping\Products\ProductDescMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
+    <Compile Include="Mapping\Products\ProductPhotoMap.cs" />
+    <Compile Include="Mapping\Products\SkuMap.cs" />
     <Compile Include="Mapping\Upload\PhotoMap.cs" />
     <Compile Include="Migrations\201404200820063_UpdateAttr333.cs" />
     <Compile Include="Migrations\201404200820063_UpdateAttr333.Designer.cs">
       <DependentUpon>201404200820063_UpdateAttr333.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405120811591_UpdateProduct.cs" />
+    <Compile Include="Migrations\201405120811591_UpdateProduct.Designer.cs">
+      <DependentUpon>201405120811591_UpdateProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405121302543_AddSku.cs" />
+    <Compile Include="Migrations\201405121302543_AddSku.Designer.cs">
+      <DependentUpon>201405121302543_AddSku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405121328007_UpdatePhoto.cs" />
+    <Compile Include="Migrations\201405121328007_UpdatePhoto.Designer.cs">
+      <DependentUpon>201405121328007_UpdatePhoto.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -80,6 +95,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201404200820063_UpdateAttr333.resx">
       <DependentUpon>201404200820063_UpdateAttr333.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405120811591_UpdateProduct.resx">
+      <DependentUpon>201405120811591_UpdateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405121302543_AddSku.resx">
+      <DependentUpon>201405121302543_AddSku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405121328007_UpdatePhoto.resx">
+      <DependentUpon>201405121328007_UpdatePhoto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

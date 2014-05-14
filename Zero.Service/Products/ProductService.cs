@@ -13,33 +13,37 @@ namespace Zero.Service.Products
     public class ProductService
     {
         private IRepository<Product> _productRepository;
+        private IRepository<Sku> _skuRepository;
+        private IRepository<ProductDesc> _productDescRepository;
+        private IRepository<ProductPhoto> _productPhotoRepository;
 
         public ProductService()
         {
             _productRepository = new EfRepository<Product>();
+            _skuRepository = new EfRepository<Sku>();
+            _productDescRepository = new EfRepository<ProductDesc>();
+            _productPhotoRepository = new EfRepository<ProductPhoto>();
         }
 
-        public ResultInfo Add(Product product, ProductDesc productDesc, List<ProductPhoto> productPhotoList, List<Sku> skuList)
+        public ResultInfo Add(Product product)
         {
-            product = _productRepository.Add(product);
+            var productId= _productRepository.Add(product).ProductId;
 
-            //if (productInfo != null)
-            //{
-            //    productDetailInfo.ProductId = productInfo.ProductId;
-            //    _productDescMapper.Create(productDetailInfo);
+            //未测试是否有关联插入
+            foreach (Sku sku in product.SkuList)
+            {
+                sku.ProductId = productId;
+                _skuRepository.Add(sku);
+            }
 
-            //    foreach (ProductPhotoInfo photoInfo in productPhotoList)
-            //    {
-            //        photoInfo.ProductId = productInfo.ProductId;
-            //        _productPhotoMapper.Create(photoInfo);
-            //    }
+            foreach (ProductPhoto photo in product.PhotoList)
+            {
+                photo.ProductId = productId;
+                _productPhotoRepository.Add(photo);
+            }
 
-            //    foreach (SkuInfo skuInfo in skuList)
-            //    {
-            //        skuInfo.ProductId = productInfo.ProductId;
-            //        _skuMapper.Create(skuInfo);
-            //    }
-            //}
+            product.Desc.ProductId = productId;
+            _productDescRepository.Add(product.Desc);
 
             return new ResultInfo("添加成功");
         }

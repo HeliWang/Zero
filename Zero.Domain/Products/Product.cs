@@ -37,6 +37,16 @@ namespace Zero.Domain.Products
         public string ProductName { get; set; }
 
         /// <summary>
+        /// 商品基本属性
+        /// </summary>
+        public string BaseAttr { get; set; }
+
+        /// <summary>
+        /// 商品sku属性
+        /// </summary>
+        public string SkuAttr { get; set; }
+
+        /// <summary>
         /// 商品副标题
         /// </summary>
         public string SubName { get; set; }
@@ -166,5 +176,12 @@ namespace Zero.Domain.Products
         /// 更新时间
         /// </summary>
         public DateTime? UpdateTime { get; set; }
+
+
+        public List<Sku> SkuList { get; set; }
+
+        public List<ProductPhoto> PhotoList { get; set; }
+
+        public ProductDesc Desc { get; set; }
     }
 }

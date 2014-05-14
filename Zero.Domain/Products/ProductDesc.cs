@@ -7,8 +7,10 @@ namespace Zero.Domain.Products
     /// <summary>
     /// 商品详情
     /// </summary>
-    public class ProductDesc
+    public class ProductDesc : BaseEntity
     {
+        public int DescId { get; set; }
+
         /// <summary>
         /// 商品自增ID
         /// </summary>
