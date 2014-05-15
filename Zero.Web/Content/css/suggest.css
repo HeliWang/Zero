@@ -1,0 +1,33 @@
+ .suggestions_box{ 
+ 
+ overflow: hidden;
+position: absolute;
+top: 42px;
+right: 191px;
+width: 298px;  
+border: 1px solid #d70000;
+background: #fff;
+-moz-box-shadow: 0 0 5px #999;
+-webkit-box-shadow: 0 0 5px #999;
+box-shadow: 0 0 5px #999;
+ 
+ 
+ }
+  .suggestions_box2{ overflow: hidden;
+position: absolute;
+top: 42px;
+right: 191px;
+width: 298px;  
+border: 1px solid #d70000;
+background: #fff;
+-moz-box-shadow: 0 0 5px #999;
+-webkit-box-shadow: 0 0 5px #999;
+box-shadow: 0 0 5px #999;}
+/*.suggestions_box .suggestions_list ul li:hover{background:#6ACCE5; cursor: pointer;}*/
+/*.suggestions_class_name{background-color:#6ACCE5; cursor: pointer;}*/
+
+
+.suggestions_box .suggestions_list ul li{height:26px; line-height: 26px;}
+.suggestions_box .suggestions_list ul li .suggest_span{float: right; padding-right:5px; color:#aaa}
+.suggestions_box2 .suggestions_list ul li{height:26px; line-height: 26px;}
+.suggestions_box2 .suggestions_list ul li .suggest_span{float: right;padding-right:5px; color:#aaa}
