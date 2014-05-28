@@ -29,12 +29,12 @@ namespace Zero.Domain.Upload
         public string Uploader { get; set; }
 
         /// <summary>
-        /// 图片名称
+        /// 文件名称
         /// </summary>
         public string FileName { get; set; }
 
         /// <summary>
-        /// 图片路径
+        /// 文件路径
         /// </summary>
         public string Url { get; set; }
 
@@ -93,5 +93,10 @@ namespace Zero.Domain.Upload
         /// 高度
         /// </summary>
         public int Height { get; set; }
+
+        /// <summary>
+        /// 缩略图路径
+        /// </summary>
+        public string TbUrl { get; set; }
     }
 }

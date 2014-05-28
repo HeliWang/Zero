@@ -617,14 +617,11 @@ background: #FAFAFA; z-index:999999999
    #goodsInfo .textInfo .ico_shoucang_on .f_l{ color:#c00;background:url(/content/images/bg.png) -460px  -89px;}
    #goodsInfo .textInfo .ico_shoucang_on .f_r{ background:url(/content/images/shoucang_r.gif) right -23px;}
    #goodsInfo .textInfo h1{font-size:25px;  line-height:150%; color:#333; float:left; padding-right:10px; font-weight:normal; }
-   #goodsInfo .textInfo ul{}
-   #goodsInfo .textInfo li{padding:0px; _height:1%;font-family: "Microsoft Yahei";
-font-size: 16px;
-font-weight: 400;
-color: #666; float:left; width:100%}
-   #goodsInfo .textInfo li b{  }
-   #goodsInfo .textInfo li.padd{padding:7px 0px 7px 8px;}
-   #goodsInfo .textInfo li dd{width:100%; float:left; padding:7px 0px;}
+   /*#goodsInfo .textInfo ul{}*/
+   /*#goodsInfo .textInfo li{padding:0px; _height:1%;font-family: "Microsoft Yahei";font-size: 16px;font-weight: 400;color: #666; float:left;}*/
+   /*#goodsInfo .textInfo li b{  }
+   #goodsInfo .textInfo li.padd{padding:7px 0px 7px 8px;}*/
+   /*#goodsInfo .textInfo li dd{width:100%; float:left; padding:7px 0px;}*/
    #goodsInfo .textInfo .loop{background:#f7f7f7; margin-top:8px;}
    
    #goodsInfo .textInfo .catt{width:100%;height:auto;overflow:hidden;padding-bottom:5px;}

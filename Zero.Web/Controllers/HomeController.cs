@@ -16,5 +16,10 @@ namespace Zero.Web.Controllers
             return View();
         }
 
+        public ActionResult List()
+        {
+            return View();
+        }
+
     }
 }

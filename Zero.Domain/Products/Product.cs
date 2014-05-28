@@ -44,7 +44,7 @@ namespace Zero.Domain.Products
         /// <summary>
         /// 商品sku属性
         /// </summary>
-        public string SkuAttr { get; set; }
+        public string SaleAttr { get; set; }
 
         /// <summary>
         /// 商品副标题
@@ -152,10 +152,16 @@ namespace Zero.Domain.Products
         /// </summary>
         public int Status { get; set; }
 
+        private string detailUrl;
+
         /// <summary>
         /// 详细地址
         /// </summary>
-        public string DetailUrl { get; set; }
+        public string DetailUrl
+        {
+            get { return detailUrl; }
+            set { detailUrl = ProductUrlFactory.GetDetailUrl(this.ProductId); }
+        }
 
         /// <summary>
         /// 开始时间（有效期限）

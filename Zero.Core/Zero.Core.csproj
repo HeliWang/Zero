@@ -50,7 +50,6 @@
     <Compile Include="EasyUI\Grid.cs" />
     <Compile Include="Message\Email.cs" />
     <Compile Include="Message\Mobile.cs" />
-    <Compile Include="Model\PhotoInfo.cs" />
     <Compile Include="Web\PetaPage.cs" />
     <Compile Include="Pattern\Singleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

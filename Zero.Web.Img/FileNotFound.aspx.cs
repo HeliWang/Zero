@@ -30,8 +30,8 @@ namespace Zero.Web.Img
 
                 if (type != 0) return;
 
-                if ((width == 150 && height == 150) || (width == 100 && height == 100))
-                {
+                //if ((width == 150 && height == 150) || (width == 100 && height == 100))
+                //{
                     string filePath = savePath.Replace("tb/", "").Replace(string.Format("_{0}x{1}_{2}", width, height, type), "");
                     ImageHelper.MakeThumbnail(Utils.GetMapPath(filePath), Utils.GetMapPath(savePath), width, height, "HW");
                     switch (matches[0].Groups[7].Value)
@@ -52,7 +52,7 @@ namespace Zero.Web.Img
                     }
                     Response.WriteFile(savePath);
                     Response.End();
-                }
+                //}
             }
             else
             {

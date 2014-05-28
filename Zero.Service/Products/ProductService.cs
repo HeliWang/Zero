@@ -27,6 +27,7 @@ namespace Zero.Service.Products
 
         public ResultInfo Add(Product product)
         {
+            product.Photo = product.PhotoList[0].Url;
             var productId= _productRepository.Add(product).ProductId;
 
             //未测试是否有关联插入
@@ -67,9 +68,28 @@ namespace Zero.Service.Products
             return new Page<Product>(query, pageIndex, pageSize);
         }
 
+        public IPage<Product> GetList(ProductSearch search, int pageIndex, int pageSize)
+        {
+            var query = _productRepository.Table;
+            query = query.OrderByDescending(b => b.CreateTime);
+            return new Page<Product>(query, pageIndex, pageSize);
+        }
+
         public Product GetById(int productId)
         {
             return _productRepository.GetById(productId);
+        }
+
+        public List<Sku> GetSkuList(int productId)
+        {
+            var query = _skuRepository.Table;
+
+            query = from s in query 
+                    where s.ProductId == productId 
+                    select s;
+
+            query = query.OrderByDescending(b => b.SkuId);
+            return query.ToList();
         }
 
     }

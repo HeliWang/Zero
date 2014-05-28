@@ -13,6 +13,7 @@ namespace Zero.Data.Mapping.Upload
 
             //Ignore
             this.Ignore(p=>p.Id);
+            this.Ignore(p => p.TbUrl);
         }
     }
 }

@@ -39,12 +39,7 @@
                             <p><a href="http://www.ecmoban.com/article.php?id=1660" target="_blank">查看详情</a></p>
                         </div>
 
-                        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=2733582" src="/content/images/bds_s_v2.js"></script>
-
-                        <script type="text/javascript">
-                            document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
-                        </script>
-
+                      
                         <img class="dang" src="/content/images/dang1.gif">
                     </div>
                 </li>
@@ -54,3 +49,10 @@
         </div>
     </div>
 </div>
+
+@*<script type='text/javascript' src='themes/ecmoban/js/jquery.lazyload.js'></script>*@
+<script type="text/javascript">
+    $(function () {
+        $("img.goodsimg").lazyload({ effect: "fadeIn" });
+    })
+</script>

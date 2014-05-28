@@ -1,0 +1,982 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Detail";
+}
+
+@section Scripts {
+    @System.Web.Optimization.Scripts.Render("~/content/js/jquery.min.js")
+    @System.Web.Optimization.Scripts.Render("~/content/js/jquery.lazyload.js")
+}
+
+@model Zero.Web.Models.ProductDetailModel
+@using Zero.Domain
+
+@Html.Partial("_Top")
+@Html.Partial("_Header")
+
+<div class="block box">
+        <div class="box">
+            <div class="box_1">
+                <div class="ur_here">
+                    @*<a href=".">首页</a> <code>&gt;</code>  <a href="category-41-b0.html">ecshop微商城</a> <code>&gt;</code> ecshop微商城—首款ecshop微信商城系统 自主开发*@
+                    
+                    @{
+                        foreach(var cate in Model.CateList)
+                        {
+                            <a href="@ProductUrlFactory.GetListUrl(@cate.CateId)" target="_blank">@cate.CateName</a>
+                         <code>&gt;</code>
+                        }
+                    }
+                    @Model.Product.ProductName
+                </div>
+                <div class="blank"></div>
+
+                <style>
+                    .z-sku dl,.z-base dl,.z-quantity dl{clear:both;font-family: "Microsoft Yahei";font-size: 14px;font-weight: 400;color: #666;}
+                    .z-sku dt,.z-base dt,.z-quantity dt{float:left;width:60px;height:25px;line-height:25px;}
+                    .z-sku dd,.z-base dd,.z-quantity dd{float:left;padding-left:5px;}
+
+                    .z-base dd{height:25px;line-height:25px; }
+
+                    .z-sku dl{}
+                    .z-sku li{ float:left;margin-bottom:5px;margin-right:5px;}
+                    /*.z-sku li span {display:block;padding:3px 2px;}*/
+                    .z-sku li a{border: #c8c9cd 2px solid;text-align: center; display: block;  color: #000; font-size:12px;padding:3px 6px;}
+                    .z-sku li a:hover {border:#cb0404 2px solid;cursor:pointer;}
+                    .z-sku li a:focus {outline-style:none;}
+                    .z-sku .selected a{border:#cb0404 2px solid; background: url("/content/images/test.gif") no-repeat bottom right;  }
+                    .z-sku .selected a:hover {border: #cb0404 2px solid; background: url("/content/images/test.gif") no-repeat bottom right;}
+
+                    .z-btn { margin-top:10px;cursor:pointer;}
+                    .z-btn a{display: block;float: left;margin-right:5px;width:100px;height: 32px;background: url(/content/images/user_bnt.gif) 0 0 no-repeat;color:#fff;font-size: 16px;line-height:30px; font-weight: 400;text-align:center;}
+                </style>
+                <div id="goodsInfo" class="clearfix">
+
+                    <div class="imgInfo">
+                        <img src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(Model.Product.Photo, 262,262)" alt="@Model.Product.ProductName" />
+                    </div>
+
+                    <div class="textInfo">
+                            <div>
+                                <input type="hidden" id="ProductId" value="@Model.Product.ProductId" />
+                                <input type="hidden" id="SkuList" value="@Model.SkuList" />
+                                <h1>@Model.Product.ProductName</h1>
+                                <a href="javascript:collect(414)" class="ico_shoucang  ">
+                                    <div class="aa1">收藏</div>
+                                    <div class="aa2">2</div>
+                                </a>
+                                <div class="blank"></div>
+                                <input style="display: none" name="number" type="text" id="number" value="1" size="4" onblur="changePrice()" />
+                            </div>
+                            <div class="z-base" >
+                                <dl><dt class="show_goods_amount">促销单价</dt><dd><b class="shop">￥7000元</b></dd></dl>
+                                <dl><dt class="show_goods_amount">一口价</dt><dd><b class="shop">￥6000元</b></dd></dl>
+                            </div>
+                            <div class="z-sku clearfix">
+                                @*<dl>
+                                    <dt>颜色</dt>
+                                    <dd>
+                                        <ul>
+                                            <li class="selected"><a><span>白色</span></a></li>
+                                            <li><a><span>黑色</span></a></li>
+                                            <li><a><span>蓝色</span></a></li>
+                                        </ul>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>尺码</dt>
+                                    <dd>
+                                        <ul>
+                                            <li><a><span>X</span></a></li>
+                                            <li class="selected"><a><span>L</span></a></li>
+                                            <li><a><span>XL</span></a></li>
+                                        </ul>
+                                    </dd>
+                                </dl> 
+                                <dl>
+                                    <dt>数量</dt>
+                                    <dd>
+                                        <input type="text" style="width:50px;height:16px;"/> 件
+                                        库存(0)件
+                                    </dd>
+                                </dl>  *@                            
+                            </div>
+                            <div class="z-quantity clearfix">
+                                <dl>
+                                    <dt>数量</dt>
+                                    <dd>
+                                        <input id="quantity" type="text" style="width:50px;height:16px;"/> 件
+                                        库存(0)件
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="z-btn">
+                                <a class="z-buy"><b>立即购买</b></a>
+                                <a class="z-cart"><b>加入购物车</b></a>
+                            </div>
+                            <script>
+                                $(function () {
+
+                                    ///----加载规格----///
+
+                                    function LoadAttr() {
+                                        var skuList = $("#SkuList").val();
+
+                                        //var skuArray = [{ attr: '1:1:颜色:红色,2:5:尺码:37,4:13:品牌:耐克', quantity: 10 }, { attr: '1:1:颜色:红色,2:6:尺码:38,4:13:品牌:耐克', quantity: 10 }];
+
+                                        if (skuList == "[]") return false;
+
+                                        var skuArray = eval('(' + skuList + ')');
+
+                                        var attrArray = skuArray[0].Attr.split(",");
+
+                                        var dl = [];
+                                        var dt = [];
+                                        var dd = [];
+                                        var ul = [];
+                                        var valueArray = [];
+
+                                        for (var i = 0; i < attrArray.length; i++) {
+                                            var key = attrArray[i].split(":")[2];
+                                            dl[i] = $("<dl></dl>");
+                                            dt[i] = $("<dt></dt>").text(key);
+                                            dd[i] = $("<dd></dd>");
+                                            ul[i] = $("<ul></ul>");
+                                            dd[i].append(ul[i]);
+                                            dl[i].append(dt[i]).append(dd[i]);
+                                            valueArray[i] = [];
+                                        }
+
+                                        for (var j = 0; j < skuArray.length; j++) {
+                                            attrArray = skuArray[j].Attr.split(",");
+                                            for (var i = 0; i < attrArray.length; i++) {
+                                                if (valueArray[i].indexOf(attrArray[i]) == -1) {
+                                                    valueArray[i].push(attrArray[i]);
+                                                }
+                                            }
+                                        }
+
+                                        for (var i = 0; i < valueArray.length; i++) {
+                                            var li = [];
+                                            for (var j = 0; j < valueArray[i].length; j++) {
+                                                var span = $("<span></span>").text(valueArray[i][j].split(":")[3]);
+                                                var a = $("<a></a>").append(span).attr("name", valueArray[i][j]);
+                                                li[j] = $("<li></li>").append(a);
+
+                                                li[j].click(function () {
+                                                    $(this).siblings(".selected").removeClass("selected");
+                                                    $(this).toggleClass("selected");
+                                                });
+                                            }
+                                            ul[i].append(li);
+                                        }
+
+                                        $(".z-sku").empty().append(dl);
+                                    }
+
+                                    LoadAttr();
+
+                                    ///-----提交数据------///
+                                    $(".z-buy").click(function () {
+                                        alert("立即购买");
+                                    });
+
+                                    $(".z-cart").click(function () {
+                                        addCart();
+                                    });
+
+                                    function addCart() {
+                                        var sku = $(".z-sku dl");
+                                        var selectSku = $(".z-sku .selected");
+                                        var quantity = $("#quantity").val();
+                                        var productId = $("#ProductId").val();
+
+                                        if (selectSku.length != sku.length) {
+                                            alert("请选择完整的属性！"); return false;
+                                        }
+                                        if (quantity == "") {
+                                            alert("请填写正确的数字"); return false;
+                                        }
+                                        if (productId == "") {
+                                            alert("无商品编号"); return false;
+                                        }
+                                        var attr = "";
+
+                                        selectSku.each(function () {
+                                            attr += $(this).find("a").attr("name");
+                                            attr += ",";
+                                        });
+
+                                        if (attr.length > 0) {
+                                            attr = attr.substring(0, attr.length - 1);
+                                        }
+
+                                        var parma = { ProductId: productId, Attr: attr, Quantity: quantity };
+
+                                        $.ajax({
+                                            url: "/Cart/SetCartQuantity",
+                                            type: "Post",
+                                            data: parma,
+                                            dataType: "json",
+                                            beforeSend: function () {
+                                            },
+                                            success: function (data) {
+                                                alert(data.Message);
+                                            },
+                                            error: function () {
+                                                alert('系统异常，请重试或联系技术');
+                                            }
+                                        });
+                                    }
+                                });
+                           </script> 
+                            @*<div class="score-wrap" style="margin-left:200px;" onmouseover="this.className='score-wrap score-wrap-on'" onmouseout="this.className='score-wrap'">
+                                        <div class="score">
+                                            <p class="score-num">
+                                                <span class="value">5</span><span class="unit">分</span>
+                                            </p>
+                                            <p class="score-no score-5"></p>
+                                            <p class="view-detail">查看详情</p>
+                                        </div>
+                                        <div class="score-bottom">
+                                            <div class="line clearfix">
+                                                <span class="span1">好评</span>
+                                                <div class="span2" title="0人好评 0%">
+                                                    <div class="span2in" style="width: 0%;"></div>
+                                                </div>
+                                                <span class="span3">(0%)</span>
+                                            </div>
+                                            <div class="line clearfix">
+                                                <span class="span1">中评</span>
+                                                <div class="span2" title="0人中评 0%">
+                                                    <div class="span2in" style="width: 0%;"></div>
+                                                </div>
+                                                <span class="span3">(0%)</span>
+                                            </div>
+                                            <div class="line clearfix">
+                                                <span class="span1">差评</span>
+                                                <div class="span2" title="0人查评 0%">
+                                                    <div class="span2in" style="width: 0%;"></div>
+                                                </div>
+                                                <span class="span3">(0%)</span>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            <a href="http://www.ecmoban.com/weixin" title="ecshop微商城" target="_blank" style="position: absolute; right: 10px; bottom: 15px;">
+                                <img src="/content/images/goods_r1.png" alt="ecshop微商城" />
+                            </a>
+                            <div style="position: absolute; right: 0; top: 0">
+                                <div class="sp-singleAct" style="">
+                                    <span></span>
+                                    <dl>
+                                        <dd class="song">
+                                            <a href="http://www.ecmoban.com/kongjian.php" title="买空间+模板送域名" target="_blank">买空间+模板送com域名</a>
+                                        </dd>
+                                        <dd class="song">
+                                            <a href="http://www.ecmoban.com/goods-250.html" title="满3000送图片批量上传插件" target="_blank">满3000送图片批量上传插件</a>
+                                        </dd>
+                                        <dd class="jian">
+                                            <a href="http://www.ecmoban.com/article-1660.html" title="扫微信立减200" target="_blank">扫模板堂官方微信立减200</a>
+                                        </dd>
+                                        <dd class="zhe">
+                                            <a href="http://www.ecmoban.com/topic.php?topic_id=11" title="春节特惠豪礼大放送！" target="_blank">春节特惠豪礼大放送！</a>
+                                        </dd>
+                                        <dd class="zhe">
+                                            <a href="http://www.ecmoban.com/shouquan.html" title="ecshop授权" target="_blank">买ecshop商业授权有优惠！</a>
+                                        </dd>
+
+                                    </dl>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="blank"></div>
+<div class="blank"></div>
+<div class="block box">
+
+<div class="AreaL" style="float: right">
+
+    <div class="box" id='history_div' style="position: relative">
+        <div class="box_1" style="border-bottom: none">
+            <h3><span>浏览历史</span></h3>
+            <div class="boxCenterList clearfix" id='history_list'>
+                <ul class="clearfix">
+                    <li class="goodsimg"><a href="goods-251.html" target="_blank">
+                        <img src="images/201310/thumb_img/251_thumb_G_1381128807801.jpg" alt="模板堂Vjia至尊旗舰版" class="B_blue" /></a></li>
+                    <li><a href="goods-251.html" target="_blank" title="模板堂Vjia至尊旗舰版">模板堂Vjia至尊旗舰版</a><br />
+                        <font class="f1">￥6000元</font><br />
+                    </li>
+                </ul>
+                <ul class="clearfix">
+                    <li class="goodsimg"><a href="goods-296.html" target="_blank">
+                        <img src="images/201311/thumb_img/296_thumb_G_1384280654864.jpg" alt="模板堂全网最强美乐乐+团购+晒单+频道" class="B_blue" /></a></li>
+                    <li><a href="goods-296.html" target="_blank" title="模板堂全网最强美乐乐+团购+晒单+频道">模板堂全网最强美乐乐+团购+晒单+频道</a><br />
+                        <font class="f1">￥4500元</font><br />
+                    </li>
+                </ul>
+                <ul class="clearfix">
+                    <li class="goodsimg"><a href="goods-351.html" target="_blank">
+                        <img src="images/201401/thumb_img/351_thumb_G_1390437695266.jpg" alt="ECSHOP模板堂2014万表网全网首发" class="B_blue" /></a></li>
+                    <li><a href="goods-351.html" target="_blank" title="ECSHOP模板堂2014万表网全网首发">ECSHOP模板堂2014万表网全网首发</a><br />
+                        <font class="f1">￥3800元</font><br />
+                    </li>
+                </ul>
+                <ul id="clear_history"><a onclick="clear_history()">[清空]</a></ul>
+            </div>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <script type="text/javascript">
+        if (document.getElementById('history_list').innerHTML.replace(/\s/g,'').length<1)
+        {
+            document.getElementById('history_div').style.display='none';
+        }
+        else
+        {
+            document.getElementById('history_div').style.display='block';
+        }
+        function clear_history()
+        {
+            Ajax.call('user.php', 'act=clear_history',clear_history_Response, 'GET', 'TEXT',1,1);
+        }
+        function clear_history_Response(res)
+        {
+            document.getElementById('history_list').innerHTML = '您已清空最近浏览过的商品';
+        }
+    </script>
+</div>
+
+<div class="AreaR" style="float: left; position: relative">
+
+
+    <div class="box_1" style="border-top: none">
+        <div id="com_b" class="history clearfix">
+            <h2>详细描述</h2>
+            <h2 class="h2bg">用户评价</h2>
+            <h2 class="h2bg">模板建站优势</h2>
+            <h2 class="h2bg">服务保障</h2>
+            <h2 class="h2bg">其他增值服务</h2>
+            <h2 class="h2bg">常见问答</h2>
+        </div>
+
+        <div id="com_v" style="padding: 0 14px;"></div>
+        <div id="com_h">
+            <blockquote>
+
+                <div class="blank"></div>
+                <div class="blank5"></div>
+                <ul class="pProdInfoUL" style="padding: 0;">
+                    <div class="tit"><span class="span1"></span>产品信息</div>
+                    <div class="clearfix">
+
+                        <li>货号：000414</li>
+                        <li>模板名称：ecshop微商城—首款ecshop微信商城系统 自主开发</li>
+                        <li>浏览量：3090</li>
+                    </div>
+                </ul>
+                <div class="blank"></div>
+                <div class="blank"></div>
+
+                <div class="content">
+                    <h6><span style="TEXT-DECORATION: none"><span style="FONT-SIZE: 14px; TEXT-DECORATION: none">ecshop微商城_模板堂出品(</span><a href="http://www.ecmoban.com/goods-386.html" target="_blank"><span style="COLOR: #000000; TEXT-DECORATION: none"><span style="FONT-SIZE: 14px; TEXT-DECORATION: none">ecshop微商城</span></span></a><span style="FONT-SIZE: 14px; TEXT-DECORATION: none">=<a href="http://www.ecmoban.com/goods-385.html" target="_blank"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 14px; TEXT-DECORATION: none">ecshop微信通</span></a>+<a href="http://www.ecmoban.com/goods.php?id=387" target="_blank"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 14px; TEXT-DECORATION: none">ECTouch商创版</span></a>)</span></span><span style="FONT-SIZE: 14px"><br />
+                        <span style="COLOR: #ff0000; FONT-SIZE: 14px"><strong><span style="FONT-SIZE: 14px">ecshop微商城是首款ecshop微信商城系统，全网首家手机端接入微信商城，</span></strong></span>包含ecshop微信通和ECTouch商创版。ecshop微商城是</span><span style="FONT-SIZE: 14px; TEXT-DECORATION: none"><a style="COLOR: rgb(0,0,0)" href="http://www.ecmoban.com/" target="_blank"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 14px; TEXT-DECORATION: none">ecshop模板堂</span></a></span><span style="FONT-SIZE: 14px">重点打造的一款核心产品，将ecshop与微信无缝整合，手机端完美接入微信商城，把店开到每个人的手机里，抢占7亿微信市场，为您创造无线商机！<br />
+                        </span><a style="TEXT-DECORATION: none" href="http://www.ecmoban.com/category-40-b0.html" target="_blank"><span style="COLOR: rgb(255,0,0); FONT-SIZE: 18px"><strong>&gt;&gt;</strong><strong>&gt;查看ECTouch&lt;&lt;&lt;</strong></span></a><span style="TEXT-DECORATION: none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a style="COLOR: rgb(255,0,0); TEXT-DECORATION: none" href="http://www.ecmoban.com/goods.php?id=385" target="_blank"><span style="COLOR: rgb(255,0,0)"><strong><span style="COLOR: rgb(255,0,0); FONT-SIZE: 18px">&gt;&gt;&gt;查看微信通&lt;&lt;&lt;</span></strong><strong><span style="COLOR: rgb(255,0,0); FONT-SIZE: 18px"></span></strong><strong><span style="COLOR: rgb(255,0,0); FONT-SIZE: 18px"></span></strong></span></a></h6>
+                    <p>您也可查看ecshop微商城专题页，了解更多微商城信息<a href="http://www.ecmoban.com/weixin/index.html">http://www.ecmoban.com/weixin/index.html</a></p>
+                    <p>&nbsp;</p>
+                    <p>
+                        <br />
+                    </p>
+                    <p style="TEXT-ALIGN: center">
+                        <img src="/images/upload/20140514/14000348096690.jpg" title="微商城1.jpg" /><br />
+                    </p>
+                    <p style="text-align: center;">
+                        <img src="/images/upload/20140514/14000348212479.jpg" title="微商城2.jpg" /></p>
+                    <p style="TEXT-ALIGN: center">
+                        <img src="/images/upload/20140514/14000348382349.jpg" title="微商城3.jpg" /></p>
+                    <p style="TEXT-ALIGN: center">
+                        <img src="/images/upload/20140514/14000348545076.jpg" title="微商城4.jpg" /></p>
+                </div>
+            </blockquote>
+            <blockquote>
+            </blockquote>
+            <blockquote>
+
+                <div class="blank"></div>
+                <div class="blank5"></div>
+                <a href="http://www.ecmoban.com/kongjian.php" target="_blank">
+                    <img alt="查看空间套餐" src="/content/images/goods_img1.jpg"></a>
+                <img alt="选择模板建站的理由" src="/content/images/goods_img2.gif">
+                <ul class="goods_youshi clearfix">
+                    <li class="li1">
+                        <dl>
+                            <dt>快速交付</dt>
+                            <dd>1个工作日交付精美网站</dd>
+                            <p>挑选一套最适合您的商城模板，再选择一款主机，我们会在当天安装调试交付给您，让您尽快操作后台开始生意。</p>
+                        </dl>
+                    </li>
+                    <li class="li2 f_r">
+                        <dl>
+                            <dt>精美模板</dt>
+                            <dd>几百套精美模板任您选</dd>
+                            <p>模板堂的模板追求质量与细节，代码最优，功能最强，细节把最精致，目前已经拥有了上百套各行业精品模板任您选。</p>
+                        </dl>
+                    </li>
+                    <li class="li3">
+                        <dl>
+                            <dt>个性化调整</dt>
+                            <dd>模板并非人人一样</dd>
+                            <p>您可以给我们提交您的想法，我们的资深技术人员会为您做一些与众不同的调整，我们也会给出最合理的工期与修改费用。</p>
+                        </dl>
+                    </li>
+                    <li class="li4 f_r">
+                        <dl>
+                            <dt>功能齐全</dt>
+                            <dd>拥有最为全面的网店功能</dd>
+                            <p>ecshop系统拥有最为全面的电子商务功能，包括会员管理，订单管理，模板管理，系统设置，并整合了业内主流的配送方式，支付方式，安装即用。</p>
+                        </dl>
+                    </li>
+                    <li class="li5">
+                        <dl>
+                            <dt>维护简单</dt>
+                            <dd>人性化的后台管理</dd>
+                            <p>设置模板，设置分类，添加产品，替换广告，几乎所有操作都在后台管理。人性化的后台操作让你上手更简单。</p>
+                        </dl>
+                    </li>
+                    <li class="li6 f_r">
+                        <dl>
+                            <dt>第三方应用</dt>
+                            <dd>集成众多第三方应用</dd>
+                            <p>流量统计，网页分享，快捷登陆，在线客服qq,msn,旺旺等都可以接入整合。</p>
+                        </dl>
+                    </li>
+                    <li class="li7">
+                        <dl>
+                            <dt>SEO优化</dt>
+                            <dd>提升网站搜索排名</dd>
+                            <p>可以针对全网站或单个产品和文章进行关键词设置，实现seo优化，提升网站搜索排名。</p>
+                        </dl>
+                    </li>
+                    <li class="li8 f_r">
+                        <dl>
+                            <dt>售后服务</dt>
+                            <dd>模板堂品牌保障</dd>
+                            <p>强大的售后服务团队，为您提供全方位的售后服务，保障您网站的维护与运行。</p>
+                        </dl>
+                    </li>
+                </ul>
+            </blockquote>
+            <blockquote>
+
+                <div class="blank"></div>
+                <div class="blank5"></div>
+                <a rel="nofollow" href="http://bang.taobao.com/detail.htm?spm=a213i.2187381.0.0.ZDK8F3&id=7207971198" target="_blank">
+                    <img alt="查看服务评价" src="/content/images/goods_img3.jpg"></a>
+                <img alt="模板堂承诺的服务项目" src="/content/images/goods_img4.gif">
+                <div class="blank"></div>
+                <ul class="goods_fuwu clearfix">
+                    <li class="li1 clearfix">
+                        <img alt="升级服务" src="/content/images/goods_fuwu1.gif">
+                        <dl>
+                            <dt>1、模板升级服务</dt>
+                            <dd>模板堂的模板会随着ECSHOP升级而不断升级，并免费提供给客户（并非随目标网站升级）</dd>
+                        </dl>
+                    </li>
+
+                    <div class="blank"></div>
+                    <div class="blank"></div>
+                    <li class="li1 clearfix">
+                        <img alt="简单调整" src="/content/images/goods_fuwu2.gif">
+                        <dl>
+                            <dt>2、模板简单调整</dt>
+                            <dd>模板堂承诺为客户免费做一些必要的简单调整，但不包括布局修改，功能开发，颜色替换等工作量较为复杂的内容，具体可以联系售前沟通。</dd>
+                        </dl>
+                    </li>
+
+                    <div class="blank"></div>
+                    <div class="blank"></div>
+                    <li class="li1 clearfix">
+                        <img alt="在线支持" src="/content/images/goods_fuwu3.gif">
+                        <dl>
+                            <dt>3、实时在线支持</dt>
+                            <dd>每位客户可以获得我们专职客服一对一的服务，在线实时回答客户的问题，包括模板的使用问题，后台的操作问题，等等。</dd>
+                        </dl>
+                    </li>
+
+                    <div class="blank"></div>
+                    <div class="blank"></div>
+                    <li class="li1 clearfix">
+                        <img alt="闪电响应" src="/content/images/goods_fuwu4.gif">
+                        <dl>
+                            <dt>4、紧急响应机制</dt>
+                            <dd>当客户遇到非常紧急情况，如网站被黑，模板丢失，无论节假日还是下班时间均可拨打我们的服务热线 4000 021 758，我们将第一时间为您排忧解难。</dd>
+                        </dl>
+                    </li>
+
+                    <div class="blank"></div>
+                    <div class="blank"></div>
+                    <li class="li1 clearfix">
+                        <img alt="长期合作优惠" src="/content/images/goods_fuwu5.gif">
+                        <dl>
+                            <dt>5、长期合作优惠</dt>
+                            <dd>只要您成为我们模板堂的客户，将获得我们长期合作的优惠政策，比如第二次购买8折，赠送免费插件等等。由于优惠政策的时效性，您可以联系我们售前进行咨询。</dd>
+                        </dl>
+                    </li>
+
+                </ul>
+            </blockquote>
+            <blockquote>
+
+                <div class="blank"></div>
+                <div class="blank5"></div>
+
+                <ul class="goods_other clearfix">
+                    <li class="li1 clearfix">
+                        <img alt="整站调整" src="/content/images/goods_other1.gif">
+                        <dl>
+                            <dt>1、模板个性化修改</dt>
+                            <dd>
+                                <p>修改内容包括：</p>
+                                <p>(1)修改整站色调为指定色调</p>
+                                <p>(2)修改整站产品图片尺寸</p>
+                                <p>(3)修改页面分辨率，窄屏到宽屏，或自适应宽度</p>
+                                <p>(4)修改整站语言包为英文，繁体，或者其他语言</p>
+                                <p>(5)将某某模板的部分模块或者功能整合到该模板</p>
+                                <p>(6)服务器迁移</p>
+                                <p>(7)协助安装其他程序，如discuz论坛等,并做会员整合</p>
+                                <p>(8)有二次开发需求，或者整合插件模块</p>
+                                <p><a href="#" target="_blank">>>下载需求单</a></p>
+                                <div class="blank"></div>
+                                <p class="p1">工期：按需求定</p>
+                                <p class="p1">价格：按需求定</p>
+
+                                <div class="blank"></div>
+                                <a href="http://bizapp.qq.com/webc.htm?new=0&sid=800007167&o=b.qq.com&q=7" target="_blank">
+                                    <img src="/content/images/goods_lianxi.gif"></a>
+                            </dd>
+                        </dl>
+                    </li>
+
+
+                    <div style="clear: both"></div>
+
+
+                    <li class="li1 clearfix">
+                        <img alt="logo设计服务" src="/content/images/goods_other2.gif">
+                        <dl>
+                            <dt>2、Logo设计/广告设计服务</dt>
+                            <dd>
+                                <p>修改内容包括：</p>
+                                <p>(1)按客户需求设计5个logo方案,客户可以任选一套方案并再进行微调</p>
+                                <p>(2)模板大尺寸广告设计(通栏或专题广告)</p>
+                                <p>(3)模板中尺寸广告设计(焦点图广告)</p>
+                                <p>(4)模板小尺寸广告设计(边栏广告)</p>
+                                <p><a href="http://bbs.ecmoban.com/forum-52-1.html" target="_blank">>>查看案例</a></p>
+                                <div class="blank"></div>
+                                <p class="p1">工期：logo设计3天 广告位1天/张</p>
+                                <p class="p1">价格：Logo设计500元 广告位大(150)中(80)小(50)/张</p>
+                                <div class="blank"></div>
+                                <a href="http://bizapp.qq.com/webc.htm?new=0&sid=800007167&o=b.qq.com&q=7" target="_blank">
+                                    <img src="/content/images/goods_lianxi.gif"></a>
+                            </dd>
+                        </dl>
+                    </li>
+
+                    <li class="li1 clearfix">
+                        <img alt="整合电商分析工具" src="/content/images/goods_other3.gif">
+                        <dl>
+                            <dt>3、整合聚合分析(电商专业分析工具)*可选</dt>
+                            <dd>
+                                <p>修改内容包括：</p>
+                                <p>(1)为客户整合首款电商分析工具-聚合分析</p>
+                                <p><a href="http://bbs.ecmoban.com/forum.php?mod=viewthread&tid=42" target="_blank">>>什么是聚合分析</a></p>
+                                <div class="blank"></div>
+                                <p class="p1">工期：1天</p>
+                                <p class="p1">价格：免费</p>
+                                <div class="blank"></div>
+                                <a href="http://bizapp.qq.com/webc.htm?new=0&sid=800007167&o=b.qq.com&q=7" target="_blank">
+                                    <img src="/content/images/goods_lianxi.gif"></a>
+                            </dd>
+                        </dl>
+                    </li>
+
+
+                </ul>
+            </blockquote>
+            <blockquote>
+
+                <div class="blank"></div>
+                <div class="blank5"></div>
+
+                <ul class="goods_wenda clearfix">
+                    <li class="li1 clearfix">
+                        <dl class="q">
+                            <dt>Q:</dt>
+                            <dd>这个电子商务网站是采用什么语言开发的？</dd>
+                        </dl>
+                        <dl class="a">
+                            <dt>A:</dt>
+                            <dd>Ecshop系统采用PHP语言开发， MYsql数据库。保障了电子商务网站系统的安全性、稳定性、易用性等方面。</dd>
+                        </dl>
+                    </li>
+
+                    <div style="clear: both"></div>
+                    <li class="li1 clearfix">
+                        <dl class="q">
+                            <dt>Q:</dt>
+                            <dd>这个电子商务网站支持开通在线支付功能吗？比如：支付宝在线支付。</dd>
+                        </dl>
+                        <dl class="a">
+                            <dt>A:</dt>
+                            <dd>Ecshop预先整合了国内十几种主流的在线支付接口，如支付宝、财付通、网银在线、快钱等。您只需要和第三方支付公司签约后，在网站后台简单填写一下商户号密钥即可立即开通使用在线支付。</dd>
+                        </dl>
+                    </li>
+
+                    <div style="clear: both"></div>
+                    <li class="li1 clearfix">
+                        <dl class="q">
+                            <dt>Q:</dt>
+                            <dd>网站是否支持向会员发送邮件和手机短信？</dd>
+                        </dl>
+                        <dl class="a">
+                            <dt>A:</dt>
+                            <dd>Ecshop内置了邮件发送功能和手机短信发送功能。其中手机短信发送，需要另行购买短信点数方可向会员发送手机短信，详情可咨询模板堂客服。</dd>
+                        </dl>
+                    </li>
+
+                    <div style="clear: both"></div>
+                    <li class="li1 clearfix">
+                        <dl class="q">
+                            <dt>Q:</dt>
+                            <dd>我已经有空间域名了，可否只购买你们的模板？是否可以协助安装？</dd>
+                        </dl>
+                        <dl class="a">
+                            <dt>A:</dt>
+                            <dd>我们的模板是可以单独购买的，并提供免费的协助安装服务，您只需要提供给我们服务器相关信息即可。</dd>
+                        </dl>
+                    </li>
+
+                    <div style="clear: both"></div>
+                    <li class="li1 clearfix">
+                        <dl class="q">
+                            <dt>Q:</dt>
+                            <dd>购买模板是否可以提供所有源代码，有没有使用教程？</dd>
+                        </dl>
+                        <dl class="a">
+                            <dt>A:</dt>
+                            <dd>Ecshop是一款开源系统，我们模板也是开源的，购买之后我们会打包发给您所有的模板文件与程序修改文件，另外会有该模板使用教程，方便您有问题的时候查阅。</dd>
+                        </dl>
+                    </li>
+
+                    <div style="clear: both"></div>
+                    <li class="li1 clearfix">
+                        <dl class="q">
+                            <dt>Q:</dt>
+                            <dd>购买模板需要每年续费吗？</dd>
+                        </dl>
+                        <dl class="a">
+                            <dt>A:</dt>
+                            <dd>我们的模板不需要每年续费，只要一次付费就可以享有永久服务，如果您购买的是我们模板+空间域名套餐，以后每年只需要支付空间域名费用即可。</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </blockquote>
+
+
+        </div>
+        <div class="blank"></div>
+        <div class="blank5"></div>
+        <div style="padding: 0 14px;">
+
+            <div id="ECS_COMMENT">
+                <div class="box_1">
+                    <h3 class="h3_3"><span class="text">用户评论</span>(共<font class="shop">0</font>条评论)</h3>
+                    <div class="boxCenterList clearfix" style="height: 1%; padding: 15px 0;">
+                        <ul class="comments" style="border: none; padding: 0">
+                            <li>
+                                <div style="padding: 15px; padding-top: 0;">
+                                    暂时没有评论！您有机会抢到沙发并获得多倍积分哦！
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div id="pagebar" class="f_r" style="padding-right: 20px;">
+                            <form name="selectPageForm" action="/goods.php" method="get">
+                                <div id="pager">
+                                    <span><a href="javascript:gotoPage(1,414,0)">第一页</a> <a href="javascript:;">上一页</a> <a href="javascript:;">下一页</a> <a href="javascript:;">最末页</a> </span>
+                                </div>
+                            </form>
+                            <script type="Text/Javascript" language="JavaScript">
+    <!--
+            
+function selectPage(sel)
+{
+sel.form.submit();
+}
+            
+//-->
+                            </script>
+                        </div>
+
+                        <div class="blank5"></div>
+
+                        <div class="commentsList">
+                            <form action="javascript:;" onsubmit="submitComment(this)" method="post" name="commentForm" id="commentForm">
+                                <table width="874" border="0" cellspacing="0" cellpadding="0">
+
+                                    <tr>
+
+                                        <td style="display: none">
+                                            <input type="text" name="email" id="email" maxlength="100" value="" class="inputBorder" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+
+                                        <td>
+                                            <textarea name="content" class="inputBorder" style="height: 70px; width: 852px;"></textarea>
+                                            <input type="hidden" name="cmt_type" value="0" />
+                                            <input type="hidden" name="id" value="414" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="comments_bottom">
+                                            <div class="blank"></div>
+                                            <input name="comment_rank" type="radio" value="5" checked="checked" id="comment_rank5" />
+                                            <div class="score-no score-5"></div>
+                                            <input name="comment_rank" type="radio" value="4" id="comment_rank4" />
+                                            <div class="score-no score-4"></div>
+                                            <input name="comment_rank" type="radio" value="3" id="comment_rank3" />
+                                            <div class="score-no score-3"></div>
+                                            <input name="comment_rank" type="radio" value="2" id="comment_rank2" />
+                                            <div class="score-no score-2"></div>
+                                            <input name="comment_rank" type="radio" value="1" id="comment_rank1" />
+                                            <div class="score-no score-1"></div>
+
+                                            <script  type="text/javascript"> 
+                                                function showDiv(){ 
+                                                    document.getElementById('popDiv').style.display='block'; 
+                                                } 
+                                                function closeDiv(){ 
+                                                    document.getElementById('popDiv').style.display='none'; 
+                                                } 
+                                            </script>
+                                            <a href="javascript:showDiv()" class="bnt_blue f_r">提交评论</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <div id="popDiv" class="mydiv" style="display: none;">
+                                <div class="tit"><span>登陆模板堂</span> <a href="javascript:closeDiv()">
+                                    <img src="/content/images/guanbi1.gif" /></a></div>
+
+
+                                <div class="mydiv_in">
+                                    <form id="ECS_LOGINFORM" name="ECS_LOGINFORM" method="post" action="javascript:signIn()">
+                                        <dl>
+                                            <dd><b>用户名/邮箱:</b><input name="username" type="text" class="inputBg" tabindex="1" value="14000682863" /></dd>
+                                            <dd><b>密 码:</b><input name="password" class="inputBg" type="password" tabindex="2" /></dd>
+                                            <dd>
+                                                <b>&nbsp; </b>
+                                                <input type="checkbox" value="1" name="remember" id="remember" style="vertical-align: middle" /><label style="color: #999" for="remember">自动登录</label>
+                                            </dd>
+                                            <dd style="padding-top: 0;">
+                                                <b>&nbsp; </b>
+                                                <input type="submit" name="submit" value="登 录" class="bnt_blue" />
+                                                <a style="padding-left: 7px" href="user.php?act=get_password">忘记密码？</a><span style="color: #ccc">|</span> <a href="user.php?act=get_password">注册</a>
+                                            </dd>
+                                        </dl>
+
+                                        <div class="mydiv_bottom">
+                                        </div>
+                                        <input type="hidden" name="goods_id" value="414">
+                                    </form>
+                                </div>
+                                <script type="text/javascript">
+                                    /**
+                                        * 会员登录
+                                        */
+                                    function signIn()
+                                    {
+                                        var frm = document.forms['ECS_LOGINFORM'];
+
+                                        if (frm)
+                                        {
+                                            var username = frm.elements['username'].value;
+                                            var goods_id = frm.elements['goods_id'].value;
+                                            var password = frm.elements['password'].value;
+                                            var captcha = '';
+                                            if (frm.elements['captcha'])
+                                            {
+                                                captcha = frm.elements['captcha'].value;
+                                            }
+
+                                            if (username.length == 0 || password.length == 0)
+                                            {
+
+                                                alert("对不起，您必须完整填写用户名和密码。");
+
+                                                return;
+                                            }
+                                            else
+                                            {
+                                                Ajax.call('user.php?act=signin', 'username=' + username + '&password=' + encodeURIComponent(password) + '&captcha=' + captcha +'&goods_id='+ goods_id, signinResponse, "POST", "TEXT");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            alert('Template error!');
+                                        }
+                                    }
+
+                                    function signinResponse(result)
+                                    {
+                                        var userName = document.forms['ECS_LOGINFORM'].elements['username'].value;
+                                        var mzone = document.getElementById("ECS_MEMBERZONE");
+                                        var res   = result.parseJSON();
+
+                                        if (res.error > 0)
+                                        {
+                                            // 登录失败
+                                            alert(res.content);
+                                            if(res.html)
+                                            {
+                                                mzone.innerHTML = res.html;
+                                                document.forms['ECS_LOGINFORM'].elements['username'].value = userName;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (mzone)
+                                            {
+                                                mzone.innerHTML = res.content;
+                                                evalscript(res.ucdata);
+                                                //alert(res.ucdata);
+                                            }
+                                            else
+                                            {
+                                                alert("Template Error!");
+                                            }
+	
+                                            location.href="goods.php?id="+res.goods_id;
+	
+                                        }
+                                    }
+                                </script>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="blank5"></div>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    var cmt_empty_username = "请输入您的用户名称";
+                    var cmt_empty_email = "请输入您的电子邮件地址";
+                    var cmt_error_email = "电子邮件地址格式不正确";
+                    var cmt_empty_content = "您没有输入评论的内容";
+                    var captcha_not_null = "验证码不能为空!";
+                    var cmt_invalid_comments = "无效的评论内容!";
+
+                    /**
+                        * 提交评论信息
+                    */
+                    function submitComment(frm)
+                    {
+                        var cmt = new Object;
+
+                        //cmt.username        = frm.elements['username'].value;
+                        cmt.email           = frm.elements['email'].value;
+                        cmt.content         = frm.elements['content'].value;
+                        cmt.type            = frm.elements['cmt_type'].value;
+                        cmt.id              = frm.elements['id'].value;
+                        cmt.enabled_captcha = frm.elements['enabled_captcha'] ? frm.elements['enabled_captcha'].value : '0';
+                        cmt.captcha         = frm.elements['captcha'] ? frm.elements['captcha'].value : '';
+                        cmt.rank            = 0;
+
+                        for (i = 0; i < frm.elements['comment_rank'].length; i++)
+                        {
+                            if (frm.elements['comment_rank'][i].checked)
+                            {
+                                cmt.rank = frm.elements['comment_rank'][i].value;
+                            }
+                        }
+
+                        //  if (cmt.username.length == 0)
+                        //  {
+                        //     alert(cmt_empty_username);
+                        //     return false;
+                        //  }
+
+                        if (cmt.email.length > 0)
+                        {
+                            if (!(Utils.isEmail(cmt.email)))
+                            {
+                                alert(cmt_error_email);
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            alert(cmt_empty_email);
+                            return false;
+                        }
+
+                        if (cmt.content.length == 0)
+                        {
+                            alert(cmt_empty_content);
+                            return false;
+                        }
+
+                        if (cmt.enabled_captcha > 0 && cmt.captcha.length == 0 )
+                        {
+                            alert(captcha_not_null);
+                            return false;
+                        }
+
+                        Ajax.call('comment.php', 'cmt=' + $.toJSON(cmt), commentResponse, 'POST', 'JSON');
+                        return false;
+                    }
+
+                    /**
+                        * 处理提交评论的反馈信息
+                    */
+                    function commentResponse(result)
+                    {
+                        if (result.message)
+                        {
+                            alert(result.message);
+                        }
+
+                        if (result.error == 0)
+                        {
+                            var layer = document.getElementById('ECS_COMMENT');
+
+                            if (layer)
+                            {
+                                layer.innerHTML = result.content;
+                            }
+                        }
+                    }
+
+                    //]]>
+                </script>
+            </div>
+            <div class="blank"></div>
+            <div class="blank5"></div>
+        </div>
+    </div>
+    <div class="blank"></div>
+</div>
+
+<div class="blank"></div>
+
+</div>
+
+@Html.Partial("_Footer")
+@Html.Partial("_FloatTools")
+

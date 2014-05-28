@@ -48,6 +48,11 @@ namespace Zero.Domain.Cates
         }
 
         /// <summary>
+        /// 移动标志
+        /// </summary>
+        public int Flag { get; set; }
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime? CreateTime { get; set; }

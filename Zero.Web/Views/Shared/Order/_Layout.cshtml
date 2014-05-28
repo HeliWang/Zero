@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>购物流程</title>
+
+    @*<link href="themes/ecmoban/style.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/shopping_flow.js"></script>*@
+
+    @System.Web.Optimization.Styles.Render("~/content/css/style.css")
+
+    @System.Web.Optimization.Scripts.Render("~/content/js/common.js")
+    @System.Web.Optimization.Scripts.Render("~/content/js/style.js")
+
+
+    @RenderSection("scripts", required: false)
+
+</head>
+
+<body style="background: #fff">
+
+    @Html.Partial("Order/_Header")
+
+    @RenderBody()
+
+    @*@Html.Partial("Order/_Footer")*@
+</body>
+</html>

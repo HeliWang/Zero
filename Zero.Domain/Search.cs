@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zero.Domain
 {
-    public class ISearch
+    public class Search
     {
         public string KeyType { get; set; }
 

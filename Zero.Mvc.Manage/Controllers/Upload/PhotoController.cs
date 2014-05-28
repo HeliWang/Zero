@@ -46,7 +46,7 @@ namespace Zero.Mvc.Manage.Controllers.Upload
 
             foreach (Photo photo in PhotoPage.Items)
             {
-                photo.Url = Zero.Service.UrlFactory.GetPhotoUrl(photo.Url, 100, 100);
+                photo.Url = Zero.Domain.PhotoUrlFactory.GetPhotoUrl(photo.Url, 100, 100);
             }
 
             return Json(PhotoPage, JsonRequestBehavior.AllowGet);

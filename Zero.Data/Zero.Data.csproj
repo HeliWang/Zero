@@ -52,11 +52,13 @@
     <Compile Include="Mapping\Cates\AttrMap.cs" />
     <Compile Include="Mapping\Cates\AttrValueMap.cs" />
     <Compile Include="Mapping\Cates\CateAttrMap.cs" />
+    <Compile Include="Mapping\Orders\CartMap.cs" />
     <Compile Include="Mapping\Products\ProductDescMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
     <Compile Include="Mapping\Products\ProductPhotoMap.cs" />
     <Compile Include="Mapping\Products\SkuMap.cs" />
     <Compile Include="Mapping\Upload\PhotoMap.cs" />
+    <Compile Include="Mapping\Users\UserMap.cs" />
     <Compile Include="Migrations\201404200820063_UpdateAttr333.cs" />
     <Compile Include="Migrations\201404200820063_UpdateAttr333.Designer.cs">
       <DependentUpon>201404200820063_UpdateAttr333.cs</DependentUpon>
@@ -72,6 +74,34 @@
     <Compile Include="Migrations\201405121328007_UpdatePhoto.cs" />
     <Compile Include="Migrations\201405121328007_UpdatePhoto.Designer.cs">
       <DependentUpon>201405121328007_UpdatePhoto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405200751008_UpdateCateFlag.cs" />
+    <Compile Include="Migrations\201405200751008_UpdateCateFlag.Designer.cs">
+      <DependentUpon>201405200751008_UpdateCateFlag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405210749249_UpdateProductAttr.cs" />
+    <Compile Include="Migrations\201405210749249_UpdateProductAttr.Designer.cs">
+      <DependentUpon>201405210749249_UpdateProductAttr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405270732418_UpdateSku3.cs" />
+    <Compile Include="Migrations\201405270732418_UpdateSku3.Designer.cs">
+      <DependentUpon>201405270732418_UpdateSku3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405270733465_UpdateSku4.cs" />
+    <Compile Include="Migrations\201405270733465_UpdateSku4.Designer.cs">
+      <DependentUpon>201405270733465_UpdateSku4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405270734436_AddUser.cs" />
+    <Compile Include="Migrations\201405270734436_AddUser.Designer.cs">
+      <DependentUpon>201405270734436_AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405271718043_UpdateCart.cs" />
+    <Compile Include="Migrations\201405271718043_UpdateCart.Designer.cs">
+      <DependentUpon>201405271718043_UpdateCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405271727097_UpdateCart2.cs" />
+    <Compile Include="Migrations\201405271727097_UpdateCart2.Designer.cs">
+      <DependentUpon>201405271727097_UpdateCart2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -104,6 +134,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405121328007_UpdatePhoto.resx">
       <DependentUpon>201405121328007_UpdatePhoto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405200751008_UpdateCateFlag.resx">
+      <DependentUpon>201405200751008_UpdateCateFlag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405210749249_UpdateProductAttr.resx">
+      <DependentUpon>201405210749249_UpdateProductAttr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405270732418_UpdateSku3.resx">
+      <DependentUpon>201405270732418_UpdateSku3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405270733465_UpdateSku4.resx">
+      <DependentUpon>201405270733465_UpdateSku4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405270734436_AddUser.resx">
+      <DependentUpon>201405270734436_AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405271718043_UpdateCart.resx">
+      <DependentUpon>201405271718043_UpdateCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405271727097_UpdateCart2.resx">
+      <DependentUpon>201405271727097_UpdateCart2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

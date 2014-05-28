@@ -47,17 +47,20 @@
     <Compile Include="Cates\CateAttrValue.cs" />
     <Compile Include="Cates\CateBase.cs" />
     <Compile Include="Cates\Cate.cs" />
+    <Compile Include="Orders\Cart.cs" />
     <Compile Include="Products\Product.cs" />
     <Compile Include="Products\ProductDesc.cs" />
     <Compile Include="Products\ProductPhoto.cs" />
     <Compile Include="Products\Sku.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search.cs" />
+    <Compile Include="Products\ProductSearch.cs" />
     <Compile Include="Upload\Photo.cs" />
     <Compile Include="Upload\PhotoCate.cs" />
-    <Compile Include="User\AdminInfo.cs" />
-    <Compile Include="User\AdminLoginInfo.cs" />
-    <Compile Include="User\UserInfo.cs" />
+    <Compile Include="UrlFactory.cs" />
+    <Compile Include="Users\AdminInfo.cs" />
+    <Compile Include="Users\AdminLoginInfo.cs" />
+    <Compile Include="Users\User.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
