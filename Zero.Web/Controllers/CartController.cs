@@ -30,6 +30,16 @@ namespace Zero.Web.Controllers
             return View(cartList);
         }
 
+        public ActionResult RemoveCart()
+        {
+            User user = new User();
+            user.UserId = 1;
+            user.GuestId = "";
+
+            string cartIds = RequestHelper.All("CartIds");
+            return Json(_cartService.DeleteCart(user, cartIds));
+        }
+
         public ActionResult SetCartQuantity(Cart cart)
         {
             ResultInfo resultInfo = new ResultInfo(1, "传递的参数有误");

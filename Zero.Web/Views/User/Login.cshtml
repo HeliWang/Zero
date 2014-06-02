@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/Order/_Layout.cshtml";
+    ViewBag.Title = "Detail";
+}
+
+@section Contents {
+    @System.Web.Optimization.Styles.Render("~/content/css/user.css")
+
+    @System.Web.Optimization.Scripts.Render("~/content/js/utils.js")
+    @System.Web.Optimization.Scripts.Render("~/content/js/user.js")
+}
+
+<div class="usBox clearfix">
+    <div class="usBox_top">
+        <a href="/user/login" class="active">登陆</a>
+        <a href="/user/register">注册</a>
+        <a href="/user/getPassword">找回密码</a>
+    </div>
+    @*<div class="longTop">Hi，<span style="color: #666">未登录堂友</span>，登录模板堂与 <b style="color: #f90">10000</b> 位网友，一起交流ecshop模板经验分享快乐吧！</div>*@
+
+    <form name="formLogin" action="/user/login" method="post" onsubmit="return userLogin()">
+        <table width="100%" cellspacing="0" cellpadding="0" class="norTable">
+            <tbody>
+                <tr>
+                    <th width="100">用户名/邮箱</th>
+                    <td>
+                        <input name="username" type="text" size="25" class="inputBg" /></td>
+                    <td width="435" class="vlm leftBorder center" rowspan="5" style="border-bottom: none">
+                        <img src="/content/images/user_img.jpg" style="padding-left: 5px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>密码</th>
+                    <td>
+                        <input name="password" type="password" size="15" class="inputBg" /></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <input type="checkbox" value="1" name="remember" id="remember" /><label for="remember"> 下次自动登录</label>
+                        <span style="color: #999; font-size: 12px;">使用公用电脑勿勾选</span>
+                    </td>
+                </tr>
+                <tr class="last">
+                    <th></th>
+                    <td class="vm" style="padding-bottom: 65px;">
+                        <input type="hidden" name="act" value="act_login" />
+                        <input type="hidden" name="back_act" value="./index.php" />
+                        <input type="submit" name="submit" value="登 录" class="user_bnt" />
+                        @*<a style="margin-left: 10px;" class="c4095ce" href="user.php?act=get_password">忘记密码</a> <span style="color: #999">|</span> <a class="c4095ce" href="user.php?act=register">注册</a></td>*@
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+</div>

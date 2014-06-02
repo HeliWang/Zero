@@ -14,9 +14,10 @@
 
     @System.Web.Optimization.Scripts.Render("~/content/js/common.js")
     @System.Web.Optimization.Scripts.Render("~/content/js/style.js")
+    @System.Web.Optimization.Scripts.Render("~/content/js/jquery.min.js")
 
 
-    @RenderSection("scripts", required: false)
+    @RenderSection("contents", required: false)
 
 </head>
 
@@ -26,6 +27,6 @@
 
     @RenderBody()
 
-    @*@Html.Partial("Order/_Footer")*@
+    @Html.Partial("Order/_Footer")
 </body>
 </html>

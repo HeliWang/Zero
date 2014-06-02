@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Zero.Domain.Users
 {
-    public class User
+    public class User:BaseEntity
     {
         public int UserId { get; set; }
 

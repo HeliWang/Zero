@@ -28,6 +28,13 @@ namespace Zero.Service.Orders
             //临时用户购物项和会员用户购物项转换
         }
 
+        public ResultInfo DeleteCart(User user, string cartIds)
+        {
+            //批量删除以后研究
+            _cartRepository.Delete(cartIds);
+            return new ResultInfo("删除成功");
+        }
+
         /// <summary>
         /// 添加或修改购物车项
         /// </summary>

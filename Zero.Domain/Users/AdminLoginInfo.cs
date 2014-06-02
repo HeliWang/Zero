@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Zero.Domain.User
+namespace Zero.Domain.Users
 {
     /// <summary>
     /// 总后台管理员-登入

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Zero.Domain.User
+namespace Zero.Domain.Users
 {
     public class AdminInfo
     {
