@@ -52,12 +52,15 @@
     <Compile Include="Mapping\Cates\AttrMap.cs" />
     <Compile Include="Mapping\Cates\AttrValueMap.cs" />
     <Compile Include="Mapping\Cates\CateAttrMap.cs" />
-    <Compile Include="Mapping\Orders\CartMap.cs" />
+    <Compile Include="Mapping\Trades\CartMap.cs" />
     <Compile Include="Mapping\Products\ProductDescMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
     <Compile Include="Mapping\Products\ProductPhotoMap.cs" />
     <Compile Include="Mapping\Products\SkuMap.cs" />
+    <Compile Include="Mapping\Trades\OrderMap.cs" />
+    <Compile Include="Mapping\Trades\SnapshotMap.cs" />
     <Compile Include="Mapping\Upload\PhotoMap.cs" />
+    <Compile Include="Mapping\Users\LocationMap.cs" />
     <Compile Include="Mapping\Users\UserMap.cs" />
     <Compile Include="Migrations\201404200820063_UpdateAttr333.cs" />
     <Compile Include="Migrations\201404200820063_UpdateAttr333.Designer.cs">
@@ -102,6 +105,22 @@
     <Compile Include="Migrations\201405271727097_UpdateCart2.cs" />
     <Compile Include="Migrations\201405271727097_UpdateCart2.Designer.cs">
       <DependentUpon>201405271727097_UpdateCart2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406031546067_UpdateOrder.cs" />
+    <Compile Include="Migrations\201406031546067_UpdateOrder.Designer.cs">
+      <DependentUpon>201406031546067_UpdateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406040600238_AddLocaton.cs" />
+    <Compile Include="Migrations\201406040600238_AddLocaton.Designer.cs">
+      <DependentUpon>201406040600238_AddLocaton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406041517370_UpdateOrder2.cs" />
+    <Compile Include="Migrations\201406041517370_UpdateOrder2.Designer.cs">
+      <DependentUpon>201406041517370_UpdateOrder2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406121004447_AddCartPhotoId.cs" />
+    <Compile Include="Migrations\201406121004447_AddCartPhotoId.Designer.cs">
+      <DependentUpon>201406121004447_AddCartPhotoId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -155,6 +174,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405271727097_UpdateCart2.resx">
       <DependentUpon>201405271727097_UpdateCart2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406031546067_UpdateOrder.resx">
+      <DependentUpon>201406031546067_UpdateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406040600238_AddLocaton.resx">
+      <DependentUpon>201406040600238_AddLocaton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406041517370_UpdateOrder2.resx">
+      <DependentUpon>201406041517370_UpdateOrder2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406121004447_AddCartPhotoId.resx">
+      <DependentUpon>201406121004447_AddCartPhotoId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

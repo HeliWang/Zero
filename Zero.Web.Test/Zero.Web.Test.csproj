@@ -180,10 +180,6 @@
       <Project>{9110e3e4-d7cf-4d57-b766-ad2d71a4f9d7}</Project>
       <Name>Zero.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zero\Zero.csproj">
-      <Project>{9d40f1d1-0dfa-4a42-b7c2-dbabc7074614}</Project>
-      <Name>Zero</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />

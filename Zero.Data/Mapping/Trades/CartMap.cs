@@ -1,10 +1,10 @@
 ﻿using System;
-using Zero.Domain.Orders;
+using Zero.Domain.Trades;
 using Zero.Domain.Products;
 using System.Data.Entity.ModelConfiguration;
 
 
-namespace Zero.Data.Mapping.Orders
+namespace Zero.Data.Mapping.Trades
 {
     public class CartMap : EntityTypeConfiguration<Cart>
     {
@@ -14,7 +14,7 @@ namespace Zero.Data.Mapping.Orders
             this.HasKey(c=>c.CartId);
 
             // Table & Column Mappings
-            this.ToTable("Cart");
+            this.ToTable("Trade_Cart");
 
             //Ignore
             //this.Ignore(c => c.id);
@@ -26,6 +26,10 @@ namespace Zero.Data.Mapping.Orders
             this.HasRequired(c => c.Sku)
                .WithMany()
                .HasForeignKey(c => c.SkuId);
+
+            this.HasRequired(c => c.ProductPhoto)
+               .WithMany()
+               .HasForeignKey(c => c.PhotoId);
         }
     }
 }

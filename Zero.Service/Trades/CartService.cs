@@ -6,26 +6,33 @@ using System.Threading.Tasks;
 
 using Zero.Data;
 using Zero.Domain.Users;
-using Zero.Domain.Orders;
+using Zero.Domain.Trades;
 using Zero.Domain.Products;
 using Zero.Core.Web;
 
-namespace Zero.Service.Orders
+namespace Zero.Service.Trades
 {
     //暂时不考虑临时用户
     public class CartService
     {
         private IRepository<Product> _productRepository;
         private IRepository<Sku> _skuRepository;
+        private IRepository<ProductPhoto> _productPhotoRepository;
         private IRepository<Cart> _cartRepository;
 
         public CartService()
         {
             _productRepository = new EfRepository<Product>();
             _skuRepository = new EfRepository<Sku>();
+            _productPhotoRepository = new EfRepository<ProductPhoto>();
             _cartRepository = new EfRepository<Cart>();
 
             //临时用户购物项和会员用户购物项转换
+        }
+
+        public void DeleteCart(User user, Cart cart)
+        {
+            _cartRepository.Delete(cart);
         }
 
         public ResultInfo DeleteCart(User user, string cartIds)
@@ -60,6 +67,7 @@ namespace Zero.Service.Orders
             }
 
             cart.SkuId = sku.SkuId;
+            cart.PhotoId = sku.PhotoId;
 
             var cartQuery = from c in  _cartRepository.Table
                             where c.SkuId==cart.SkuId && c.ProductId==cart.ProductId && c.UserId==cart.UserId && c.GuestId==cart.GuestId
@@ -97,7 +105,7 @@ namespace Zero.Service.Orders
         /// <returns></returns>
         public List<Cart> GetCartList(User user)
         {
-            var query = _cartRepository.Entities.Include("Product").Include("Sku").AsQueryable();
+            var query = _cartRepository.Entities.Include("Product").Include("Sku").Include("ProductPhoto").AsQueryable();
 
             if (user.UserId > 0)
             {
@@ -124,9 +132,25 @@ namespace Zero.Service.Orders
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
+        public List<Cart> GetCartList(int userId, string cartIds)
+        {
+            var query = _cartRepository.Entities.Include("Product").Include("Sku").Include("ProductPhoto").AsQueryable();
+
+            //query = from c in query
+            //        where c.UserId == userId && cartIds.Contains(c.CartId)
+            //        select c;
+
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// 获取购物车信息
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public List<Cart> GetCartList(int userId, string productIds, string skuIds)
         {
-            var query = _cartRepository.Entities.Include("Product").Include("Sku").AsQueryable();
+            var query = _cartRepository.Entities.Include("Product").Include("Sku").Include("ProductPhoto").AsQueryable();
 
             if (userId > 0)
             {

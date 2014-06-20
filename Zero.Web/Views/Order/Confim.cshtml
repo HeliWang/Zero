@@ -1,0 +1,200 @@
+﻿@{
+    Layout = "~/Views/Shared/Order/_Layout.cshtml";
+    ViewBag.Title = "Detail";
+}
+
+@model Zero.Web.Models.OrderConfimModel
+
+<div class="block950">
+
+    <div class="step step2">
+        <ul class="ul1">
+            我的购物车
+        </ul>
+        <ul class="ul2">
+            填写购物信息
+        </ul>
+        <ul class="ul2">
+            成功提交订单
+        </ul>
+    </div>
+
+
+    <div class="flowBox">
+        <style type="text/css">
+            .tbCartList .selected {background-color:#fffdee}
+            
+            .tbCartList .td_name div{float:left;margin:10px 0 0 10px;text-align:left;}
+            .tbCartList td{padding-left:0;padding-bottom:0;}
+            .column{border:1px solid #ddd;padding:15px 20px;}
+            .column .title{font-size:15px;padding:0 0 10px 0;}
+            .column ul{margin-left:25px;}
+            .column li{margin-top:5px;}
+            .column span{margin-left:30px;}
+
+            .column-top{background-color: #f7f7f7;height:30px;line-height:30px;padding:3px 10px;}
+            .column-bottom{background-color: #f7f7f7;line-height:5px;padding:8px; text-align:right;}
+            .column-bottom  .final_price{color:#d95854;font-size:16px;}
+            .column-1 table{margin-left:40px;}
+            .column-1 table th{text-align:right;font-weight:400;}
+            .column-3 table{margin-left:25px;}
+            
+        </style>
+        
+        <form name="form" id="OrderForm" action="ConfimOrder" method="post">
+        <div class="column column-top"><h2>填写并核对信息</h2></div>
+
+        <div class="column column-1">
+           <div class="title">收货人信息</div>
+           <ul>
+               <li>
+                   <input type="radio" id="address-123" name="address"/>
+                   <label for="address-123">潘忠伟  福建厦门市思明区莲前街道软件园2期 望海路63号301   13860464201    </label>
+                   <span><a>[编辑]</a>  <a>[删除]</a></span>
+               </li>
+               <li>
+                   <input type="radio" id="address-124" name="address"/>
+                   <label for="address-124">潘小伟  福建厦门市思明区莲前街道软件园2期 望海路63号301   13860464201     </label>
+                   <span><a>[编辑]</a>  <a>[删除]</a></span>
+               </li>
+               <li>
+                   <input type="radio" id="address-0" name="address"/>
+                   <label for="address-0">使用新地址</label>
+               </li>
+           </ul>
+           <div>
+               <table>
+                   <tr>
+                       <th>*收货人：</th><td><input type="text" /></td>
+                   </tr>
+                   <tr>
+                       <th>*所在地区：</th>
+                       <td>
+                           <select><option>请选择..</option></select>
+                           <select><option>请选择..</option></select>
+                           <select><option>请选择..</option></select>
+                           <select><option>请选择..</option></select>
+                       </td>
+                   </tr>
+                   <tr>
+                       <th>*详细地址：</th><td><input type="text" /></td>
+                   </tr>
+                   <tr>
+                       <th>*手机号码：</th><td><input type="text" />  或 固定电话：<input type="text" /></td>
+                   </tr>
+                   <tr>
+                       <th>邮箱：</th><td><input type="text" /></td>
+                   </tr>
+                   <tr>
+                       <td colspan="2"> <input type="submit" value="确定并保存" /></td>
+                   </tr>
+               </table>
+           </div>
+        </div>
+
+        <div class="column column-2">
+           <div class="title">支付及配送方式</div>
+            <ul>
+                <li>
+                   <input type="radio" id="type-1" name="PayType"/>
+                   <label for="type-1">货到付款</label>
+                   <span>送货上门后再收款，支持现金、POS机刷卡、支票支付   <a>查看服务及配送范围</a></span>
+                </li>
+                <li>
+                   <input type="radio" id="type-2" name="PayType"/>
+                   <label for="type-2">在线支付</label>
+                   <span>即时到帐，支持绝大数银行借记卡及部分银行信用卡   <a>查看银行及限额</a></span>
+                </li>
+                <li>
+                   <input type="radio" id="type-3" name="PayType"/>
+                   <label for="type-3">分期付款</label>
+                   <span>分期付款 信用卡网上支付订单，按月还款，减轻资金周转压力   <a>查看分期付款帮助</a></span>
+                </li>
+            </ul>
+        </div>
+
+        @*<div>
+            <div>发票信息</div>
+        </div>*@
+
+        <div class="column column-3">
+            <div class="title">商品清单</div>
+            <table class="tbCartList"  align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="width:95%">
+                <tr>
+                    @*<th bgcolor="#ffffff" style="width: 50px;"><input type="checkbox" id="check_all" /><label for="check_all">全选</label></th>*@
+                    <th bgcolor="#ffffff" style="width: 450px;">商品名称</th>
+                    <th bgcolor="#ffffff" style="width: 120px;">规格</th>
+                    <!--  <th bgcolor="#ffffff">市场价</th> -->
+                    <th bgcolor="#ffffff">本店价</th>
+                    <th bgcolor="#ffffff">购买数量</th>
+                    <th bgcolor="#ffffff">小计</th>
+                   @* <th bgcolor="#ffffff" class="norBorder">操作</th>*@
+                </tr>
+                @foreach (var cart in @Model.CartList)
+                {
+                <tr class="selected">
+                   @* <td><input type="checkbox" checked class="cart_id" value="@cart.CartId" /></td>*@
+                    <td class="td_name" align="center">
+                        <div class="p-img">
+                            <a href="@cart.Product.DetailUrl" target="_blank">
+                                <img style="width: 50px; height: 50px; border: 1px solid #ccc; margin-bottom: 10px;" src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(cart.Product.Photo, 50,50)" border="0" title="" />
+                            </a>
+                        </div>
+                        <div class="p-detail">
+                            <a href="@cart.Product.DetailUrl" target="_blank">@cart.Product.ProductName</a>
+                            <p style="color: #999">商品编号：@cart.ProductId</p>
+                        </div>
+                    </td>
+                    <td style=" text-align:left;padding-left:10px;">
+                        @foreach (var attrList in cart.Attr.Split(','))
+                        {
+                            var attr=attrList.Split(':');
+                            @(attr[2] + ":" + attr[3]);
+                            <text><br /></text>
+                        }
+                    </td>
+                    <td class="td_price">￥@cart.Sku.Price.ToString()元</td>
+                    <td>
+                       @cart.Quantity
+                    </td>
+                    <td class="td_price">￥<span class="total_price">@(cart.Sku.Price * cart.Quantity)</span>元</td>
+                   @* <td class="norBorder textLink">
+                        <a href="javascript:void(0)" onclick="removeCart(@cart.CartId)">删除</a>
+                    </td>*@
+                </tr>
+                }
+            </table>
+        </div>
+
+        <div class="column column-bottom clearfix">
+            <input type="hidden" name="CartIds" value="@Model.CartIds"/>
+            <div style="float:left;margin-right:10px;line-height:30px;text-align:right;">总计：<i class="final_price">0.00</i> 元</div>
+            <div style="float:right;"><a class="cart_submit" href="javascript:void(0)"><img src="/content/images/checkout.gif" alt="checkout" /></a></div>
+        </div>
+        </form>
+        <script type="text/javascript">
+            $(function () {
+
+                loadOrder();
+
+                function loadOrder() {
+                    var totalPrice = $(".total_price");
+                    var finalPrice = 0;
+
+                    totalPrice.each(function (i) {
+                        var price = $(this).html();
+                        finalPrice += (parseFloat(price));
+                    });
+
+                    $(".final_price").html("￥" + finalPrice);
+                }
+
+                $(".cart_submit").click(function () {
+                    $("#OrderForm").submit();
+                });
+            });
+        </script>
+    </div>
+
+</div>
+

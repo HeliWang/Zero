@@ -1,0 +1,184 @@
+﻿@{
+    Layout = "~/Views/Shared/Tab/_Index.cshtml";
+    ViewBag.Title = "ProductIndex";
+}
+
+<script type="text/javascript" src="http://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
+
+
+<!-- 列表 -->
+<table id="grid"></table>
+
+<!-- 工具栏 -->
+<div id="toolbar">
+    <div>
+        <a href="#" id="add"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        @*<a href="#" id="addAll"  class="easyui-linkbutton" iconCls="icon-add" plain="true">商品添加完整</a>*@
+        <a href="#" id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="#" id="remove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除</a>
+        <a href="#" id="reload" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+        
+    </div>
+   @* <div>
+        Date From: <input class="easyui-datebox" style="width:80px">
+        To: <input class="easyui-datebox" style="width:80px">
+        Language: 
+        <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+            <option value="java">Java</option>
+            <option value="c">C</option>
+            <option value="basic">Basic</option>
+            <option value="perl">Perl</option>
+            <option value="python">Python</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+    </div>*@
+</div>
+
+<script type="text/javascript">
+
+    var controller = "Order";
+
+    $(function () {
+
+        //加载网格(搜索中文版对照属性，来配置)
+        $('#grid').datagrid({
+            title: '订单列表',
+            collapsible: true,
+            rownumbers: true,
+            url: '/Order/OrderList',
+            method: 'get',
+            loadMsg: '正在加载数据...',
+            //idField: 'ProductId',
+            fitColumns: false,
+            width: 1180,
+            height: 630,
+            pagination: true,
+            pageSize: 30,
+            pageList: [10, 20, 30, 40, 50, 100],
+            //frozenColumns: [[
+            //    { field: 'OrderId', checkbox: true },
+            //    { field: 'ProductId', title: '商品编号', width: 50, algin: 'center' },//会绑定checkbox
+            //    { field: 'id', title: '商品编号', width: 60, align: 'center' },
+            //    { field: 'OrderNo', title: '订单编号', width: 140,algin: 'center'},
+            //    { field: 'RealPay', title: '订单金额', width: 180, algin: 'center' },
+            //]],
+            columns: [[
+                { field: 'OrderId', title: '订单编号', width: 100, align: 'center' },
+                { field: 'OrderNo', title: '订单号', width: 500, align: 'center' },
+                { field: 'Quantity', title: '商品个数', width: 100, align: 'center' },
+                { field: 'Price', title: '应付金额', width: 100, align: 'center' },
+                { field: 'Freight', title: '运费', width: 100, align: 'center' },
+                { field: 'RealPay', title: '支付金额', width: 80, align: 'center' },
+                //{ field: 'UserId', title: '用户ID', width: 80, algin: 'center' },
+                //{ field: 'Groups', title: '自定义分类', width: 80, algin: 'center' },
+                //{ field: 'Unit', title: '单位', width: 80, algin: 'center' },
+                //{ field: 'Status', title: '状态', width: 80, algin: 'center' },
+                //{ field: 'CreateTime', title: '创建时间', width: 70, algin: 'center', formatter: timeFormat },
+                //{ field: 'UpdateTime', title: '更新时间', width: 70, algin: 'center', formatter: timeFormat },
+                //{ field: 'operate', title: '操作', width: 80, align: 'center', formatter: operateFormat },
+                //{ field: 'DetailUrl', hidden: true },
+            ]],
+            onLoadError: function () {
+                $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
+            },
+            toolbar: '#toolbar',
+            view: detailview,
+            detailFormatter: function (index, row) {
+                return '<div style="padding:8px"><table class="ddv"></table></div>';
+            },
+            onExpandRow: function (index, row) {
+                var ddv = $(this).datagrid('getRowDetail', index).find('table.ddv');
+                ddv.datagrid({
+                    url: '/order/SnapshotList?orderId=' + row.OrderId,
+                    fitColumns: true,
+                    singleSelect: true,
+                    rownumbers: true,
+                    loadMsg: '正在加载中....',
+                    height: 'auto',
+                    columns: [[
+                        { field: 'SnapshotId', title: '快照编号', width: 50 },
+                        { field: 'Photo', title: '商品图片', width: 115, align: 'center' ,formatter:photoFormat},
+                        { field: 'ProductName', title: '商品名称', width: 200, align: 'center' },
+                        { field: 'Attr', title: '商品属性', width: 200, align: 'center', formatter: attrFormat },
+                        { field: 'Price', title: '商品单价', width: 100, align: 'center' },
+                        { field: 'FinalPrice', title: '最终单价', width: 100, align: 'center' },
+                        { field: 'Quantity', title: '购买数量', width: 100, align: 'center' },
+                        { field: 'TotalPrice', title: '单品总额', width: 100, align: 'center' },
+                        { field: 'CateId', title: '类别编号', width: 100, align: 'center' },
+                        { field: 'UserId', title: '卖家编号', width: 100, align: 'center' },
+                    ]],
+                    onResize: function () {
+                        $('#grid').datagrid('fixDetailRowHeight', index);
+                    },
+                    onLoadError: function () {
+                        $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
+                    },
+                    onLoadSuccess: function () {
+                        setTimeout(function () {
+                            $('#grid').datagrid('fixDetailRowHeight', index);
+                        }, 0);
+                    }
+                });
+                $('#grid').datagrid('fixDetailRowHeight', index);
+            },
+
+            //openParentTab('商品添加部分', '/Product/ProductAddPart');
+        });
+
+        function operateFormat(value, row, index) {
+            var html = "";
+            html += openParentTabLinkButton('修改', '/Product/ProductEdit?ProductId=' + row.id, row.id);
+            html += " | ";
+            html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除</a>";
+            return html;
+        }
+
+        function photoFormat(value, row, index) {
+            if (value == null) return '';
+            return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value.split("|")[0] + '" width="100" height="100"/></a>';
+        }
+
+        function attrFormat(value, row, index) {
+            if (value == null) return '';
+
+            var attrArray = value.split(",");
+
+            var result = "";
+
+            for (var i = 0; i < attrArray.length; i++) {
+                result += String.format("<p>{0}:{1}</p>", attrArray[i].split(":")[2], attrArray[i].split(":")[3]);
+            }
+
+            return result;
+        }
+    });
+
+    
+
+    ////设置分页控件  
+    //var p = $('#list_data').datagrid('getPager');
+    //$(p).pagination({
+    //    pageSize: 10,//每页显示的记录条数，默认为10  
+    //    pageList: [5, 10, 15],//可以设置每页记录条数的列表  
+    //    beforePageText: '第',//页数文本框前显示的汉字  
+    //    afterPageText: '页    共 {pages} 页',
+    //    displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
+    //    /*onBeforeRefresh:function(){ 
+    //        $(this).pagination('loading'); 
+    //        alert('before refresh'); 
+    //        $(this).pagination('loaded'); 
+    //    }*/
+    //});
+
+    ////为loadGrid()添加参数  
+    //var queryParams = $('#cxdm').datagrid('options').queryParams;
+    //queryParams.who = who.value;
+    //queryParams.type = type.value;
+    //queryParams.searchtype = searchtype.value;
+    //queryParams.keyword = keyword.value;
+    ////重新加载datagrid的数据  
+    //$("#cxdm").datagrid('reload');
+
+
+    
+</script>

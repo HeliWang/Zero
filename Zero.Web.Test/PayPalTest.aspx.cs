@@ -11,8 +11,8 @@ namespace Zero.Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Zero.Payment.PayPayApi api = new Payment.PayPayApi("");
-            api.SetExpressCheckout();
+            //Zero.Payment.PayPayApi api = new Payment.PayPayApi("");
+            //api.SetExpressCheckout();
 
             //string result = HttpUtility.UrlDecode(api.Call(), System.Text.Encoding.Default);
 

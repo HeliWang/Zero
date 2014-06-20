@@ -43,6 +43,11 @@ namespace Zero.Domain.Products
         public string Photo { get; set; }
 
         /// <summary>
+        /// 图片编号
+        /// </summary>
+        public int PhotoId { get; set; }
+
+        /// <summary>
         /// 价格
         /// </summary>
         public decimal Price { get; set; }

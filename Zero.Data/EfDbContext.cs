@@ -9,7 +9,7 @@ using Zero.Data.Mapping.Products;
 using Zero.Data.Mapping.Cates;
 using Zero.Data.Mapping.Upload;
 using Zero.Data.Mapping.Users;
-using Zero.Data.Mapping.Orders;
+using Zero.Data.Mapping.Trades;
 namespace Zero.Data
 {
     public class EfDbContext : DbContext
@@ -35,7 +35,10 @@ namespace Zero.Data
             modelBuilder.Configurations.Add(new ProductPhotoMap());
             modelBuilder.Configurations.Add(new ProductDescMap());
             modelBuilder.Configurations.Add(new CartMap());
+            modelBuilder.Configurations.Add(new OrderMap());
+            modelBuilder.Configurations.Add(new SnapshotMap());
             modelBuilder.Configurations.Add(new UserMap());
+            modelBuilder.Configurations.Add(new LocationMap());
         }
     }
 

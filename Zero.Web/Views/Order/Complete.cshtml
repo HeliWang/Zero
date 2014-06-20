@@ -1,0 +1,88 @@
+﻿@{
+    Layout = "~/Views/Shared/Order/_Layout.cshtml";
+    ViewBag.Title = "Detail";
+}
+
+@model Zero.Web.Models.OrderConfimModel
+
+<div class="block950">
+
+    <div class="step step3">
+        <ul class="ul1">
+            我的购物车
+        </ul>
+        <ul class="ul2">
+            填写购物信息
+        </ul>
+        <ul class="ul2">
+            成功提交订单
+        </ul>
+    </div>
+
+
+    <div class="flowBox">
+        <style type="text/css">
+            .tbCartList .selected {background-color:#fffdee}
+            
+            .tbCartList .td_name div{float:left;margin:10px 0 0 10px;text-align:left;}
+            .tbCartList td{padding-left:0;padding-bottom:0;}
+            .column{border:1px solid #ddd;padding:15px 20px;}
+            .column .title{font-size:15px;padding:0 0 10px 0;}
+            .column ul{margin-left:25px;}
+            .column li{margin-top:5px;}
+            .column span{margin-left:30px;}
+
+            .column-top{background-color: #f7f7f7;height:30px;line-height:30px;padding:3px 10px;}
+            .column-bottom{background-color: #f7f7f7;line-height:5px;padding:8px; text-align:right;}
+            .column-bottom  .final_price{color:#d95854;font-size:16px;}
+            .column-1 table{margin-left:40px;}
+            .column-1 table th{text-align:right;font-weight:400;}
+            .column-3 table{margin-left:25px;}
+
+            .column-complete{text-align:center;font-size:14px;padding:20px 0; border: 1px solid #FCB77E;background: #FDFAE9;}
+            .column-payment{margin-top:30px;border:none;padding:0;}
+            .column-payment .tab-nav li{float:left; margin-left:20px;border: 1px solid #cfcfcf;border-bottom: none;padding:5px 10px;}
+            .column-payment .tab-nav .selected {border: 1px solid #ce0000;border-bottom: 1px solid #fff;position: relative;margin-bottom: -1px;}
+            .column-payment .tab-content{border: 1px solid #ce0000;padding:10px;}
+            .column-payment .hidden{display:none;}
+            .column-payment .tab-content li{float:left;padding:10px;}
+            .column-payment .tab-content li input {float:left;margin-top:10px;}
+            .column-payment .tab-content li label {
+                float:left;
+                text-indent: -99999em;
+                width: 150px;
+                height: 40px;
+                background-image: url(http://img.taoxie.com/bank/bank_logo.png);
+                background-repeat: no-repeat;
+                cursor: pointer;
+                border: 1px solid #ddd;
+                margin-left: 10px;
+            }
+  
+            .column-payment .ALIPAY{background-position: 0 -520px;}
+            .column-payment .CCB{background-position: 0 -160px;}
+            .column-payment .ICBC{background-position: 0 -40px;}
+            .column-payment .TENPAY{background-position: 0 -560px;}
+            .column-payment .buttom{padding:30px 0; text-align:center;}
+        </style>
+      
+
+        <div class="column column-complete">
+           <div>您的订单已支付成功，订单号为 TX2014060769280，支付金额为 229.00 元 (含运费20元)，请选择以下支付方式支付。</div>
+        </div>
+        
+        
+         @*<script type="text/javascript">
+             $(function () {
+                 $(".tab-nav li").mouseenter(function () {
+                     $(".tab-nav .selected").removeClass("selected");
+                     $(this).addClass("selected");
+                     var index = $(this).index();
+                     $(".tab-content").eq(index).removeClass("hidden").siblings().addClass("hidden");
+                 });
+             });
+        </script>*@
+    </div>
+
+</div>
+

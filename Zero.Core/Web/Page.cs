@@ -11,6 +11,10 @@ namespace Zero.Core.Web
     [Serializable]
     public class Page<T> :  IPage<T>
     {
+        public Page()
+        {
+        }
+
         /// <summary>
         /// Ctor
         /// </summary>
@@ -76,6 +80,7 @@ namespace Zero.Core.Web
         public List<T> Items
         {
             get { return _items; }
+            set { _items = value; }
         }
 
         public int PageIndex { get; private set; }

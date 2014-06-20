@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace Zero.Mvc.Manage.Controllers
 {
     public class HomeController : Controller
@@ -19,6 +20,7 @@ namespace Zero.Mvc.Manage.Controllers
         // GET: /Index/
         public ActionResult Main()
         {
+            
             return View();
         }
     }

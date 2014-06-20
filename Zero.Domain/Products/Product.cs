@@ -7,12 +7,13 @@ namespace Zero.Domain.Products
     /// <summary>
     /// 商品基本信息
     /// </summary>
-    public partial class Product : BaseEntity
+    public class Product : BaseEntity
     {
         public int id { get { return ProductId; }}
 
         /// <summary>
         /// 商品自增ID
+
         /// </summary>
         public int ProductId { get; set; }
 

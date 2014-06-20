@@ -6,8 +6,8 @@ using System.Web.Mvc;
 
 using Zero.Core.Web;
 using Zero.Domain.Users;
-using Zero.Domain.Orders;
-using Zero.Service.Orders;
+using Zero.Domain.Trades;
+using Zero.Service.Trades;
 
 
 namespace Zero.Web.Controllers
@@ -28,7 +28,7 @@ namespace Zero.Web.Controllers
             user.GuestId = "";
             List<Cart> cartList = _cartService.GetCartList(user);
             return View(cartList);
-        }
+        }      
 
         public ActionResult RemoveCart()
         {

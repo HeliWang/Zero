@@ -17,6 +17,6 @@ namespace Zero.Core.Web
         int TotalPages { get; }
         bool HasPreviousPage { get; }
         bool HasNextPage { get; }
-        List<T> Items { get;}
+        List<T> Items { get; set; }
     }
 }

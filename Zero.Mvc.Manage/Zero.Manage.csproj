@@ -115,6 +115,7 @@
     <Compile Include="Controllers\Cates\CateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Products\ProductController.cs" />
+    <Compile Include="Controllers\Trades\OrderController.cs" />
     <Compile Include="Controllers\Upload\PhotoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -472,7 +473,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Photo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -563,7 +563,7 @@
     <Content Include="App_Code\MyHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Product\PhotoIndex.cshtml" />
+    <Content Include="Views\Photo\PhotoIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Attr\AttrIndex.cshtml" />
@@ -600,6 +600,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\CateAttr\CateAttrAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Order\OrderIndex.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -30,17 +30,26 @@ namespace Zero.Service.Products
             product.Photo = product.PhotoList[0].Url;
             var productId= _productRepository.Add(product).ProductId;
 
+            
+            foreach (ProductPhoto photo in product.PhotoList)
+            {
+                photo.ProductId = productId;
+                photo.PhotoId = _productPhotoRepository.Add(photo).PhotoId;
+            }
+
             //未测试是否有关联插入
             foreach (Sku sku in product.SkuList)
             {
                 sku.ProductId = productId;
-                _skuRepository.Add(sku);
-            }
 
-            foreach (ProductPhoto photo in product.PhotoList)
-            {
-                photo.ProductId = productId;
-                _productPhotoRepository.Add(photo);
+                var photo = product.PhotoList.Where(p => sku.Attr.Contains(p.Attr)).ToList();
+
+                if (photo.Count > 0)
+                {
+                    sku.PhotoId = photo[0].PhotoId;
+                }
+
+                _skuRepository.Add(sku);
             }
 
             product.Desc.ProductId = productId;

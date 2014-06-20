@@ -149,8 +149,29 @@
                              ]
                          }
                      ]
+
+                 }, {
+                     name: "交易中心", open: true,
+                     children: [
+                         {
+                             name: "订单管理", t: "只有运营部才可以编辑", open: true,
+                             children: [
+                                 { name: "订单列表", path: "order/orderIndex" },
+                             ]
+                         }
+                     ]
+                 }, {
+                     name: "用户中心", open: true,
+                     children: [
+                         {
+                             name: "会员管理", t: "只有运营部才可以编辑", open: true,
+                             children: [
+                                 { name: "订单列表", path: "product/productIndex" },
+                             ]
+                         }
+                     ]
                  },
-                 { name: "没有子节点" }
+                 //{ name: "没有子节点" }
              ];
 
              $.fn.zTree.init($("#treeMenu"), setting, nodes);

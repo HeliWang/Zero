@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Zero.Domain.Products;
 
-namespace Zero.Domain.Orders
+namespace Zero.Domain.Trades
 {
     public class Cart : BaseEntity
     {
@@ -16,6 +16,8 @@ namespace Zero.Domain.Orders
 
         public int SkuId   { get; set; }
 
+        public int PhotoId { get; set; }
+
         public string Attr { get; set; }
 
         public int Quantity { get; set; }
@@ -24,12 +26,14 @@ namespace Zero.Domain.Orders
 
         public string GuestId { get; set; }
 
+        public DateTime? CreateTime { get; set; }
+
+        public DateTime? UpdateTime { get; set; }
+
         public Product Product { get; set; }
 
         public Sku Sku { get; set; }
 
-        public DateTime? CreateTime { get; set; }
-
-        public DateTime? UpdateTime { get; set; }
+        public ProductPhoto ProductPhoto { get; set; }
     }
 }
