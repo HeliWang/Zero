@@ -10,27 +10,30 @@ using Zero.Core.Web;
 
 namespace Zero.Service.Products
 {
-    public class ProductService
+    public class ProductService : IProductService
     {
         private IRepository<Product> _productRepository;
         private IRepository<Sku> _skuRepository;
         private IRepository<ProductDesc> _productDescRepository;
         private IRepository<ProductPhoto> _productPhotoRepository;
 
-        public ProductService()
+        public ProductService(IRepository<Product> productRepository,
+            IRepository<Sku> skuRepository,
+            IRepository<ProductDesc> productDescRepository,
+            IRepository<ProductPhoto> productPhotoRepository)
         {
-            _productRepository = new EfRepository<Product>();
-            _skuRepository = new EfRepository<Sku>();
-            _productDescRepository = new EfRepository<ProductDesc>();
-            _productPhotoRepository = new EfRepository<ProductPhoto>();
+            _productRepository = productRepository;
+            _skuRepository = skuRepository;
+            _productDescRepository = productDescRepository;
+            _productPhotoRepository = productPhotoRepository;
         }
 
         public ResultInfo Add(Product product)
         {
             product.Photo = product.PhotoList[0].Url;
-            var productId= _productRepository.Add(product).ProductId;
+            var productId = _productRepository.Add(product).ProductId;
 
-            
+
             foreach (ProductPhoto photo in product.PhotoList)
             {
                 photo.ProductId = productId;
@@ -93,8 +96,8 @@ namespace Zero.Service.Products
         {
             var query = _skuRepository.Table;
 
-            query = from s in query 
-                    where s.ProductId == productId 
+            query = from s in query
+                    where s.ProductId == productId
                     select s;
 
             query = query.OrderByDescending(b => b.SkuId);

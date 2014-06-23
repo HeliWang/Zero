@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 
+using Zero.Mvc.Manage.Infrastructure;
+
 namespace Zero.Mvc.Manage
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -19,6 +21,9 @@ namespace Zero.Mvc.Manage
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            DependencyRegistrar dependencyRegistrar = new DependencyRegistrar();
+            dependencyRegistrar.Registrar();
         }
     }
 }

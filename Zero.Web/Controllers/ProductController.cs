@@ -15,12 +15,12 @@ namespace Zero.Web.Controllers
 {
     public class ProductController : Controller
     {
-        public ProductService _productService;
+        public IProductService _productService;
         public CateService _cateService;
 
-        public ProductController()
+        public ProductController(IProductService productService)
         {
-            _productService = new ProductService();
+            _productService = productService;
             _cateService = new CateService();
         }
 

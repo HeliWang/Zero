@@ -56,6 +56,7 @@
     <Compile Include="Cates\CateService.cs" />
     <Compile Include="Cates\AttrValueService.cs" />
     <Compile Include="Cates\CateAttrService.cs" />
+    <Compile Include="Products\IProductService.cs" />
     <Compile Include="Trades\CartService.cs" />
     <Compile Include="Trades\OrderService.cs" />
     <Compile Include="Products\ProductService.cs" />

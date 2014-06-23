@@ -103,7 +103,7 @@ public  class Uploader
         }
         catch (Exception e)
         {
-            state = "未知错误";
+            state = e.InnerException.ToString();
             URL = "";
         }
         finally

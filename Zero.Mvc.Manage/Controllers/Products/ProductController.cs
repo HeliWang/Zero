@@ -17,11 +17,11 @@ namespace Zero.Mvc.Manage.Controllers.Products
 {
     public class ProductController : BaseController
     {
-        ProductService _productService;
+        IProductService _productService;
 
-        public ProductController()
+        public ProductController(IProductService productService)
         {
-            _productService = Singleton<ProductService>.GetInstance();
+            _productService = productService;
         }
 
         public ActionResult ProductList()

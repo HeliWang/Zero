@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +41,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -120,6 +130,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ueditor\net\Config.cs" />
@@ -503,6 +514,10 @@
       <Project>{c5288e7c-1d40-4c1a-a15e-bf20d69af585}</Project>
       <Name>Zero.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zero.Data\Zero.Data.csproj">
+      <Project>{9110e3e4-d7cf-4d57-b766-ad2d71a4f9d7}</Project>
+      <Name>Zero.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Zero.Domain\Zero.Domain.csproj">
       <Project>{c8e91ed2-3562-4afb-8046-18158f49676a}</Project>
       <Name>Zero.Domain</Name>
@@ -510,6 +525,10 @@
     <ProjectReference Include="..\Zero.Service\Zero.Service.csproj">
       <Project>{80395694-332c-40b1-a3b7-e1874b1768ab}</Project>
       <Name>Zero.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zero.Web.Framework\Zero.Web.Framework.csproj">
+      <Project>{806e7540-ea1e-4913-855d-025fef726887}</Project>
+      <Name>Zero.Web.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -631,6 +650,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
