@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Zero.Domain.Cates
+namespace Zero.Domain
 {
     public class BaseCate : BaseEntity
     {
