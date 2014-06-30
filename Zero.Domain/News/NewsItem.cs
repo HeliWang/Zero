@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zero.Domain.News
 {
-    public class News
+    public class NewsItem : BaseEntity
     {
         public int NewsId { get; set; }
 
@@ -40,6 +40,8 @@ namespace Zero.Domain.News
 
         public DateTime? UpdateTime { get; set; }
 
-        public virtual NewsContent Content { get; set; }
+        public int DetailId { get; set; }
+
+        public virtual NewsDetail Detail { get; set; }
     }
 }

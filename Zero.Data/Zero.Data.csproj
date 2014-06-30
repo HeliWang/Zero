@@ -54,6 +54,11 @@
     <Compile Include="Mapping\Cates\AttrMap.cs" />
     <Compile Include="Mapping\Cates\AttrValueMap.cs" />
     <Compile Include="Mapping\Cates\CateAttrMap.cs" />
+    <Compile Include="Mapping\News\CommentMap.cs" />
+    <Compile Include="Mapping\News\NewsCateMap.cs" />
+    <Compile Include="Mapping\News\NewsDetailMap.cs" />
+    <Compile Include="Mapping\News\NewsItemMap.cs" />
+    <Compile Include="Mapping\News\TagMap.cs" />
     <Compile Include="Mapping\Trades\CartMap.cs" />
     <Compile Include="Mapping\Products\ProductDescMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
@@ -124,6 +129,14 @@
     <Compile Include="Migrations\201406121004447_AddCartPhotoId.Designer.cs">
       <DependentUpon>201406121004447_AddCartPhotoId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406290650157_UpdateProduct2.cs" />
+    <Compile Include="Migrations\201406290650157_UpdateProduct2.Designer.cs">
+      <DependentUpon>201406290650157_UpdateProduct2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406290715548_AddNews.cs" />
+    <Compile Include="Migrations\201406290715548_AddNews.Designer.cs">
+      <DependentUpon>201406290715548_AddNews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -188,6 +201,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406121004447_AddCartPhotoId.resx">
       <DependentUpon>201406121004447_AddCartPhotoId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406290650157_UpdateProduct2.resx">
+      <DependentUpon>201406290650157_UpdateProduct2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406290715548_AddNews.resx">
+      <DependentUpon>201406290715548_AddNews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

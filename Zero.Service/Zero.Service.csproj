@@ -57,6 +57,7 @@
     <Compile Include="Cates\AttrValueService.cs" />
     <Compile Include="Cates\CateAttrService.cs" />
     <Compile Include="News\INewsService.cs" />
+    <Compile Include="News\NewsCateService.cs" />
     <Compile Include="News\NewsServices.cs" />
     <Compile Include="Products\IProductService.cs" />
     <Compile Include="Trades\CartService.cs" />

@@ -124,6 +124,7 @@
     <Compile Include="Controllers\Cates\CateAttrController.cs" />
     <Compile Include="Controllers\Cates\CateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\News\NewsController.cs" />
     <Compile Include="Controllers\Products\ProductController.cs" />
     <Compile Include="Controllers\Trades\OrderController.cs" />
     <Compile Include="Controllers\Upload\PhotoController.cs" />
@@ -622,6 +623,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Order\OrderIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\News\CateAdd.cshtml" />
+    <Content Include="Views\News\CateEdit.cshtml" />
+    <Content Include="Views\News\CateIndex.cshtml" />
+    <Content Include="Views\News\NewsAdd.cshtml" />
+    <Content Include="Views\News\NewsEdit.cshtml" />
+    <Content Include="Views\News\NewsIndex.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

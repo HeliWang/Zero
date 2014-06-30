@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Zero.Domain.News
 {
-    public class NewsContent
+    public class NewsCate : BaseCate
     {
-        public int DescId { get; set; }
-
-        public int NewsId { get; set; }
-
-        public string Content { get; set; }
+        public string Intro { get; set; }
+        public List<NewsCate> children { get; set; }
     }
 }

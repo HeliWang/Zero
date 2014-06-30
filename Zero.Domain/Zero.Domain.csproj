@@ -48,9 +48,10 @@
     <Compile Include="BaseCate.cs" />
     <Compile Include="Cates\Cate.cs" />
     <Compile Include="News\Comment.cs" />
-    <Compile Include="News\News.cs" />
-    <Compile Include="News\Cate.cs" />
-    <Compile Include="News\NewsContent.cs" />
+    <Compile Include="News\NewsCate.cs" />
+    <Compile Include="News\NewsDetail.cs" />
+    <Compile Include="News\NewsItem.cs" />
+    <Compile Include="News\NewsSearch.cs" />
     <Compile Include="News\Tag.cs" />
     <Compile Include="Trades\Cart.cs" />
     <Compile Include="Trades\Order.cs" />
