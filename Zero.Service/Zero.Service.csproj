@@ -53,8 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cates\AttrService.cs" />
-    <Compile Include="Cates\CateService.cs" />
+    <Compile Include="Cates\BaseCateService.cs" />
     <Compile Include="Cates\AttrValueService.cs" />
+    <Compile Include="Cates\CateService.cs" />
     <Compile Include="Cates\CateAttrService.cs" />
     <Compile Include="News\INewsService.cs" />
     <Compile Include="News\NewsCateService.cs" />

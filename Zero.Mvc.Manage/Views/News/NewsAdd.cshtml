@@ -1,19 +1,117 @@
 ﻿@{
-    Layout = "~/Views/Shared/Window/_Add.cshtml";
+    Layout = "~/Views/Shared/Tab/_Add.cshtml";
     ViewBag.Title = "CateAdd";
 }
 
+@section Scripts {
+    <!-- 配置文件 -->
+    @Scripts.Render("~/ueditor/ueditor.config.js")
+    <!-- 编辑器源码文件 -->
+    @Scripts.Render("~/ueditor/ueditor.all.min.js")
+    <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
+    @Scripts.Render("~/ueditor/lang/zh-cn/zh-cn.js")
+
+    <!-- 扩展验证文件 -->
+    @Scripts.Render("~/scripts/validate.js")
+}
+
 <form id="Form" action="@Url.Action("NewsAdd","News")" method="post">
+    <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
+    
+    <div title="商品基本">
     <table class="z-tb-form">
-        <tr>
+         <tr>
             <th>所属分类：</th>
+                <td>
+                    <input id="CateId" name="CateId"  data-options="url:'@Url.Action("CateList","News")'" class="easyui-combotree"  style="width:200px;">
+                </td>
+            </tr>
+        <tr>
+            <th>文章标题：</th>
             <td>
-               <input name="Pid"  data-options="url:'@Url.Action("CateDropList","Cate")'" value="@ViewBag.Pid" class="easyui-combotree"  style="width:200px;">
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:800px;">
             </td>
         </tr>
         <tr>
-            <th>名称：</th>
-            <td><input type="text" name="CateName" class="easyui-validatebox" data-options="required:true" style="width:150px;"/></td>
+            <th>副标题：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
+            </td>
+        </tr>
+        <tr>
+            <th>文章概要：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>来源作者：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:100px;">
+            </td>
+        </tr>
+        <tr>
+            <th>来源地址：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>来源网址：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>关键字：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
+            </td>
+        </tr>
+        <tr>
+            <th>标签：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
+            </td>
+        </tr>
+        <tr>
+            <th>图片：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>跳转地址：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
+            </td>
+        </tr>
+        <tr>
+            <th>是否允许评论：</th>
+            <td>
+               <input type="checkbox" id="IsComment" name="IsComment" value="1"/><label for="IsComment">是</label>
+            </td>
+        </tr>
+        <tr>
+            <th>评论总数：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:60px;">
+            </td>
+        </tr>
+        <tr>
+            <th>点击量：</th>
+            <td>
+               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:60px;">
+            </td>
+        </tr>
+        <tr>
+            <th>内容：</th>
+            <td>
+               <textarea id="Content" name="Detail[0].Content" style="width:800px;height:200px;"></textarea>
+               <script>$(function () { UE.getEditor('Content'); });</script>
+            </td>
         </tr>
     </table>
+    </div>
+    </div>
 </form>

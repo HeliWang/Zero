@@ -137,6 +137,10 @@
     <Compile Include="Migrations\201406290715548_AddNews.Designer.cs">
       <DependentUpon>201406290715548_AddNews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407060730525_UpdateNEws.cs" />
+    <Compile Include="Migrations\201407060730525_UpdateNEws.Designer.cs">
+      <DependentUpon>201407060730525_UpdateNEws.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406290715548_AddNews.resx">
       <DependentUpon>201406290715548_AddNews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407060730525_UpdateNEws.resx">
+      <DependentUpon>201407060730525_UpdateNEws.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

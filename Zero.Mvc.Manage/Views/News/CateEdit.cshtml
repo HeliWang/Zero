@@ -1,5 +1,28 @@
 ﻿@{
+    Layout = "~/Views/Shared/Window/_Edit.cshtml";
     ViewBag.Title = "CateEdit";
 }
 
-<h2>CateEdit</h2>
+
+@model Zero.Domain.News.NewsCate
+
+@if (Model != null)
+{
+<form id="Form" action="@Url.Action("CateEdit","News")" method="post">
+    <table class="z-tb-form">
+        <tr>
+            <th>所属分类：</th>
+            <td>
+                <input name="Pid"  data-options="url:'@Url.Action("CateDropList","News")'" value="@Model.Pid" class="easyui-combotree"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>名称：</th>
+            <td>
+                <input type="hidden" name="CateId"  value="@Model.CateId"/>
+                <input type="text" name="CateName" value="@Model.CateName" class="easyui-validatebox" data-options="required:true" style="width:150px;"/>
+            </td>
+        </tr>
+    </table>
+</form>
+ }

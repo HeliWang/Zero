@@ -1,5 +1,64 @@
 ﻿@{
+    Layout = "~/Views/Shared/Window/_Index.cshtml";
     ViewBag.Title = "CateIndex";
 }
 
-<h2>CateIndex</h2>
+<!-- 列表 -->
+<table id="grid"></table>
+
+<!-- 工具栏 -->
+<div id="toolbar">
+    <div>
+        <a href="#" id="add"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="#" id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="#" id="remove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除</a>
+        <a href="#" id="expand" class="easyui-linkbutton" iconCls="icon-tip" plain="true">展开</a>
+        <a href="#" id="collapse" class="easyui-linkbutton" iconCls="icon-tip" plain="true">收起</a>
+        <a href="#" id="reload" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var controller = "News/Cate";
+
+    $(function () {
+
+        $('#grid').treegrid({
+            title: '分类列表',
+            collapsible: true,
+            rownumbers: true,
+            url: '/News/CateList',
+            method: 'get',
+            idField: 'id',
+            treeField: 'text',
+            columns: [[
+                { title: '编号', field: 'id', width: 60, align: 'center' },
+                { title: '名称', field: 'text', width: 200, align: 'left' },
+                { title: '子类总数', field: 'ChildCount', width: 80, align: 'center' },
+                { title: '创建时间', field: 'CreateTime', width: 140, align: 'center', formatter: timeFormat },
+                { title: '更新时间', field: 'UpdateTime', width: 140, align: 'center', formatter: timeFormat },
+                { title: '操作', field: 'operate', width: 280, align: 'center', formatter: operateFormat },
+            ]],
+            onLoadError: function () {
+                $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
+            },
+            toolbar: '#toolbar',
+        });
+
+
+        function operateFormat(value, row, index) {
+            var html = "";
+            html += openParentTabLinkButton('属性管理', '/Attr/AttrIndex?CateId=' + row.id, row.id);
+            html += " | ";
+            html += "<a href=\"javascript:void(0);\" onclick=\"openWindow('添加子分类', '/News/CateAdd?CateId=" + row.id + "')\">添加子分类</a>";
+            html += " | ";
+            html += "<a href=\"javascript:void(0);\" onclick=\"openWindow('修改', '/News/CateEdit?CateId=" + row.id + "')\">修改类别</a>";
+            html += " | ";           
+            html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除类别</a>";
+            return html;
+        }
+
+    })
+</script>

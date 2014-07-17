@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Zero.Domain.Cates
 {
-    public class Brand : BaseCate
+    public class Brand : BaseEntity
     {
         
     }

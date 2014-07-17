@@ -10,6 +10,7 @@ using Zero.Data.Mapping.Cates;
 using Zero.Data.Mapping.Upload;
 using Zero.Data.Mapping.Users;
 using Zero.Data.Mapping.Trades;
+using Zero.Data.Mapping.News;
 namespace Zero.Data
 {
     public class EfDbContext : DbContext
@@ -29,16 +30,25 @@ namespace Zero.Data
             modelBuilder.Configurations.Add(new CateAttrMap());
             modelBuilder.Configurations.Add(new AttrMap());
             modelBuilder.Configurations.Add(new AttrValueMap());
+
             modelBuilder.Configurations.Add(new PhotoMap());
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new SkuMap());
             modelBuilder.Configurations.Add(new ProductPhotoMap());
             modelBuilder.Configurations.Add(new ProductDescMap());
+
             modelBuilder.Configurations.Add(new CartMap());
             modelBuilder.Configurations.Add(new OrderMap());
             modelBuilder.Configurations.Add(new SnapshotMap());
+
             modelBuilder.Configurations.Add(new UserMap());
             modelBuilder.Configurations.Add(new LocationMap());
+
+            modelBuilder.Configurations.Add(new NewsCateMap());
+            modelBuilder.Configurations.Add(new NewsItemMap());
+            modelBuilder.Configurations.Add(new NewsDetailMap());
+            modelBuilder.Configurations.Add(new TagMap());
+            modelBuilder.Configurations.Add(new CommentMap());
         }
     }
 

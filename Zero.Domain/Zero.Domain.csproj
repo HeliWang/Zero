@@ -45,7 +45,7 @@
     <Compile Include="Cates\Brand.cs" />
     <Compile Include="Cates\CateAttr.cs" />
     <Compile Include="Cates\CateAttrValue.cs" />
-    <Compile Include="BaseCate.cs" />
+    <Compile Include="Cates\BaseCate.cs" />
     <Compile Include="Cates\Cate.cs" />
     <Compile Include="News\Comment.cs" />
     <Compile Include="News\NewsCate.cs" />

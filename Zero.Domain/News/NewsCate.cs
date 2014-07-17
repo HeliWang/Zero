@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Zero.Domain.Cates;
+
 namespace Zero.Domain.News
 {
     public class NewsCate : BaseCate
