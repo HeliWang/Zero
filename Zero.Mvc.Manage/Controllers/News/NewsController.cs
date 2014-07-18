@@ -184,7 +184,7 @@ namespace Zero.Mvc.Manage.Controllers.News
 
             if (ModelState.IsValid)
             {
-                resultInfo = _news
+                
             }
 
             return Json(resultInfo);
