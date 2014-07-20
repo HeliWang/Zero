@@ -18,7 +18,7 @@
 <form id="Form" action="@Url.Action("NewsAdd","News")" method="post">
     <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
     
-    <div title="商品基本">
+    <div title="新闻添加">
     <table class="z-tb-form">
          <tr>
             <th>所属分类：</th>
@@ -29,79 +29,79 @@
         <tr>
             <th>文章标题：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:800px;">
+               <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:800px;">
             </td>
         </tr>
         <tr>
             <th>副标题：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
+               <input type="text" name="Short"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
             </td>
         </tr>
         <tr>
             <th>文章概要：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+               <input type="text" name="Summary"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
             </td>
         </tr>
         <tr>
             <th>来源作者：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:100px;">
+               <input type="text" name="Author"  data-options="required:true,validType:['length[2,30]']"  style="width:100px;">
             </td>
         </tr>
         <tr>
             <th>来源地址：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+               <input type="text" name="Source"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
             </td>
         </tr>
         <tr>
             <th>来源网址：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+               <input type="text" name="SourceUrl"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
             </td>
         </tr>
         <tr>
             <th>关键字：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
+               <input type="text" name="Keyword"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
             </td>
         </tr>
         <tr>
             <th>标签：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
+               <input type="text" name="Tag"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
             </td>
         </tr>
         <tr>
             <th>图片：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
+               <input type="text" name="Photo"  data-options="required:true,validType:['length[2,30]']"  style="width:200px;">
             </td>
         </tr>
         <tr>
             <th>跳转地址：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
+               <input type="text" name="RedirectUrl"  data-options="required:true,validType:['length[2,30]']"  style="width:600px;">
             </td>
         </tr>
         <tr>
             <th>是否允许评论：</th>
             <td>
-               <input type="checkbox" id="IsComment" name="IsComment" value="1"/><label for="IsComment">是</label>
+               <input type="checkbox" name="AllowComments" value="1"/><label for="IsComment">是</label>
             </td>
         </tr>
         <tr>
             <th>评论总数：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:60px;">
+               <input type="text" name="CommentCount"  data-options="required:true,validType:['length[2,30]']"  value="0"  style="width:60px;">
             </td>
         </tr>
         <tr>
             <th>点击量：</th>
             <td>
-               <input type="text" name="AttrName"  data-options="required:true,validType:['length[2,30]']"  style="width:60px;">
+               <input type="text" name="ClickCount"  data-options="required:true,validType:['length[2,30]']" value="0"  style="width:60px;">
             </td>
         </tr>
         <tr>

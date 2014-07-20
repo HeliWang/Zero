@@ -16,11 +16,12 @@ namespace Zero.Mvc.Manage.Controllers.News
     public class NewsController : Controller
     {
         public NewsCateService _newsCateService;
-        
+        public INewsService _newsService;
 
-        public NewsController()
+        public NewsController(INewsService newsService)
         {
             _newsCateService = Singleton.GetInstance<NewsCateService>();
+            _newsService = newsService;
         }
 
         #region NewsCate
@@ -167,9 +168,19 @@ namespace Zero.Mvc.Manage.Controllers.News
         #endregion
 
 
-        public ActionResult GetList()
+        #region
+        
+        public ActionResult NewsList()
         {
-            return View();
+            int pageIndex = RequestHelper.QueryInt("page");
+            int pageSize = RequestHelper.QueryInt("rows");
+
+            pageIndex = pageIndex <= 0 ? 0 : pageIndex - 1;
+            if (pageSize <= 0) pageSize = 10;
+
+            IPage<NewsItem> newsItemPage = _newsService.GetList(pageIndex, pageSize);
+
+            return Json(newsItemPage, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult NewsIndex()
@@ -177,15 +188,21 @@ namespace Zero.Mvc.Manage.Controllers.News
             return View();
         }
 
+        
+        public ActionResult NewsAdd()
+        {
+            return View();
+        }
 
-        public ActionResult NewsAdd(NewsItem item)
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult NewsAdd(NewsItem newsItem)
         {
             ResultInfo resultInfo = new ResultInfo(1, "验证不通过");
 
             if (ModelState.IsValid)
             {
-                
-
+                resultInfo = _newsService.Add(newsItem);
             }
 
             return Json(resultInfo);
@@ -195,5 +212,29 @@ namespace Zero.Mvc.Manage.Controllers.News
         {
             return View();
         }
+
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult NewsEdit(NewsItem newsItem)
+        {
+            ResultInfo resultInfo = new ResultInfo(1, "验证不通过");
+
+            if (ModelState.IsValid)
+            {
+                NewsItem oldNewsItem = _newsService.GetById(newsItem.NewsId);
+
+                if (oldNewsItem == null)
+                {
+                    return Json(new ResultInfo(1, "该信息已被删除或不存在，请刷新列表！"));
+                }
+
+                resultInfo = _newsService.Edit(newsItem);
+            }
+
+            return Json(resultInfo);
+        }
+
+        #endregion
     }
 }
