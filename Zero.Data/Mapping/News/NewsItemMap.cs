@@ -16,7 +16,7 @@ namespace Zero.Data.Mapping.News
                 .HasForeignKey(n => n.DetailId);
 
             //Ignore
-            //this.Ignore(s => s.id);
+            this.Ignore(s => s.id);
         }
     }
 }

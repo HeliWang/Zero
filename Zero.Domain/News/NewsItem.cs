@@ -8,6 +8,13 @@ namespace Zero.Domain.News
 {
     public class NewsItem : BaseEntity
     {
+        public int id
+        {
+            get { return NewsId; }
+        }
+
+        public int CateId { get; set; }
+
         public int NewsId { get; set; }
 
         public string Title { get; set; }

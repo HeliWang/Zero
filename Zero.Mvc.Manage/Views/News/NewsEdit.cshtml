@@ -1,5 +1,122 @@
 ﻿@{
+    Layout = "~/Views/Shared/Tab/_Edit.cshtml";
     ViewBag.Title = "NewsEdit";
 }
 
-<h2>NewsEdit</h2>
+@section Scripts {
+    <!-- 配置文件 -->
+    @Scripts.Render("~/ueditor/ueditor.config.js")
+    <!-- 编辑器源码文件 -->
+    @Scripts.Render("~/ueditor/ueditor.all.min.js")
+    <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
+    @Scripts.Render("~/ueditor/lang/zh-cn/zh-cn.js")
+
+    <!-- 扩展验证文件 -->
+    @Scripts.Render("~/scripts/validate.js")
+}
+
+@model Zero.Domain.News.NewsItem
+
+@if(Model!=null)
+{
+<form id="Form" action="@Url.Action("NewsEdit","News")" method="post">
+    <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
+    
+    <div title="新闻添加">
+    <table class="z-tb-form">
+         <tr>
+            <th>所属分类：</th>
+                <td>
+                    <input id="CateId" name="CateId"  data-options="url:'@Url.Action("CateList","News")'" value="" class="easyui-combotree"  style="width:200px;">
+                </td>
+            </tr>
+        <tr>
+            <th>文章标题：</th>
+            <td>
+               <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']" value="@Model.Title"  style="width:800px;">
+            </td>
+        </tr>
+        <tr>
+            <th>副标题：</th>
+            <td>
+               <input type="text" name="Short"  data-options="required:true,validType:['length[2,30]']" value="@Model.Short"  style="width:600px;">
+            </td>
+        </tr>
+        <tr>
+            <th>文章概要：</th>
+            <td>
+               <input type="text" name="Summary"  data-options="required:true,validType:['length[2,30]']" value="@Model.Summary"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>来源作者：</th>
+            <td>
+               <input type="text" name="Author"  data-options="required:true,validType:['length[2,30]']" value="@Model.Author"  style="width:100px;">
+            </td>
+        </tr>
+        <tr>
+            <th>来源地址：</th>
+            <td>
+               <input type="text" name="Source"  data-options="required:true,validType:['length[2,30]']" value="@Model.Source"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>来源网址：</th>
+            <td>
+               <input type="text" name="SourceUrl"  data-options="required:true,validType:['length[2,30]']" value="@Model.SourceUrl"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>关键字：</th>
+            <td>
+               <input type="text" name="Keyword"  data-options="required:true,validType:['length[2,30]']" value="@Model.Keyword"  style="width:600px;">
+            </td>
+        </tr>
+        <tr>
+            <th>标签：</th>
+            <td>
+               <input type="text" name="Tag"  data-options="required:true,validType:['length[2,30]']" value="@Model.Tag"  style="width:600px;">
+            </td>
+        </tr>
+        <tr>
+            <th>图片：</th>
+            <td>
+               <input type="text" name="Photo"  data-options="required:true,validType:['length[2,30]']" value="@Model.Photo"  style="width:200px;">
+            </td>
+        </tr>
+        <tr>
+            <th>跳转地址：</th>
+            <td>
+               <input type="text" name="RedirectUrl"  data-options="required:true,validType:['length[2,30]']"  value="@Model.RedirectUrl" style="width:600px;">
+            </td>
+        </tr>
+        <tr>
+            <th>是否允许评论：</th>
+            <td>
+               <input type="checkbox" name="AllowComments" @if(Model.AllowComments==1){<text>checked</text>} value="1"/><label for="IsComment">是</label>
+            </td>
+        </tr>
+        <tr>
+            <th>评论总数：</th>
+            <td>
+               <input type="text" name="CommentCount"  data-options="required:true,validType:['length[2,30]']"  value="@Model.CommentCount"  style="width:60px;">
+            </td>
+        </tr>
+        <tr>
+            <th>点击量：</th>
+            <td>
+               <input type="text" name="ClickCount"  data-options="required:true,validType:['length[2,30]']" value="@Model.ClickCount"  style="width:60px;">
+            </td>
+        </tr>
+        <tr>
+            <th>内容：</th>
+            <td>
+               <textarea id="Content" name="Detail[0].Content" style="width:800px;height:200px;">@Model.Detail.Content</textarea>
+               <script>$(function () { UE.getEditor('Content'); });</script>
+            </td>
+        </tr>
+    </table>
+    </div>
+    </div>
+</form>
+}

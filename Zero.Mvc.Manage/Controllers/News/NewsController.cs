@@ -210,7 +210,9 @@ namespace Zero.Mvc.Manage.Controllers.News
 
         public ActionResult NewsEdit()
         {
-            return View();
+            int newsId = RequestHelper.QueryInt("newsId");
+            NewsItem newsItem = _newsService.GetById(newsId);
+            return View(newsItem);
         }
 
 
@@ -228,6 +230,8 @@ namespace Zero.Mvc.Manage.Controllers.News
                 {
                     return Json(new ResultInfo(1, "该信息已被删除或不存在，请刷新列表！"));
                 }
+
+                oldNewsItem = newsItem;
 
                 resultInfo = _newsService.Edit(newsItem);
             }
