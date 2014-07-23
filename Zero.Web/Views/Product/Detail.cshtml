@@ -354,12 +354,11 @@
 
     <div class="box_1" style="border-top: none">
         <div id="com_b" class="history clearfix">
-            <h2>详细描述</h2>
+            <h2>详情描述</h2>
+            <h2 class="h2bg">规格参数</h2>
+            <h2 class="h2bg">包装清单</h2>
             <h2 class="h2bg">用户评价</h2>
-            <h2 class="h2bg">模板建站优势</h2>
             <h2 class="h2bg">服务保障</h2>
-            <h2 class="h2bg">其他增值服务</h2>
-            <h2 class="h2bg">常见问答</h2>
         </div>
 
         <div id="com_v" style="padding: 0 14px;"></div>
@@ -368,36 +367,37 @@
 
                 <div class="blank"></div>
                 <div class="blank5"></div>
-                <ul class="pProdInfoUL" style="padding: 0;">
                     <div class="tit"><span class="span1"></span>产品信息</div>
                     <div class="clearfix">
-
-                        <li>货号：000414</li>
-                        <li>模板名称：ecshop微商城—首款ecshop微信商城系统 自主开发</li>
-                        <li>浏览量：3090</li>
+                        @*<ul class="pProdInfoUL" style="padding: 0;">
+                            <li>货号：000414</li>
+                            <li>模板名称：ecshop微商城—首款ecshop微信商城系统 自主开发</li>
+                            <li>浏览量：3090</li>
+                        </ul>*@
+                        <style>
+                            .attr li{float:left;width:33%;}
+                        </style>
+                            @{
+                                <text><ul class="attr"></text>
+                                var baseAttr = Model.Product.BaseAttr;
+                                if (!string.IsNullOrEmpty(baseAttr))
+                                {
+                                    var attrArray = baseAttr.Split(';');
+                                    foreach(var attr in attrArray)
+                                    {
+                                        var attrList = attr.Split(':');
+                                        <text><li>@attrList[2]：attrList[3]</li></text>
+                                    }
+                                }
+                                <text></text>
+                                <text></ul></text>
+                                }
                     </div>
-                </ul>
                 <div class="blank"></div>
                 <div class="blank"></div>
 
                 <div class="content">
-                    <h6><span style="TEXT-DECORATION: none"><span style="FONT-SIZE: 14px; TEXT-DECORATION: none">ecshop微商城_模板堂出品(</span><a href="http://www.ecmoban.com/goods-386.html" target="_blank"><span style="COLOR: #000000; TEXT-DECORATION: none"><span style="FONT-SIZE: 14px; TEXT-DECORATION: none">ecshop微商城</span></span></a><span style="FONT-SIZE: 14px; TEXT-DECORATION: none">=<a href="http://www.ecmoban.com/goods-385.html" target="_blank"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 14px; TEXT-DECORATION: none">ecshop微信通</span></a>+<a href="http://www.ecmoban.com/goods.php?id=387" target="_blank"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 14px; TEXT-DECORATION: none">ECTouch商创版</span></a>)</span></span><span style="FONT-SIZE: 14px"><br />
-                        <span style="COLOR: #ff0000; FONT-SIZE: 14px"><strong><span style="FONT-SIZE: 14px">ecshop微商城是首款ecshop微信商城系统，全网首家手机端接入微信商城，</span></strong></span>包含ecshop微信通和ECTouch商创版。ecshop微商城是</span><span style="FONT-SIZE: 14px; TEXT-DECORATION: none"><a style="COLOR: rgb(0,0,0)" href="http://www.ecmoban.com/" target="_blank"><span style="COLOR: rgb(0,0,0); FONT-SIZE: 14px; TEXT-DECORATION: none">ecshop模板堂</span></a></span><span style="FONT-SIZE: 14px">重点打造的一款核心产品，将ecshop与微信无缝整合，手机端完美接入微信商城，把店开到每个人的手机里，抢占7亿微信市场，为您创造无线商机！<br />
-                        </span><a style="TEXT-DECORATION: none" href="http://www.ecmoban.com/category-40-b0.html" target="_blank"><span style="COLOR: rgb(255,0,0); FONT-SIZE: 18px"><strong>&gt;&gt;</strong><strong>&gt;查看ECTouch&lt;&lt;&lt;</strong></span></a><span style="TEXT-DECORATION: none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><a style="COLOR: rgb(255,0,0); TEXT-DECORATION: none" href="http://www.ecmoban.com/goods.php?id=385" target="_blank"><span style="COLOR: rgb(255,0,0)"><strong><span style="COLOR: rgb(255,0,0); FONT-SIZE: 18px">&gt;&gt;&gt;查看微信通&lt;&lt;&lt;</span></strong><strong><span style="COLOR: rgb(255,0,0); FONT-SIZE: 18px"></span></strong><strong><span style="COLOR: rgb(255,0,0); FONT-SIZE: 18px"></span></strong></span></a></h6>
-                    <p>您也可查看ecshop微商城专题页，了解更多微商城信息<a href="http://www.ecmoban.com/weixin/index.html">http://www.ecmoban.com/weixin/index.html</a></p>
-                    <p>&nbsp;</p>
-                    <p>
-                        <br />
-                    </p>
-                    <p style="TEXT-ALIGN: center">
-                        <img src="/images/upload/20140514/14000348096690.jpg" title="微商城1.jpg" /><br />
-                    </p>
-                    <p style="text-align: center;">
-                        <img src="/images/upload/20140514/14000348212479.jpg" title="微商城2.jpg" /></p>
-                    <p style="TEXT-ALIGN: center">
-                        <img src="/images/upload/20140514/14000348382349.jpg" title="微商城3.jpg" /></p>
-                    <p style="TEXT-ALIGN: center">
-                        <img src="/images/upload/20140514/14000348545076.jpg" title="微商城4.jpg" /></p>
+                    @Model.Product.Desc
                 </div>
             </blockquote>
             <blockquote>
@@ -409,64 +409,6 @@
                 <a href="http://www.ecmoban.com/kongjian.php" target="_blank">
                     <img alt="查看空间套餐" src="/content/images/goods_img1.jpg"></a>
                 <img alt="选择模板建站的理由" src="/content/images/goods_img2.gif">
-                <ul class="goods_youshi clearfix">
-                    <li class="li1">
-                        <dl>
-                            <dt>快速交付</dt>
-                            <dd>1个工作日交付精美网站</dd>
-                            <p>挑选一套最适合您的商城模板，再选择一款主机，我们会在当天安装调试交付给您，让您尽快操作后台开始生意。</p>
-                        </dl>
-                    </li>
-                    <li class="li2 f_r">
-                        <dl>
-                            <dt>精美模板</dt>
-                            <dd>几百套精美模板任您选</dd>
-                            <p>模板堂的模板追求质量与细节，代码最优，功能最强，细节把最精致，目前已经拥有了上百套各行业精品模板任您选。</p>
-                        </dl>
-                    </li>
-                    <li class="li3">
-                        <dl>
-                            <dt>个性化调整</dt>
-                            <dd>模板并非人人一样</dd>
-                            <p>您可以给我们提交您的想法，我们的资深技术人员会为您做一些与众不同的调整，我们也会给出最合理的工期与修改费用。</p>
-                        </dl>
-                    </li>
-                    <li class="li4 f_r">
-                        <dl>
-                            <dt>功能齐全</dt>
-                            <dd>拥有最为全面的网店功能</dd>
-                            <p>ecshop系统拥有最为全面的电子商务功能，包括会员管理，订单管理，模板管理，系统设置，并整合了业内主流的配送方式，支付方式，安装即用。</p>
-                        </dl>
-                    </li>
-                    <li class="li5">
-                        <dl>
-                            <dt>维护简单</dt>
-                            <dd>人性化的后台管理</dd>
-                            <p>设置模板，设置分类，添加产品，替换广告，几乎所有操作都在后台管理。人性化的后台操作让你上手更简单。</p>
-                        </dl>
-                    </li>
-                    <li class="li6 f_r">
-                        <dl>
-                            <dt>第三方应用</dt>
-                            <dd>集成众多第三方应用</dd>
-                            <p>流量统计，网页分享，快捷登陆，在线客服qq,msn,旺旺等都可以接入整合。</p>
-                        </dl>
-                    </li>
-                    <li class="li7">
-                        <dl>
-                            <dt>SEO优化</dt>
-                            <dd>提升网站搜索排名</dd>
-                            <p>可以针对全网站或单个产品和文章进行关键词设置，实现seo优化，提升网站搜索排名。</p>
-                        </dl>
-                    </li>
-                    <li class="li8 f_r">
-                        <dl>
-                            <dt>售后服务</dt>
-                            <dd>模板堂品牌保障</dd>
-                            <p>强大的售后服务团队，为您提供全方位的售后服务，保障您网站的维护与运行。</p>
-                        </dl>
-                    </li>
-                </ul>
             </blockquote>
             <blockquote>
 

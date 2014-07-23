@@ -13,7 +13,7 @@ namespace Zero.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201407220938306_UpdateNewsItem"; }
+            get { return "201407230344172_UpdateNewsItem"; }
         }
         
         string IMigrationMetadata.Source
