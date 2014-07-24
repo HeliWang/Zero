@@ -105,7 +105,7 @@ white-space: nowrap; font-weight:bold}
   }
   .boxCenterList{padding:10px;}
   /*模块标题*/
-  h3{height:33px; line-height:33px; font-size:12px;  text-align:right; background:url(/content/images/h3title.gif) repeat-x; 
+  h3{height:33px; line-height:33px; font-size:12px;  text-align:right; /*background:url(/content/images/h3title.gif) repeat-x;*/ 
   padding:0 12px; font-weight:100;
   }
   h3.border{border:1px solid #c5e4ff; border-bottom:none;}
@@ -116,7 +116,7 @@ white-space: nowrap; font-weight:bold}
   
  
   
-  .h3_2{ border:1px solid #e5e5e5;height:33px; padding:0; line-height:33px; font-size:14px;  text-align:right; background:url(/content/images/h3title.gif) repeat-x; 
+  .h3_2{ border:1px solid #e5e5e5;height:33px; padding:0; line-height:33px; font-size:14px;  text-align:right; /*background:url(/content/images/h3title.gif) repeat-x;*/
   font-weight:100;padding-left:12px;}
   .h3_2 span{float:left; width:auto; height:25px; line-height:33px; text-align:left;
    font-weight:bold; color:#666; font-size:14px; font-weight:bold;   }
@@ -164,7 +164,7 @@ border: 1px solid #e2e2e2; text-align:left; padding:10px; font-weight:normal
   
   
   
-   .h3_3{  height:37px; line-height:37px;border-bottom:1px solid #ddd ;background:url(/content/images/h3title.gif) 0 bottom repeat-x}
+   .h3_3{  height:37px; line-height:37px;border-bottom:1px solid #ddd ;/*background:url(/content/images/h3title.gif) 0 bottom repeat-x*/}
    .h3_3 span{  color:#333; font-family:"微软雅黑";height:37px; line-height:37px; }
    .AreaL .h3_3{border-bottom:1px solid #ddd;}
    

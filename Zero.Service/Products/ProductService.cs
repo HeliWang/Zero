@@ -92,6 +92,17 @@ namespace Zero.Service.Products
             return _productRepository.GetById(productId);
         }
 
+        public ProductDesc GetDescById(int productId)
+        {
+            //return _productDescRepository.GetById(productId);
+
+            var query = _productDescRepository.Table;
+            query = from pd in query
+                    where pd.ProductId == productId
+                    select pd;
+            return query.FirstOrDefault();
+        }
+
         public List<Sku> GetSkuList(int productId)
         {
             var query = _skuRepository.Table;

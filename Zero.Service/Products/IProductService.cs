@@ -24,6 +24,8 @@ namespace Zero.Service.Products
 
         Product GetById(int productId);
 
+        ProductDesc GetDescById(int productId);
+
         List<Sku> GetSkuList(int productId);
     }
 }

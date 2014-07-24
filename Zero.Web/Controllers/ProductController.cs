@@ -45,6 +45,7 @@ namespace Zero.Web.Controllers
             if (productId > 0)
             {
                 model.Product = _productService.GetById(productId);
+                model.Product.Desc = _productService.GetDescById(productId);
             }
 
             if (model.Product == null)

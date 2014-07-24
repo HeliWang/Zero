@@ -361,275 +361,75 @@
             <h2 class="h2bg">服务保障</h2>
         </div>
 
-        <div id="com_v" style="padding: 0 14px;"></div>
+        <style>
+            .attr li{float:left;width:33%;}
+            .param{background:#ccc;width:100%;border-collapse: separate;border-spacing: 1px;border-color: gray;}
+            .param th{background:#F5FAFE;padding:5px 8px;width:110px;text-align:right}
+            .param td{padding:5px 8px;background:#fff;text-align:left;}
+            .param .title{text-align:center;}
+        </style>
+
         <div id="com_h">
             <blockquote>
-
-                <div class="blank"></div>
-                <div class="blank5"></div>
-                    <div class="tit"><span class="span1"></span>产品信息</div>
-                    <div class="clearfix">
-                        @*<ul class="pProdInfoUL" style="padding: 0;">
-                            <li>货号：000414</li>
-                            <li>模板名称：ecshop微商城—首款ecshop微信商城系统 自主开发</li>
-                            <li>浏览量：3090</li>
-                        </ul>*@
-                        <style>
-                            .attr li{float:left;width:33%;}
-                        </style>
-                            @{
-                                <text><ul class="attr"></text>
-                                var baseAttr = Model.Product.BaseAttr;
-                                if (!string.IsNullOrEmpty(baseAttr))
-                                {
-                                    var attrArray = baseAttr.Split(';');
-                                    foreach(var attr in attrArray)
-                                    {
-                                        var attrList = attr.Split(':');
-                                        <text><li>@attrList[2]：attrList[3]</li></text>
-                                    }
-                                }
-                                <text></text>
-                                <text></ul></text>
-                                }
-                    </div>
-                <div class="blank"></div>
-                <div class="blank"></div>
-
+                
+                <ul class="attr">
+                    @{
+                        var baseAttr = Model.Product.BaseAttr;
+                        if (!string.IsNullOrEmpty(baseAttr))
+                        {
+                            var attrArray = baseAttr.Split(';');
+                                    
+                            foreach(var attr in attrArray)
+                            {
+                                var attrList = attr.Split(':');
+                                <text><li>@attrList[2]：@attrList[3]</li></text>
+                            }
+                        }
+                        }
+                    </ul>
                 <div class="content">
-                    @Model.Product.Desc
+                    @(new HtmlString(Model.Product.Desc.Desc))
                 </div>
             </blockquote>
-            <blockquote>
-            </blockquote>
-            <blockquote>
-
-                <div class="blank"></div>
-                <div class="blank5"></div>
-                <a href="http://www.ecmoban.com/kongjian.php" target="_blank">
-                    <img alt="查看空间套餐" src="/content/images/goods_img1.jpg"></a>
-                <img alt="选择模板建站的理由" src="/content/images/goods_img2.gif">
-            </blockquote>
-            <blockquote>
-
-                <div class="blank"></div>
-                <div class="blank5"></div>
-                <a rel="nofollow" href="http://bang.taobao.com/detail.htm?spm=a213i.2187381.0.0.ZDK8F3&id=7207971198" target="_blank">
-                    <img alt="查看服务评价" src="/content/images/goods_img3.jpg"></a>
-                <img alt="模板堂承诺的服务项目" src="/content/images/goods_img4.gif">
-                <div class="blank"></div>
-                <ul class="goods_fuwu clearfix">
-                    <li class="li1 clearfix">
-                        <img alt="升级服务" src="/content/images/goods_fuwu1.gif">
-                        <dl>
-                            <dt>1、模板升级服务</dt>
-                            <dd>模板堂的模板会随着ECSHOP升级而不断升级，并免费提供给客户（并非随目标网站升级）</dd>
-                        </dl>
-                    </li>
-
-                    <div class="blank"></div>
-                    <div class="blank"></div>
-                    <li class="li1 clearfix">
-                        <img alt="简单调整" src="/content/images/goods_fuwu2.gif">
-                        <dl>
-                            <dt>2、模板简单调整</dt>
-                            <dd>模板堂承诺为客户免费做一些必要的简单调整，但不包括布局修改，功能开发，颜色替换等工作量较为复杂的内容，具体可以联系售前沟通。</dd>
-                        </dl>
-                    </li>
-
-                    <div class="blank"></div>
-                    <div class="blank"></div>
-                    <li class="li1 clearfix">
-                        <img alt="在线支持" src="/content/images/goods_fuwu3.gif">
-                        <dl>
-                            <dt>3、实时在线支持</dt>
-                            <dd>每位客户可以获得我们专职客服一对一的服务，在线实时回答客户的问题，包括模板的使用问题，后台的操作问题，等等。</dd>
-                        </dl>
-                    </li>
-
-                    <div class="blank"></div>
-                    <div class="blank"></div>
-                    <li class="li1 clearfix">
-                        <img alt="闪电响应" src="/content/images/goods_fuwu4.gif">
-                        <dl>
-                            <dt>4、紧急响应机制</dt>
-                            <dd>当客户遇到非常紧急情况，如网站被黑，模板丢失，无论节假日还是下班时间均可拨打我们的服务热线 4000 021 758，我们将第一时间为您排忧解难。</dd>
-                        </dl>
-                    </li>
-
-                    <div class="blank"></div>
-                    <div class="blank"></div>
-                    <li class="li1 clearfix">
-                        <img alt="长期合作优惠" src="/content/images/goods_fuwu5.gif">
-                        <dl>
-                            <dt>5、长期合作优惠</dt>
-                            <dd>只要您成为我们模板堂的客户，将获得我们长期合作的优惠政策，比如第二次购买8折，赠送免费插件等等。由于优惠政策的时效性，您可以联系我们售前进行咨询。</dd>
-                        </dl>
-                    </li>
-
-                </ul>
-            </blockquote>
-            <blockquote>
-
-                <div class="blank"></div>
-                <div class="blank5"></div>
-
-                <ul class="goods_other clearfix">
-                    <li class="li1 clearfix">
-                        <img alt="整站调整" src="/content/images/goods_other1.gif">
-                        <dl>
-                            <dt>1、模板个性化修改</dt>
-                            <dd>
-                                <p>修改内容包括：</p>
-                                <p>(1)修改整站色调为指定色调</p>
-                                <p>(2)修改整站产品图片尺寸</p>
-                                <p>(3)修改页面分辨率，窄屏到宽屏，或自适应宽度</p>
-                                <p>(4)修改整站语言包为英文，繁体，或者其他语言</p>
-                                <p>(5)将某某模板的部分模块或者功能整合到该模板</p>
-                                <p>(6)服务器迁移</p>
-                                <p>(7)协助安装其他程序，如discuz论坛等,并做会员整合</p>
-                                <p>(8)有二次开发需求，或者整合插件模块</p>
-                                <p><a href="#" target="_blank">>>下载需求单</a></p>
-                                <div class="blank"></div>
-                                <p class="p1">工期：按需求定</p>
-                                <p class="p1">价格：按需求定</p>
-
-                                <div class="blank"></div>
-                                <a href="http://bizapp.qq.com/webc.htm?new=0&sid=800007167&o=b.qq.com&q=7" target="_blank">
-                                    <img src="/content/images/goods_lianxi.gif"></a>
-                            </dd>
-                        </dl>
-                    </li>
-
-
-                    <div style="clear: both"></div>
-
-
-                    <li class="li1 clearfix">
-                        <img alt="logo设计服务" src="/content/images/goods_other2.gif">
-                        <dl>
-                            <dt>2、Logo设计/广告设计服务</dt>
-                            <dd>
-                                <p>修改内容包括：</p>
-                                <p>(1)按客户需求设计5个logo方案,客户可以任选一套方案并再进行微调</p>
-                                <p>(2)模板大尺寸广告设计(通栏或专题广告)</p>
-                                <p>(3)模板中尺寸广告设计(焦点图广告)</p>
-                                <p>(4)模板小尺寸广告设计(边栏广告)</p>
-                                <p><a href="http://bbs.ecmoban.com/forum-52-1.html" target="_blank">>>查看案例</a></p>
-                                <div class="blank"></div>
-                                <p class="p1">工期：logo设计3天 广告位1天/张</p>
-                                <p class="p1">价格：Logo设计500元 广告位大(150)中(80)小(50)/张</p>
-                                <div class="blank"></div>
-                                <a href="http://bizapp.qq.com/webc.htm?new=0&sid=800007167&o=b.qq.com&q=7" target="_blank">
-                                    <img src="/content/images/goods_lianxi.gif"></a>
-                            </dd>
-                        </dl>
-                    </li>
-
-                    <li class="li1 clearfix">
-                        <img alt="整合电商分析工具" src="/content/images/goods_other3.gif">
-                        <dl>
-                            <dt>3、整合聚合分析(电商专业分析工具)*可选</dt>
-                            <dd>
-                                <p>修改内容包括：</p>
-                                <p>(1)为客户整合首款电商分析工具-聚合分析</p>
-                                <p><a href="http://bbs.ecmoban.com/forum.php?mod=viewthread&tid=42" target="_blank">>>什么是聚合分析</a></p>
-                                <div class="blank"></div>
-                                <p class="p1">工期：1天</p>
-                                <p class="p1">价格：免费</p>
-                                <div class="blank"></div>
-                                <a href="http://bizapp.qq.com/webc.htm?new=0&sid=800007167&o=b.qq.com&q=7" target="_blank">
-                                    <img src="/content/images/goods_lianxi.gif"></a>
-                            </dd>
-                        </dl>
-                    </li>
-
-
-                </ul>
-            </blockquote>
-            <blockquote>
-
-                <div class="blank"></div>
-                <div class="blank5"></div>
-
-                <ul class="goods_wenda clearfix">
-                    <li class="li1 clearfix">
-                        <dl class="q">
-                            <dt>Q:</dt>
-                            <dd>这个电子商务网站是采用什么语言开发的？</dd>
-                        </dl>
-                        <dl class="a">
-                            <dt>A:</dt>
-                            <dd>Ecshop系统采用PHP语言开发， MYsql数据库。保障了电子商务网站系统的安全性、稳定性、易用性等方面。</dd>
-                        </dl>
-                    </li>
-
-                    <div style="clear: both"></div>
-                    <li class="li1 clearfix">
-                        <dl class="q">
-                            <dt>Q:</dt>
-                            <dd>这个电子商务网站支持开通在线支付功能吗？比如：支付宝在线支付。</dd>
-                        </dl>
-                        <dl class="a">
-                            <dt>A:</dt>
-                            <dd>Ecshop预先整合了国内十几种主流的在线支付接口，如支付宝、财付通、网银在线、快钱等。您只需要和第三方支付公司签约后，在网站后台简单填写一下商户号密钥即可立即开通使用在线支付。</dd>
-                        </dl>
-                    </li>
-
-                    <div style="clear: both"></div>
-                    <li class="li1 clearfix">
-                        <dl class="q">
-                            <dt>Q:</dt>
-                            <dd>网站是否支持向会员发送邮件和手机短信？</dd>
-                        </dl>
-                        <dl class="a">
-                            <dt>A:</dt>
-                            <dd>Ecshop内置了邮件发送功能和手机短信发送功能。其中手机短信发送，需要另行购买短信点数方可向会员发送手机短信，详情可咨询模板堂客服。</dd>
-                        </dl>
-                    </li>
-
-                    <div style="clear: both"></div>
-                    <li class="li1 clearfix">
-                        <dl class="q">
-                            <dt>Q:</dt>
-                            <dd>我已经有空间域名了，可否只购买你们的模板？是否可以协助安装？</dd>
-                        </dl>
-                        <dl class="a">
-                            <dt>A:</dt>
-                            <dd>我们的模板是可以单独购买的，并提供免费的协助安装服务，您只需要提供给我们服务器相关信息即可。</dd>
-                        </dl>
-                    </li>
-
-                    <div style="clear: both"></div>
-                    <li class="li1 clearfix">
-                        <dl class="q">
-                            <dt>Q:</dt>
-                            <dd>购买模板是否可以提供所有源代码，有没有使用教程？</dd>
-                        </dl>
-                        <dl class="a">
-                            <dt>A:</dt>
-                            <dd>Ecshop是一款开源系统，我们模板也是开源的，购买之后我们会打包发给您所有的模板文件与程序修改文件，另外会有该模板使用教程，方便您有问题的时候查阅。</dd>
-                        </dl>
-                    </li>
-
-                    <div style="clear: both"></div>
-                    <li class="li1 clearfix">
-                        <dl class="q">
-                            <dt>Q:</dt>
-                            <dd>购买模板需要每年续费吗？</dd>
-                        </dl>
-                        <dl class="a">
-                            <dt>A:</dt>
-                            <dd>我们的模板不需要每年续费，只要一次付费就可以享有永久服务，如果您购买的是我们模板+空间域名套餐，以后每年只需要支付空间域名费用即可。</dd>
-                        </dl>
-                    </li>
-                </ul>
-            </blockquote>
-
-
         </div>
-        <div class="blank"></div>
-        <div class="blank5"></div>
+
+        <div id="com_v">
+            <blockquote>
+            <table class="param">
+                <tr><th class="title" colspan="2">显示</th></tr>
+                <tr>
+                    <th>品牌</th>
+                    <td>耐克</td>
+                </tr>
+                <tr>
+                    <th>尺码</th>
+                    <td>37</td>
+                </tr>
+                <tr>
+                    <th>颜色</th>
+                    <td>白色</td>
+                </tr>
+                <tr>
+                    <th>出产地</th>
+                    <td>广东</td>
+                </tr>
+                <tr><th class="title" colspan="2">内核</th></tr>
+                <tr>
+                    <th>cpu</th>
+                    <td>晓龙</td>
+                </tr>
+                <tr>
+                    <th>内存</th>
+                    <td>1.6G</td>
+                </tr>
+                <tr>
+                    <th>有点</th>
+                    <td>降噪</td>
+                </tr>
+            </table>
+             </blockquote>
+        </div>
+        
         <div style="padding: 0 14px;">
 
             <div id="ECS_COMMENT">
