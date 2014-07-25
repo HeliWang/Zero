@@ -53,6 +53,8 @@ visibility:hidden;
 *+html .clearfix{
  height:1%;
 }
+
+.hidden{display:none;}
  
  
 /*英文强制换行*/

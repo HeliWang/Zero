@@ -292,7 +292,7 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 <div class="blank"></div>
 <div class="blank"></div>
 <div class="block box">
@@ -353,25 +353,34 @@
 
 
     <div class="box_1" style="border-top: none">
-        <div id="com_b" class="history clearfix">
-            <h2>详情描述</h2>
-            <h2 class="h2bg">规格参数</h2>
-            <h2 class="h2bg">包装清单</h2>
-            <h2 class="h2bg">用户评价</h2>
-            <h2 class="h2bg">服务保障</h2>
-        </div>
-
         <style>
             .attr li{float:left;width:33%;}
             .param{background:#ccc;width:100%;border-collapse: separate;border-spacing: 1px;border-color: gray;}
             .param th{background:#F5FAFE;padding:5px 8px;width:110px;text-align:right}
             .param td{padding:5px 8px;background:#fff;text-align:left;}
             .param .title{text-align:center;}
-        </style>
 
-        <div id="com_h">
+            .detail-tab{border: 1px solid #ddd;}
+            .detail-tab li{float: left;width: 140px;height: 34px;line-height: 34px;color: #666;border-right: 1px solid #ddd;text-align: center;text-align: center;font-size: 14px;font-weight: normal;}
+            .detail-tab .selected{background: #cb0404;color: #fff;}
+        </style>
+        @*<div class="history clearfix">
+                <h2>详情描述</h2>
+                <h2 class="h2bg">规格参数</h2>
+                <h2 class="h2bg">包装清单</h2>
+                <h2 class="h2bg">用户评价</h2>
+                <h2 class="h2bg">服务保障</h2>
+            </div>*@
+        <ul class="detail-tab clearfix">
+            <li class="selected">详情描述</li>
+            <li>规格参数</li>
+            <li>包装清单</li>
+            <li>用户评价</li>
+            <li>服务保障</li>
+        </ul>
+        <div class="detail-content">
+            <div>
             <blockquote>
-                
                 <ul class="attr">
                     @{
                         var baseAttr = Model.Product.BaseAttr;
@@ -391,45 +400,67 @@
                     @(new HtmlString(Model.Product.Desc.Desc))
                 </div>
             </blockquote>
-        </div>
+            </div>
 
-        <div id="com_v">
-            <blockquote>
-            <table class="param">
-                <tr><th class="title" colspan="2">显示</th></tr>
-                <tr>
-                    <th>品牌</th>
-                    <td>耐克</td>
-                </tr>
-                <tr>
-                    <th>尺码</th>
-                    <td>37</td>
-                </tr>
-                <tr>
-                    <th>颜色</th>
-                    <td>白色</td>
-                </tr>
-                <tr>
-                    <th>出产地</th>
-                    <td>广东</td>
-                </tr>
-                <tr><th class="title" colspan="2">内核</th></tr>
-                <tr>
-                    <th>cpu</th>
-                    <td>晓龙</td>
-                </tr>
-                <tr>
-                    <th>内存</th>
-                    <td>1.6G</td>
-                </tr>
-                <tr>
-                    <th>有点</th>
-                    <td>降噪</td>
-                </tr>
-            </table>
-             </blockquote>
+            <div class="hidden">
+                <blockquote>
+                <table class="param">
+                    <tr><th class="title" colspan="2">显示</th></tr>
+                    <tr>
+                        <th>品牌</th>
+                        <td>耐克</td>
+                    </tr>
+                    <tr>
+                        <th>尺码</th>
+                        <td>37</td>
+                    </tr>
+                    <tr>
+                        <th>颜色</th>
+                        <td>白色</td>
+                    </tr>
+                    <tr>
+                        <th>出产地</th>
+                        <td>广东</td>
+                    </tr>
+                    <tr><th class="title" colspan="2">内核</th></tr>
+                    <tr>
+                        <th>cpu</th>
+                        <td>晓龙</td>
+                    </tr>
+                    <tr>
+                        <th>内存</th>
+                        <td>1.6G</td>
+                    </tr>
+                    <tr>
+                        <th>有点</th>
+                        <td>降噪</td>
+                    </tr>
+                </table>
+                </blockquote>
+            </div>
+
+            <div class="hidden">
+                <blockquote>
+                    C2多功能互联网摄像机*1 电源适配器*1 支架*1 白色膨胀螺丝*3 螺钉*3 安装贴纸*1 快速操作指南*1 合格证*1 保修卡*1       
+                </blockquote>
+            </div>
+
+            <div class="hidden">
+                <blockquote>
+                    本产品全国联保，享受三包服务，质保期为：一年质保      
+                </blockquote>
+            </div>
         </div>
-        
+        <script>
+            $(function () {
+                $(".detail-tab li").click(function () {
+                    var index = $(this).index();
+                    $(".detail-content").children.addClass("hidden");
+                    $(".detail-content").children.eq(index).removeClass("hidden");
+                });
+            });
+        </script>
+            
         <div style="padding: 0 14px;">
 
             <div id="ECS_COMMENT">
