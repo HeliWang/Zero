@@ -47,6 +47,10 @@
     <Compile Include="Cates\CateAttrValue.cs" />
     <Compile Include="Cates\BaseCate.cs" />
     <Compile Include="Cates\Cate.cs" />
+    <Compile Include="Custom\Attr.cs" />
+    <Compile Include="Custom\AttrValue.cs" />
+    <Compile Include="Custom\Custom.cs" />
+    <Compile Include="Custom\Cate.cs" />
     <Compile Include="News\Comment.cs" />
     <Compile Include="News\NewsCate.cs" />
     <Compile Include="News\NewsDetail.cs" />
@@ -71,7 +75,10 @@
     <Compile Include="Users\User.cs" />
     <Compile Include="Users\Location.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Message\" />
+    <Folder Include="Sys\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
