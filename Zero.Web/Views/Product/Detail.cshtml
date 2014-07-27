@@ -354,14 +354,14 @@
 
     <div class="box_1" style="border-top: none">
         <style>
-            .attr li{float:left;width:33%;}
+            .attr li{float:left;width:33%;margin-bottom:10px;}
             .param{background:#ccc;width:100%;border-collapse: separate;border-spacing: 1px;border-color: gray;}
             .param th{background:#F5FAFE;padding:5px 8px;width:110px;text-align:right}
             .param td{padding:5px 8px;background:#fff;text-align:left;}
             .param .title{text-align:center;}
 
-            .detail-tab{border: 1px solid #ddd;}
-            .detail-tab li{float: left;width: 140px;height: 34px;line-height: 34px;color: #666;border-right: 1px solid #ddd;text-align: center;text-align: center;font-size: 14px;font-weight: normal;}
+            .detail-tab{border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;}
+            .detail-tab li{float: left;width: 140px;height: 34px;line-height: 34px;color: #666;border-right: 1px solid #ddd;text-align: center;text-align: center;font-size: 14px;font-weight: normal;cursor:pointer;}
             .detail-tab .selected{background: #cb0404;color: #fff;}
         </style>
         @*<div class="history clearfix">
@@ -379,7 +379,7 @@
             <li>服务保障</li>
         </ul>
         <div class="detail-content">
-            <div>
+            <div class="item">
             <blockquote>
                 <ul class="attr">
                     @{
@@ -402,7 +402,7 @@
             </blockquote>
             </div>
 
-            <div class="hidden">
+            <div class="item hidden">
                 <blockquote>
                 <table class="param">
                     <tr><th class="title" colspan="2">显示</th></tr>
@@ -439,13 +439,19 @@
                 </blockquote>
             </div>
 
-            <div class="hidden">
+            <div class="item hidden">
                 <blockquote>
                     C2多功能互联网摄像机*1 电源适配器*1 支架*1 白色膨胀螺丝*3 螺钉*3 安装贴纸*1 快速操作指南*1 合格证*1 保修卡*1       
                 </blockquote>
             </div>
 
-            <div class="hidden">
+            <div class="item hidden">
+                <blockquote>
+                    正在开发中。。。。
+                </blockquote>
+            </div>
+
+            <div class="item hidden">
                 <blockquote>
                     本产品全国联保，享受三包服务，质保期为：一年质保      
                 </blockquote>
@@ -455,22 +461,48 @@
             $(function () {
                 $(".detail-tab li").click(function () {
                     var index = $(this).index();
-                    $(".detail-content").children.addClass("hidden");
-                    $(".detail-content").children.eq(index).removeClass("hidden");
+                    $(".detail-tab .selected").removeClass("selected");;
+                    $(this).addClass("selected");
+                    $(".detail-content .item").addClass("hidden");
+                    $(".detail-content .item").eq(index).removeClass("hidden");
                 });
             });
         </script>
             
         <div style="padding: 0 14px;">
-
             <div id="ECS_COMMENT">
                 <div class="box_1">
-                    <h3 class="h3_3"><span class="text">用户评论</span>(共<font class="shop">0</font>条评论)</h3>
+                    <h3 class="h3_3"><span class="text">用户评论</span>(共<font class="shop">2</font>条评论)</h3>
                     <div class="boxCenterList clearfix" style="height: 1%; padding: 15px 0;">
                         <ul class="comments" style="border: none; padding: 0">
                             <li>
-                                <div style="padding: 15px; padding-top: 0;">
-                                    暂时没有评论！您有机会抢到沙发并获得多倍积分哦！
+                                <div class="jianju">
+
+
+
+                                    <font class="f2">凉心凉情凉姑娘</font><font class="f3">2014-01-27 09:54:32</font>
+                                    <div class="score-no score-5"></div>
+                                    <p>东西非常多，而且很实用。操作视频也讲解的非常清楚。店家服务态度非常好！绝对物超所值！</p>
+                                    <div class="blank"></div>
+                                    <div class="blank5"></div>
+
+                                    <div class="blank"></div>
+                                    <div class="blank"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="jianju">
+
+
+
+                                    <font class="f2">幻听你的温柔</font><font class="f3">2014-01-27 09:38:58</font>
+                                    <div class="score-no score-5"></div>
+                                    <p>卖家服务态度很好，样式齐全，价格便宜，省时省事，又省心．非常感谢卖家提供的服务，谢谢！</p>
+                                    <div class="blank"></div>
+                                    <div class="blank5"></div>
+
+                                    <div class="blank"></div>
+                                    <div class="blank"></div>
                                 </div>
                             </li>
                         </ul>
@@ -478,18 +510,17 @@
                         <div id="pagebar" class="f_r" style="padding-right: 20px;">
                             <form name="selectPageForm" action="/goods.php" method="get">
                                 <div id="pager">
-                                    <span><a href="javascript:gotoPage(1,414,0)">第一页</a> <a href="javascript:;">上一页</a> <a href="javascript:;">下一页</a> <a href="javascript:;">最末页</a> </span>
+                                    <span><a href="javascript:gotoPage(1,353,0)">第一页</a> <a href="javascript:;">上一页</a> <a href="javascript:;">下一页</a> <a href="javascript:;">最末页</a> </span>
                                 </div>
                             </form>
                             <script type="Text/Javascript" language="JavaScript">
-    <!--
-            
-function selectPage(sel)
-{
-sel.form.submit();
-}
-            
-//-->
+                <!--
+
+    function selectPage(sel) {
+        sel.form.submit();
+    }
+
+    //-->
                             </script>
                         </div>
 
@@ -499,142 +530,141 @@ sel.form.submit();
                             <form action="javascript:;" onsubmit="submitComment(this)" method="post" name="commentForm" id="commentForm">
                                 <table width="874" border="0" cellspacing="0" cellpadding="0">
 
-                                    <tr>
+                                    <tbody>
+                                        <tr>
 
-                                        <td style="display: none">
-                                            <input type="text" name="email" id="email" maxlength="100" value="" class="inputBorder" />
-                                        </td>
-                                    </tr>
+                                            <td style="display: none">
+                                                <input type="text" name="email" id="email" maxlength="100" value="" class="inputBorder">
+                                            </td>
+                                        </tr>
 
-                                    <tr>
+                                        <tr>
 
-                                        <td>
-                                            <textarea name="content" class="inputBorder" style="height: 70px; width: 852px;"></textarea>
-                                            <input type="hidden" name="cmt_type" value="0" />
-                                            <input type="hidden" name="id" value="414" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="comments_bottom">
-                                            <div class="blank"></div>
-                                            <input name="comment_rank" type="radio" value="5" checked="checked" id="comment_rank5" />
-                                            <div class="score-no score-5"></div>
-                                            <input name="comment_rank" type="radio" value="4" id="comment_rank4" />
-                                            <div class="score-no score-4"></div>
-                                            <input name="comment_rank" type="radio" value="3" id="comment_rank3" />
-                                            <div class="score-no score-3"></div>
-                                            <input name="comment_rank" type="radio" value="2" id="comment_rank2" />
-                                            <div class="score-no score-2"></div>
-                                            <input name="comment_rank" type="radio" value="1" id="comment_rank1" />
-                                            <div class="score-no score-1"></div>
+                                            <td>
+                                                <textarea name="content" class="inputBorder" style="height: 70px; width: 852px;"></textarea>
+                                                <input type="hidden" name="cmt_type" value="0">
+                                                <input type="hidden" name="id" value="353">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="comments_bottom">
+                                                <div class="blank"></div>
+                                                <input name="comment_rank" type="radio" value="5" checked="checked" id="comment_rank5">
+                                                <div class="score-no score-5"></div>
+                                                <input name="comment_rank" type="radio" value="4" id="comment_rank4">
+                                                <div class="score-no score-4"></div>
+                                                <input name="comment_rank" type="radio" value="3" id="comment_rank3">
+                                                <div class="score-no score-3"></div>
+                                                <input name="comment_rank" type="radio" value="2" id="comment_rank2">
+                                                <div class="score-no score-2"></div>
+                                                <input name="comment_rank" type="radio" value="1" id="comment_rank1">
+                                                <div class="score-no score-1"></div>
 
-                                            <script  type="text/javascript"> 
-                                                function showDiv(){ 
-                                                    document.getElementById('popDiv').style.display='block'; 
-                                                } 
-                                                function closeDiv(){ 
-                                                    document.getElementById('popDiv').style.display='none'; 
-                                                } 
-                                            </script>
-                                            <a href="javascript:showDiv()" class="bnt_blue f_r">提交评论</a>
-                                        </td>
-                                    </tr>
+
+
+
+
+
+                                                <script language="javascript" type="text/javascript">
+                                                    function showDiv() {
+                                                        document.getElementById('popDiv').style.display = 'block';
+                                                    }
+                                                    function closeDiv() {
+                                                        document.getElementById('popDiv').style.display = 'none';
+                                                    }
+                                                </script>
+                                                <a href="javascript:showDiv()" class="bnt_blue f_r">提交评论</a>
+
+
+
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </form>
                             <div id="popDiv" class="mydiv" style="display: none;">
                                 <div class="tit"><span>登陆模板堂</span> <a href="javascript:closeDiv()">
-                                    <img src="/content/images/guanbi1.gif" /></a></div>
+                                    <img src="themes/ecmoban/images/guanbi1.gif"></a></div>
 
 
                                 <div class="mydiv_in">
                                     <form id="ECS_LOGINFORM" name="ECS_LOGINFORM" method="post" action="javascript:signIn()">
                                         <dl>
-                                            <dd><b>用户名/邮箱:</b><input name="username" type="text" class="inputBg" tabindex="1" value="14000682863" /></dd>
-                                            <dd><b>密 码:</b><input name="password" class="inputBg" type="password" tabindex="2" /></dd>
+                                            <dd><b>用户名/邮箱:</b><input name="username" type="text" class="inputBg" tabindex="1" value=""></dd>
+                                            <dd><b>密 码:</b><input name="password" class="inputBg" type="password" tabindex="2"></dd>
                                             <dd>
                                                 <b>&nbsp; </b>
-                                                <input type="checkbox" value="1" name="remember" id="remember" style="vertical-align: middle" /><label style="color: #999" for="remember">自动登录</label>
+                                                <input type="checkbox" value="1" name="remember" id="remember" style="vertical-align: middle"><label style="color: #999" for="remember">自动登录</label>
                                             </dd>
                                             <dd style="padding-top: 0;">
                                                 <b>&nbsp; </b>
-                                                <input type="submit" name="submit" value="登 录" class="bnt_blue" />
+                                                <input type="submit" name="submit" value="登 录" class="bnt_blue">
                                                 <a style="padding-left: 7px" href="user.php?act=get_password">忘记密码？</a><span style="color: #ccc">|</span> <a href="user.php?act=get_password">注册</a>
                                             </dd>
                                         </dl>
 
                                         <div class="mydiv_bottom">
                                         </div>
-                                        <input type="hidden" name="goods_id" value="414">
+                                        <input type="hidden" name="goods_id" value="353">
                                     </form>
                                 </div>
                                 <script type="text/javascript">
                                     /**
-                                        * 会员登录
-                                        */
-                                    function signIn()
-                                    {
+                                     * 会员登录
+                                     */
+                                    function signIn() {
                                         var frm = document.forms['ECS_LOGINFORM'];
 
-                                        if (frm)
-                                        {
+                                        if (frm) {
                                             var username = frm.elements['username'].value;
                                             var goods_id = frm.elements['goods_id'].value;
                                             var password = frm.elements['password'].value;
                                             var captcha = '';
-                                            if (frm.elements['captcha'])
-                                            {
+                                            if (frm.elements['captcha']) {
                                                 captcha = frm.elements['captcha'].value;
                                             }
 
-                                            if (username.length == 0 || password.length == 0)
-                                            {
+                                            if (username.length == 0 || password.length == 0) {
 
                                                 alert("对不起，您必须完整填写用户名和密码。");
 
                                                 return;
                                             }
-                                            else
-                                            {
-                                                Ajax.call('user.php?act=signin', 'username=' + username + '&password=' + encodeURIComponent(password) + '&captcha=' + captcha +'&goods_id='+ goods_id, signinResponse, "POST", "TEXT");
+                                            else {
+                                                Ajax.call('user.php?act=signin', 'username=' + username + '&password=' + encodeURIComponent(password) + '&captcha=' + captcha + '&goods_id=' + goods_id, signinResponse, "POST", "TEXT");
                                             }
                                         }
-                                        else
-                                        {
+                                        else {
                                             alert('Template error!');
                                         }
                                     }
 
-                                    function signinResponse(result)
-                                    {
+                                    function signinResponse(result) {
                                         var userName = document.forms['ECS_LOGINFORM'].elements['username'].value;
                                         var mzone = document.getElementById("ECS_MEMBERZONE");
-                                        var res   = result.parseJSON();
+                                        var res = result.parseJSON();
 
-                                        if (res.error > 0)
-                                        {
+                                        if (res.error > 0) {
                                             // 登录失败
                                             alert(res.content);
-                                            if(res.html)
-                                            {
+                                            if (res.html) {
                                                 mzone.innerHTML = res.html;
                                                 document.forms['ECS_LOGINFORM'].elements['username'].value = userName;
                                             }
                                         }
-                                        else
-                                        {
-                                            if (mzone)
-                                            {
+                                        else {
+                                            if (mzone) {
                                                 mzone.innerHTML = res.content;
                                                 evalscript(res.ucdata);
                                                 //alert(res.ucdata);
                                             }
-                                            else
-                                            {
+                                            else {
                                                 alert("Template Error!");
                                             }
-	
-                                            location.href="goods.php?id="+res.goods_id;
-	
+
+                                            location.href = "goods.php?id=" + res.goods_id;
+
                                         }
                                     }
                                 </script>
@@ -656,25 +686,22 @@ sel.form.submit();
                     var cmt_invalid_comments = "无效的评论内容!";
 
                     /**
-                        * 提交评论信息
+                     * 提交评论信息
                     */
-                    function submitComment(frm)
-                    {
+                    function submitComment(frm) {
                         var cmt = new Object;
 
                         //cmt.username        = frm.elements['username'].value;
-                        cmt.email           = frm.elements['email'].value;
-                        cmt.content         = frm.elements['content'].value;
-                        cmt.type            = frm.elements['cmt_type'].value;
-                        cmt.id              = frm.elements['id'].value;
+                        cmt.email = frm.elements['email'].value;
+                        cmt.content = frm.elements['content'].value;
+                        cmt.type = frm.elements['cmt_type'].value;
+                        cmt.id = frm.elements['id'].value;
                         cmt.enabled_captcha = frm.elements['enabled_captcha'] ? frm.elements['enabled_captcha'].value : '0';
-                        cmt.captcha         = frm.elements['captcha'] ? frm.elements['captcha'].value : '';
-                        cmt.rank            = 0;
+                        cmt.captcha = frm.elements['captcha'] ? frm.elements['captcha'].value : '';
+                        cmt.rank = 0;
 
-                        for (i = 0; i < frm.elements['comment_rank'].length; i++)
-                        {
-                            if (frm.elements['comment_rank'][i].checked)
-                            {
+                        for (i = 0; i < frm.elements['comment_rank'].length; i++) {
+                            if (frm.elements['comment_rank'][i].checked) {
                                 cmt.rank = frm.elements['comment_rank'][i].value;
                             }
                         }
@@ -685,28 +712,23 @@ sel.form.submit();
                         //     return false;
                         //  }
 
-                        if (cmt.email.length > 0)
-                        {
-                            if (!(Utils.isEmail(cmt.email)))
-                            {
+                        if (cmt.email.length > 0) {
+                            if (!(Utils.isEmail(cmt.email))) {
                                 alert(cmt_error_email);
                                 return false;
                             }
                         }
-                        else
-                        {
+                        else {
                             alert(cmt_empty_email);
                             return false;
                         }
 
-                        if (cmt.content.length == 0)
-                        {
+                        if (cmt.content.length == 0) {
                             alert(cmt_empty_content);
                             return false;
                         }
 
-                        if (cmt.enabled_captcha > 0 && cmt.captcha.length == 0 )
-                        {
+                        if (cmt.enabled_captcha > 0 && cmt.captcha.length == 0) {
                             alert(captcha_not_null);
                             return false;
                         }
@@ -716,21 +738,17 @@ sel.form.submit();
                     }
 
                     /**
-                        * 处理提交评论的反馈信息
+                     * 处理提交评论的反馈信息
                     */
-                    function commentResponse(result)
-                    {
-                        if (result.message)
-                        {
+                    function commentResponse(result) {
+                        if (result.message) {
                             alert(result.message);
                         }
 
-                        if (result.error == 0)
-                        {
+                        if (result.error == 0) {
                             var layer = document.getElementById('ECS_COMMENT');
 
-                            if (layer)
-                            {
+                            if (layer) {
                                 layer.innerHTML = result.content;
                             }
                         }
