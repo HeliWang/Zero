@@ -330,22 +330,33 @@
     </div>
     <div class="blank"></div>
     <script type="text/javascript">
-        if (document.getElementById('history_list').innerHTML.replace(/\s/g,'').length<1)
-        {
-            document.getElementById('history_div').style.display='none';
-        }
-        else
-        {
-            document.getElementById('history_div').style.display='block';
-        }
-        function clear_history()
-        {
-            Ajax.call('user.php', 'act=clear_history',clear_history_Response, 'GET', 'TEXT',1,1);
-        }
-        function clear_history_Response(res)
-        {
-            document.getElementById('history_list').innerHTML = '您已清空最近浏览过的商品';
-        }
+        //if (document.getElementById('history_list').innerHTML.replace(/\s/g,'').length<1)
+        //{
+        //    document.getElementById('history_div').style.display='none';
+        //}
+        //else
+        //{
+        //    document.getElementById('history_div').style.display='block';
+        //}
+        //function clear_history()
+        //{
+        //    Ajax.call('user.php', 'act=clear_history',clear_history_Response, 'GET', 'TEXT',1,1);
+        //}
+        //function clear_history_Response(res)
+        //{
+        //    document.getElementById('history_list').innerHTML = '您已清空最近浏览过的商品';
+        //}
+
+        $(function () {
+            var product = [];
+            product[0].ProductName = "模板堂全网最强美乐乐+团购+晒单+频道";
+            product[0].Photo = "images/201401/thumb_img/351_thumb_G_1390437695266.jpg";
+            product[0].DetailUrl = "goods-351.html";
+            product[0].Price = "100";
+            alert(product[0].ProductName);
+            
+        });
+
     </script>
 </div>
 
