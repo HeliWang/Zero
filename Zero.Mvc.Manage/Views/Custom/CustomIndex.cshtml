@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "~/Views/Shared/Tab/_Index.cshtml";
+    ViewBag.Title = "CustomIndex";
+}
+
+<!-- 列表 -->
+<table id="grid"></table>
+
+<!-- 工具栏 -->
+<div id="toolbar">
+    <div>
+        <a href="#" id="add"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="#" id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="#" id="remove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除</a>
+        <a href="#" id="reload" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+        
+    </div>
+   @* <div>
+        Date From: <input class="easyui-datebox" style="width:80px">
+        To: <input class="easyui-datebox" style="width:80px">
+        Language: 
+        <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+            <option value="java">Java</option>
+            <option value="c">C</option>
+            <option value="basic">Basic</option>
+            <option value="perl">Perl</option>
+            <option value="python">Python</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+    </div>*@
+</div>
+
+<script type="text/javascript">
+
+    var controller = "Custom";
+
+    $(function () {
+
+        //加载网格(搜索中文版对照属性，来配置)
+        $('#grid').datagrid({
+            title: '自定义列表',
+            collapsible: true,
+            rownumbers: true,
+            url: '/Custom/CustomList',
+            method: 'get',
+            loadMsg: '正在加载数据...',
+            //idField: 'ProductId',
+            fitColumns: false,
+            width: 1180,
+            height: 630,
+            pagination: true,
+            pageSize: 30,
+            pageList: [10, 20, 30, 40, 50, 100],
+            frozenColumns: [[
+                { field: 'CustomId', checkbox: true },
+                //{ field: 'ProductId', title: '商品编号', width: 50, algin: 'center' },//会绑定checkbox
+                { field: 'id', title: '编号', width: 60, align: 'center' },
+                { field: 'Title', title: '标题', width: 140,algin: 'center'},
+            ]],
+            columns: [[
+                { field: 'operate', title: '操作', width: 80, align: 'center', formatter: operateFormat },
+            ]],
+            onLoadError: function () {
+                $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
+            },
+            toolbar: '#toolbar',
+
+            //openParentTab('商品添加部分', '/Product/ProductAddPart');
+        });
+
+        function operateFormat(value, row, index) {
+            var html = "";
+            html += openParentTabLinkButton('修改', '/Custom/CustomEdit?CustomId=' + row.id, row.id);
+            html += " | ";
+            html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除</a>";
+            return html;
+        }
+    });
+</script>

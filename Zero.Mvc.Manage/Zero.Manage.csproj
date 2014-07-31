@@ -123,6 +123,7 @@
     <Compile Include="Controllers\Cates\AttrValueController.cs" />
     <Compile Include="Controllers\Cates\CateAttrController.cs" />
     <Compile Include="Controllers\Cates\CateController.cs" />
+    <Compile Include="Controllers\Customs\CustomController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\News\NewsController.cs" />
     <Compile Include="Controllers\Products\ProductController.cs" />
@@ -631,6 +632,15 @@
     <Content Include="Views\News\NewsAdd.cshtml" />
     <Content Include="Views\News\NewsEdit.cshtml" />
     <Content Include="Views\News\NewsIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Custom\CustomIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Custom\CustomAdd.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Custom\CustomEdit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

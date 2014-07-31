@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "~/Views/Shared/Tab/_Add.cshtml";
+    ViewBag.Title = "CustomAdd";
+}
+
+<form id="Form" action="@Url.Action("CustomAdd","Custom")" method="post">
+    <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
+    
+    <div title="自定义列表添加">
+    <table class="z-tb-form">
+        <tr>
+            <th>标题：</th>
+            <td>
+               <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:500px;">
+            </td>
+        </tr>
+        <tr>
+            <th>类型：</th>
+            <td>
+                <input type="radio" /><label>检索</label>
+                <input type="radio" /><label>筛选</label>
+            </td>
+        </tr>
+        <tr>
+            <th>条件：</th>
+            <td>
+               <table class="z-tb-form hidden">
+                    <tr>
+                        <th>标题：</th>
+                        <td>
+                           <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:300px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>类型：</th>
+                        <td>
+                            <input type="radio" /><label>检索</label>
+                            <input type="radio" /><label>筛选</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>标题：</th>
+                        <td>
+                           <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:300px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>标题：</th>
+                        <td>
+                           <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:800px;">
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="z-tb-form">
+                    <tr>
+                        <th>标题：</th>
+                        <td>
+                           <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:300px;">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    </div>
+    </div>
+</form>

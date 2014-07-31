@@ -11,6 +11,7 @@ using Zero.Data.Mapping.Upload;
 using Zero.Data.Mapping.Users;
 using Zero.Data.Mapping.Trades;
 using Zero.Data.Mapping.News;
+using Zero.Data.Mapping.Customs;
 namespace Zero.Data
 {
     public class EfDbContext : DbContext
@@ -49,6 +50,8 @@ namespace Zero.Data
             modelBuilder.Configurations.Add(new NewsDetailMap());
             modelBuilder.Configurations.Add(new TagMap());
             modelBuilder.Configurations.Add(new CommentMap());
+
+            modelBuilder.Configurations.Add(new CustomMap());
         }
     }
 

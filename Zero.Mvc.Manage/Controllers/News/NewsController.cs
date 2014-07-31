@@ -168,7 +168,7 @@ namespace Zero.Mvc.Manage.Controllers.News
         #endregion
 
 
-        #region
+        #region News
         
         public ActionResult NewsList()
         {

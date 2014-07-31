@@ -54,6 +54,7 @@
     <Compile Include="Mapping\Cates\AttrMap.cs" />
     <Compile Include="Mapping\Cates\AttrValueMap.cs" />
     <Compile Include="Mapping\Cates\CateAttrMap.cs" />
+    <Compile Include="Mapping\Customs\CustomMap.cs" />
     <Compile Include="Mapping\News\CommentMap.cs" />
     <Compile Include="Mapping\News\NewsCateMap.cs" />
     <Compile Include="Mapping\News\NewsDetailMap.cs" />
@@ -145,6 +146,10 @@
     <Compile Include="Migrations\201407230344172_UpdateNewsItem.Designer.cs">
       <DependentUpon>201407230344172_UpdateNewsItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407310823224_AddCustom.cs" />
+    <Compile Include="Migrations\201407310823224_AddCustom.Designer.cs">
+      <DependentUpon>201407310823224_AddCustom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -221,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407230344172_UpdateNewsItem.resx">
       <DependentUpon>201407230344172_UpdateNewsItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407310823224_AddCustom.resx">
+      <DependentUpon>201407310823224_AddCustom.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,3 +12,5 @@ body{margin:0; padding:5px; background-color: #ffffff; color: #000000;font-size:
 
 .z-tb-foot{text-align:right;}
 .easyui-tabs-foot {border:1px solid #95B8E7;background-color:#E0ECFF; border-top:1px;text-align:center;padding:3px; }
+
+.hidden{display:none;}

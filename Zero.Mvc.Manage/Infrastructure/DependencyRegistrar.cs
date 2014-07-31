@@ -9,8 +9,10 @@ using Autofac.Integration.Mvc;
 using Zero.Data;
 using Zero.Mvc.Manage.Controllers.Products;
 using Zero.Mvc.Manage.Controllers.News;
+using Zero.Mvc.Manage.Controllers.Customs;
 using Zero.Service.Products;
 using Zero.Service.News;
+using Zero.Service.Customs;
 
 
 namespace Zero.Mvc.Manage.Infrastructure
@@ -23,6 +25,7 @@ namespace Zero.Mvc.Manage.Infrastructure
 
             builder.RegisterType<ProductController>();
             builder.RegisterType<NewsController>();
+            builder.RegisterType<CustomController>();
 
             //service
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>));
@@ -30,6 +33,8 @@ namespace Zero.Mvc.Manage.Infrastructure
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerHttpRequest();
 
             builder.RegisterType<NewsService>().As<INewsService>().InstancePerHttpRequest();
+
+            builder.RegisterType<CustomService>().As<ICustomService>().InstancePerHttpRequest();
 
             // then
             var container = builder.Build();

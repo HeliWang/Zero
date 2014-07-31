@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zero.Domain.Custom
+namespace Zero.Domain.Customs
 {
-    public class Custom
+    public class Custom:BaseEntity
     {
+        public int id { get { return CustomId; } }
+
         /// <summary>
         /// 自定义编号
         /// </summary>

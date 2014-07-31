@@ -47,10 +47,10 @@
     <Compile Include="Cates\CateAttrValue.cs" />
     <Compile Include="Cates\BaseCate.cs" />
     <Compile Include="Cates\Cate.cs" />
-    <Compile Include="Custom\Attr.cs" />
-    <Compile Include="Custom\AttrValue.cs" />
-    <Compile Include="Custom\Custom.cs" />
-    <Compile Include="Custom\Cate.cs" />
+    <Compile Include="Customs\Attr.cs" />
+    <Compile Include="Customs\AttrValue.cs" />
+    <Compile Include="Customs\Custom.cs" />
+    <Compile Include="Customs\Cate.cs" />
     <Compile Include="News\Comment.cs" />
     <Compile Include="News\NewsCate.cs" />
     <Compile Include="News\NewsDetail.cs" />
