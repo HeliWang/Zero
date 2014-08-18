@@ -11,58 +11,81 @@
         <tr>
             <th>标题：</th>
             <td>
-               <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:500px;">
+               <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']" class="easyui-validatebox"  style="width:500px;">
+            </td>
+        </tr>
+        <tr>
+            <th>条数：</th>
+            <td>
+               <input type="text" name="Amount" data-options="required:true,validType:['number','size[0,500]']" class="easyui-validatebox"  style="width:100px;"/>
             </td>
         </tr>
         <tr>
             <th>类型：</th>
             <td>
-                <input type="radio" /><label>检索</label>
-                <input type="radio" /><label>筛选</label>
+                <input type="radio" id="SearchType" name="CustomType" checked/><label for="SearchType">检索</label>
+                <input type="radio" id="SelectType" name="CustomType"/><label for="SelectType">筛选</label>
             </td>
         </tr>
         <tr>
             <th>条件：</th>
             <td>
-               <table class="z-tb-form hidden">
-                    <tr>
-                        <th>标题：</th>
-                        <td>
-                           <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:300px;">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>类型：</th>
-                        <td>
-                            <input type="radio" /><label>检索</label>
-                            <input type="radio" /><label>筛选</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>标题：</th>
-                        <td>
-                           <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:300px;">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>标题：</th>
-                        <td>
-                           <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:800px;">
-                        </td>
-                    </tr>
-                </table>
+               <div style="border:1px solid #95B8E7;width:480px;padding:10px;">
+                   <table id="SearchForm" class="z-tb-form">
+                       <tr>
+                            <th>类别：</th>
+                            <td><input type="text" id="CateId" name="CateId" data-options="url:'@Url.Action("CateList","Cate")'" class="easyui-combotree"  style="width:200px;"></td>
+                        </tr>
+                        <tr>
+                            <th>标题：</th>
+                            <td>
+                               <input type="text" id="Keyword" name="Keyword" data-options="required:true,validType:['length[2,30]']"  style="width:300px;">
+                            </td>
+                        </tr>
+                    </table>
 
-                <table class="z-tb-form">
-                    <tr>
-                        <th>标题：</th>
-                        <td>
-                           <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:300px;">
-                        </td>
-                    </tr>
-                </table>
+                    <table id="SelectForm" class="z-tb-form">
+                        <tr>
+                            <th>请选择：</th>
+                            <td>
+                               <ul>
+                                   <li>商品123</li>
+                                   <li>商品123</li>
+                                   <li>商品123</li>
+                                   <li>商品123</li>
+                                   <li>商品123</li>
+                                   <li>商品123</li>
+                                   <li>商品123</li>
+                               </ul>
+                            </td>
+                            <td>
+                                <p>添加</p>
+                                <p>移除</p>
+                                <p>清空</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </td>
         </tr>
     </table>
     </div>
+
     </div>
+    <script>
+        $(function () {
+            $("#SearchType").click(function () {
+                $("#SearchForm").removeClass("hidden");
+                $("#SelectForm").addClass("hidden");
+            });
+            $("#SelectType").click(function () {
+                $("#SearchForm").addClass("hidden");
+                $("#SelectForm").removeClass("hidden");
+            });
+        });
+
+
+        
+
+    </script>
 </form>

@@ -60,13 +60,13 @@
             }
            
             $('#add').bind('click', function () {
-                openParentTab('商品添加', GetAddUrl());
+                openParentTab(controllerName+'添加', GetAddUrl());
             });
 
             $('#edit').bind('click', function () {
                 var row = $('#grid').datagrid('getSelected');
                 if (row) {
-                    openParentTab('商品修改-' + row.id, GetEditUrl(row.id));
+                    openParentTab(controllerName + '修改-' + row.id, GetEditUrl(row.id));
                 }
                 else {
                     show('请选中要编辑的项目');

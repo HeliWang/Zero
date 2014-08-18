@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Zero.Manage.Models;
 using Zero.Core.Web;
 using Zero.Domain.Customs;
 using Zero.Service.Customs;
@@ -19,7 +20,7 @@ namespace Zero.Mvc.Manage.Controllers.Customs
             _customService = customService;
         }
 
-        public ActionResult customList()
+        public ActionResult CustomList()
         {
             int pageIndex = RequestHelper.QueryInt("page");
             int pageSize = RequestHelper.QueryInt("rows");
@@ -45,14 +46,14 @@ namespace Zero.Mvc.Manage.Controllers.Customs
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult CustomAdd(Custom custom)
+        public ActionResult CustomAdd(CustomModel custom)
         {
             ResultInfo resultInfo = new ResultInfo(1, "验证不通过");
 
-            if (ModelState.IsValid)
-            {
-                resultInfo = _customService.Add(custom);
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    resultInfo = _customService.Add(custom);
+            //}
 
             return Json(resultInfo);
         }

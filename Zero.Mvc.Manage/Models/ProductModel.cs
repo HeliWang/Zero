@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Zero.Domain.Products;
 
-namespace Zero.Mvc.Manage.Models
+namespace Zero.Manage.Models
 {
     public class ProductModel
     {

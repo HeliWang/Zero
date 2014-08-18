@@ -33,12 +33,13 @@
 <script type="text/javascript">
 
     var controller = "News";
+    var controllerName = "新闻";
 
     $(function () {
 
         //加载网格(搜索中文版对照属性，来配置)
         $('#grid').datagrid({
-            title: '资讯列表',
+            title: '新闻列表',
             collapsible: true,
             rownumbers: true,
             url: '/News/NewsList',
