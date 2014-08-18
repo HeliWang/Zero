@@ -46,14 +46,15 @@ namespace Zero.Mvc.Manage.Controllers.Customs
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult CustomAdd(CustomModel custom)
+        public ActionResult CustomAdd(CustomModel customModel)
         {
             ResultInfo resultInfo = new ResultInfo(1, "验证不通过");
 
-            //if (ModelState.IsValid)
-            //{
-            //    resultInfo = _customService.Add(custom);
-            //}
+            if (ModelState.IsValid)
+            {
+                customModel.Custom.Sql = _customService.GetProductSql(customModel.Custom.Quantity,customModel.ProductSearch);
+                resultInfo = _customService.Add(customModel.Custom);
+            }
 
             return Json(resultInfo);
         }

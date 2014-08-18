@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Zero.Data;
 using Zero.Domain.Customs;
 using Zero.Core.Web;
+using Zero.Domain.Products;
 
 namespace Zero.Service.Customs
 {
@@ -21,5 +22,7 @@ namespace Zero.Service.Customs
         IPage<Custom> GetList(int pageIndex, int pageSize);
 
         Custom GetById(int productId);
+
+        string GetProductSql(int quantity, ProductSearch productSearch);
     }
 }

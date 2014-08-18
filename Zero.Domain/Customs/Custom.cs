@@ -21,6 +21,11 @@ namespace Zero.Domain.Customs
         public string Title { get; set; }
 
         /// <summary>
+        /// 条数
+        /// </summary>
+        public int Quantity { get; set; }
+
+        /// <summary>
         /// 列表编号
         /// </summary>
         public string Ids { get; set; }
