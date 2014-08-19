@@ -153,6 +153,11 @@ namespace Zero.Domain.Products
         /// </summary>
         public int Status { get; set; }
 
+        /// <summary>
+        /// 类别地址
+        /// </summary>
+        public string CateUrl { get; set; }
+
         private string detailUrl;
 
         /// <summary>

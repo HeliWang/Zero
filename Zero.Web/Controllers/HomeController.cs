@@ -6,17 +6,30 @@ using System.Web.Mvc;
 
 using System.Net;
 using System.IO;
+using Zero.Web.Models;
+using Zero.Service.News;
+using Zero.Service.Products;
 
 namespace Zero.Web.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
+        public IProductService _productService;
+        public INewsService _newsService;
+
+        public HomeController(IProductService productService,
+           INewsService newsService)
+        {
+            _productService = productService;
+            _newsService = newsService;
+        }
 
         public ActionResult Index()
         {
-            return View();
+            IndexModel indexModel = new IndexModel();
+            indexModel.ProductList = _productService.GetList(10);
+            indexModel.NewsList = _newsService.GetList(10);
+            return View(indexModel);
         }
 
         public ActionResult List()

@@ -150,6 +150,10 @@
     <Compile Include="Migrations\201408180333544_AddCustom.Designer.cs">
       <DependentUpon>201408180333544_AddCustom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408190237148_UpdateCustom.cs" />
+    <Compile Include="Migrations\201408190237148_UpdateCustom.Designer.cs">
+      <DependentUpon>201408190237148_UpdateCustom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -229,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408180333544_AddCustom.resx">
       <DependentUpon>201408180333544_AddCustom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408190237148_UpdateCustom.resx">
+      <DependentUpon>201408190237148_UpdateCustom.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

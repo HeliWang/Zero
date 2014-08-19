@@ -44,6 +44,13 @@ namespace Zero.Service.News
             return new Page<NewsItem>(query, pageIndex, pageSize);
         }
 
+        public List<NewsItem> GetList(int quantity)
+        {
+            var query = _newsItemRepository.Table;
+            query = query.OrderByDescending(b => b.CreateTime);
+            return query.Take(quantity).ToList();
+        }
+
         public NewsItem GetById(int productId)
         {
             return _newsItemRepository.GetById(productId);

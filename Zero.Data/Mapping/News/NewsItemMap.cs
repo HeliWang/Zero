@@ -17,6 +17,7 @@ namespace Zero.Data.Mapping.News
 
             //Ignore
             this.Ignore(s => s.id);
+            this.Ignore(s => s.DetailUrl);
         }
     }
 }

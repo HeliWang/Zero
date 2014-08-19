@@ -50,5 +50,7 @@ namespace Zero.Domain.News
         public int DetailId { get; set; }
 
         public virtual NewsDetail Detail { get; set; }
+
+        public string DetailUrl { get; set; }
     }
 }

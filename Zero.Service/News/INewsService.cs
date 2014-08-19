@@ -21,5 +21,7 @@ namespace Zero.Service.News
         IPage<NewsItem> GetList(int pageIndex, int pageSize);
 
         NewsItem GetById(int productId);
+
+        List<NewsItem> GetList(int quantity);
     }
 }

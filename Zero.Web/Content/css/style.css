@@ -13,7 +13,7 @@ Template Type: type_0
 /* ====================
      公共样式
 ==================== */ 
-body{background:#f2f2f2; font-size:12px;  font: 12px/1.5 Arial,"microsoft yahei","微软雅黑E\8F6F\96C5\9ED1"; line-height:150%; margin:0; padding:0; color:#666;}
+body{/*background:#f2f2f2;*/ background:#FFF; font-size:12px;  font: 12px/1.5 Arial,"microsoft yahei","微软雅黑E\8F6F\96C5\9ED1"; line-height:150%; margin:0; padding:0; color:#666;}
 .index_body{ background:#FFF}
 
 .caaa{ color:#aaa}
@@ -503,7 +503,7 @@ background: #FAFAFA; z-index:999999999
 	   .goodsItem_kuang{ background:#FFF; margin-left:10px;  float:left; padding-bottom:2px; background:url(/content/images/goodsitem_show.gif) repeat-x 0 bottom; margin-bottom:10px;}
 	    .goodsItem_kuang2{ margin-left:0; margin-right:10px;} 
        .goodsItem{width:220px;padding:5px;border:1px solid #e3e3e3; background:#FFF; position:relative; overflow:hidden; padding-bottom:15px; float:left }
-       .goodsItem .goodsimg{width:220px; height:220px; margin-bottom:8px;   background:#FFF;  }
+       .goodsItem .goodsimg{width:220px; height:220px; /*margin-bottom:8px;*/   background:#FFF;  }
        .goodsItem img{width:52px; height:17px;}
        .goodsItem p{text-align:left; font-size:14px;  hcolor:#3f3f3f; height:20px; line-height:20px; overflow:hidden; margin-bottom:5px;}
        .goodsItem p a{color:#666; text-decoration:none;}

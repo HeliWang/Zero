@@ -83,8 +83,15 @@ namespace Zero.Service.Products
         public IPage<Product> GetList(ProductSearch search, int pageIndex, int pageSize)
         {
             var query = _productRepository.Table;
-            query = query.OrderByDescending(b => b.CreateTime);
+            query = query.OrderByDescending(b => b.ProductId);
             return new Page<Product>(query, pageIndex, pageSize);
+        }
+
+        public List<Product> GetList(int quantity)
+        {
+            var query = _productRepository.Table;
+            query = query.OrderByDescending(b => b.CreateTime);
+            return query.Take(quantity).ToList();
         }
 
         public Product GetById(int productId)

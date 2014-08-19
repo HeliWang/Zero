@@ -51,6 +51,27 @@ namespace Zero.Core.Web
         }
 
         /// <summary>
+        /// 从左边0开始截取指定长度的字符串,并补上自定义的字符串
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string CutStr(string str, int length, string str2)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return str;
+            }
+
+            if (str.Length <= length)
+            {
+                str2 = "";
+                length = str.Length;
+            }
+            return str.Substring(0, length) + str2;
+        }
+
+        /// <summary>
         /// 从指定位置开始截取指定长度的字符串
         /// </summary>
         /// <param name="str"></param>

@@ -22,6 +22,8 @@ namespace Zero.Service.Products
 
         IPage<Product> GetList(ProductSearch search, int pageIndex, int pageSize);
 
+        List<Product> GetList(int quantity);
+
         Product GetById(int productId);
 
         ProductDesc GetDescById(int productId);

@@ -19,6 +19,7 @@ namespace Zero.Web.Infrastructure
         {
             ContainerBuilder builder = new ContainerBuilder();
 
+            builder.RegisterType<HomeController>();
             builder.RegisterType<ProductController>();
 
             //service

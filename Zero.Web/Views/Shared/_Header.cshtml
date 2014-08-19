@@ -74,7 +74,7 @@
     <div class="shadow-x shadow-x1 pngfix"></div>
     <div class="block" style="position: relative">
         <div class="meun_in">
-            <a class="a1" href="/home/" id="cur">首页</a>
+            <a class="a1" href="/" id="cur">首页</a>
             <img width="2" height="34" src="/content/images/meun_line.gif">
             <a class="a1" href="/product/">商品列表</a>
 
@@ -689,5 +689,12 @@
             <div class="shadow-y shadow-y1"></div>
             <div class="shadow-x shadow-x2 shadow-x2s"></div>
         </div>
+        <script>
+            $(function(){
+                if(document.URL=="http://w.zero.com/"){
+                    $(".category_all").addClass("category_all_on").removeAttr("onmouseover").removeAttr("onmouseout");
+                }
+            });
+        </script>
     </div>
 </div>
