@@ -161,18 +161,18 @@
                     <ul>
                         <dl style="display: list-item;">
                             @{
-                                var i1 = 1;
+                                var i = 1;
                                 foreach (var product in Model.ProductList)
                                 {
-                                    <ul class="clearfix ul_list" id="hot3s@(i1)" onmouseover="show_goodspic(@i1,&#39;hot3&#39;)" style="display:@(i1 == 1 ? "none" : "block");">
-                                        <span>@(i1)</span>
+                                    <ul class="clearfix ul_list" id="hot3s@(i)" onmouseover="show_goodspic(@i,&#39;hot3&#39;)" style="display:@(i == 1 ? "none" : "block");">
+                                        <span>@(i)</span>
                                         <p class="name">
                                             <a href="@product.DetailUrl" title="@product.ProductName">@Zero.Core.Web.StringHelper.CutStr(product.ProductName, 13, "...")</a>
                                         </p>
                                         <div class="ren">@(product.Score)人</div>
                                     </ul>
-                                    <ul class="clearfix ul_box" id="hot3b@(i1)" style="display:@(i1 == 1 ? "block" : "none");">
-                                        <span>@(i1)</span>
+                                    <ul class="clearfix ul_box" id="hot3b@(i)" style="display:@(i == 1 ? "block" : "none");">
+                                        <span>@(i)</span>
                                         <li class="img">
                                             <a href="@product.DetailUrl">
                                                 <img src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(product.Photo, 220, 220)" alt="@product.ProductName"></a>
@@ -183,8 +183,8 @@
                                             <div class="ren">@(product.Score)人</div>
                                         </li>
                                     </ul>
-                                    i1++;
-                                    if (i1 == 10) { break; }
+                                    i++;
+                                    if (i == 10) { break; }
                                 }
                               }
                             <script type="text/javascript"> window.onload = show_goodspic(1,'hot1');</script>
@@ -193,18 +193,18 @@
                     <ul style="display: none;">
                         <dl style="display: list-item;">
                             @{
-                                var i2 = 1;
+                                i = 1;
                                 foreach (var product in Model.ProductList)
                                 {
-                                    <ul class="clearfix ul_list" id="hot3s@(i2)" onmouseover="show_goodspic(@i2,&#39;hot3&#39;)" style="display:@(i2 == 1 ? "none" : "block");">
-                                        <span>@(i2)</span>
+                                    <ul class="clearfix ul_list" id="hot3s@(i)" onmouseover="show_goodspic(@i,&#39;hot3&#39;)" style="display:@(i == 1 ? "none" : "block");">
+                                        <span>@(i)</span>
                                         <p class="name">
                                             <a href="@product.DetailUrl" title="@product.ProductName">@Zero.Core.Web.StringHelper.CutStr(product.ProductName, 13, "...")</a>
                                         </p>
                                         <div class="ren">@(product.Score)人</div>
                                     </ul>
-                                    <ul class="clearfix ul_box" id="hot3b@(i2)" style="display:@(i2 == 1 ? "block" : "none");">
-                                        <span>@(i2)</span>
+                                    <ul class="clearfix ul_box" id="hot3b@(i)" style="display:@(i == 1 ? "block" : "none");">
+                                        <span>@(i)</span>
                                         <li class="img">
                                             <a href="@product.DetailUrl">
                                                 <img src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(product.Photo, 220, 220)" alt="@product.ProductName"></a>
@@ -215,8 +215,8 @@
                                             <div class="ren">@(product.Score)人</div>
                                         </li>
                                     </ul>
-                                    i2++;
-                                    if (i2 == 10) { break; }
+                                    i++;
+                                    if (i == 10) { break; }
                                 }
                               }
                             <script type="text/javascript"> window.onload = show_goodspic(1,'hot2');</script>
@@ -241,18 +241,18 @@
                         <dl style="display: list-item;">
 
                             @{
-                                var i3 = 1;
+                                i = 1;
                                 foreach (var product in Model.ProductList)
                                 {
-                                    <ul class="clearfix ul_list" id="hot3s@(i3)" onmouseover="show_goodspic(@i3,&#39;hot3&#39;)" style="display:@(i3 == 1 ? "none" : "block");">
-                                        <span>@(i3)</span>
+                                    <ul class="clearfix ul_list" id="hot3s@(i)" onmouseover="show_goodspic(@i,&#39;hot3&#39;)" style="display:@(i == 1 ? "none" : "block");">
+                                        <span>@(i)</span>
                                         <p class="name">
                                             <a href="@product.DetailUrl" title="@product.ProductName">@Zero.Core.Web.StringHelper.CutStr(product.ProductName, 13, "...")</a>
                                         </p>
                                         <div class="ren">@(product.Score)人</div>
                                     </ul>
-                                    <ul class="clearfix ul_box" id="hot3b@(i3)" style="display:@(i3 == 1 ? "block" : "none");">
-                                        <span>@(i3)</span>
+                                    <ul class="clearfix ul_box" id="hot3b@(i)" style="display:@(i == 1 ? "block" : "none");">
+                                        <span>@(i)</span>
                                         <li class="img">
                                             <a href="@product.DetailUrl">
                                                 <img src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(product.Photo, 220, 220)" alt="@product.ProductName"></a>
@@ -263,8 +263,8 @@
                                             <div class="ren">@(product.Score)人</div>
                                         </li>
                                     </ul>
-                                    i3++;
-                                    if (i3 == 10) { break; }
+                                    i++;
+                                    if (i == 10) { break; }
                                 }
                               }
                             
@@ -274,18 +274,18 @@
                     <ul style="display: none;">
                         <dl style="display: list-item;">
                            @{
-                               var i4 = 1;
+                               i = 1;
                                foreach (var product in Model.ProductList)
                                {
-                                    <ul class="clearfix ul_list" id="hot3s@(i4)" onmouseover="show_goodspic(@i4,&#39;hot3&#39;)" style="display:@(i4 == 1 ? "none" : "block");">
-                                        <span>@(i4)</span>
+                                    <ul class="clearfix ul_list" id="hot3s@(i)" onmouseover="show_goodspic(@i,&#39;hot3&#39;)" style="display:@(i == 1 ? "none" : "block");">
+                                        <span>@(i)</span>
                                         <p class="name">
                                             <a href="@product.DetailUrl" title="@product.ProductName">@Zero.Core.Web.StringHelper.CutStr(product.ProductName, 13, "...")</a>
                                         </p>
                                         <div class="ren">@(product.Score)人</div>
                                     </ul>
-                                    <ul class="clearfix ul_box" id="hot3b@(i4)" style="display:@(i4 == 1 ? "block" : "none");">
-                                        <span>@(i4)</span>
+                                    <ul class="clearfix ul_box" id="hot3b@(i)" style="display:@(i == 1 ? "block" : "none");">
+                                        <span>@(i)</span>
                                         <li class="img">
                                             <a href="@product.DetailUrl">
                                                 <img src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(product.Photo, 220, 220)" alt="@product.ProductName"></a>
@@ -296,8 +296,8 @@
                                             <div class="ren">@(product.Score)人</div>
                                         </li>
                                     </ul>
-                                   i4++;
-                                   if (i4 == 10) { break; }
+                                   i++;
+                                   if (i == 10) { break; }
                                }
                              }
                             <script type="text/javascript"> window.onload = show_goodspic(1,'hot4');</script>
@@ -327,10 +327,10 @@
     <div class="cat_box">
 
         @{
-            var a = 0;
+            i = 0;
             foreach (var product in Model.ProductList)
             {
-                <div class="goodsItem_kuang" style="@(a==0?"margin-left:0;":"")">
+                <div class="goodsItem_kuang" style="@(i==0?"margin-left:0;":"")">
                     <div class="goodsItem goodsItem_on" onmouseover="this.className=&#39;goodsItem goodsItem_on&#39;" onmouseout="this.className=&#39;goodsItem&#39;">
 
                      @*   <div class="fj">
@@ -349,8 +349,8 @@
 
                     </div>
                 </div>
-                a++;
-                if (a == 5){ break;}
+                i++;
+                if (i == 5) { break; }
             }
          }
         
@@ -366,10 +366,10 @@
     <div class="blank"></div>
     <div class="cat_box">
         @{
-            var a6 = 0;
+            i = 0;
             foreach (var product in Model.ProductList)
             {
-                <div class="goodsItem_kuang" style="@(a6==0?"margin-left:0;":"")">
+                <div class="goodsItem_kuang" style="@(i==0?"margin-left:0;":"")">
                     <div class="goodsItem goodsItem_on" onmouseover="this.className=&#39;goodsItem goodsItem_on&#39;" onmouseout="this.className=&#39;goodsItem&#39;">
 
                      @*   <div class="fj">
@@ -388,8 +388,8 @@
 
                     </div>
                 </div>
-                a6++;
-                if (a6 == 5) { break; }
+                i++;
+                if (i == 5) { break; }
             }
          }
     </div>
