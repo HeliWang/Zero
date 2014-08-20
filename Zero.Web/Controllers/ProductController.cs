@@ -27,12 +27,47 @@ namespace Zero.Web.Controllers
         public ActionResult Index()
         {
             ProductListModel model = new ProductListModel();
-
+            ProductSearch search = new ProductSearch();
+            search.CateId=RequestHelper.AllInt("CateId");
             int pageSize = 30;
             int pageIndex = 0;
 
-            model.ProductList = _productService.GetList(pageIndex, pageSize).Items;
+            //类别信息
+            List<Cate> allCateList = _cateService.GetList(0, 0);
 
+            if (search.CateId > 0)
+            {
+                Cate cate = allCateList.SingleOrDefault(c => c.CateId == search.CateId);
+
+                if (cate != null)
+                {
+                    search.Lid = cate.Lid;
+                    search.Rid = cate.Rid;
+
+                    //获取分类路径
+                    model.PathCateList = allCateList.Where(ac => ac.Lid < cate.Lid && ac.Rid > cate.Rid).ToList();
+
+                    //获取分类信息
+                    if (cate.Depth == 1)
+                    {
+                        model.CateList = allCateList.Where(ac => ac.Lid > cate.Lid && ac.Rid < cate.Rid && ac.Depth == 2).ToList();
+                    }
+                    else if (cate.Depth == 2)
+                    {
+                        model.CateList = allCateList.Where(ac => ac.Pid == cate.Pid && ac.Depth == 2).ToList();
+                    }
+                }
+            }
+            else
+            {
+                model.CateList = allCateList.Where(ac => ac.Depth == 1).ToList();
+            }
+            
+
+
+     
+            model.ProductList = _productService.GetList(search, pageIndex, pageSize).Items;
+                                                                   
             return View(model);
         }
 

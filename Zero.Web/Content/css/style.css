@@ -125,7 +125,7 @@ white-space: nowrap; font-weight:bold}
   .h3_2 h1{float:left; width:auto; height:25px; line-height:33px; text-align:left;
    font-weight:bold; color:#666; font-size:14px; font-weight:bold} 
    .h3_2 form{ float:right;  }
-   .h3_2 form a{ float:left; border-left:1px solid #d9d9d9}
+   .h3_2 form a{ float:left; border-left:1px solid #d9d9d9;height:33px;}
    
    .h3_3{border-bottom:1px solid #ddd;   }
    

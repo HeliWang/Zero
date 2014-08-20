@@ -17,35 +17,47 @@
     <div class="box">
         <div class="box_1">
             <div class="ur_here">
-                <div style="float: left"><a href=".">首页</a> <code>&gt;</code> <a href="category-6-b0.html">ECSHOP免费模板</a> <code>&gt;</code> <a href="category-14-b0.html">综合通用</a>&nbsp;&gt;</div>
+                <div style="float: left">
+                    <a href="/">首页</a> 
+                    @{
+                        if(Model.PathCateList!=null)
+                        {
+                            foreach(var cate in Model.PathCateList)
+                            {
+                                <code>&gt;</code> <a href="category-6-b0.html">@cate.CateName</a> 
+                            }  
+                        }
+                     }
+                    <code>&gt</code>
+                </div>
                 <div class="b_box2">
-
                     <a id="choose_style" href="category-14-b0-min0-max0-attr0.549.html">时尚简约<b></b></a>
                     <a id="choose_style" href="category-14-b0-min0-max0-attr246.0.html">白色<b></b></a>
                 </div>
             </div>
+            @{
+                if(Model.CateList!=null &&Model.CateList.Count>0)
+                {
+                    <div class="screeBox clearfix">
+                        <strong>分类：</strong>
+                        <div class="b_box">
+                            <ul>
+                                <li><a href="category-6-b0-min0-max0-attr246.549.html">全部</a> </li>
+                                <li><span>综合通用</span></li>
 
-            <div class="screeBox clearfix">
-                <strong>分类：</strong>
+                                @foreach(var cate in Model.CateList)
+                                {
+                                    <li><a href="category-15-b0-min0-max0-attr246.549.html">@cate.CateName</a> </li>
+                                }
 
-                <div class="b_box">
+                            </ul>
+                        </div>
+                    </div>
+                }  
+             }
+            
 
-                    <ul>
-                        <li><a href="category-6-b0-min0-max0-attr246.549.html">全部</a> </li>
-                        <li><span>综合通用</span></li>
-                        <li><a href="category-15-b0-min0-max0-attr246.549.html">家电数码</a> </li>
-                        <li><a href="category-16-b0-min0-max0-attr246.549.html">服装鞋帽</a> </li>
-                        <li><a href="category-17-b0-min0-max0-attr246.549.html">英文外贸</a> </li>
-                        <li><a href="category-18-b0-min0-max0-attr246.549.html">美容护肤</a> </li>
-                        <li><a href="category-19-b0-min0-max0-attr246.549.html">食品保健</a> </li>
-                        <li><a href="category-20-b0-min0-max0-attr246.549.html">珠宝饰品</a> </li>
-                        <li><a href="category-21-b0-min0-max0-attr246.549.html">鲜花礼品</a> </li>
-                        <li><a href="category-22-b0-min0-max0-attr246.549.html">团购模板</a> </li>
-                    </ul>
 
-                </div>
-
-            </div>
             <div class="screeBox clearfix">
                 <strong>主题：</strong>
 
@@ -59,7 +71,6 @@
                     <li><a href="category-14-b0-min0-max0-attr211.549.html">节日庆典</a></li>
                 </ul>
             </div>
-
             <div class="screeBox clearfix">
                 <strong>色系：</strong>
 
@@ -75,7 +86,6 @@
                     <li><a href="category-14-b0-min0-max0-attr246.243.html">黑色</a></li>
                 </ul>
             </div>
-
         </div>
     </div>
     <div class="blank"></div>
@@ -107,13 +117,14 @@
 
     <div class="cat_box">
         @{
-            var i=0;
+            var i = 0;
             foreach (var product in Model.ProductList)
             {                
-                <div class="goodsItem_kuang" @if(i%5==0){<text>style="margin-left:0;"</text>}>
+                <div class="goodsItem_kuang" @if (i % 5 == 0)
+                                             {<text>style="margin-left:0;"</text>}>
                     <div class="goodsItem" onmouseover="this.className='goodsItem goodsItem_on'" onmouseout="this.className='goodsItem'">
                         <a href="@product.DetailUrl" target="_blank">
-                            <img data-original="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(product.Photo,220,220)" src="/content/images/loading.gif" alt="@product.ProductName" class="goodsimg" /></a><br />
+                            <img data-original="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(product.Photo, 220, 220)" src="/content/images/loading.gif" alt="@product.ProductName" class="goodsimg" /></a><br />
                         <p><a href="@product.DetailUrl" title="@product.ProductName" target="_blank">@product.ProductName</a></p>
                         <div class="clearfix">
                             <font class="f1">￥ @product.Price 元</font>
@@ -121,7 +132,7 @@
                         </div>
                     </div>
                 </div>
-                i++;
+                                             i++;
             }
         }
     </div>

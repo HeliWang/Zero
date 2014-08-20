@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using System.Web;
+
+using Zero.Domain.Products;
 
 namespace Zero.Domain
 {
@@ -55,8 +56,10 @@ namespace Zero.Domain
 
     public class ProductUrlFactory
     {
+        public const string ListUrl = "/product?cateId={1}&page={2}";
+
         public const string DetailUrl = "/product/detail?productId={0}";
-        public const string ListUrl = "/product?CateId={0}";
+        
 
         public static string GetDetailUrl(int productId)
         {
@@ -66,6 +69,12 @@ namespace Zero.Domain
         public static string GetListUrl(int cateId)
         {
             return string.Format(ListUrl, cateId);
+        }
+
+        public static string GetListUrl(ProductSearch search)
+        {
+           
+            return "";
         }
     }
 }

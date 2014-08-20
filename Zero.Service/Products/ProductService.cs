@@ -6,22 +6,26 @@ using System.Threading.Tasks;
 
 using Zero.Data;
 using Zero.Domain.Products;
+using Zero.Domain.Cates;
 using Zero.Core.Web;
 
 namespace Zero.Service.Products
 {
     public class ProductService : IProductService
     {
+        private IRepository<Cate> _cateRepository;
         private IRepository<Product> _productRepository;
         private IRepository<Sku> _skuRepository;
         private IRepository<ProductDesc> _productDescRepository;
         private IRepository<ProductPhoto> _productPhotoRepository;
 
-        public ProductService(IRepository<Product> productRepository,
+        public ProductService(IRepository<Cate> cateRepository,
+            IRepository<Product> productRepository,
             IRepository<Sku> skuRepository,
             IRepository<ProductDesc> productDescRepository,
             IRepository<ProductPhoto> productPhotoRepository)
         {
+            cateRepository = _cateRepository;
             _productRepository = productRepository;
             _skuRepository = skuRepository;
             _productDescRepository = productDescRepository;
@@ -83,6 +87,19 @@ namespace Zero.Service.Products
         public IPage<Product> GetList(ProductSearch search, int pageIndex, int pageSize)
         {
             var query = _productRepository.Table;
+            
+
+            //类别检索
+            if (search.Lid > 0 && search.Rid > 0)
+            {
+                query = from a in query
+                        join c in _cateRepository.Table on a.CateId equals c.CateId
+                        where c.Lid >= search.Lid && c.Rid <= search.Rid
+                        select a;
+            }
+
+            //属性检索
+
             query = query.OrderByDescending(b => b.ProductId);
             return new Page<Product>(query, pageIndex, pageSize);
         }
