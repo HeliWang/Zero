@@ -15,9 +15,9 @@ namespace Zero.Service.Cates
     {
         public IRepository<Attr> _attrRepository;
 
-        public AttrService()
+        public AttrService(IRepository<Attr> attrRepository)
         {
-            _attrRepository = new EfRepository<Attr>();
+            _attrRepository = attrRepository;
         }
 
         public ResultInfo Add(Attr attr)

@@ -14,9 +14,9 @@ namespace Zero.Web.Controllers
     {
         public UserServices _userServices;
 
-        public UserController()
+        public UserController(UserServices userServices)
         {
-            _userServices = new UserServices();
+            _userServices = userServices;
         }
 
         public ActionResult Index()

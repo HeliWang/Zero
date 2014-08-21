@@ -25,7 +25,7 @@ namespace Zero.Service.Products
             IRepository<ProductDesc> productDescRepository,
             IRepository<ProductPhoto> productPhotoRepository)
         {
-            cateRepository = _cateRepository;
+            _cateRepository = cateRepository;
             _productRepository = productRepository;
             _skuRepository = skuRepository;
             _productDescRepository = productDescRepository;
@@ -86,8 +86,7 @@ namespace Zero.Service.Products
 
         public IPage<Product> GetList(ProductSearch search, int pageIndex, int pageSize)
         {
-            var query = _productRepository.Table;
-            
+            var query = _productRepository.Table;     
 
             //类别检索
             if (search.Lid > 0 && search.Rid > 0)
@@ -99,6 +98,7 @@ namespace Zero.Service.Products
             }
 
             //属性检索
+
 
             query = query.OrderByDescending(b => b.ProductId);
             return new Page<Product>(query, pageIndex, pageSize);

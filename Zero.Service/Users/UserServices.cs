@@ -14,9 +14,9 @@ namespace Zero.Service.Users
     {
         private IRepository<User> _userRepository;
 
-        public UserServices()
+        public UserServices(IRepository<User> userRepository)
         {
-            _userRepository = new EfRepository<User>();
+            _userRepository = userRepository;
         }
 
         public ResultInfo Login(string userName, string password)

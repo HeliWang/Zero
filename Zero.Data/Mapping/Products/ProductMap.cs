@@ -11,6 +11,10 @@ namespace Zero.Data.Mapping.Products
             this.ToTable("Product");
             this.HasKey(p => p.ProductId);
 
+            this.HasRequired(p => p.Cate)
+               .WithMany()
+               .HasForeignKey(p => p.CateId);
+
             //Ignore
             this.Ignore(p => p.id);
             this.Ignore(p => p.CateUrl);

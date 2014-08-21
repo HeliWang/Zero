@@ -14,13 +14,14 @@ namespace Zero.Web.Controllers
 {
     public class OrderController : Controller
     {
-        public CartService _cartService;
-        public OrderService _orderService;
+        public ICartService _cartService;
+        public IOrderService _orderService;
 
-        public OrderController()
+        public OrderController(ICartService cartServicem,
+            IOrderService orderService)
         {
-            _cartService=new CartService();
-            _orderService = new OrderService();
+            _cartService = cartServicem;
+            _orderService = orderService;
         }
 
         [HttpPost]

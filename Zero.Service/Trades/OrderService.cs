@@ -18,11 +18,13 @@ namespace Zero.Service.Trades
         public IRepository<Order> _orderRepository;
         public IRepository<Snapshot> _snapshotRepository;
 
-        public OrderService()
+        public OrderService(CartService cartService,
+            IRepository<Order> orderRepository,
+            IRepository<Snapshot> snapshotRepository)
         {
-            _cartService = new CartService();
-            _orderRepository = new EfRepository<Order>();
-            _snapshotRepository = new EfRepository<Snapshot>();
+            _cartService = cartService;
+            _orderRepository = orderRepository;
+            _snapshotRepository = snapshotRepository;
             
         }
         

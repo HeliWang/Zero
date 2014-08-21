@@ -22,6 +22,10 @@ namespace Zero.Web.Infrastructure
             builder.RegisterType<HomeController>();
             builder.RegisterType<ProductController>();
 
+            builder.RegisterType<EfDbContext>().As<IDbContext>().InstancePerHttpRequest();
+
+            //builder.Register<IDbContext>(c => new EfDbContext()).InstancePerLifetimeScope();
+
             //service
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>));
 

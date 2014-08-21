@@ -64,6 +64,8 @@
     <Compile Include="News\NewsServices.cs" />
     <Compile Include="Products\IProductService.cs" />
     <Compile Include="Trades\CartService.cs" />
+    <Compile Include="Trades\ICartService.cs" />
+    <Compile Include="Trades\IOrderService.cs" />
     <Compile Include="Trades\OrderService.cs" />
     <Compile Include="Products\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,6 +75,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Upload\PhotoService.cs" />
+    <Compile Include="Users\IUserServices.cs" />
     <Compile Include="Users\UserServices.cs" />
     <Compile Include="Web References\img\Reference.cs">
       <AutoGen>True</AutoGen>

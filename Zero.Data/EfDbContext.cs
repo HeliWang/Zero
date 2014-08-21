@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data.Entity;
+using Zero.Domain;
 using Zero.Data.Mapping.Products;
 using Zero.Data.Mapping.Cates;
 using Zero.Data.Mapping.Upload;
@@ -14,11 +15,16 @@ using Zero.Data.Mapping.News;
 using Zero.Data.Mapping.Customs;
 namespace Zero.Data
 {
-    public class EfDbContext : DbContext
+    public class EfDbContext : DbContext, IDbContext
     {
         public EfDbContext()
             : base(@"ZeroData")
         {
+        }
+
+        public new DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity
+        {
+            return base.Set<TEntity>();
         }
 
         //public DbSet<Cate> Cates { get; set; }

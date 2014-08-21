@@ -16,9 +16,9 @@ namespace Zero.Service.Upload
     {
         private IRepository<Photo> _photoRepository;
 
-        public PhotoService()
+        public PhotoService(IRepository<Photo> photoRepository)
         {
-            _photoRepository = new EfRepository<Photo>();
+            _photoRepository = photoRepository;
         }
 
         public ResultInfo Add(HttpFileCollectionBase files)

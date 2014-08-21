@@ -20,12 +20,15 @@ namespace Zero.Service.Trades
         private IRepository<ProductPhoto> _productPhotoRepository;
         private IRepository<Cart> _cartRepository;
 
-        public CartService()
+        public CartService(IRepository<Product> productRepository,
+            IRepository<Sku> skuRepository,
+            IRepository<ProductPhoto> productPhotoRepository,
+            IRepository<Cart> cartRepository)
         {
-            _productRepository = new EfRepository<Product>();
-            _skuRepository = new EfRepository<Sku>();
-            _productPhotoRepository = new EfRepository<ProductPhoto>();
-            _cartRepository = new EfRepository<Cart>();
+            _productRepository = productRepository;
+            _skuRepository = skuRepository;
+            _productPhotoRepository = productPhotoRepository;
+            _cartRepository = cartRepository;
 
             //临时用户购物项和会员用户购物项转换
         }

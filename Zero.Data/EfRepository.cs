@@ -15,16 +15,16 @@ namespace Zero.Data
 {
     public partial class EfRepository<T> : IRepository<T> where T : BaseEntity
     {
-        private readonly DbContext _context; 
+        private readonly IDbContext _context; 
         private DbSet<T> _entities;
 
-        public EfRepository()
-        {
-            _context = new EfDbContext();
-            this._entities = _context.Set<T>();
-        }
+        //public EfRepository()
+        //{
+        //    _context = new EfDbContext();
+        //    this._entities = _context.Set<T>();
+        //}
 
-        public EfRepository(DbContext context)
+        public EfRepository(IDbContext context)
         {
             this._context = context;
             this._entities = _context.Set<T>();

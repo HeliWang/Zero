@@ -14,11 +14,11 @@ namespace Zero.Web.Controllers
 {
     public class CartController : Controller
     {
-        public CartService _cartService;
+        public ICartService _cartService;
 
-        public CartController()
+        public CartController(ICartService cartService)
         {
-            _cartService=new CartService();
+            _cartService = cartService;
         }
 
         public ActionResult Index()

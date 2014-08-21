@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Zero.Domain.Cates;
 
 namespace Zero.Domain.Products
 {
@@ -189,6 +190,7 @@ namespace Zero.Domain.Products
         /// </summary>
         public DateTime? UpdateTime { get; set; }
 
+        public virtual Cate Cate { get; set; }
 
         public List<Sku> SkuList { get; set; }
 

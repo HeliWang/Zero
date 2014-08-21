@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EfCateRepository.cs" />
+    <Compile Include="IDbContext.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Mapping\Cates\CateMap.cs" />
     <Compile Include="Mapping\Cates\AttrMap.cs" />
@@ -154,6 +155,14 @@
     <Compile Include="Migrations\201408190237148_UpdateCustom.Designer.cs">
       <DependentUpon>201408190237148_UpdateCustom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408210252479_UpdateCustom1.cs" />
+    <Compile Include="Migrations\201408210252479_UpdateCustom1.Designer.cs">
+      <DependentUpon>201408210252479_UpdateCustom1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408210303281_UpdateCustom2.cs" />
+    <Compile Include="Migrations\201408210303281_UpdateCustom2.Designer.cs">
+      <DependentUpon>201408210303281_UpdateCustom2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -236,6 +245,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408190237148_UpdateCustom.resx">
       <DependentUpon>201408190237148_UpdateCustom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408210252479_UpdateCustom1.resx">
+      <DependentUpon>201408210252479_UpdateCustom1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408210303281_UpdateCustom2.resx">
+      <DependentUpon>201408210303281_UpdateCustom2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
