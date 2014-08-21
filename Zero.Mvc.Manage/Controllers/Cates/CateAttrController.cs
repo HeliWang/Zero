@@ -17,14 +17,16 @@ namespace Zero.Mvc.Manage.Controllers.Cates
     public partial class CateAttrController : BaseController
     {
         CateService _cateService;
-        CateAttrService _cateAttrService;
-        AttrValueService _attrValueService;
+        ICateAttrService _cateAttrService;
+        IAttrValueService _attrValueService;
 
-        public CateAttrController()
+        public CateAttrController(CateService cateService,
+            CateAttrService cateAttrService,
+            AttrValueService attrValueService)
         {
-            _cateService = Singleton<CateService>.GetInstance();
-            _cateAttrService = Singleton<CateAttrService>.GetInstance();
-            _attrValueService = Singleton<AttrValueService>.GetInstance();
+            _cateService = cateService;
+            _cateAttrService = cateAttrService;
+            _attrValueService = attrValueService;
         }
 
         public ActionResult AttrValueList()

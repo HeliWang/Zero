@@ -62,10 +62,10 @@ namespace Zero.Web.Controllers
             {
                 model.CateList = allCateList.Where(ac => ac.Depth == 1).ToList();
             }
+
+            //属性信息
             
-
-
-     
+            
             model.ProductList = _productService.GetList(search, pageIndex, pageSize).Items;
                                                                    
             return View(model);

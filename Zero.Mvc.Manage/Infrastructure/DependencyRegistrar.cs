@@ -7,9 +7,11 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Zero.Data;
+using Zero.Mvc.Manage.Controllers.Cates;
 using Zero.Mvc.Manage.Controllers.Products;
 using Zero.Mvc.Manage.Controllers.News;
 using Zero.Mvc.Manage.Controllers.Customs;
+using Zero.Service.Cates;
 using Zero.Service.Products;
 using Zero.Service.News;
 using Zero.Service.Customs;
@@ -23,12 +25,21 @@ namespace Zero.Mvc.Manage.Infrastructure
         {
             ContainerBuilder builder = new ContainerBuilder();
 
+            builder.RegisterType<EfDbContext>().As<IDbContext>().InstancePerHttpRequest();
+
+            builder.RegisterType<AttrController>();
+            builder.RegisterType<AttrValueController>();
             builder.RegisterType<ProductController>();
             builder.RegisterType<NewsController>();
             builder.RegisterType<CustomController>();
 
+           
+
             //service
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>));
+
+            builder.RegisterType<AttrService>().As<IAttrService>().InstancePerHttpRequest();
+            builder.RegisterType<AttrValueService>().As<IAttrValueService>().InstancePerHttpRequest();
 
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerHttpRequest();
 

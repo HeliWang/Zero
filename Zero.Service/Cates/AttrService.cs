@@ -11,7 +11,7 @@ using Zero.Core.Web;
 
 namespace Zero.Service.Cates
 {
-    public class AttrService
+    public class AttrService :IAttrService
     {
         public IRepository<Attr> _attrRepository;
 

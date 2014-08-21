@@ -14,9 +14,9 @@ namespace Zero.Mvc.Manage.Controllers.Trades
     {
         public OrderService _orderService;
 
-        public OrderController()
+        public OrderController(OrderService orderService)
         {
-            _orderService = new OrderService();
+            _orderService = orderService;
         }
 
         public ActionResult OrderList()

@@ -16,11 +16,11 @@ namespace Zero.Mvc.Manage.Controllers.Cates
     /// </summary>
     public partial class AttrController : BaseController
     {
-        AttrService _attrService;
+        IAttrService _attrService;
 
-        public AttrController()
+        public AttrController(IAttrService attrService)
         {
-            _attrService = Singleton<AttrService>.GetInstance();
+            _attrService = attrService;
         }
 
         public ActionResult AttrList()

@@ -16,19 +16,20 @@ namespace Zero.Service.Cates
         public int CateId{get;set;}
     }
 
-    public class CateAttrService
+    public class CateAttrService : ICateAttrService
     {
         public EfDbContext context;
         public IRepository<Cate> _cateRepository;
         public IRepository<Attr> _attrRepository;
         public IRepository<CateAttr> _cateAttrRepository;
 
-        public CateAttrService()
+        public CateAttrService(IRepository<Cate> cateRepository,
+            IRepository<Attr> attrRepository,
+            IRepository<CateAttr> cateAttrRepository)
         {
-            context = new EfDbContext();
-            _cateRepository = new EfRepository<Cate>(context);
-            _attrRepository = new EfRepository<Attr>(context);
-            _cateAttrRepository = new EfRepository<CateAttr>(context);
+            _cateRepository = cateRepository;
+            _attrRepository = attrRepository;
+            _cateAttrRepository = cateAttrRepository;
         }
 
         public ResultInfo Add(CateAttr cateAttr)

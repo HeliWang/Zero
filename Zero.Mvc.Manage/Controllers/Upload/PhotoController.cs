@@ -17,9 +17,9 @@ namespace Zero.Mvc.Manage.Controllers.Upload
     {
         PhotoService _photoService;
 
-        public PhotoController()
+        public PhotoController(PhotoService photoService)
         {
-            _photoService = Singleton<PhotoService>.GetInstance();
+            _photoService = photoService;
         }
 
         public ActionResult PhotoIndex()
