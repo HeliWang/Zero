@@ -16,12 +16,14 @@ namespace Zero.Web.Controllers
     public class ProductController : Controller
     {
         public IProductService _productService;
-        public CateService _cateService;
+        public ICateService _cateService;
+        public CateAttrService _cateAttrService;
 
-        public ProductController(IProductService productService)
+        public ProductController(ICateService cateService,
+            IProductService productService)
         {
             _productService = productService;
-            _cateService = new CateService();
+            _cateService = cateService;
         }
 
         public ActionResult Index()
@@ -55,6 +57,9 @@ namespace Zero.Web.Controllers
                     else if (cate.Depth == 2)
                     {
                         model.CateList = allCateList.Where(ac => ac.Pid == cate.Pid && ac.Depth == 2).ToList();
+
+                        //属性信息
+
                     }
                 }
             }
@@ -63,9 +68,6 @@ namespace Zero.Web.Controllers
                 model.CateList = allCateList.Where(ac => ac.Depth == 1).ToList();
             }
 
-            //属性信息
-            
-            
             model.ProductList = _productService.GetList(search, pageIndex, pageSize).Items;
                                                                    
             return View(model);

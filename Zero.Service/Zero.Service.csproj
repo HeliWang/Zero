@@ -60,6 +60,7 @@
     <Compile Include="Cates\IAttrService.cs" />
     <Compile Include="Cates\IAttrValueService.cs" />
     <Compile Include="Cates\ICateAttrService.cs" />
+    <Compile Include="Cates\ICateService.cs" />
     <Compile Include="Customs\CustomService.cs" />
     <Compile Include="Customs\ICustomService.cs" />
     <Compile Include="News\INewsService.cs" />

@@ -29,6 +29,8 @@ namespace Zero.Mvc.Manage.Infrastructure
 
             builder.RegisterType<EfDbContext>().As<IDbContext>().InstancePerHttpRequest();
 
+            builder.RegisterType<CateController>();
+            builder.RegisterType<CateAttrController>();
             builder.RegisterType<AttrController>();
             builder.RegisterType<AttrValueController>();
             builder.RegisterType<ProductController>();
@@ -40,7 +42,8 @@ namespace Zero.Mvc.Manage.Infrastructure
 
             //service
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>));
-
+            builder.RegisterType<CateService>().As<ICateService>().InstancePerHttpRequest();
+            builder.RegisterType<CateAttrService>().As<ICateAttrService>().InstancePerHttpRequest();
             builder.RegisterType<AttrService>().As<IAttrService>().InstancePerHttpRequest();
             builder.RegisterType<AttrValueService>().As<IAttrValueService>().InstancePerHttpRequest();
 

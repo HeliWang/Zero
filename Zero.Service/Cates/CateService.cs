@@ -11,7 +11,7 @@ using Zero.Core.Web;
 
 namespace Zero.Service.Cates
 {
-    public class CateService : BaseCateService<Cate>
+    public class CateService : BaseCateService<Cate>,ICateService
     {
         public CateService()
             : base("[Cate]")

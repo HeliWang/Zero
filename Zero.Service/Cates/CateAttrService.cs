@@ -18,7 +18,6 @@ namespace Zero.Service.Cates
 
     public class CateAttrService : ICateAttrService
     {
-        public EfDbContext context;
         public IRepository<Cate> _cateRepository;
         public IRepository<Attr> _attrRepository;
         public IRepository<CateAttr> _cateAttrRepository;
