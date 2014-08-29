@@ -12,9 +12,9 @@ namespace Zero.Mvc.Manage.Controllers.Trades
 {
     public class OrderController : Controller
     {
-        public OrderService _orderService;
+        public IOrderService _orderService;
 
-        public OrderController(OrderService orderService)
+        public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
         }

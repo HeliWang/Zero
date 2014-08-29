@@ -29,8 +29,8 @@
 <body class="easyui-layout">
 
 	<div data-options="region:'north',border:false" style="height:60px;padding:10px;background:#dfe8f6"><div style=""></div></div>
-	<div data-options="region:'west',split:true,title:'系统菜单',width:200">
-        @*<ul id="treeMenu" class="ztree">
+	<div data-options="region:'west',split:true,title:'系统菜单'" style="width:200px;padding:10px;">
+        <ul id="treeMenu" class="ztree">
             <!--<li>
                 <span>商品中心</span>
                 <ul>
@@ -41,51 +41,7 @@
             </li>
             <li>用户中心</li>
             <li>管理员</li>-->
-        </ul>*@
-        <div class="easyui-accordion">
-			<div title="商品管理" style="overflow: auto; padding: 10px;">
-				<ul class="easyui-tree">
-					<li><span><a onclick="openTab('商品列表','@Url.Action("productIndex", "product")')">商品列表</a></span></li>
-					<li><span><a onclick="openTab('商品添加','@Url.Action("productAdd", "product")')">商品添加</a></span></li>
-                    <li><span><a onclick="openTab('商品拆分添加','@Url.Action("productAddPart", "product")')">商品拆分添加</a></span></li>
-				</ul>
-			</div>
-			<div title="类别管理" style="overflow: auto; padding: 10px;">
-				<ul class="easyui-tree">
-					<li><span><a onclick="openTab('类别列表','@Url.Action("cateIndex", "cate")')">类别列表</a></span></li>
-                    <li><span><a onclick="openTab('类别属性列表','@Url.Action("CateAttrIndex", "CateAttr")')">类别属性列表</a></span></li>
-                    <li><span><a onclick="openTab('属性列表','@Url.Action("AttrIndex", "Attr")')">属性列表</a></span></li>
-                    <li><span><a onclick="openTab('属性值列表','@Url.Action("attrValueIndex", "attrValue")')">属性值列表</a></span></li>
-				</ul>
-			</div>
-            <div title="文件管理" style="overflow: auto; padding: 10px;">
-				<ul class="easyui-tree">
-					<li><span><a onclick="openTab('图片上传','@Url.Action("photoIndex", "photo")')">图片上传</a></span></li>
-				</ul>
-			</div>
-            <div title="订单管理" style="overflow: auto; padding: 10px;">
-				<ul class="easyui-tree">
-					<li><span><a onclick="openTab('订单列表','@Url.Action("orderIndex", "order")')">订单列表</a></span></li>
-				</ul>
-			</div>
-            <div title="会员管理" style="overflow: auto; padding: 10px;">
-				<ul class="easyui-tree">
-					<li><span><a onclick="openTab('会员列表','@Url.Action("productIndex", "product")')">会员列表</a></span></li>
-				</ul>
-			</div>
-            <div title="新闻中心" style="overflow: auto; padding: 10px;">
-				<ul class="easyui-tree">
-					<li><span><a onclick="openTab('新闻类别','@Url.Action("cateIndex", "news")')">新闻类别</a></span></li>
-                    <li><span><a onclick="openTab('新闻列表','@Url.Action("newsIndex", "news")')">新闻列表</a></span></li>
-                    <li><span><a onclick="openTab('新闻添加','@Url.Action("newsAdd", "news")')">新闻添加</a></span></li>
-				</ul>
-			</div>
-            <div title="自定义列表管理" style="overflow: auto; padding: 10px;">
-				<ul class="easyui-tree">
-					<li><span><a onclick="openTab('自定义列表','@Url.Action("customIndex", "custom")')">自定义列表</a></span></li>
-				</ul>
-			</div>
-		</div>
+        </ul>
 	</div>
 	<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;"></div>
 	<div data-options="region:'south',border:false" style="height:25px;padding:5px;text-align:center;">By pzw 2014-1-23</div>

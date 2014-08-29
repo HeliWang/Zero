@@ -12,13 +12,13 @@ using Zero.Core.Web;
 
 namespace Zero.Service.Trades
 {
-    public class OrderService
+    public class OrderService :IOrderService
     {
-        public CartService _cartService;
+        public ICartService _cartService;
         public IRepository<Order> _orderRepository;
         public IRepository<Snapshot> _snapshotRepository;
 
-        public OrderService(CartService cartService,
+        public OrderService(ICartService cartService,
             IRepository<Order> orderRepository,
             IRepository<Snapshot> snapshotRepository)
         {

@@ -13,7 +13,7 @@ using Zero.Core.Web;
 namespace Zero.Service.Trades
 {
     //暂时不考虑临时用户
-    public class CartService
+    public class CartService:ICartService
     {
         private IRepository<Product> _productRepository;
         private IRepository<Sku> _skuRepository;
