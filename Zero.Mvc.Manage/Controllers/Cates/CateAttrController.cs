@@ -16,11 +16,11 @@ namespace Zero.Mvc.Manage.Controllers.Cates
     /// </summary>
     public partial class CateAttrController : BaseController
     {
-        ICateService _cateService;
+        ICateService<Cate> _cateService;
         ICateAttrService _cateAttrService;
         IAttrValueService _attrValueService;
 
-        public CateAttrController(ICateService cateService,
+        public CateAttrController(ICateService<Cate> cateService,
             ICateAttrService cateAttrService,
             IAttrValueService attrValueService)
         {

@@ -14,6 +14,10 @@ namespace Zero.Service.Cates
     public class CateAttrSearch
     {
         public int CateId{get;set;}
+
+        public int Lid { get; set; }
+
+        public int Rid { get; set; }
     }
 
     public class CateAttrService : ICateAttrService
@@ -52,6 +56,23 @@ namespace Zero.Service.Cates
         public CateAttr GetById(int productId)
         {
             return _cateAttrRepository.GetById(productId);
+        }
+
+        public List<CateAttr> GetList(CateAttrSearch search)
+        {
+            var query = _cateAttrRepository.Entities.Include("Attr").AsQueryable();
+
+            if (search.Lid > 0 && search.Rid > 0)
+            {
+                query = from a in query
+                        join c in _cateRepository.Table on a.CateId equals c.CateId
+                        where c.Lid >= search.Lid && c.Rid <= search.Rid
+                        select a;
+
+                return query.ToList();
+            }
+
+            return new List<CateAttr>();
         }
 
         public IPage<CateAttr> GetList(CateAttrSearch search, int pageIndex, int pageSize)

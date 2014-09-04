@@ -8,8 +8,12 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Zero.Data;
 using Zero.Web.Controllers;
+using Zero.Service.Cates;
 using Zero.Service.Products;
 using Zero.Service.News;
+using Zero.Service.Trades;
+using Zero.Service.Customs;
+using Zero.Domain.Cates;
 
 namespace Zero.Web.Infrastructure
 {
@@ -28,6 +32,11 @@ namespace Zero.Web.Infrastructure
 
             //service
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>));
+
+            builder.RegisterType<CateService>().As<ICateService<Cate>>().InstancePerHttpRequest();
+            builder.RegisterType<CateAttrService>().As<ICateAttrService>().InstancePerHttpRequest();
+            builder.RegisterType<AttrService>().As<IAttrService>().InstancePerHttpRequest();
+            builder.RegisterType<AttrValueService>().As<IAttrValueService>().InstancePerHttpRequest();
 
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerHttpRequest();
 

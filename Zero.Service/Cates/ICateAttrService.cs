@@ -21,6 +21,8 @@ namespace Zero.Service.Cates
 
         CateAttr GetById(int productId);
 
+        List<CateAttr> GetList(CateAttrSearch search);
+
         IPage<CateAttr> GetList(CateAttrSearch search, int pageIndex, int pageSize);
 
         IPage<CateAttr> GetExpandList(int pageIndex, int pageSize);

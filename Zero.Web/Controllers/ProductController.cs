@@ -16,20 +16,24 @@ namespace Zero.Web.Controllers
     public class ProductController : Controller
     {
         public IProductService _productService;
-        public ICateService _cateService;
-        public CateAttrService _cateAttrService;
+        public ICateService<Cate> _cateService;
+        public ICateAttrService _cateAttrService;
 
-        public ProductController(ICateService cateService,
-            IProductService productService)
+        public ProductController(IProductService productService,
+            ICateService<Cate> cateService,
+            ICateAttrService cateAttrService
+            )
         {
             _productService = productService;
             _cateService = cateService;
+            _cateAttrService = cateAttrService;
         }
 
         public ActionResult Index()
         {
             ProductListModel model = new ProductListModel();
             ProductSearch search = new ProductSearch();
+            CateAttrSearch cateAttrSearch = new CateAttrSearch();
             search.CateId=RequestHelper.AllInt("CateId");
             int pageSize = 30;
             int pageIndex = 0;
@@ -59,7 +63,9 @@ namespace Zero.Web.Controllers
                         model.CateList = allCateList.Where(ac => ac.Pid == cate.Pid && ac.Depth == 2).ToList();
 
                         //属性信息
-
+                        cateAttrSearch.Lid = cate.Lid;
+                        cateAttrSearch.Rid = cate.Rid;
+                        model.CateAttrList = _cateAttrService.GetList(cateAttrSearch);
                     }
                 }
             }

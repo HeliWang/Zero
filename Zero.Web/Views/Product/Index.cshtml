@@ -47,7 +47,7 @@
 
                                 @foreach(var cate in Model.CateList)
                                 {
-                                    <li><a href="category-15-b0-min0-max0-attr246.549.html">@cate.CateName</a> </li>
+                                    <li><a href="category-15-b0-min0-max0-attr246.549.html">@cate.CateName</a></li>
                                 }
 
                             </ul>
@@ -56,12 +56,31 @@
                 }  
              }
             
-
+            @{
+                if(Model.CateAttrList!=null && Model.CateAttrList.Count>0)
+                {
+                    foreach(var cateAtrr in Model.CateAttrList)
+                    {
+                        if(!string.IsNullOrEmpty(cateAtrr.AttrValue))
+                        {
+                            <div class="screeBox clearfix">
+                                <strong>@cateAtrr.Attr.AttrName：</strong>
+                                <ul>
+                                    @foreach (var value in cateAtrr.AttrValue.Split(';'))
+                                    {
+                                        <li>
+                                            <a href="category-14-b0-min0-max0-attr0.549.html">@value.Split(':')[1]</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    }
+                }
+            }
 
             <div class="screeBox clearfix">
                 <strong>主题：</strong>
-
-
                 <ul>
                     <li><a href="category-14-b0-min0-max0-attr0.549.html">全部</a></li>
                     <li><a href="category-14-b0-min0-max0-attr497.549.html">古典雅致</a></li>
@@ -69,21 +88,6 @@
                     <li><span>时尚简约</span></li>
                     <li><a href="category-14-b0-min0-max0-attr240.549.html">潮流酷炫</a></li>
                     <li><a href="category-14-b0-min0-max0-attr211.549.html">节日庆典</a></li>
-                </ul>
-            </div>
-            <div class="screeBox clearfix">
-                <strong>色系：</strong>
-
-
-                <ul>
-                    <li><a href="category-14-b0-min0-max0-attr246.0.html">全部</a></li>
-                    <li><a href="category-14-b0-min0-max0-attr246.540.html">多彩</a></li>
-                    <li><span>白色</span></li>
-                    <li><a href="category-14-b0-min0-max0-attr246.498.html">紫色</a></li>
-                    <li><a href="category-14-b0-min0-max0-attr246.212.html">红色</a></li>
-                    <li><a href="category-14-b0-min0-max0-attr246.450.html">绿色</a></li>
-                    <li><a href="category-14-b0-min0-max0-attr246.398.html">蓝色</a></li>
-                    <li><a href="category-14-b0-min0-max0-attr246.243.html">黑色</a></li>
                 </ul>
             </div>
         </div>

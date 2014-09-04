@@ -10,7 +10,7 @@ using Zero.Service.Cates;
 
 namespace Zero.Service.Cates
 {
-    public interface ICateService
+    public interface ICateService<T>
     {
         /// <summary>
         /// 将获取的list转换为tree
@@ -24,5 +24,9 @@ namespace Zero.Service.Cates
         /// <param name="pid"></param>
         /// <returns></returns>
         List<Cate> GetCateList(List<Cate> cateList, int pid);
+
+        List<T> GetPath(int cateId);
+
+        List<T> GetList(int cateId, int depth);
     }
 }
