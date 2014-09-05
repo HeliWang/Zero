@@ -21,8 +21,7 @@ namespace Zero.Web.Controllers
 
         public ProductController(IProductService productService,
             ICateService<Cate> cateService,
-            ICateAttrService cateAttrService
-            )
+            ICateAttrService cateAttrService)
         {
             _productService = productService;
             _cateService = cateService;
@@ -32,23 +31,24 @@ namespace Zero.Web.Controllers
         public ActionResult Index()
         {
             ProductListModel model = new ProductListModel();
-            ProductSearch search = new ProductSearch();
+            ProductSearch productSearch = new ProductSearch();
             CateAttrSearch cateAttrSearch = new CateAttrSearch();
-            search.CateId=RequestHelper.AllInt("CateId");
+            productSearch.CateId = RequestHelper.AllInt("CateId");
+            productSearch.Attr = RequestHelper.All("Attr");
             int pageSize = 30;
             int pageIndex = 0;
 
             //类别信息
             List<Cate> allCateList = _cateService.GetList(0, 0);
 
-            if (search.CateId > 0)
+            if (productSearch.CateId > 0)
             {
-                Cate cate = allCateList.SingleOrDefault(c => c.CateId == search.CateId);
+                Cate cate = allCateList.SingleOrDefault(c => c.CateId == productSearch.CateId);
 
                 if (cate != null)
                 {
-                    search.Lid = cate.Lid;
-                    search.Rid = cate.Rid;
+                    productSearch.Lid = cate.Lid;
+                    productSearch.Rid = cate.Rid;
 
                     //获取分类路径
                     model.PathCateList = allCateList.Where(ac => ac.Lid < cate.Lid && ac.Rid > cate.Rid).ToList();
@@ -74,7 +74,8 @@ namespace Zero.Web.Controllers
                 model.CateList = allCateList.Where(ac => ac.Depth == 1).ToList();
             }
 
-            model.ProductList = _productService.GetList(search, pageIndex, pageSize).Items;
+            model.ProductSearch = productSearch;
+            model.ProductList = _productService.GetList(productSearch, pageIndex, pageSize).Items;
                                                                    
             return View(model);
         }

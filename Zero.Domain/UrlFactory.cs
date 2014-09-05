@@ -56,25 +56,80 @@ namespace Zero.Domain
 
     public class ProductUrlFactory
     {
-        public const string ListUrl = "/product?cateId={1}&page={2}";
+        public const string ListUrl = "/product?cateId={0}&attr={1}&page={2}";
 
         public const string DetailUrl = "/product/detail?productId={0}";
-        
+
 
         public static string GetDetailUrl(int productId)
         {
-            return string.Format(DetailUrl,productId);
+            return string.Format(DetailUrl, productId);
         }
 
         public static string GetListUrl(int cateId)
         {
-            return string.Format(ListUrl, cateId);
+            return string.Format(ListUrl, cateId, "", 0);
         }
 
-        public static string GetListUrl(ProductSearch search)
+        public static string GetListUrl(ProductSearch productSearch, int cateId, string attr)
         {
-           
-            return "";
+            ProductSearch newProductSearch = new ProductSearch();
+            newProductSearch.CateId = productSearch.CateId;
+            newProductSearch.Attr = productSearch.Attr;
+
+            if (cateId >= 0)
+            {
+                newProductSearch.CateId = cateId;
+            }
+
+
+            //将AttrList移到到ProductSearch中
+            if (!string.IsNullOrEmpty(attr))
+            {
+                //1:1;1:3
+                var key=attr.Split(':')[0];
+                var value=attr.Split(':')[1];
+                Dictionary<string, string> attrList = new Dictionary<string, string>();
+
+                if (!string.IsNullOrEmpty(newProductSearch.Attr))
+                {
+                    foreach (var attrArray in newProductSearch.Attr.Split(';'))
+                    {
+                        attrList.Add(attrArray.Split(':')[0], attrArray.Split(':')[1]);
+                    }
+                }
+
+                if (string.IsNullOrEmpty(value))
+                {
+                    attrList.Remove(key);
+                }
+                else
+                {
+                    if (!attrList.Keys.Contains(key))
+                    {
+                        attrList.Add(key, value);
+                    }
+                    else
+                    {
+                        attrList[key] = value;
+                    }
+                }
+
+                StringBuilder sb = new StringBuilder();
+
+                foreach (var attrArray in attrList)
+                {
+                    sb.AppendFormat("{0}:{1};", attrArray.Key, attrArray.Value);
+                }
+
+                if (sb.Length > 0)
+                {
+                    sb.Remove(sb.Length - 1, 1);
+                }
+
+                newProductSearch.Attr = sb.ToString();
+            }
+            return string.Format(ListUrl, newProductSearch.CateId, newProductSearch.Attr, 0);
         }
     }
 }
