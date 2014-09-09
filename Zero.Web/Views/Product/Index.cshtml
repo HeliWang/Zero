@@ -21,12 +21,12 @@
                 <div style="float: left">
                     <a href="/">首页</a> 
                     @{
-                        if(Model.PathCateList!=null)
+                        if (Model.PathCateList != null)
                         {
-                            foreach(var cate in Model.PathCateList)
+                            foreach (var cate in Model.PathCateList)
                             {
-                                <code>&gt;</code> <a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch,cate.CateId,"")">@cate.CateName</a> 
-                            }  
+                                <code>&gt;</code> <a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@cate.CateName</a> 
+                            }
                         }
                      }
                     <code>&gt</code>
@@ -36,18 +36,18 @@
                     <a id="choose_style" href="category-14-b0-min0-max0-attr246.0.html">白色<b></b></a>
                 </div>
             </div>
-            @{
-                if(Model.CateList!=null &&Model.CateList.Count>0)
+            @*@{
+                if (Model.CateList != null && Model.CateList.Count > 0)
                 {
                     <div class="screeBox clearfix">
                         <strong>分类：</strong>
                         <div class="b_box">
                             <ul>
                                 @{
-                                    if(Model.PathCateList!=null && Model.PathCateList.Count>0)
-                                    {
-                                        <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch,Model.PathCateList[0].CateId,"")">全部</a> </li>
-                                    }
+                    if (Model.PathCateList != null && Model.PathCateList.Count > 0)
+                    {
+                                        <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, Model.PathCateList[0].CateId, "")">全部</a> </li>
+                    }
                                  }
                                 
 
@@ -59,7 +59,36 @@
                             </ul>
                         </div>
                     </div>
-                }  
+                }
+             }*@
+
+            @{
+                foreach (var cateList in Model.CateList)
+                {
+                    <div class="screeBox clearfix">
+                        <strong>分类：</strong>
+                        <div class="b_box">
+                            <ul>
+                                @{
+                                    <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cateList[0].Pid, "")">全部</a> </li>
+                                    
+                                    foreach (var cate in cateList)
+                                    {
+                                        if (Model.PathCateList.SingleOrDefault(pc=>pc.CateId==cate.CateId)==null)
+                                        {
+                                            <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@cate.CateName</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><span>@cate.CateName</span></li>
+                                        }
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                }
              }
             
             @{

@@ -40,6 +40,7 @@ namespace Zero.Web.Controllers
 
             //类别信息
             List<Cate> allCateList = _cateService.GetList(0, 0);
+            model.CateList = new List<List<Cate>>();
 
             if (productSearch.CateId > 0)
             {
@@ -51,17 +52,33 @@ namespace Zero.Web.Controllers
                     productSearch.Rid = cate.Rid;
 
                     //获取分类路径
-                    model.PathCateList = allCateList.Where(ac => ac.Lid < cate.Lid && ac.Rid > cate.Rid).ToList();
+                    model.PathCateList = allCateList.Where(ac => ac.Lid <= cate.Lid && ac.Rid >= cate.Rid).ToList();
 
                     //获取分类信息
-                    if (cate.Depth == 1)
-                    {
-                        model.CateList = allCateList.Where(ac => ac.Lid > cate.Lid && ac.Rid < cate.Rid && ac.Depth == 2).ToList();
-                    }
-                    else if (cate.Depth == 2)
-                    {
-                        model.CateList = allCateList.Where(ac => ac.Pid == cate.Pid && ac.Depth == 2).ToList();
+                    //if (cate.Depth == 1)
+                    //{
+                    //    model.CateList = allCateList.Where(ac => ac.Lid > cate.Lid && ac.Rid < cate.Rid && ac.Depth == 2).ToList();
+                    //}
+                    //else if (cate.Depth == 2)
+                    //{
+                    //    model.CateList = allCateList.Where(ac => ac.Pid == cate.Pid && ac.Depth == 2).ToList();
+                    //}
 
+                    foreach (var pathCate in model.PathCateList)
+                    {
+                        if (pathCate.Depth == 1)
+                        {
+                            model.CateList.Add(allCateList.Where(ac => ac.Depth == 1).ToList());
+                        }
+
+                        if (pathCate.Depth != 2)
+                        {
+                            model.CateList.Add(allCateList.Where(ac => ac.Pid == pathCate.CateId && ac.Depth == pathCate.Depth+1).ToList());
+                        }
+                    }
+
+                    if (cate.Depth == 2)
+                    {
                         //属性信息
                         cateAttrSearch.Lid = cate.Lid;
                         cateAttrSearch.Rid = cate.Rid;
@@ -71,7 +88,7 @@ namespace Zero.Web.Controllers
             }
             else
             {
-                model.CateList = allCateList.Where(ac => ac.Depth == 1).ToList();
+                model.CateList.Add(allCateList.Where(ac => ac.Depth == 1).ToList());
             }
 
             model.ProductSearch = productSearch;

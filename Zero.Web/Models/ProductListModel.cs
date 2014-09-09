@@ -20,7 +20,7 @@ namespace Zero.Web.Models
 
         public List<Cate> PathCateList { get; set; }
 
-        public List<Cate> CateList { get; set; }
+        public List<List<Cate>> CateList { get; set; }
 
         public List<CateAttr> CateAttrList { get; set; }
     }
