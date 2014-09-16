@@ -74,16 +74,16 @@
                                     
                                     foreach (var cate in cateList)
                                     {
-                                        if (Model.PathCateList.SingleOrDefault(pc=>pc.CateId==cate.CateId)==null)
-                                        {
-                                            <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@cate.CateName</a></li>
-                                        }
-                                        else
+                                        if (Model.PathCateList!=null && Model.PathCateList.SingleOrDefault(pc=>pc.CateId==cate.CateId)!=null)
                                         {
                                             <li><span>@cate.CateName</span></li>
                                         }
+                                        else
+                                        {
+                                            <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@cate.CateName</a></li>
+                                        }
                                     }
-                                }
+                                 }
 
                             </ul>
                         </div>
