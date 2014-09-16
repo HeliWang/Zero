@@ -38,7 +38,7 @@ namespace Zero.Web.Controllers
             int pageSize = 30;
             int pageIndex = 0;
 
-            //类别信息
+            //类别信息()
             List<Cate> allCateList = _cateService.GetList(0, 0);
             model.CateList = new List<List<Cate>>();
 
@@ -76,6 +76,7 @@ namespace Zero.Web.Controllers
                             model.CateList.Add(allCateList.Where(ac => ac.Pid == pathCate.CateId && ac.Depth == pathCate.Depth+1).ToList());
                         }
                     }
+
 
                     if (cate.Depth == 2)
                     {
