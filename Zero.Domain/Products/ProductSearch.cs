@@ -18,5 +18,7 @@ namespace Zero.Domain.Products
         public int Rid { get; set; }
 
         public string Attr { get; set; }
+
+        public string Sort { get; set; }
     }
 }

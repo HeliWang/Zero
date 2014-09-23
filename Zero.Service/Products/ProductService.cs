@@ -101,9 +101,13 @@ namespace Zero.Service.Products
             if (!string.IsNullOrEmpty(search.Attr))
             {
                 var attrList = search.Attr.Split(';');
-                query = from p in query
-                        where attrList.Contains(p.SaleAttr)
-                        select p;
+
+                foreach (var attr in attrList)
+                {
+                    query = from p in query
+                            where p.SaleAttr.Contains(attr)
+                            select p;
+                }
             }
 
             query = query.OrderByDescending(b => b.ProductId);
