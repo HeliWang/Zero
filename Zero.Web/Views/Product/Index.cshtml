@@ -21,33 +21,43 @@
                 <div style="float: left">
                     <a href="/">首页</a> 
                     @{
-                        if(Model.PathCateList!=null)
+                        if (Model.PathCateList != null)
                         {
-                            foreach(var cate in Model.PathCateList)
+                            foreach (var cate in Model.PathCateList)
                             {
-                                <code>&gt;</code> <a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch,cate.CateId,"")">@cate.CateName</a> 
-                            }  
+                                <code>&gt;</code> <a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@cate.CateName</a> 
+                            }
                         }
                      }
                     <code>&gt</code>
                 </div>
                 <div class="b_box2">
-                    <a id="choose_style" href="category-14-b0-min0-max0-attr0.549.html">时尚简约<b></b></a>
-                    <a id="choose_style" href="category-14-b0-min0-max0-attr246.0.html">白色<b></b></a>
+                    @*<a id="choose_style" href="category-14-b0-min0-max0-attr0.549.html">时尚简约<b></b></a>
+                    <a id="choose_style" href="category-14-b0-min0-max0-attr246.0.html">白色<b></b></a>*@
+                    @{
+                        if (Model.ProductSearch.Attr.Length > 0)
+                        {
+                            foreach (var attrArray in Model.ProductSearch.Attr.Split(';'))
+                            {
+                                var attr = attrArray.Split(':');
+                                <a id="choose_style" href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, -1, attr[0] + ":")">@attr[1]<b></b></a>
+                            }
+                        }
+                    } 
                 </div>
             </div>
-            @{
-                if(Model.CateList!=null &&Model.CateList.Count>0)
+            @*@{
+                if (Model.CateList != null && Model.CateList.Count > 0)
                 {
                     <div class="screeBox clearfix">
                         <strong>分类：</strong>
                         <div class="b_box">
                             <ul>
                                 @{
-                                    if(Model.PathCateList!=null && Model.PathCateList.Count>0)
-                                    {
-                                        <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch,Model.PathCateList[0].CateId,"")">全部</a> </li>
-                                    }
+                    if (Model.PathCateList != null && Model.PathCateList.Count > 0)
+                    {
+                                        <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, Model.PathCateList[0].CateId, "")">全部</a> </li>
+                    }
                                  }
                                 
 
@@ -59,7 +69,36 @@
                             </ul>
                         </div>
                     </div>
-                }  
+                }
+             }*@
+
+            @{
+                foreach (var cateList in Model.CateList)
+                {
+                    <div class="screeBox clearfix">
+                        <strong>分类：</strong>
+                        <div class="b_box">
+                            <ul>
+                                @{
+                                    <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cateList[0].Pid, "")">全部</a> </li>
+                                    
+                    foreach (var cate in cateList)
+                    {
+                        if (Model.PathCateList != null && Model.PathCateList.SingleOrDefault(pc => pc.CateId == cate.CateId) != null)
+                        {
+                                            <li><span>@cate.CateName</span></li>
+                        }
+                        else
+                        {
+                                            <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@cate.CateName</a></li>
+                        }
+                    }
+                                 }
+
+                            </ul>
+                        </div>
+                    </div>
+                }
              }
             
             @{

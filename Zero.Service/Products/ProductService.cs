@@ -91,14 +91,24 @@ namespace Zero.Service.Products
             //类别检索
             if (search.Lid > 0 && search.Rid > 0)
             {
-                query = from a in query
-                        join c in _cateRepository.Table on a.CateId equals c.CateId
+                query = from p in query
+                        join c in _cateRepository.Table on p.CateId equals c.CateId
                         where c.Lid >= search.Lid && c.Rid <= search.Rid
-                        select a;
+                        select p;
             }
 
             //属性检索
+            if (!string.IsNullOrEmpty(search.Attr))
+            {
+                var attrList = search.Attr.Split(';');
 
+                foreach (var attr in attrList)
+                {
+                    query = from p in query
+                            where p.SaleAttr.Contains(attr)
+                            select p;
+                }
+            }
 
             query = query.OrderByDescending(b => b.ProductId);
             return new Page<Product>(query, pageIndex, pageSize);
