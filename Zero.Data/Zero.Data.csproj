@@ -155,9 +155,9 @@
     <Compile Include="Migrations\201408190237148_UpdateCustom.Designer.cs">
       <DependentUpon>201408190237148_UpdateCustom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201409060441185_UpdateCustom3.cs" />
-    <Compile Include="Migrations\201409060441185_UpdateCustom3.Designer.cs">
-      <DependentUpon>201409060441185_UpdateCustom3.cs</DependentUpon>
+    <Compile Include="Migrations\201410091314305_UpdateCustoms.cs" />
+    <Compile Include="Migrations\201410091314305_UpdateCustoms.Designer.cs">
+      <DependentUpon>201410091314305_UpdateCustoms.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
@@ -242,8 +242,8 @@
     <EmbeddedResource Include="Migrations\201408190237148_UpdateCustom.resx">
       <DependentUpon>201408190237148_UpdateCustom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201409060441185_UpdateCustom3.resx">
-      <DependentUpon>201409060441185_UpdateCustom3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201410091314305_UpdateCustoms.resx">
+      <DependentUpon>201410091314305_UpdateCustoms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
