@@ -13,6 +13,7 @@ using Zero.Service.Products;
 using Zero.Service.News;
 using Zero.Service.Trades;
 using Zero.Service.Customs;
+using Zero.Service.Users;
 using Zero.Domain.Cates;
 
 namespace Zero.Web.Infrastructure
@@ -25,7 +26,9 @@ namespace Zero.Web.Infrastructure
 
             builder.RegisterType<HomeController>();
             builder.RegisterType<ProductController>();
-
+            builder.RegisterType<CartController>();
+            builder.RegisterType<OrderController>();
+            builder.RegisterType<UserController>();
             builder.RegisterType<EfDbContext>().As<IDbContext>().InstancePerHttpRequest();
 
             //builder.Register<IDbContext>(c => new EfDbContext()).InstancePerLifetimeScope();
@@ -37,11 +40,12 @@ namespace Zero.Web.Infrastructure
             builder.RegisterType<CateAttrService>().As<ICateAttrService>().InstancePerHttpRequest();
             builder.RegisterType<AttrService>().As<IAttrService>().InstancePerHttpRequest();
             builder.RegisterType<AttrValueService>().As<IAttrValueService>().InstancePerHttpRequest();
-
+            builder.RegisterType<CartService>().As<ICartService>().InstancePerHttpRequest();
+            builder.RegisterType<OrderService>().As<IOrderService>().InstancePerHttpRequest();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerHttpRequest();
 
             builder.RegisterType<NewsService>().As<INewsService>().InstancePerHttpRequest();
-
+            builder.RegisterType<UserServices>().As<IUserServices>().InstancePerHttpRequest();
             // then
             var container = builder.Build();
 

@@ -10,7 +10,7 @@ using Zero.Core.Web;
 
 namespace Zero.Service.Users
 {
-    public class UserServices
+    public class UserServices : IUserServices
     {
         private IRepository<User> _userRepository;
 
