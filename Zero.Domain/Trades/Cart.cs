@@ -30,10 +30,10 @@ namespace Zero.Domain.Trades
 
         public DateTime? UpdateTime { get; set; }
 
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
 
-        public Sku Sku { get; set; }
+        public virtual Sku Sku { get; set; }
 
-        public ProductPhoto ProductPhoto { get; set; }
+        public virtual ProductPhoto ProductPhoto { get; set; }
     }
 }
