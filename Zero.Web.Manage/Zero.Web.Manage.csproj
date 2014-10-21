@@ -120,42 +120,36 @@
   <ItemGroup>
     <Compile Include="Admin\AdminEdit.aspx.cs">
       <DependentUpon>AdminEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminEdit.aspx.designer.cs">
       <DependentUpon>AdminEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminIndex.aspx.cs">
       <DependentUpon>AdminIndex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminIndex.aspx.designer.cs">
       <DependentUpon>AdminIndex.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category\AttrEdit.aspx.cs">
       <DependentUpon>AttrEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category\AttrEdit.aspx.designer.cs">
       <DependentUpon>AttrEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category\AttrIndex.aspx.cs">
       <DependentUpon>AttrIndex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category\AttrIndex.aspx.designer.cs">
       <DependentUpon>AttrIndex.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category\CateAttrEdit.aspx.cs">
       <DependentUpon>CateAttrEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category\CateAttrEdit.aspx.designer.cs">
       <DependentUpon>CateAttrEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category\CateAttrIndex.aspx.cs">
       <DependentUpon>CateAttrIndex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category\CateAttrIndex.aspx.designer.cs">
       <DependentUpon>CateAttrIndex.aspx</DependentUpon>
@@ -169,28 +163,24 @@
     </Compile>
     <Compile Include="Category\CateEdit.aspx.cs">
       <DependentUpon>CateEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category\CateEdit.aspx.designer.cs">
       <DependentUpon>CateEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category\CateIndex.aspx.cs">
       <DependentUpon>CateIndex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category\CateIndex.aspx.designer.cs">
       <DependentUpon>CateIndex.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category\AttrValueEdit.aspx.cs">
       <DependentUpon>AttrValueEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category\AttrValueEdit.aspx.designer.cs">
       <DependentUpon>AttrValueEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category\AttrValueIndex.aspx.cs">
       <DependentUpon>AttrValueIndex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Category\AttrValueIndex.aspx.designer.cs">
       <DependentUpon>AttrValueIndex.aspx</DependentUpon>
@@ -211,7 +201,6 @@
     </Compile>
     <Compile Include="Product\ProductEdit.aspx.cs">
       <DependentUpon>ProductEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Product\ProductEdit.aspx.designer.cs">
       <DependentUpon>ProductEdit.aspx</DependentUpon>

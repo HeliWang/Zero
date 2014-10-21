@@ -15,9 +15,9 @@ namespace Zero.Mvc.Manage.Controllers.Upload
 {
     public class PhotoController : BaseController
     {
-        PhotoService _photoService;
+        IPhotoService _photoService;
 
-        public PhotoController(PhotoService photoService)
+        public PhotoController(IPhotoService photoService)
         {
             _photoService = photoService;
         }

@@ -12,9 +12,15 @@ using Zero.Core.Web;
 
 namespace Zero.Service.Upload
 {
-    public class PhotoService
+    public class PhotoService : IPhotoService
     {
         private IRepository<Photo> _photoRepository;
+
+        public PhotoService()
+        {
+            IDbContext context = new EfDbContext();
+            _photoRepository = new EfRepository<Photo>(context);
+        }
 
         public PhotoService(IRepository<Photo> photoRepository)
         {
@@ -142,7 +148,7 @@ namespace Zero.Service.Upload
         /// <summary>
         /// 检查格式
         /// </summary>
-        public static bool CheckFileExt(string allowExt, string fileExt)
+        public bool CheckFileExt(string allowExt, string fileExt)
         {
             if (string.IsNullOrEmpty(fileExt))
             {

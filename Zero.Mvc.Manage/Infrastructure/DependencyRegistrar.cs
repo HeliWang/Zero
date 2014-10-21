@@ -12,11 +12,13 @@ using Zero.Mvc.Manage.Controllers.Products;
 using Zero.Mvc.Manage.Controllers.Trades;
 using Zero.Mvc.Manage.Controllers.News;
 using Zero.Mvc.Manage.Controllers.Customs;
+using Zero.Mvc.Manage.Controllers.Upload;
 using Zero.Service.Cates;
 using Zero.Service.Products;
 using Zero.Service.News;
 using Zero.Service.Trades;
 using Zero.Service.Customs;
+using Zero.Service.Upload;
 using Zero.Domain.Cates;
 
 
@@ -38,6 +40,7 @@ namespace Zero.Mvc.Manage.Infrastructure
             builder.RegisterType<OrderController>();
             builder.RegisterType<NewsController>();
             builder.RegisterType<CustomController>();
+            builder.RegisterType<PhotoController>();
 
            
 
@@ -56,6 +59,8 @@ namespace Zero.Mvc.Manage.Infrastructure
             builder.RegisterType<NewsService>().As<INewsService>().InstancePerHttpRequest();
 
             builder.RegisterType<CustomService>().As<ICustomService>().InstancePerHttpRequest();
+
+            builder.RegisterType<PhotoService>().As<IPhotoService>().InstancePerHttpRequest();
 
             // then
             var container = builder.Build();
