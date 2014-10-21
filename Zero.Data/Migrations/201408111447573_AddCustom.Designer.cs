@@ -7,13 +7,13 @@ namespace Zero.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.2-21211")]
-    public sealed partial class UpdateCustom2 : IMigrationMetadata
+    public sealed partial class AddCustom : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateCustom2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCustom));
         
         string IMigrationMetadata.Id
         {
-            get { return "201408210303281_UpdateCustom2"; }
+            get { return "201408111447573_AddCustom"; }
         }
         
         string IMigrationMetadata.Source

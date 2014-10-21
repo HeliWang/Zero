@@ -10,13 +10,13 @@ using Zero.Core.Web;
 
 namespace Zero.Service.Users
 {
-    public class UserServices : IUserServices
+    public class UserServices
     {
         private IRepository<User> _userRepository;
 
-        public UserServices(IRepository<User> userRepository)
+        public UserServices()
         {
-            _userRepository = userRepository;
+            _userRepository = new EfRepository<User>();
         }
 
         public ResultInfo Login(string userName, string password)

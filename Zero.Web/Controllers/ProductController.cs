@@ -54,6 +54,11 @@ namespace Zero.Web.Controllers
                     //获取分类路径
                     model.PathCateList = allCateList.Where(ac => ac.Lid <= cate.Lid && ac.Rid >= cate.Rid).ToList();
 
+                    //获取1级分类
+                    model.ParentCateList = allCateList.Where(ac => ac.Depth == 1).ToList();
+                    
+                    //根据路径加载相应的兄弟的节点
+
                     //获取分类信息
                     //if (cate.Depth == 1)
                     //{

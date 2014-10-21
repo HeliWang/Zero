@@ -20,8 +20,11 @@ namespace Zero.Web.Models
 
         public List<Cate> PathCateList { get; set; }
 
+<<<<<<< HEAD
         public List<Cate> ParentCateList { get; set; }
 
+=======
+>>>>>>> 2cac215f8a49f797bf3bd9affc26de678344eaa5
         public List<List<Cate>> CateList { get; set; }
 
         public List<CateAttr> CateAttrList { get; set; }

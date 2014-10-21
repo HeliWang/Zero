@@ -3,7 +3,7 @@ namespace Zero.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UpdateCustom1 : DbMigration
+    public partial class UpdateYes2 : DbMigration
     {
         public override void Up()
         {

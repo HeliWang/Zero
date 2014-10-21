@@ -27,6 +27,10 @@ namespace Zero.Service.Upload
             _photoRepository = photoRepository;
         }
 
+        public PhotoService()
+        {
+        }
+
         public ResultInfo Add(HttpFileCollectionBase files)
         {
             PhotoCate cate = new PhotoCate();
