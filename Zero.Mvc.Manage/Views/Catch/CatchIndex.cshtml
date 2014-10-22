@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/Tab/_Add.cshtml";
+    ViewBag.Title = "Catch";
+}
+
+<form id="Form" action="@Url.Action("CatchAdd","Catch")" method="post">
+    <div id="tt" class="easyui-tabs" data-options="tabPosition:'top'">
+    
+    <div title="网页抓取">
+    <table class="z-tb-form">
+        <tr>
+            <th>网页标题：</th>
+            <td>
+               <input type="text" name="Title"  data-options="required:true,validType:['length[2,30]']"  style="width:150px;">
+            </td>
+        </tr>
+        <tr>
+            <th>网页地址：</th>
+            <td>
+               <input type="text" name="SourceUrl"  data-options="required:true,validType:['length[2,30]']"  style="width:800px;">
+            </td>
+        </tr>
+    </table>
+    </div>
+    </div>
+</form>

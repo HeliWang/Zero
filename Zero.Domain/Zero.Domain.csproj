@@ -57,6 +57,7 @@
     <Compile Include="News\NewsItem.cs" />
     <Compile Include="News\NewsSearch.cs" />
     <Compile Include="News\Tag.cs" />
+    <Compile Include="Tool\Site.cs" />
     <Compile Include="Trades\Cart.cs" />
     <Compile Include="Trades\Order.cs" />
     <Compile Include="Products\Product.cs" />

@@ -24,8 +24,8 @@ namespace Zero.Core.Web
         {
             string result = string.Empty;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Timeout = timeout;
-            request.Method = menthod;
+            //request.Timeout = timeout;
+            //request.Method = menthod;
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(encoding));
