@@ -14,6 +14,14 @@ namespace Zero.Core.Web
         /// </summary>
         public static void SaveHtml(string path, bool append, string content, string encoding)
         {
+            var directory = path.Substring(0, path.LastIndexOf("/"));
+            directory = GetMapPath(directory);
+
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             StreamWriter stream = new StreamWriter(GetMapPath(path), append, Encoding.GetEncoding(encoding));
             stream.Write(content);
             stream.Flush();
