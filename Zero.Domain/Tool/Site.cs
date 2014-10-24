@@ -13,5 +13,7 @@ namespace Zero.Domain.Tool
         public string SourceUrl { get; set; }
 
         public string SaveUrl { get; set; }
+
+        public string Regu { get; set; }
     }
 }

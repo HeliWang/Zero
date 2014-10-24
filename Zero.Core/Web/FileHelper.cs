@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Web;
+using System.Net;
 
 namespace Zero.Core.Web
 {
