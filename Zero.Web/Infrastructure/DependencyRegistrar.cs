@@ -24,12 +24,21 @@ namespace Zero.Web.Infrastructure
         {
             ContainerBuilder builder = new ContainerBuilder();
 
+            #region
+            builder.RegisterType<Zero.Web.Areas.Site.Controllers.HomeController>();
+            #endregion
+
+
+            #region
             builder.RegisterType<HomeController>();
             builder.RegisterType<ProductController>();
             builder.RegisterType<CartController>();
             builder.RegisterType<OrderController>();
             builder.RegisterType<UserController>();
             builder.RegisterType<EfDbContext>().As<IDbContext>().InstancePerHttpRequest();
+            #endregion
+
+          
 
             //builder.Register<IDbContext>(c => new EfDbContext()).InstancePerLifetimeScope();
 

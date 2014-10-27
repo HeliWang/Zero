@@ -1,0 +1,55 @@
+﻿<div class="head fl wfs">
+    <div class="cover-page-wrapper">
+        <a class="fl" href="http://www.ecmoban.com/">
+            <img src="/content/default/upload/logo.png" title="ecshop ecshop模板 ecshop插件" alt="ecshop ecshop模板 ecshop插件"></a>
+        <a class="listing fl" target="_blank" href="http://about.ecmoban.com/video.php">
+            <img src="/content/default/upload/cover-page-listing.gif"></a>
+        <form id="searchForm" name="searchForm" method="get" action="http://www.ecmoban.com/search.php" onsubmit="return checkSearchForm()" class="search-product fl">
+            <input name="k_template" type="hidden" class="k_value" value="0">
+            <input class="form-control search-box" name="keywords" autocomplete="off" type="text" id="keyword" value="">
+            <input class="submit" type="submit" style="border: none; cursor: pointer;">
+            <div class="search-history j-search-history fz12">
+                <div class="left fl">
+                    <p class="txt fl">历史记录</p>
+                    <a href="javascript:;" onclick="clear_search()"><i class="delete fr">清除</i></a>
+                    <ul class="history-items fl wfs"></ul>
+                </div>
+                <div class="right fl">
+                    <p class="txt fl">热门搜索</p>
+                    <ul class="style-items fl wfs">
+                        <li><a target="_blank" href="http://www.ecmoban.com/category-9-b0.html">商业模板</a></li>
+                        <li><a target="_blank" href="http://www.ecmoban.com/category-23-b0.html">插件区</a></li>
+                        <li><a target="_blank" href="http://www.ecmoban.com/topic/djd/">大京东</a></li>
+                        <li><a target="_blank" href="http://www.ecmoban.com/topic/shangchuang/">ecshop商创版</a></li>
+                        <li><a target="_blank" href="http://www.ecmoban.com/topic/weixin/">微商城</a></li>
+                        <li><a target="_blank" href="http://ectouch.cn/">ECTouch</a></li>
+                        <li><a target="_blank" href="http://www.ecmoban.com/goods-314.html">App</a></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+        <font id="ECS_MEMBERZONE">
+        <p class="head-operates-logined fr">
+            <a href="http://member.ecmoban.com/user.php" class="login">登录</a>
+            <a href="http://member.ecmoban.com/user.php?act=collection_list" class="watch">关注</a>
+            <a href="http://member.ecmoban.com/user.php?act=question" class="quest">提问</a>
+        </p>
+    </font>
+    </div>
+</div>
+<script type="text/javascript" src="/content/default/js/utils.js"></script>
+<script type="text/javascript">
+function checkSearchForm()
+{
+    if(document.getElementById('keyword').value)
+    {
+        return true;
+    }
+    else
+    {
+        alert("请输入搜索关键词！");
+        return false;
+    }
+}
+</script>
+<script src="/content/default/js/nav.js"></script>
