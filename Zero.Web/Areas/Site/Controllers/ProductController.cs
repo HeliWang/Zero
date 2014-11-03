@@ -8,7 +8,7 @@ using Zero.Domain.Cates;
 using Zero.Domain.Products;
 using Zero.Service.Cates;
 using Zero.Service.Products;
-using Zero.Web.Models;
+using Zero.Web.Areas.Site.Models;
 using Zero.Core.Web;
 
 namespace Zero.Web.Areas.Site.Controllers
@@ -40,7 +40,10 @@ namespace Zero.Web.Areas.Site.Controllers
 
             //类别信息()
             List<Cate> allCateList = _cateService.GetList(0, 0);
-            model.CateList = new List<List<Cate>>();
+            model.CateList = new List<Cate>();
+
+            //获取1级分类
+            model.ParentCateList = allCateList.Where(ac => ac.Depth == 1).ToList();
 
             if (productSearch.CateId > 0)
             {
@@ -54,34 +57,9 @@ namespace Zero.Web.Areas.Site.Controllers
                     //获取分类路径
                     model.PathCateList = allCateList.Where(ac => ac.Lid <= cate.Lid && ac.Rid >= cate.Rid).ToList();
 
-                    //获取1级分类
-                    model.ParentCateList = allCateList.Where(ac => ac.Depth == 1).ToList();
+                    model.CateList = allCateList.Where(ac => ac.Lid > model.PathCateList[0].Lid && ac.Rid < model.PathCateList[0].Rid).ToList();
 
-                    //根据路径加载相应的兄弟的节点
-
-                    //获取分类信息
-                    //if (cate.Depth == 1)
-                    //{
-                    //    model.CateList = allCateList.Where(ac => ac.Lid > cate.Lid && ac.Rid < cate.Rid && ac.Depth == 2).ToList();
-                    //}
-                    //else if (cate.Depth == 2)
-                    //{
-                    //    model.CateList = allCateList.Where(ac => ac.Pid == cate.Pid && ac.Depth == 2).ToList();
-                    //}
-
-                    foreach (var pathCate in model.PathCateList)
-                    {
-                        if (pathCate.Depth == 1)
-                        {
-                            model.CateList.Add(allCateList.Where(ac => ac.Depth == 1).ToList());
-                        }
-
-                        if (pathCate.Depth != 2)
-                        {
-                            model.CateList.Add(allCateList.Where(ac => ac.Pid == pathCate.CateId && ac.Depth == pathCate.Depth + 1).ToList());
-                        }
-                    }
-
+                    model.CateList = _cateService.ConvertCateListToTree(model.CateList);
 
                     if (cate.Depth == 2)
                     {
@@ -92,10 +70,6 @@ namespace Zero.Web.Areas.Site.Controllers
                     }
                 }
             }
-            else
-            {
-                model.CateList.Add(allCateList.Where(ac => ac.Depth == 1).ToList());
-            }
 
             model.ProductSearch = productSearch;
             model.ProductList = _productService.GetList(productSearch, pageIndex, pageSize).Items;
@@ -103,31 +77,31 @@ namespace Zero.Web.Areas.Site.Controllers
             return View(model);
         }
 
-        public ActionResult Detail()
-        {
-            int productId = RequestHelper.QueryInt("productId");
+        //public ActionResult Detail()
+        //{
+        //    int productId = RequestHelper.QueryInt("productId");
 
-            ProductDetailModel model = new ProductDetailModel();
+        //    ProductDetailModel model = new ProductDetailModel();
 
-            if (productId > 0)
-            {
-                model.Product = _productService.GetById(productId);
-                model.Product.Desc = _productService.GetDescById(productId);
-            }
+        //    if (productId > 0)
+        //    {
+        //        model.Product = _productService.GetById(productId);
+        //        model.Product.Desc = _productService.GetDescById(productId);
+        //    }
 
-            if (model.Product == null)
-            {
-                Response.Redirect("http://w.zero.com/");
-            }
+        //    if (model.Product == null)
+        //    {
+        //        Response.Redirect("http://w.zero.com/");
+        //    }
 
-            if (model.Product.CateId > 0)
-            {
-                model.CateList = _cateService.GetPath(model.Product.CateId);
-            }
+        //    if (model.Product.CateId > 0)
+        //    {
+        //        model.CateList = _cateService.GetPath(model.Product.CateId);
+        //    }
 
-            model.SkuList = JsonHelper.Serialize(_productService.GetSkuList(productId));
+        //    model.SkuList = JsonHelper.Serialize(_productService.GetSkuList(productId));
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
     }
 }

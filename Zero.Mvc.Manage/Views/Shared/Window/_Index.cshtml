@@ -30,13 +30,13 @@
     <script type="text/javascript">
 
         function GetAddUrl() {
-            return String.format('/{0}Add', controller);
+            return String.format('/{0}/{0}Add', controller);
         }
         function GetEditUrl(id) {
-            return String.format('/{0}Edit?{0}Id={1}', controller, id);
+            return String.format('/{0}/{0}Edit?{0}Id={1}', controller, id);
         }
         function GetOperateUrl() {
-            return String.format('/{0}Operate', controller);
+            return String.format('/{0}/{0}Operate', controller);
         }
 
 

@@ -1609,7 +1609,6 @@ li {
     line-height: 25px;
     color: #5A5A5A;
     white-space: nowrap;
-    display:inline-block;
 }
 .cover-page-list .left .conditions dd a.template-a,
 .cover-page-list .left .conditions dd a:hover {

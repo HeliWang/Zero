@@ -22,7 +22,7 @@ namespace Zero.Web.Areas.Site.Models
 
         public List<Cate> ParentCateList { get; set; }
 
-        public List<List<Cate>> CateList { get; set; }
+        public List<Cate> CateList { get; set; }
 
         public List<CateAttr> CateAttrList { get; set; }
     }
