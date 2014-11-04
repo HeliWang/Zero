@@ -16,23 +16,24 @@
 			<div class="icons j-icons wfs">
                 @foreach (var cate in Model.ParentCateList)
                 {
-                     <a @if(Model.PathCateList != null &&Model.ParentCateList.SingleOrDefault(c=>c.CateId==cate.CateId)!=null){<text>class="now"</text>} href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@cate.CateName</a><br />
+                     <a @if (Model.PathCateList != null && Model.PathCateList.Count > 0 && Model.PathCateList[0].CateId == cate.CateId)
+                        {<text>class="now"</text>} href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@cate.CateName</a><br /><br />
                 }
 			</div>
 			<div class="templates-items j-template-items wfs" style="display: block;">
-                @foreach(var cate in Model.CateList)
+                @foreach (var cate in Model.CateList)
                 {
 				    <dl class="conditions wfs">
-					    <dt class="j-demo-l-dt wfs "><b>@cate.CateName</b></dt>
-					    <dd class="j-demo-l-dd wfs">
-                            @if (cate.children != null)
-                            {
-                                foreach(var childCate in @cate.children)
+					    <dt class="j-demo-l-dt wfs"><b>@cate.CateName</b></dt>
+                         @if (cate.children != null)
+                         {
+					        <dd class="j-demo-l-dd wfs" @if (cate.CateId == Model.ProductSearch.CateId||cate.children.SingleOrDefault(c=>c.CateId==Model.ProductSearch.CateId)!=null){<text>style="display: block;"</text>}>
+                                @foreach(var childCate in @cate.children)
                                 {
-                                    <a href="javascript:void(0);">@childCate.CateName</a>
+                                    <a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@childCate.CateName</a>
                                 }
-                            }
-                        </dd>
+                            </dd>
+                         }
 				    </dl>
                 }
 			</div>
@@ -58,7 +59,7 @@
 		<form name="compareForm" action="compare.php" method="post" onsubmit="return compareGoods(this);">
 			<div class="boutique">
 				<ul class="items wfs">
-                    @foreach(var product in @Model.ProductList)
+                    @foreach (var product in @Model.ProductList)
                     {
 					    <li class="items-li j-items-li">
                             <a href="@product.DetailUrl" target="_blank"><img class="goodsimg" data-original="@PhotoUrlFactory.GetPhotoUrl(product.Photo, 294, 294)" src="/content/default/images/loading.gif" alt="ECSHOP模板堂美味七七最新模板+积分换购"/></a>
@@ -171,9 +172,6 @@
                 $(this).addClass("now");
                 $(this).siblings("dd").show();
             }
-
-
-
         }
     );
     // $(".j-demo-l-dd a").click(function(){

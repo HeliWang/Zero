@@ -16,7 +16,7 @@ namespace Zero.Web.Areas.Site
         {
             context.MapRoute(
                 "Site_default",
-                "Site/{controller}/{action}/{id}",
+                "{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
