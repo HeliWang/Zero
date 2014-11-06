@@ -219,8 +219,7 @@
             }
 
             $.extend(true, option, setting);
-
-
+            return this;
         }
     });
 
