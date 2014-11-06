@@ -58,7 +58,7 @@
 		</div>
 		<form name="compareForm" action="compare.php" method="post" onsubmit="return compareGoods(this);">
 			<div class="boutique">
-				<ul class="items wfs">
+				<ul class="items wfs clearfix">
                     @foreach (var product in @Model.ProductList)
                     {
 					    <li class="items-li j-items-li">
@@ -98,18 +98,46 @@
 		    var select_spe = "请选择商品属性";
         </script>
 		<form name="selectPageForm" class="pageForm" action="/category.php" method="get">
-			<div class="fl wfs">
-				<ul class="pagination pages">
-					<li class="active"><a>1<span class="sr-only">(current)</span></a></li>
-					<li><a href="category-9-b0-min0-max0-attr0-2-goods_id-DESC.html">2 <span class="sr-only">(current)</span></a></li>
-					<li><a href="category-9-b0-min0-max0-attr0-3-goods_id-DESC.html">3 <span class="sr-only">(current)</span></a></li>
-					<li><a href="category-9-b0-min0-max0-attr0-4-goods_id-DESC.html">4 <span class="sr-only">(current)</span></a></li>
-					<li><a href="category-9-b0-min0-max0-attr0-5-goods_id-DESC.html">5 <span class="sr-only">(current)</span></a></li>
-					<li><a href="category-9-b0-min0-max0-attr0-2-goods_id-DESC.html"><i class="page-bg page-right"></i><span class="sr-only">(current)</span></a></li>
-					<li><a href="category-9-b0-min0-max0-attr0-7-goods_id-DESC.html">最末页 <span class="sr-only">(current)</span></a></li>
-				</ul>
-			</div>
-		</form>
+            @*<div class="fl wfs">
+                <ul class="pagination pages">
+                    <li><a href="">上一页</a></li>
+                    <li><a>1</a></li>
+                    <li><a href="javascript:void(0);">...</a></li>
+                    <li><a href="">2</a></li>
+                    <li class="active"><a href="">3</a></li>
+                    <li><a href="">4</a></li>
+                    <li><a href="javascript:void(0);">...</a></li>
+                    <li><a href="">10</a></li>
+                    <li><a href="">下一页</a></li>
+                </ul>
+            </div>*@
+            <div class="page">
+                <div class="p-warp">
+                    <span class="p-num">
+                        <a>上一页</a>
+                        <a>1</a>
+                        <b>...</b>
+                        <a>4</a>
+                        <a>5</a>
+                        <a class="current">6</a>
+                        <a>7</a>
+                        <a>8</a>
+                        <b>...</b>
+                        <a>1011</a>
+                        <a>下一页</a>
+                    </span>
+                    <span class="p-skip">
+                        <em>
+                            共<b>100</b>条
+                        </em>
+                        <em>
+                            到第&nbsp<input />&nbsp;页
+                        </em>
+                        <a>确定</a>
+                    </span>
+                </div>
+            </div>
+        </form>
 		<script type="text/javascript">
 		    function selectPage(sel) {
 		        sel.form.submit();

@@ -18,6 +18,7 @@ a:active,
 a:focus,
 a {
     outline: none;
+    text-decoration: none;
 }
 body {
     font-family: "Microsoft YaHei", "微软雅黑", "SimSun", "宋体";
@@ -783,9 +784,9 @@ li {
 }
 /*pages css*/
 .pages {
-    float: right;
+    float: left;
     margin-top: 20px;
-    margin-right: 50px;
+    margin-left: 350px;
 }
 .pages li a {
     float: left;
@@ -822,6 +823,67 @@ li {
 .pages li.active a:hover {
     background-color: #F05A50;
 }
+
+/*page css*/
+.page {
+    /*float: left;
+    margin-top: 20px;
+    margin-left: 350px;*/
+    /*border: 1px solid #ddd;*/
+    padding:20px 0;
+}
+.page .p-warp {
+    margin:auto;
+    height:40px;
+    width:800px;
+}
+.page .p-num a,.page .p-num b,.page .p-skip em, .page .p-skip a{
+     float: left;
+     margin-left: 5px;
+     line-height: 1.42857143;
+     color: #333;
+     border-radius: 3px;
+     /*background-color: #FE5F56;*/
+}
+.page .p-num b {
+    font-weight:200;
+    padding: 6px 3px;
+}
+
+.page .p-num a, .page .p-skip a {
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    cursor:pointer;
+}
+.page .p-num a:hover,.page .p-skip a:hover {
+    background-color: #EBEBEB;
+}
+.page .p-num .current {
+    color: #fff;
+    background-color: #FE5F56;
+    border-color: #FE5F56 !important;
+}
+.page .p-num .current:hover {
+    cursor:default;
+    color: #fff;
+    background-color: #FE5F56;
+    border-color: #FE5F56 !important;
+}
+
+.page .p-skip em {
+    font-style:normal;
+    padding: 6px 3px;
+    line-height: 20px;
+}
+.page .p-skip em input{
+    width:40px;
+    height:20px;
+    text-align:right;
+}
+
+
 /*might-like css*/
 .might-like {
     position: relative;
