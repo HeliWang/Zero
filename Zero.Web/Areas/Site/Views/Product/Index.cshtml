@@ -111,8 +111,8 @@
                     <li><a href="">下一页</a></li>
                 </ul>
             </div>*@
-            <div class="page">
-                <div class="p-warp">
+            <div id="paging" class="page">
+                @*<div class="p-warp">
                     <span class="p-num">
                         <a>上一页</a>
                         <a>1</a>
@@ -135,8 +135,11 @@
                         </em>
                         <a>确定</a>
                     </span>
-                </div>
+                </div>*@
             </div>
+            <script>
+                $.zero.paging({ renderTo: "#paging", recordCount: 100 });
+            </script>
         </form>
 		<script type="text/javascript">
 		    function selectPage(sel) {

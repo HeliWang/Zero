@@ -1,35 +1,35 @@
-ï»¿(function ($) {
+(function ($) {
     $.zero = {};
-    //åˆ†é¡µ
+    //·ÖÒ³
     $.extend($.zero, {
         pages: function (setting) {
             var option = {
-                name: "paging"//æ§ä»¶åç§°
-                , renderTo: "body"//è¦å‘ˆç°åˆ°çš„çˆ¶å…ƒç´ ï¼ŒjQueryå¯ç”¨çš„é€‰æ‹©ç¬¦
-                , pageIndex: 1//å½“å‰é¡µå·
-                , pageSize: 10//æ¯é¡µè®°å½•æ•°
-                , recordCount: 0//æ€»è®°å½•æ•°
-                , showPageCount: 10//å¯è§çš„é¡µå·æ•°
-                , urlMode: ""//urlæ¨¡å¼å¦‚sample-{page}.htmlï¼Œå°†ç”¨å½“å‰é¡µå·æ›¿æ¢{page}
-                , switchPage: function () { }//ç¿»é¡µäº‹ä»¶
-                , button: { name: ["ç¬¬ä¸€é¡µ", "ä¸Šä¸€é¡µ", "ä¸‹ä¸€é¡µ", "æœ€æœ«é¡µ"], visible: [true/*ç¬¬ä¸€é¡µå’Œæœ€æœ«é¡µ*/, true/*ä¸Šä¸€é¡µå’Œä¸‹ä¸€é¡µ*/] }//æ¢é¡µæŒ‰é’®è®¾ç½®
-                , goto: { text: ["è·³è½¬åˆ°", "é¡µ", "Go"], visible: true }//è·³è½¬åŒºè®¾ç½®
-                , pageInfo: { text: "ï¼Œå…±æœ‰{recordCount}æ¡è®°å½•ï¼Œå½“å‰æ˜¾ç¤º{pageIndex}/{pageCount}é¡µ", visible: true }//åˆ†é¡µä¿¡æ¯è®¾ç½®ï¼Œ{paramName}ä¸ºå‚æ•°åå°†è¢«optionä¸­çš„æ•°æ®æ›¿æ¢
+                name: "paging"//¿Ø¼şÃû³Æ
+                , renderTo: "body"//Òª³ÊÏÖµ½µÄ¸¸ÔªËØ£¬jQuery¿ÉÓÃµÄÑ¡Ôñ·û
+                , pageIndex: 1//µ±Ç°Ò³ºÅ
+                , pageSize: 10//Ã¿Ò³¼ÇÂ¼Êı
+                , recordCount: 0//×Ü¼ÇÂ¼Êı
+                , showPageCount: 10//¿É¼ûµÄÒ³ºÅÊı
+                , urlMode: ""//urlÄ£Ê½Èçsample-{page}.html£¬½«ÓÃµ±Ç°Ò³ºÅÌæ»»{page}
+                , switchPage: function () { }//·­Ò³ÊÂ¼ş
+                , button: { name: ["µÚÒ»Ò³", "ÉÏÒ»Ò³", "ÏÂÒ»Ò³", "×îÄ©Ò³"], visible: [true/*µÚÒ»Ò³ºÍ×îÄ©Ò³*/, true/*ÉÏÒ»Ò³ºÍÏÂÒ»Ò³*/] }//»»Ò³°´Å¥ÉèÖÃ
+                , goto: { text: ["Ìø×ªµ½", "Ò³", "Go"], visible: true }//Ìø×ªÇøÉèÖÃ
+                , pageInfo: { text: "£¬¹²ÓĞ{recordCount}Ìõ¼ÇÂ¼£¬µ±Ç°ÏÔÊ¾{pageIndex}/{pageCount}Ò³", visible: true }//·ÖÒ³ĞÅÏ¢ÉèÖÃ£¬{paramName}Îª²ÎÊıÃû½«±»optionÖĞµÄÊı¾İÌæ»»
             }
 
-            //ä»¥åä¿®æ”¹,ä¼šä¸ä¼šé‡å¤è°ƒç”¨
+            //ÒÔºóĞŞ¸Ä,»á²»»áÖØ¸´µ÷ÓÃ
             if (typeof (setting.switchPage) == "function") {
                 setting.recordCount = setting.switchPage(option.pageIndex);
             }
 
             $.extend(true, option, setting);
             option.renderTo = typeof option.renderTo == "string" ? $(option.renderTo) : option.renderTo;
-            option.pageCount = divideExactly(option.recordCount, option.pageSize) + (option.recordCount % option.pageSize > 0 ? 1 : 0);//æ€»é¡µæ•°
-            option.showPageCount = Math.min(option.showPageCount, option.pageCount);//å®é™…è¦æ˜¾ç¤ºçš„é¡µå·æ•°é‡
+            option.pageCount = divideExactly(option.recordCount, option.pageSize) + (option.recordCount % option.pageSize > 0 ? 1 : 0);//×ÜÒ³Êı
+            option.showPageCount = Math.min(option.showPageCount, option.pageCount);//Êµ¼ÊÒªÏÔÊ¾µÄÒ³ºÅÊıÁ¿
 
-            option.currentPageNumber = [];//å½“å‰æ˜¾ç¤ºçš„é¡µå·
-            var control = {};//ç”¨äºè®¿é—®å„Htmléƒ¨ä»¶
-            //åˆå§‹åŒ–å„Htmléƒ¨ä»¶
+            option.currentPageNumber = [];//µ±Ç°ÏÔÊ¾µÄÒ³ºÅ
+            var control = {};//ÓÃÓÚ·ÃÎÊ¸÷Html²¿¼ş
+            //³õÊ¼»¯¸÷Html²¿¼ş
             var init = function () {
                 control.paging = $("<div></div>");
                 control.first = $("<a></a>").text(option.button.name[0]).click(function () { switchPage(1); });
@@ -43,13 +43,13 @@
                 control.last = $("<a></a>").text(option.button.name[3]).click(function () { switchPage(option.pageCount); });
                 control.goto = $('<span>' + option.goto.text[0] + '<input type="text" class="text" />' + option.goto.text[1] + '<input type="button" class="button" value="' + option.goto.text[2] + '" /></span>');
                 control.info = $("<span></span>");
-                //è®¡ç®—è¦åŠ¨æ€æ˜¾ç¤ºçš„é¡µå·æ•°é‡
-                for (var i = 0, count = option.showPageCount - 2; i < count; i++) {//count:åŠ¨æ€å‘ˆç°çš„é¡µæ•°ï¼Œæ‰£é™¤å¤´å°¾ä¸¤é¡µ
+                //¼ÆËãÒª¶¯Ì¬ÏÔÊ¾µÄÒ³ºÅÊıÁ¿
+                for (var i = 0, count = option.showPageCount - 2; i < count; i++) {//count:¶¯Ì¬³ÊÏÖµÄÒ³Êı£¬¿Û³ıÍ·Î²Á½Ò³
                     control.pages[i] = $("<a></a>").click(function () {
                         switchPage($(this).attr("pageNumber"));
                     });
                 }
-                //è®¾ç½®è·³è½¬æŒ‰é’®äº‹ä»¶
+                //ÉèÖÃÌø×ª°´Å¥ÊÂ¼ş
                 control.goto.find(":text").keydown(function () {
                     var e = event;
                     return !(e.keyCode == 32);
@@ -78,7 +78,7 @@
                         render();
                     }
                 });
-                //ç»„è£…éƒ¨ä»¶
+                //×é×°²¿¼ş
                 control.paging.appendTo(option.renderTo).append(control.first).append(control.prve).append(control.head).append(control.headEtc);
                 for (var i = 0; i < control.pages.length; i++) {
                     control.paging.append(control.pages[i]);
@@ -99,7 +99,7 @@
                     control.info.hide();
                 }
             }
-            //è®¡ç®—è¦å‘ˆç°çš„é¡µå·
+            //¼ÆËãÒª³ÊÏÖµÄÒ³ºÅ
             var calculate = function () {
                 var start = option.pageIndex - (divideExactly(option.showPageCount, 2) + option.showPageCount % 2) + 1;
                 start = Math.max(1, start);
@@ -113,7 +113,7 @@
                     }
                 }
             }
-            //å‘ˆç°
+            //³ÊÏÖ
             var render = function () {
                 control.head.hide();
                 control.headEtc.hide();
@@ -176,7 +176,7 @@
                 render();
                 option.switchPage(option.pageIndex);
             }
-            //ä»åœ°å€æ è·å–urlMode
+            //´ÓµØÖ·À¸»ñÈ¡urlMode
             var getUrlMode = function () {
                 var page = "?page={page}";
                 var path = window.location.pathname + window.location.search;
@@ -215,15 +215,15 @@
                 pageSize: 10,
                 recordCount: 0,
                 showPageCount: 5,
-                visible: { all: true/*æ‰€æœ‰*/, total: true/*æ±‡æ€»*/, goto: true/*è·³è½¬*/, size: true/*é¡µæ•°*/ }
+                visible: { all: true/*ËùÓĞ*/, total: true/*»ã×Ü*/, goto: true/*Ìø×ª*/, size: true/*Ò³Êı*/ }
             }
             $.extend(setting, option);
-
+            
             var control = {};
             var init = function () {
                 //<div class="p-warp">
                 //    <span class="p-num">
-                //        <a>ä¸Šä¸€é¡µ</a>
+                //        <a>ÉÏÒ»Ò³</a>
                 //        <a>1</a>
                 //        <b>...</b>
                 //        <a>4</a>
@@ -233,16 +233,16 @@
                 //        <a>8</a>
                 //        <b>...</b>
                 //        <a>1011</a>
-                //        <a>ä¸‹ä¸€é¡µ</a>
+                //        <a>ÏÂÒ»Ò³</a>
                 //    </span>
                 //    <span class="p-skip">
                 //        <em>
-                //            å…±<b>100</b>æ¡
+                //            ¹²<b>100</b>Ìõ
                 //        </em>
                 //        <em>
-                //            åˆ°ç¬¬&nbsp<input />&nbsp;é¡µ
+                //            µ½µÚ&nbsp<input />&nbsp;Ò³
                 //        </em>
-                //        <a>ç¡®å®š</a>
+                //        <a>È·¶¨</a>
                 //    </span>
                 //</div>
 
@@ -251,27 +251,18 @@
                 setting.pageCount = setting.recordCount % setting.pageSize == 0 ? setting.pageCount : setting.pageCount + 1;
 
                 control.body = $("<div class=\"p-warp\"></div>");
-                control.num = $("<span class=\"p-num\"></span>");
-                control.prve = $("<a>ä¸Šä¸€é¡µ</a>");
-                control.next = $("<a>ä¸‹ä¸€é¡µ</a>");
-                control.ellipsis = $("<b>...</b>");
-                control.pages = [];
+                control.num = $("<span class=\"p-num\">°®Äã</span>");
                 control.skip = $("<span class=\"p-skip\"></span>");
-                control.total = $("<em>å…±<b>0</b>æ¡</em>");
-                control.goto = $("<em>åˆ°ç¬¬&nbsp<input />&nbsp;é¡µ</em><a>ç¡®å®š</a>");
+                //control.total = $("<b></b>").text("¹²100Ìõ");
+                //control.goto = $("<a></a>");
 
-                control.total.find("b").text(setting.recordCount);
-
-                control.num.append(control.pages);
-                control.skip.append(control.total).append(control.goto);
+                //control.skip.append(control.total).append(control.goto);
                 control.body.append(control.num).append(control.skip);
                 setting.renderTo.append(control.body);
-            }
-            var calculate = function () {
-                
+
             }
 
-            { init(); calculate(); }
+            { init(); }
 
             return this;
         }
