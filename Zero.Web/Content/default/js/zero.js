@@ -219,6 +219,7 @@
             }
             $.extend(setting, option);
 
+<<<<<<< HEAD
             var control = {};
             var init = function () {
                 //<div class="p-warp">
@@ -273,6 +274,8 @@
 
             { init(); calculate(); }
 
+
+            $.extend(true, option, setting);
             return this;
         }
     });
