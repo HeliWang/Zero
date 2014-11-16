@@ -8,6 +8,7 @@
                 pageIndex: 1,
                 pageSize: 10,
                 recordCount: 0,
+                digit: 1,//前后显示的位数
                 showPageCount: 5,//奇数
                 visible: { all: true/*所有*/, total: true/*汇总*/, goto: true/*跳转*/, size: true/*页数*/ }
             }
@@ -46,6 +47,7 @@
                 setting.renderTo = typeof setting.renderTo == "string" ? $(setting.renderTo) : setting.renderTo;
                 setting.pageCount = parseInt(setting.recordCount / setting.pageSize);
                 setting.pageCount = setting.recordCount % setting.pageSize == 0 ? setting.pageCount : setting.pageCount + 1;
+                setting.spaceCount = setting.digit + 1;//位数+省略号
 
                 control.body = $("<div class=\"p-warp\"></div>");
                 control.num = $("<span class=\"p-num\"></span>");
@@ -69,10 +71,11 @@
                 calculate();
             }
             var calculate = function () {
+
                 control.num.append(control.prve);
 
-                //加上前后放置的数量，包括前面的第一页和空白省略和最后一页和空白省略
-                if (setting.pageCount < setting.showPageCount + 2) {
+                //最大可以一排显示多少位数
+                if (setting.pageCount < setting.showPageCount + setting.spaceCount) {
                     for (var i = 0; i < setting.pageCount; i++) {
                         var page = $("<a></a>").text(i + 1);
                         control.num.append(page);
@@ -81,17 +84,17 @@
                 else {
                     var splitPoint = parseInt(setting.showPageCount / 2);//分割线
 
-                    if (setting.pageIndex <= splitPoint + 2) {
+                    if (setting.pageIndex <= splitPoint + setting.spaceCount) {
                         for (var i = 0; i < setting.showPageCount; i++) {
                             var page = $("<a></a>").text(i + 1);
                             control.num.append(page);
                         }
-
-                        control.num.append(control.lastEllipsis).append(control.last);
+                         
+                        appendAfter();
                     }
-                    else if (setting.pageIndex > (setting.pageCount - splitPoint - 2)) {
+                    else if (setting.pageIndex > setting.pageCount - (splitPoint + setting.spaceCount)) {
 
-                        control.num.append(control.first).append(control.firstEllipsis);
+                        appendBefore();
 
                         for (var i = 0; i < setting.showPageCount; i++) {
                             var page = $("<a></a>").text(i + setting.pageCount - setting.showPageCount + 1);
@@ -99,18 +102,33 @@
                         }
                     }
                     else {
-                        control.num.append(control.first).append(control.firstEllipsis);
+                        
+                        appendBefore();
 
                         for (var i = 0; i < setting.showPageCount; i++) {
                             var page = $("<a></a>").text(i + setting.pageIndex - splitPoint);
                             control.num.append(page);
                         }
 
-                        control.num.append(control.lastEllipsis).append(control.last);
+                        appendAfter();
                     }
                 }
 
                 control.num.append(control.next);
+            }
+            var appendBefore = function () {
+                for (var i = 0; i < setting.digit; i++) {
+                    var page = $("<a></a>").text(i + 1);
+                    control.num.append(page);
+                }
+                control.num.append(control.firstEllipsis);
+            }
+            var appendAfter = function () {
+                control.num.append(control.lastEllipsis);
+                for (var i = setting.digit ; i > 0; i--) {
+                    var page = $("<a></a>").text(setting.pageCount + 1 - i);
+                    control.num.append(page);
+                }
             }
             var appendPage = function (count, startValue) {
                 for (var i = 0; i <= count; i++) {
