@@ -256,6 +256,7 @@
     <Content Include="Content\default\js\suspension.js" />
     <Content Include="Content\default\js\utils.js" />
     <Content Include="Content\default\js\v.js" />
+    <Content Include="Content\default\js\zero.js" />
     <Content Include="Content\default\js\zzsc.js" />
     <Content Include="Content\default\upload\109_thumb_G_1413245049873.png" />
     <Content Include="Content\default\upload\125_thumb_G_1413245184049.png" />
@@ -474,6 +475,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Site\Views\Product\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\default\js\zero_old.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
