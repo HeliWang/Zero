@@ -74,6 +74,8 @@ namespace Zero.Web.Areas.Site.Controllers
             model.ProductSearch = productSearch;
             model.ProductList = _productService.GetList(productSearch, pageIndex, pageSize).Items;
 
+           
+
             return View(model);
         }
 

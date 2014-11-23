@@ -1,6 +1,9 @@
 ﻿(function ($) {
     $.zero = {};
 
+
+
+   
     $.extend($.zero, {
         paging: function (option) {
             var setting = {
@@ -72,6 +75,12 @@
             }
             var calculate = function () {
 
+                /*
+                左边位数=前面数字位数+省略位数
+                中间位数=显示位数（如果显示靠前，或显示靠后，需要除2，加上左右边位数）
+                右边位数=省略位数+后面数字位数
+                */
+
                 control.num.append(control.prve);
 
                 //最大可以一排显示多少位数
@@ -141,6 +150,26 @@
 
 
             $.extend(true, option, setting);
+            return this;
+        }
+    });
+
+    $.extend($.zero, {
+        Query: function (url) {
+            var param = [{name:'page',value:'1'}];
+            var init = function () {
+            }
+            var set = function (name,value) {
+            }
+            var add = function (name, value) {
+            }
+            var remove = function (name) {
+            }
+            var get = function (name) {
+            }
+            var clear = function () {
+            }
+
             return this;
         }
     });
