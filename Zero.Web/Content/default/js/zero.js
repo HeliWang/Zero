@@ -155,21 +155,43 @@
     });
 
     $.extend($.zero, {
-        Query: function (url) {
-            var param = [{name:'page',value:'1'}];
+        Query: function () {
+            var paramList = [{ name: 'page', value: '1' }, {name:'site',value:'abc'}];
             var init = function () {
+                var url = document.location.search;
+                if (url.indexOf("?") != -1) {
+                    var path = url.substr(0);
+                    var paramStr = url.substr(1);
+                    var paramArray = paramStr.split("&");
+                    for (var i = 0; i < paramArray.length; i++) {
+                        var param = paramArray[i].split("=");
+                        paramList[i] = { key: param[0], value: param[1] };
+                    }
+                }
             }
-            var set = function (name,value) {
+            var set = function (name, value) {
+
             }
             var add = function (name, value) {
             }
             var remove = function (name) {
+                for (var i = 0; i < paramList.length; i++) {
+                    if (paramList[i].key == name) {
+                        return paramList[i].value;
+                    }
+                }
             }
             var get = function (name) {
+                for (var i = 0; i < paramList.length; i++) {
+                    if (paramList[i].key == name) {
+                        return paramList[i].value;
+                    }
+                }
+                return "";
             }
             var clear = function () {
             }
-
+            init();
             return this;
         }
     });
