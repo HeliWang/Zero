@@ -170,14 +170,19 @@
                 }
             }
             var set = function (name, value) {
-
+                for (var i = 0; i < paramList.length; i++) {
+                    if (paramList[i].key == name) {
+                        return paramList.splice(i, 1, { key: name, value: value });
+                    }
+                }
             }
             var add = function (name, value) {
+                paramList[paramList.length] = { key: name, value: value };
             }
             var remove = function (name) {
                 for (var i = 0; i < paramList.length; i++) {
                     if (paramList[i].key == name) {
-                        return paramList[i].value;
+                         return paramList.splice(i, 1);
                     }
                 }
             }
