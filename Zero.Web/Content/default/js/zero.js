@@ -1,4 +1,40 @@
-﻿(function ($) {
+﻿$(function () {
+    //拼凑字符串
+    String.format = function () {
+        var formatStr = arguments[0];
+        if (typeof formatStr === 'string') {
+            var pattern,
+                length = arguments.length;
+            for (var i = 1; i < length; i++) {
+                pattern = new RegExp('\\{' + (i - 1) + '\\}', 'g');
+                formatStr = formatStr.replace(pattern, arguments[i]);
+            }
+        } else {
+            formatStr = '';
+        }
+        return formatStr;
+    };
+
+    //拼凑字符串
+    StringBuilder = function () {
+        var sb = "";
+        this.append = function () {
+        }
+        this.appendFormat = function () {
+
+        }
+        this.toString = function () {
+
+        }
+        this.length = function () {
+
+        }
+    }
+
+});
+
+
+(function ($) {
     $.zero = {};
 
 
@@ -156,11 +192,12 @@
 
     $.extend($.zero, {
         Query: function () {
-            var paramList = [{ name: 'page', value: '1' }, {name:'site',value:'abc'}];
+            var paramList = [{ name: 'page', value: '1' }, { name: 'site', value: 'abc' }];
+            var path = "";
             var init = function () {
                 var url = document.location.search;
                 if (url.indexOf("?") != -1) {
-                    var path = url.substr(0);
+                    path = url.substr(0);
                     var paramStr = url.substr(1);
                     var paramArray = paramStr.split("&");
                     for (var i = 0; i < paramArray.length; i++) {
@@ -195,6 +232,14 @@
                 return "";
             }
             var clear = function () {
+                paramList.splice(0, paramList.length);
+            }
+            var getUrl = function ()
+            {
+                
+                for (var i = 0; i < paramList.length; i++) {
+                   
+                }
             }
             init();
             return this;
