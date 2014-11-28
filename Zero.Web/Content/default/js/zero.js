@@ -1,6 +1,35 @@
 ﻿$(function () {
-    //拼凑字符串
-    String.format = function () {
+    
+
+});
+
+
+//拼凑字符串
+String.format = function () {
+    var formatStr = arguments[0];
+    if (typeof formatStr === 'string') {
+        var pattern,
+            length = arguments.length;
+        for (var i = 1; i < length; i++) {
+            pattern = new RegExp('\\{' + (i - 1) + '\\}', 'g');
+            formatStr = formatStr.replace(pattern, arguments[i]);
+        }
+    } else {
+        formatStr = '';
+    }
+    return formatStr;
+};
+
+//拼凑字符串
+StringBuilder = function () {
+    var sb = "";
+    this.append = function () {
+        var formatStr = arguments[0];
+        if (typeof formatStr === 'string') {
+            sb += formatStr;
+        }
+    }
+    this.appendFormat = function () {
         var formatStr = arguments[0];
         if (typeof formatStr === 'string') {
             var pattern,
@@ -9,29 +38,16 @@
                 pattern = new RegExp('\\{' + (i - 1) + '\\}', 'g');
                 formatStr = formatStr.replace(pattern, arguments[i]);
             }
-        } else {
-            formatStr = '';
-        }
-        return formatStr;
-    };
-
-    //拼凑字符串
-    StringBuilder = function () {
-        var sb = "";
-        this.append = function () {
-        }
-        this.appendFormat = function () {
-
-        }
-        this.toString = function () {
-
-        }
-        this.length = function () {
-
+            sb += formatStr;
         }
     }
-
-});
+    this.toString = function () {
+        return sb;
+    }
+    this.length = function () {
+        return sb.length;
+    }
+}
 
 
 (function ($) {
@@ -121,39 +137,28 @@
 
                 //最大可以一排显示多少位数
                 if (setting.pageCount < setting.showPageCount + setting.spaceCount) {
-                    for (var i = 0; i < setting.pageCount; i++) {
-                        var page = $("<a></a>").text(i + 1);
-                        control.num.append(page);
-                    }
+                    appendPage(setting.pageCount, 1);
                 }
                 else {
                     var splitPoint = parseInt(setting.showPageCount / 2);//分割线
 
                     if (setting.pageIndex <= splitPoint + setting.spaceCount) {
-                        for (var i = 0; i < setting.showPageCount; i++) {
-                            var page = $("<a></a>").text(i + 1);
-                            control.num.append(page);
-                        }
-                         
+
+                        appendPage(setting.showPageCount, 1);
+
                         appendAfter();
                     }
                     else if (setting.pageIndex > setting.pageCount - (splitPoint + setting.spaceCount)) {
 
                         appendBefore();
 
-                        for (var i = 0; i < setting.showPageCount; i++) {
-                            var page = $("<a></a>").text(i + setting.pageCount - setting.showPageCount + 1);
-                            control.num.append(page);
-                        }
+                        appendPage(setting.showPageCount, setting.pageCount - setting.showPageCount + 1);
                     }
                     else {
-                        
+
                         appendBefore();
 
-                        for (var i = 0; i < setting.showPageCount; i++) {
-                            var page = $("<a></a>").text(i + setting.pageIndex - splitPoint);
-                            control.num.append(page);
-                        }
+                        appendPage(setting.showPageCount, setting.pageIndex - splitPoint);
 
                         appendAfter();
                     }
@@ -202,30 +207,30 @@
                     var paramArray = paramStr.split("&");
                     for (var i = 0; i < paramArray.length; i++) {
                         var param = paramArray[i].split("=");
-                        paramList[i] = { key: param[0], value: param[1] };
+                        paramList[i] = { name: param[0], value: param[1] };
                     }
                 }
             }
             var set = function (name, value) {
                 for (var i = 0; i < paramList.length; i++) {
-                    if (paramList[i].key == name) {
-                        return paramList.splice(i, 1, { key: name, value: value });
+                    if (paramList[i].name == name) {
+                        return paramList.splice(i, 1, { name: name, value: value });
                     }
                 }
             }
             var add = function (name, value) {
-                paramList[paramList.length] = { key: name, value: value };
+                paramList[paramList.length] = { name: name, value: value };
             }
             var remove = function (name) {
                 for (var i = 0; i < paramList.length; i++) {
-                    if (paramList[i].key == name) {
+                    if (paramList[i].name == name) {
                          return paramList.splice(i, 1);
                     }
                 }
             }
             var get = function (name) {
                 for (var i = 0; i < paramList.length; i++) {
-                    if (paramList[i].key == name) {
+                    if (paramList[i].name == name) {
                         return paramList[i].value;
                     }
                 }
@@ -236,10 +241,11 @@
             }
             var getUrl = function ()
             {
-                
+                var sb = new StringBuilder("?");
                 for (var i = 0; i < paramList.length; i++) {
-                   
+                    sb.appendFormat("&{0}={1}",paramList[i].name,paramList[i].value);
                 }
+                return sb.toString();
             }
             init();
             return this;
