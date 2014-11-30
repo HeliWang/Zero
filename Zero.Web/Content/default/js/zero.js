@@ -1,8 +1,4 @@
-﻿$(function () {
-    
-
-});
-
+﻿
 
 //拼凑字符串
 String.format = function () {
@@ -21,7 +17,7 @@ String.format = function () {
 };
 
 //拼凑字符串
-StringBuilder = function () {
+function StringBuilder() {
     var sb = "";
     this.append = function () {
         var formatStr = arguments[0];
@@ -53,16 +49,13 @@ StringBuilder = function () {
 (function ($) {
     $.zero = {};
 
-
-
-   
     $.extend($.zero, {
         paging: function (option) {
             var setting = {
-                renderTo: "paging",
-                pageIndex: 1,
-                pageSize: 10,
-                recordCount: 0,
+                renderTo: "paging",//父标签
+                pageIndex: 1,//当前页
+                pageSize: 10,//页大小
+                recordCount: 0,//记录总数
                 digit: 1,//前后显示的位数
                 showPageCount: 5,//奇数
                 visible: { all: true/*所有*/, total: true/*汇总*/, goto: true/*跳转*/, size: true/*页数*/ }
@@ -165,6 +158,8 @@ StringBuilder = function () {
                 }
 
                 control.num.append(control.next);
+
+
             }
             var appendBefore = function () {
                 for (var i = 0; i < setting.digit; i++) {
