@@ -47,6 +47,7 @@ function StringBuilder() {
 
 
 (function ($) {
+
     $.zero = {};
 
     $.extend($.zero, {
@@ -246,5 +247,8 @@ function StringBuilder() {
             return this;
         }
     });
+
+    var a = $.zero.Query();
+    alert(a.getUrl());
 
 })(jQuery);
