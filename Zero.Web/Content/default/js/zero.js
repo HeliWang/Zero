@@ -1,9 +1,4 @@
-﻿$(function () {
-    
-
-});
-
-
+﻿
 //拼凑字符串
 String.format = function () {
     var formatStr = arguments[0];
@@ -21,7 +16,7 @@ String.format = function () {
 };
 
 //拼凑字符串
-StringBuilder = function () {
+function StringBuilder() {
     var sb = "";
     this.append = function () {
         var formatStr = arguments[0];
@@ -41,21 +36,81 @@ StringBuilder = function () {
             sb += formatStr;
         }
     }
+    this.remove = function (index, num) {
+        sb = sb.substring(index, num);
+    }
     this.toString = function () {
         return sb;
     }
-    this.length = function () {
+    this.getLength = function () {
         return sb.length;
     }
+}
+
+//构建URl
+function Query() {
+    var paramList = [];
+    var path = "";
+    this.init = function () {
+        debugger
+        var url = document.URL;
+        if (url.indexOf("?") != -1) {
+            path = url.substring(0, url.indexOf("?"));
+            var paramStr = url.substring(url.indexOf("?") + 1, url.length);
+            var paramArray = paramStr.split("&");
+            for (var i = 0; i < paramArray.length; i++) {
+                var param = paramArray[i].split("=");
+                paramList[i] = { name: param[0], value: param[1] };
+            }
+        }
+    }
+    this.set = function (name, value) {
+        for (var i = 0; i < paramList.length; i++) {
+            if (paramList[i].name == name) {
+                return paramList.splice(i, 1, { name: name, value: value });
+            }
+        }
+    }
+    this.add = function (name, value) {
+        paramList[paramList.length] = { name: name, value: value };
+    }
+    this.remove = function (name) {
+        for (var i = 0; i < paramList.length; i++) {
+            if (paramList[i].name == name) {
+                return paramList.splice(i, 1);
+            }
+        }
+    }
+    this.get = function (name) {
+        for (var i = 0; i < paramList.length; i++) {
+            if (paramList[i].name == name) {
+                return paramList[i].value;
+            }
+        }
+        return "";
+    }
+    this.clear = function () {
+        paramList.splice(0, paramList.length);
+    }
+    this.getUrl = function () {
+        var paramString = "";
+        for (var i = 0; i < paramList.length; i++) {
+            paramString += String.format("&{0}={1}", paramList[i].name, paramList[i].value);
+        }
+
+        if (paramString.length > 0) {
+            paramString = paramString.substring(1, paramString.length);
+            return path + "?" + paramString;
+        }
+        return path;
+    }
+    this.init();
 }
 
 
 (function ($) {
     $.zero = {};
 
-
-
-   
     $.extend($.zero, {
         paging: function (option) {
             var setting = {
@@ -65,10 +120,12 @@ StringBuilder = function () {
                 recordCount: 0,
                 digit: 1,//前后显示的位数
                 showPageCount: 5,//奇数
+                url:'',
                 visible: { all: true/*所有*/, total: true/*汇总*/, goto: true/*跳转*/, size: true/*页数*/ }
             }
             $.extend(setting, option);
 
+            var query = new Query();
             var control = {};
             var init = function () {
                 function aa()
@@ -188,16 +245,14 @@ StringBuilder = function () {
             }
 
             { init();  }
-
-
-            $.extend(true, option, setting);
             return this;
         }
     });
 
+    //编写js插件，内部方法闭包，正常需要再外部定义方法，然后内部赋值
     $.extend($.zero, {
         Query: function () {
-            var paramList = [{ name: 'page', value: '1' }, { name: 'site', value: 'abc' }];
+            var paramList = [];
             var path = "";
             var init = function () {
                 var url = document.location.search;
