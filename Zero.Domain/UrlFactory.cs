@@ -82,7 +82,6 @@ namespace Zero.Domain
                 newProductSearch.CateId = cateId;
             }
 
-
             //将AttrList移到到ProductSearch中
             if (!string.IsNullOrEmpty(attr))
             {

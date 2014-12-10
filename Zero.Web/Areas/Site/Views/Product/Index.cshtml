@@ -59,7 +59,7 @@
 		<form name="compareForm" action="compare.php" method="post" onsubmit="return compareGoods(this);">
 			<div class="boutique">
 				<ul class="items wfs clearfix">
-                    @foreach (var product in @Model.ProductList)
+                    @foreach (var product in @Model.ProductPage.Items)
                     {
 					    <li class="items-li j-items-li">
                             <a href="@product.DetailUrl" target="_blank"><img class="goodsimg" data-original="@PhotoUrlFactory.GetPhotoUrl(product.Photo, 294, 294)" src="/content/default/images/loading.gif" alt="ECSHOP模板堂美味七七最新模板+积分换购"/></a>
@@ -138,7 +138,7 @@
                 </div>*@
             </div>
             <script>
-                $.zero.paging({ renderTo: "#paging", recordCount: 200, pageIndex: 8, digit: 1 });
+                $.zero.paging({ renderTo: "#paging", recordCount: @Model.ProductPage.TotalCount,pageIndex: @Model.ProductPage.PageIndex+1,pageSize:@Model.ProductPage.PageSize,digit: 1});
             </script>
         </form>
 		<script type="text/javascript">

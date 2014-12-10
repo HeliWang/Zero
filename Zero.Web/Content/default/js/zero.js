@@ -52,7 +52,6 @@ function Query() {
     var paramList = [];
     var path = "";
     this.init = function () {
-        debugger
         var url = document.URL;
         if (url.indexOf("?") != -1) {
             path = url.substring(0, url.indexOf("?"));
@@ -67,9 +66,11 @@ function Query() {
     this.set = function (name, value) {
         for (var i = 0; i < paramList.length; i++) {
             if (paramList[i].name == name) {
-                return paramList.splice(i, 1, { name: name, value: value });
+                paramList[i].value = value;
+                return value;
             }
         }
+        return paramList.splice(paramList.length, 0, { name: name, value: value });
     }
     this.add = function (name, value) {
         paramList[paramList.length] = { name: name, value: value };
@@ -120,12 +121,11 @@ function Query() {
                 recordCount: 0,
                 digit: 1,//前后显示的位数
                 showPageCount: 5,//奇数
-                url:'',
+                url: '',
                 visible: { all: true/*所有*/, total: true/*汇总*/, goto: true/*跳转*/, size: true/*页数*/ }
             }
             $.extend(setting, option);
 
-            var query = new Query();
             var control = {};
             var init = function () {
                 function aa()
@@ -180,6 +180,27 @@ function Query() {
                 control.body.append(control.num).append(control.skip);
                 setting.renderTo.append(control.body);
 
+                var query = new Query();
+                query.set("page", "{page}");
+                setting.url = query.getUrl();
+
+                if (setting.pageIndex > 1) {
+                    control.prve.attr("href", setting.url.replace("{page}", setting.pageIndex - 1));
+                }
+
+                if (setting.pageIndex < setting.pageCount) {
+                    control.next.attr("href", setting.url.replace("{page}", setting.pageIndex + 1));
+                }
+
+                control.skip.find("input").click(function () {
+                    //验证是否整数，或者是否超出范围
+                });
+    
+                control.skip.find("a").click(function () {
+                    var gonum = control.skip.find("input").val();
+                    document.location.href = setting.url.replace("{page}", gonum);
+                });
+
                 calculate();
             }
             var calculate = function () {
@@ -225,7 +246,10 @@ function Query() {
             }
             var appendBefore = function () {
                 for (var i = 0; i < setting.digit; i++) {
-                    var page = $("<a></a>").text(i + 1);
+                    var num = i + 1;
+                    var page = $("<a></a>").text(num);
+                    var href = setting.url.replace("{page}", num);
+                    page.attr("href", href);
                     control.num.append(page);
                 }
                 control.num.append(control.firstEllipsis);
@@ -233,13 +257,19 @@ function Query() {
             var appendAfter = function () {
                 control.num.append(control.lastEllipsis);
                 for (var i = setting.digit ; i > 0; i--) {
-                    var page = $("<a></a>").text(setting.pageCount + 1 - i);
+                    var num = setting.pageCount + 1 - i;
+                    var page = $("<a></a>").text(num);
+                    var href = setting.url.replace("{page}", num);
+                    page.attr("href", href);
                     control.num.append(page);
                 }
             }
             var appendPage = function (count, startValue) {
-                for (var i = 0; i <= count; i++) {
-                    var page = $("<a></a>").text(startValue + i);
+                for (var i = 0; i < count; i++) {
+                    var num = startValue + i;
+                    var page = $("<a></a>").text(num);
+                    var href = setting.url.replace("{page}", num);
+                    page.attr("href", href);
                     control.num.append(page);
                 }
             }

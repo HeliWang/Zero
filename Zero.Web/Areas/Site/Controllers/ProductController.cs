@@ -35,8 +35,11 @@ namespace Zero.Web.Areas.Site.Controllers
             CateAttrSearch cateAttrSearch = new CateAttrSearch();
             productSearch.CateId = RequestHelper.AllInt("CateId");
             productSearch.Attr = RequestHelper.All("Attr");
-            int pageSize = 30;
-            int pageIndex = 0;
+
+            int pageSize = 1;
+            int pageIndex = RequestHelper.QueryInt("page");
+            pageIndex = pageIndex <= 0 ? 0 : pageIndex - 1;
+            
 
             //类别信息()
             List<Cate> allCateList = _cateService.GetList(0, 0);
@@ -72,7 +75,7 @@ namespace Zero.Web.Areas.Site.Controllers
             }
 
             model.ProductSearch = productSearch;
-            model.ProductList = _productService.GetList(productSearch, pageIndex, pageSize).Items;
+            model.ProductPage = _productService.GetList(productSearch, pageIndex, pageSize);
 
            
 

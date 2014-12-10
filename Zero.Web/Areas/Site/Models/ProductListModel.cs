@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Zero.Domain.Cates;
 using Zero.Domain.Products;
+using Zero.Core.Web;
 
 namespace Zero.Web.Areas.Site.Models
 {
@@ -16,7 +17,7 @@ namespace Zero.Web.Areas.Site.Models
 
         public ProductSearch ProductSearch { get; set; }
 
-        public List<Product> ProductList { get; set; }
+        public IPage<Product> ProductPage { get; set; }
 
         public List<Cate> PathCateList { get; set; }
 
