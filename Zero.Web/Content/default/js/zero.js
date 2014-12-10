@@ -187,9 +187,15 @@ function Query() {
                 if (setting.pageIndex > 1) {
                     control.prve.attr("href", setting.url.replace("{page}", setting.pageIndex - 1));
                 }
+                else {
+                    control.prve.addClass("enable");
+                }
 
                 if (setting.pageIndex < setting.pageCount) {
                     control.next.attr("href", setting.url.replace("{page}", setting.pageIndex + 1));
+                }
+                else {
+                    control.next.addClass("enable");
                 }
 
                 control.skip.find("input").click(function () {
@@ -215,14 +221,14 @@ function Query() {
 
                 //最大可以一排显示多少位数
                 if (setting.pageCount < setting.showPageCount + setting.spaceCount) {
-                    appendPage(setting.pageCount, 1);
+                    appendMiddle(setting.pageCount, 1);
                 }
                 else {
                     var splitPoint = parseInt(setting.showPageCount / 2);//分割线
 
                     if (setting.pageIndex <= splitPoint + setting.spaceCount) {
 
-                        appendPage(setting.showPageCount, 1);
+                        appendMiddle(setting.showPageCount, 1);
 
                         appendAfter();
                     }
@@ -230,13 +236,13 @@ function Query() {
 
                         appendBefore();
 
-                        appendPage(setting.showPageCount, setting.pageCount - setting.showPageCount + 1);
+                        appendMiddle(setting.showPageCount, setting.pageCount - setting.showPageCount + 1);
                     }
                     else {
 
                         appendBefore();
 
-                        appendPage(setting.showPageCount, setting.pageIndex - splitPoint);
+                        appendMiddle(setting.showPageCount, setting.pageIndex - splitPoint);
 
                         appendAfter();
                     }
@@ -247,10 +253,7 @@ function Query() {
             var appendBefore = function () {
                 for (var i = 0; i < setting.digit; i++) {
                     var num = i + 1;
-                    var page = $("<a></a>").text(num);
-                    var href = setting.url.replace("{page}", num);
-                    page.attr("href", href);
-                    control.num.append(page);
+                    appendPage(num);
                 }
                 control.num.append(control.firstEllipsis);
             }
@@ -258,21 +261,28 @@ function Query() {
                 control.num.append(control.lastEllipsis);
                 for (var i = setting.digit ; i > 0; i--) {
                     var num = setting.pageCount + 1 - i;
-                    var page = $("<a></a>").text(num);
-                    var href = setting.url.replace("{page}", num);
-                    page.attr("href", href);
-                    control.num.append(page);
+                    appendPage(num);
                 }
             }
-            var appendPage = function (count, startValue) {
+            var appendMiddle = function (count, startValue) {
                 for (var i = 0; i < count; i++) {
                     var num = startValue + i;
-                    var page = $("<a></a>").text(num);
-                    var href = setting.url.replace("{page}", num);
-                    page.attr("href", href);
-                    control.num.append(page);
+                    appendPage(num);
                 }
             }
+            var appendPage = function (num) {
+                var page = $("<a></a>").text(num);
+                var href = setting.url.replace("{page}", num);
+               
+                if (num == setting.pageIndex) {
+                    page.attr("href", "javascript:void(0);").addClass("current");
+                }
+                else {
+                    page.attr("href", href);
+                }
+                control.num.append(page);
+            }
+
 
             { init();  }
             return this;

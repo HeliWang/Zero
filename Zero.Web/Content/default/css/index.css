@@ -864,12 +864,19 @@ li {
     color: #fff;
     background-color: #FE5F56;
     border-color: #FE5F56 !important;
+    
 }
 .page .p-num .current:hover {
     cursor:default;
     color: #fff;
     background-color: #FE5F56;
     border-color: #FE5F56 !important;
+    /*cursor:not-allowed;*/
+}
+
+.page .p-num .enable {
+    /*background-color: #EBEBEB;*/
+    cursor:not-allowed;
 }
 
 .page .p-skip em {
