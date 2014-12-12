@@ -19,6 +19,7 @@ a:focus,
 a {
     outline: none;
     text-decoration: none;
+    cursor:pointer;
 }
 body {
     font-family: "Microsoft YaHei", "微软雅黑", "SimSun", "宋体";

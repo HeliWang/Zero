@@ -48,14 +48,49 @@
 		</div>
 	</div>
 	<div class="right j-right" style="margin-left: 300px;">
-		<div class="sort wfs">
-            <div style="border:1px solid #ccc;margin:0 45px; background-color:#fff;">
-                <div style="height:30px;"></div>
-                <div style="height:30px;border-top:1px dotted #ccc;"></div>
-                <div style="height:30px;border-top:1px dotted #ccc;"></div>
-                <div style="height:30px;border-top:1px dotted #ccc;"></div>
-            </div>
+        <style>
+            .attr{/*border:1px solid #ccc;*/margin:0 45px 10px 45px; background-color:#fff;font-size: 12px;}
+            .attr .a-item{height:30px;border-top:1px dotted #ccc;line-height:30px;}
+            .attr .a-brand{border-top:none;}
+            .attr .a-key{float:left;text-align:right;width:100px;}
+            .attr .a-value{float:left;}
+            .attr .a-value li{float:left;margin-left:25px;}
 
+            .tool .t-order{float:left;}
+            .tool .t-order div{float:left;}
+            .tool .t-order div a{float:left;margin-right:10px;}
+            .tool .page{float:right}
+        </style>
+		<div class="sort wfs">
+            <div class="attr">
+                <div class="a-item">
+                    <div class="a-key">品牌：</div>
+                    <div class="a-value">
+                        <ul>
+                            <li><a>安踏</a></li>
+                            <li><a>李宁</a></li>
+                            <li><a>中国</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tool">
+                <div class="t-order">
+                    <div>排序：</div>
+                    <div>
+                        <a>新品</a>
+                        <a>价格</a>
+                        <a>热评</a>
+                        <a>热销</a>
+                    </div>
+                </div>
+                <div id="paging2" class="page">
+                    <a>1</a><a>2</a><a>3</a>
+                </div>
+                @*<script>
+                    $.zero.paging({ renderTo: "#paging2", recordCount: @Model.ProductPage.TotalCount,pageIndex: @Model.ProductPage.PageIndex+1,pageSize:@Model.ProductPage.PageSize,digit: 1});
+                </script>*@
+            </div>
 			<div style="float: left;">
 				<span style="margin-left: 45px; float: left; padding-top: 5px; font-size: 12px;">排序：</span>
                 <span class="sort-icons j-sort-icons">
