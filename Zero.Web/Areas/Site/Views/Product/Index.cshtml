@@ -56,10 +56,10 @@
             .attr .a-value{float:left;}
             .attr .a-value li{float:left;margin-left:25px;}
 
-            .tool .t-order{float:left;}
-            .tool .t-order div{float:left;}
-            .tool .t-order div a{float:left;margin-right:10px;}
-            .tool .page{float:right}
+            .tool .t-order{float:left;margin:0 45px 10px 45px;font-size: 12px;}
+            .tool .t-order div{float:left;line-height:30px}
+            .tool .t-order div a{float:left;width: 50px;height: 30px;line-height: 30px;color: #333;text-align: center;background-color: #fff;border-right: 1px solid #F2F2F2;}
+            .tool .page{float:right;}
         </style>
 		<div class="sort wfs">
             <div class="attr">
@@ -76,7 +76,7 @@
             </div>
             <div class="tool">
                 <div class="t-order">
-                    <div>排序：</div>
+                   @* <div>排序：</div>*@
                     <div>
                         <a>新品</a>
                         <a>价格</a>
@@ -85,13 +85,12 @@
                     </div>
                 </div>
                 <div id="paging2" class="page">
-                    <a>1</a><a>2</a><a>3</a>
                 </div>
                 @*<script>
                     $.zero.paging({ renderTo: "#paging2", recordCount: @Model.ProductPage.TotalCount,pageIndex: @Model.ProductPage.PageIndex+1,pageSize:@Model.ProductPage.PageSize,digit: 1});
                 </script>*@
             </div>
-			<div style="float: left;">
+			@*<div style="float: left;">
 				<span style="margin-left: 45px; float: left; padding-top: 5px; font-size: 12px;">排序：</span>
                 <span class="sort-icons j-sort-icons">
                     <a class="now" rel="nofollow" href="category.php?category=9&display=grid&brand=0&price_min=0&price_max=0&filter_attr=0&page=1&sort=goods_id&order=ASC#goods_list">新品</a>
@@ -102,7 +101,7 @@
 			</div>
 			<div class="totals" style="padding-top: 20px; margin-top: 0px; text-align: right;">
 				共找到<i>150</i>款产品
-			</div>
+			</div>*@
 		</div>
 		<form name="compareForm" action="compare.php" method="post" onsubmit="return compareGoods(this);">
 			<div class="boutique">
