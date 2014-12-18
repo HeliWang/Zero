@@ -64,7 +64,7 @@ namespace Zero.Web.Areas.Site.Controllers
 
                     model.CateList = _cateService.ConvertCateListToTree(model.CateList);
 
-                    if (cate.Depth == 2)
+                    if (cate.ChildCount==0)
                     {
                         //属性信息
                         cateAttrSearch.Lid = cate.Lid;

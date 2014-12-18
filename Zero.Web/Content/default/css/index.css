@@ -31,6 +31,8 @@ li {
     list-style-type: none;
 }
 .clear { clear: both; }
+.clearfix{clear:both;zoom:1;}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
 .fl { float: left; }
 .fr { float: right; }
 .fz12 { font-size: 12px; }
@@ -1674,16 +1676,23 @@ li {
 }
 .cover-page-list .left .conditions dd a {
     /*float: left;*/
-    margin-left: 10px;
-    margin-right: 20px;
-    line-height: 25px;
+    padding:0 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    line-height: 20px;
     color: #5A5A5A;
     white-space: nowrap;
     display:inline-block;
 }
+.cover-page-list .left .conditions dd a.now {
+    color: #fff;
+    background-color: #FC7878;
+}
+
 .cover-page-list .left .conditions dd a.template-a,
 .cover-page-list .left .conditions dd a:hover {
-    color: #ef353d;
+    color: #fff;
+    background-color: #FC7878;
 }
 /*also-like css*/
 .cover-page-list .left .also-like h4 {

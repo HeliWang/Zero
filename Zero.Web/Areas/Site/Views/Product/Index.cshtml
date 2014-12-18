@@ -27,10 +27,12 @@
 					    <dt class="j-demo-l-dt wfs"><b>@cate.CateName</b></dt>
                          @if (cate.children != null)
                          {
-					        <dd class="j-demo-l-dd wfs" @if (cate.CateId == Model.ProductSearch.CateId||cate.children.SingleOrDefault(c=>c.CateId==Model.ProductSearch.CateId)!=null){<text>style="display: block;"</text>}>
-                                @foreach(var childCate in @cate.children)
+					        <dd class="j-demo-l-dd wfs" @if (cate.CateId == Model.ProductSearch.CateId || cate.children.SingleOrDefault(c => c.CateId == Model.ProductSearch.CateId) != null)
+                                         {<text>style="display: block;"</text>}>
+                                @foreach (var childCate in @cate.children)
                                 {
-                                    <a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, cate.CateId, "")">@childCate.CateName</a>
+                                    <a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, childCate.CateId, "")" 
+                                        @if (childCate.CateId == Model.ProductSearch.CateId){<text>class="now"</text>} >@childCate.CateName</a>
                                 }
                             </dd>
                          }
@@ -49,21 +51,54 @@
 	</div>
 	<div class="right j-right" style="margin-left: 300px;">
         <style>
-            .attr{/*border:1px solid #ccc;*/margin:0 45px 10px 45px; background-color:#fff;font-size: 12px;}
+            .attr{/*border:1px solid #ccc;*/margin:0 45px; background-color:#fff;font-size: 12px;}
             .attr .a-item{height:30px;border-top:1px dotted #ccc;line-height:30px;}
             .attr .a-brand{border-top:none;}
             .attr .a-key{float:left;text-align:right;width:100px;}
             .attr .a-value{float:left;}
             .attr .a-value li{float:left;margin-left:25px;}
+            .attr .a-value li a{padding:2px 5px;}
+            .attr .a-value li span{ color: #fff;background-color: #FC7878;padding:2px 5px;}
 
-            .tool .t-order{float:left;margin:0 45px 10px 45px;font-size: 12px;}
-            .tool .t-order div{float:left;line-height:30px}
-            .tool .t-order div a{float:left;width: 50px;height: 30px;line-height: 30px;color: #333;text-align: center;background-color: #fff;border-right: 1px solid #F2F2F2;}
+            .tool{margin:10px 45px 10px 45px;font-size:12px;}
+            .tool .t-order{float:left;}
+            .tool .t-order a{float:left;width: 50px;height: 30px;line-height: 30px;color: #333;text-align: center;background-color: #fff;border-right: 1px solid #F2F2F2;}
             .tool .page{float:right;}
         </style>
 		<div class="sort wfs">
             <div class="attr">
-                <div class="a-item">
+                @{
+                    if (Model.CateAttrList != null && Model.CateAttrList.Count > 0)
+                    {
+                        foreach (var cateAtrr in Model.CateAttrList)
+                        {
+                            if (!string.IsNullOrEmpty(cateAtrr.AttrValue))
+                            {
+                                <div class="a-item">
+                                    <div class="a-key">@cateAtrr.Attr.AttrName：</div>
+                                    <div class="a-value">
+                                        <ul>
+                                            @foreach (var value in cateAtrr.AttrValue.Split(';'))
+                                            {
+                                                <li>
+                                                    @if (!Model.ProductSearch.Attr.Contains(cateAtrr.Attr.AttrId + ":" + value.Split(':')[0]))
+                                                    {
+                                                        <a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, -1, cateAtrr.Attr.AttrId + ":" + value.Split(':')[0])">@value.Split(':')[1]</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>@value.Split(':')[1]</span>
+                                                    }
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                 }
+                @*<div class="a-item">
                     <div class="a-key">品牌：</div>
                     <div class="a-value">
                         <ul>
@@ -72,21 +107,18 @@
                             <li><a>中国</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="tool">
                 <div class="t-order">
-                   @* <div>排序：</div>*@
-                    <div>
-                        <a>新品</a>
-                        <a>价格</a>
-                        <a>热评</a>
-                        <a>热销</a>
-                    </div>
+                    <a>新品</a>
+                    <a>价格</a>
+                    <a>热评</a>
+                    <a>热销</a>
                 </div>
-                <div id="paging2" class="page">
+                @*<div id="paging2" class="page">
                 </div>
-                @*<script>
+                <script>
                     $.zero.paging({ renderTo: "#paging2", recordCount: @Model.ProductPage.TotalCount,pageIndex: @Model.ProductPage.PageIndex+1,pageSize:@Model.ProductPage.PageSize,digit: 1});
                 </script>*@
             </div>
@@ -98,10 +130,10 @@
                     <a rel="nofollow" href="category.php?category=9&display=grid&brand=0&price_min=0&price_max=0&filter_attr=0&page=1&sort=last_update&order=DESC#goods_list">热评</a>
                     <a rel="nofollow" href="category.php?category=9&display=grid&brand=0&price_min=0&price_max=0&filter_attr=0&page=1&sort=sales_count&order=ASC#goods_list">热销</a>
                 </span>
-			</div>
+			</div>*@
 			<div class="totals" style="padding-top: 20px; margin-top: 0px; text-align: right;">
 				共找到<i>150</i>款产品
-			</div>*@
+			</div>
 		</div>
 		<form name="compareForm" action="compare.php" method="post" onsubmit="return compareGoods(this);">
 			<div class="boutique">
