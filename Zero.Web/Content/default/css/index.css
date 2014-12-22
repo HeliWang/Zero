@@ -21,6 +21,11 @@ a {
     text-decoration: none;
     cursor:pointer;
 }
+a:hover {
+    outline: none;
+    text-decoration: none;
+    cursor:pointer;
+}
 body {
     font-family: "Microsoft YaHei", "微软雅黑", "SimSun", "宋体";
     width: auto;
@@ -36,7 +41,7 @@ li {
 .fl { float: left; }
 .fr { float: right; }
 .fz12 { font-size: 12px; }
-.wfs { width: 100%; }
+.wfs { width: 100%;}
 /*
  * 公用
  * jiao
@@ -1758,7 +1763,7 @@ li {
     left: 0;
 }
 .cover-page-list .right .sort {
-    padding-bottom: 20px;
+    padding:0 45px;
     border-bottom: 1px solid #E0E0E0;
 }
 .cover-page-list .right .sort  .hide-left {
