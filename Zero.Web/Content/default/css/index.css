@@ -1620,7 +1620,7 @@ li {
  */
 /*left css*/
 .cover-page-list .left {
-    position: relative;
+    position:absolute;
     left:0px;
     /*float: left;*/
     width: 300px;

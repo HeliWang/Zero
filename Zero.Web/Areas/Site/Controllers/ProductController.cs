@@ -36,7 +36,7 @@ namespace Zero.Web.Areas.Site.Controllers
             productSearch.CateId = RequestHelper.AllInt("CateId");
             productSearch.Attr = RequestHelper.All("Attr");
 
-            int pageSize =8 ;
+            int pageSize =20 ;
             int pageIndex = RequestHelper.QueryInt("page");
             pageIndex = pageIndex <= 0 ? 0 : pageIndex - 1;
             
