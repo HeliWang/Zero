@@ -1763,7 +1763,7 @@ li {
     left: 0;
 }
 .cover-page-list .right .sort {
-    padding:0 45px;
+    padding:0 45px 5px 45px;
     border-bottom: 1px solid #E0E0E0;
 }
 .cover-page-list .right .sort  .hide-left {

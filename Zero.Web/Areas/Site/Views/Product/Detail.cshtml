@@ -1,0 +1,640 @@
+﻿@{
+    Layout = "~/Areas/Site/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+@using Zero.Domain;
+@model Zero.Web.Areas.Site.Models.ProductDetailModel
+
+<div class="cover-page-details fl wfs bcf2">
+    <div class="cover-page-wrapper">
+        <div class="place fz12" style="padding-left: 20px;">
+            @{
+                foreach(var cate in Model.CateList)
+                {
+                    <a href="@ProductUrlFactory.GetListUrl(@cate.CateId)" target="_blank">@cate.CateName</a>
+                    <code>&gt;</code>
+                }
+            }
+            @Model.Product.ProductName
+        </div>
+        <div class="details fl wfs" style="position: relative;">
+            @*<div style="right: 220px; bottom: 50px; position: absolute;">
+                <img src="http://www.ecmoban.com/content/themes/ecmoban2014/images/shoucang.png" onclick="collectgoods(580)" class="shoucang" style="cursor: pointer;" />
+            </div>*@
+            @*<div class="bdsharebuttonbox" data-tag="share_1" style="right: 100px; bottom: 50px; *bottom: 55px; position: absolute;"><a class="bds_tsina" data-cmd="tsina"></a><a class="bds_tqq" data-cmd="tqq"></a><a class="bds_more" data-cmd="more"></a><a class="bds_count" data-cmd="count"></a></div>*@
+            <div class="mid fl" style="margin-left:0;margin-right:30px;">
+                <div class="mid-container fl">
+                    <div class="j-details-mid-item details-mid-item" style="display: block;">
+                        <img src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(Model.Product.Photo, 400,400)" alt="@Model.Product.ProductName" />
+                    </div>
+                </div>
+            </div>
+            <div class="left fl">
+                <span class="up-down-btn j-up-down-btn up-btn"></span>
+                <div class="canvas">
+                    <ul class="canvas-container j-canvas-container" style="top: 0;">
+                        @{
+                            foreach(var imgUrl in Model.Product.Photo.Split('|'))
+                            {
+                              <li class="canvas-container-li j-canvas-container-li now">
+                                <img src="@imgUrl" alt="" />
+                              </li>
+                            }
+                         }
+
+                        @*<li class="canvas-container-li j-canvas-container-li now">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421695475959.png" title="" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>
+                        <li class="canvas-container-li j-canvas-container-li video"><i></i><span></span>
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714084700.png" data="http://ecmoban.clouddn.com/000580-rwxf.mp4"></li>
+                        <li class="canvas-container-li j-canvas-container-li">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714085497.png" title="顶级分类页" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>
+                        <li class="canvas-container-li j-canvas-container-li">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714085194.png" title="二级分类页" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>
+                        <li class="canvas-container-li j-canvas-container-li">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714085939.png" title="详细页" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>
+                        <li class="canvas-container-li j-canvas-container-li">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714085659.png" title="团购列表页" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>
+                        <li class="canvas-container-li j-canvas-container-li">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714085865.png" title="团购详细页" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>
+                        <li class="canvas-container-li j-canvas-container-li">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714085121.png" title="会员中心页" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>
+                        <li class="canvas-container-li j-canvas-container-li">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714085142.png" title="购物车页" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>
+                        <li class="canvas-container-li j-canvas-container-li">
+                            <img src="http://upfile.ecmoban.com/images/201501/goods_img/580_P_1421714085525.png" title="文章页" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购" />
+                        </li>*@
+                    </ul>
+                </div>
+                <span class="up-down-btn j-up-down-btn down-btn down-icon"></span>
+            </div>
+            
+            <form action="javascript:addToCart(580)" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
+                <input style="display: none" name="number" type="text" id="number" value="1" size="4" onblur="changePrice()" />
+                <div class="right fr">
+                    <div class="discount-msg">
+                        <h3>@Model.Product.ProductName</h3>
+                    </div>
+                    <div class="discount-msg-two" style="padding-bottom: 10px;">
+                        <p class="price" id="ECS_GOODS_AMOUNT">￥5500元</p>
+                    </div>
+          <div class="evaluation score-wrap">
+              <div class="score"><em style="margin-left: 5px;">评价</em> <span class="evaluation-stars-grey"><i class="evaluation-stars-red" style="width: 100px;"></i></span><b class="evaluation-b">(已有<a href="javascript:;" onclick="comment_location()">0人</a>评价)</b> </div>
+              <!--
+                        <div class="score-bottom">
+                            <div class="line clearfix">
+                                <span class="span1">好评</span>
+                                <div class="span2" title="0人好评 0%">
+                                    <div class="span2in" style=" width:0%;"></div>
+                                </div>
+                                <span class="span3">(0%)</span>
+                            </div>
+                            <div class="line clearfix">
+                                <span class="span1">中评</span>
+                                <div class="span2" title="0人中评 0%">
+                                    <div class="span2in"  style=" width:0%;"></div>
+                                </div>
+                                <span class="span3">(0%)</span>
+                            </div>
+                            <div class="line clearfix">
+                                <span class="span1">差评</span>
+                                <div class="span2" title="0人差评 0%">
+                                    <div class="span2in"  style=" width:0%;"></div>
+                                </div>
+                                <span class="span3">(0%)</span>
+                            </div>
+                        </div>-->
+          </div>
+                    <p class="make fl wfs"><a class="make-cart fl" href="javascript:addToCart(580)">立即购买</a> <a class="make-show fl" href="http://www.ecmoban.com/mb/shunfengyouxuan2015" target="_blank"><i></i>查看演示</a> </p>
+                    <div class="offer j-offer">
+                        <span class="offer-give">送</span> <span class="offer-fold">折</span> <span class="offer-less">减</span>
+                        <p class="offer-item offer-give j-offer-item"><em></em><a href="http://www.ecmoban.com/kongjian.php" title="买空间+模板送域名" target="_blank">买空间+模板送域名</a> <a href="http://www.ecmoban.com/goods-250.html" title="满3000送图片批量上传插件" target="_blank">满3000送图片批量上传插件</a> </p>
+                        <p class="offer-item offer-fold j-offer-item"><em></em><a href="http://www.ecmoban.com/shouquan.html" title="ecshop授权" target="_blank">买ecshop商业授权有优惠！</a> </p>
+                        <p class="offer-item offer-less j-offer-item">
+                            <em></em>
+                            <img src='http://www.ecmoban.com/content/themes/ecmoban2014/images/erhui.png' data-png="0" class="erweima" style="position: absolute; right: 0; top: 0; cursor: pointer;" />
+                            <img src="http://www.ecmoban.com/content/themes/ecmoban2014/images/wxlogo.png" width="100" style="display: none;" alt="">
+                            <a href="http://about.ecmoban.com/article-2054.html" title="送200元红包" target="_blank">扫官方微信送200元红包</a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <form name="m_goods_1" method="post" action="" onsubmit="return false;" class="clearfix">
+            <div class="package fl wfs">
+                <h4 class="fl wfs">套餐搭配</h4>
+                <img class="thumb fl" src="http://upfile.ecmoban.com/images/201501/thumb_img/580_thumb_G_1421695475742.png" title="ECSHOP模板堂顺风优选2015最新旗舰版+团购" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购">
+                <input class="m_goods_body m_goods_1" item="m_goods_1" type="checkbox" style="display: none;" value="580" data="5500.00" spare="0" stock="0" />
+                <div class="canvas fl">
+                    <span class="package-btn j-package-btn package-btn-left"></span><span class="package-btn j-package-btn package-btn-right"></span>
+                    <div class="package-container fl">
+                        <ul class="package-container-items j-package-container-items">
+                            <li class="width-item j-width-item"><a href="http://www.ecmoban.com/goods-578.html" target="_blank">
+                                <img src="http://upfile.ecmoban.com/images/201501/thumb_img/578_thumb_G_1420756002525.png" title="模板堂ECjia APP三合一 (iPhone+Android+iPad)" alt="模板堂ECjia APP三合一 (iPhone+Android+iPad)">
+                            </a><span style="text-align: center;" title="模板堂ECjia APP三合一 (iPhone+Android+iPad)" alt="模板堂ECjia APP三合一 (iPhone+Android+iPad)">模板堂ECjia APP三合一 (i...<br>
+                                <i>&nbsp;￥22500</i>&nbsp;&nbsp;<i style="color: #71cd9c">省1500元</i></span>
+                                <input class="j-package-opt m_goods_list m_goods_1" item="m_goods_1" type="checkbox" value="578" data="22500" spare="1500" stock="0">
+                            </li>
+                            <li class="width-item j-width-item"><a href="http://www.ecmoban.com/goods-414.html" target="_blank">
+                                <img src="http://upfile.ecmoban.com/images/201409/thumb_img/414_thumb_G_1412041795777.png" title="ECTouch微商城—首款ecshop微信商城系统 自主开发" alt="ECTouch微商城—首款ecshop微信商城系统 自主开发">
+                            </a><span style="text-align: center;" title="ECTouch微商城—首款ecshop微信商城系统 自主开发" alt="ECTouch微商城—首款ecshop微信商城系统 自主开发">ECTouch微商城—首款ecsho...<br>
+                                <i>&nbsp;￥4500</i>&nbsp;&nbsp;<i style="color: #71cd9c">省500元</i></span>
+                                <input class="j-package-opt m_goods_list m_goods_1" item="m_goods_1" type="checkbox" value="414" data="4500" spare="500" stock="0">
+                            </li>
+                            <li class="width-item j-width-item"><a href="http://www.ecmoban.com/goods-475.html" target="_blank">
+                                <img src="http://upfile.ecmoban.com/images/201410/thumb_img/475_thumb_G_1413312272003.png" title="短信验证码（2万条）购买链接" alt="短信验证码（2万条）购买链接">
+                            </a><span style="text-align: center;" title="短信验证码（2万条）购买链接" alt="短信验证码（2万条）购买链接">短信验证码（2万条）购买链接<br>
+                                <i>&nbsp;￥1500</i>&nbsp;&nbsp;<i style="color: #71cd9c">省0元</i></span>
+                                <input class="j-package-opt m_goods_list m_goods_1" item="m_goods_1" type="checkbox" value="475" data="1500" spare="0" stock="0">
+                            </li>
+                            <li class="width-item j-width-item"><a href="http://www.ecmoban.com/goods-401.html" target="_blank">
+                                <img src="http://upfile.ecmoban.com/images/201404/thumb_img/401_thumb_G_1396810915647.jpg" title="阿里云A型服务器" alt="阿里云A型服务器">
+                            </a><span style="text-align: center;" title="阿里云A型服务器" alt="阿里云A型服务器">阿里云A型服务器<br>
+                                <i>&nbsp;￥2300</i>&nbsp;&nbsp;<i style="color: #71cd9c">省440元</i></span>
+                                <input class="j-package-opt m_goods_list m_goods_1" item="m_goods_1" type="checkbox" value="401" data="2300" spare="440" stock="0">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="count fr">
+                    <b><i class="combo_price">5500.00</i>元</b> <span style="color: #71cd9c;">节省：<strong class="tip_spare">0.00</strong> 元</span>
+                    <input type="hidden" name="m_goods_1_number" value="1" />
+                    <a class="btn btn-danger" href="javascript:addMultiToCart('m_goods_1', '580');">立即抢购</a>
+                </p>
+            </div>
+        </form>
+        <div class="content fl wfs">
+            <div class="content-icons fl wfs" style="position: relative;">
+                <div class="tips" style="left: 0px; width: 88px;"></div>
+                <ul class="mainLeftNav">
+                    <li class="cur">产品描述</li>
+                    <li>用户评价</li>
+                    <li>模板搭配优势</li>
+                </ul>
+                <!--<h5>包含插件</h5>-->
+            </div>
+            <div class="content-item j-content-item content-package fl wfs" style="display: block;">
+                <dl class="content-item-dl fl wfs">
+                    <dt>产品信息</dt>
+                    <dd>货号：000580</dd>
+                    <dd title="ECSHOP模板堂顺风优选2015最新旗舰版+团购">模板名称：ECSHOP模板堂顺风...</dd>
+                    <dd>浏览量：396</dd>
+                    <dd>主题：时尚简约</dd>
+                    <dd>色系：绿色</dd>
+                </dl>
+                <div class="desc fl wfs" style="margin-top: 20px;">
+                    <div>
+                        <div style="width: 1170px; height: 550px; margin-top: 20px; background: #fff url(http://www.ecmoban.com/content/themes/ecmoban2014/images/video-bg.png) no-repeat center center">
+                            <div style="float: left; width: 675px; height: 418px; margin-left: 248px; margin-top: 40px;">
+                                <iframe src="http://player.ecmoban.com/player.php/gid/580/v.swf?width=675&height=418" scrolling="no" allowfullscreen="" frameborder="0" height="418" width="675"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <h6><span style="font-size: 14px;">ECSHOP模板堂顺风优选2015最新旗舰版+团购
+                        <br />
+                        顺风优选2015最新旗舰版+团购，一款时尚简洁的综合通用类模板，整站宽屏，头部含多个下拉菜单、购物车及搜索功能，底部可添加二维码，方便扫描；首页商品楼层功能，调用限时抢购和下期限时抢购功能，底部调用评论功能，添加了邮件订阅。二级分类页新增自定义组合筛选、商品排序、翻页等功能；商品详情页开发单选属性、数量加减、剩余件数、加入购物车、加入成功弹窗等功能；团购页活动剩余时间倒计时效果，可显示商品的折扣，购买人数以及剩余时间和商品详情。购物流程一目了然，其他页面新增多种jquery兼容特效，整站采用 Div+Css布局，兼容良好，模板前端代码优化并重构，速度提升50%！<br />
+                        我们是ECSHOP模板堂，我们只做最强模板！本款模板可搭配&nbsp;&nbsp; <a target="_blank" href="http://www.ecmoban.com/category-40-b0.html">&gt;&gt;&gt;ECTouch&lt;&lt;&lt;</a>&nbsp;&nbsp; <a target="_blank" href="http://www.ecmoban.com/goods-314.html">&gt;&gt;&gt;APP商创版手机端&lt;&lt;&lt;</a><br />
+                        如需更强模板组合，请查看<a target="_blank" href="http://www.ecmoban.com/topic/djd/">&gt;&gt;&gt;大京东—最强行业解决方案&lt;&lt;&lt;</a>模板堂强力推荐</span></h6>
+                    <p>
+                        <br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216499987588.png" title="14216499987588.png" alt="000_01.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500087749.png" title="14216500087749.png" alt="000_02.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500257579.png" title="14216500257579.png" alt="000_03.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500342827.png" title="14216500342827.png" alt="000_04.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500543764.png" title="14216500543764.png" alt="000_05.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500624600.png" title="14216500624600.png" alt="000_06.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500708833.png" title="14216500708833.png" alt="000_07.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500774220.png" title="14216500774220.png" alt="000_08.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500868024.png" title="14216500868024.png" alt="000_09.png" /><br />
+                    </p>
+                    <p>
+                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500955926.png" title="14216500955926.png" alt="000_10.png" />
+                    </p>
+                </div>
+                <script>
+                    $(".list-paddingleft-2").append($(".list-paddingleft-2").html());
+                    var canvas_width = 309;     //画布宽度
+                    var img_nums = $(".list-paddingleft-2 li").length / 2;
+                    var l_now;             //用来存储大图滚动的参数
+                    var handle_select = '.prev,.next'; //左右按钮选择器
+                    var reg = /next/;
+
+                    $(".list-paddingleft-2").css('width', img_nums * canvas_width * 2 + "px").css('left', -img_nums * canvas_width + "px");
+                    var SlideMovie = function (obj) {
+                        var l = parseInt($(".list-paddingleft-2").css('left'));
+                        //防止客户连续快速点击
+                        if (l % canvas_width != 0) return;
+                        //判断当前是否是右测按钮，还是测的按钮或者是自动滑动
+                        if (typeof (obj) == "undefined" || reg.test(obj.attr("class"))) {
+                            l_now = l - canvas_width;
+                        } else {
+                            l_now = l + canvas_width;
+                        }
+                        //$(".j-icons span").eq((((-l_now)/canvas_width)%img_nums)).addClass('now').siblings('span').removeClass('now');
+                        $(".list-paddingleft-2").animate({ left: l_now + 'px' }, 'normal', function () {
+                            if (l_now == 0) {
+                                $(".list-paddingleft-2").css("left", -canvas_width * img_nums + "px");
+                            }
+                            if (l_now == -canvas_width * img_nums * 2 + canvas_width) {
+                                $(".list-paddingleft-2").css("left", -canvas_width * (img_nums - 1) + "px");
+                            }
+                        });
+                    }
+                    // 左右按钮点击效果
+                    $(handle_select).click(function () {
+                        var obj = $(this);
+                        SlideMovie(obj);
+                    });
+                </script>
+            </div>
+            <div class="content-item j-content-item fl wfs" style="display: none;">
+                <div class="content-item-comments fl wfs">
+                    <script type="text/javascript" src="http://www.ecmoban.com/content/themes/ecmoban2014/js/transport.js"></script>
+                    <div id="ECS_COMMENT">
+                        <ul class="fl wfs">
+                            <li>
+                                <div style="padding: 15px; padding-top: 0;">暂时没有评论！您有机会抢到沙发并获得多倍积分哦！ </div>
+                            </li>
+                        </ul>
+                        <form name="selectPageForm" action="/goods.php" method="get">
+                        </form>
+                        <script type="Text/Javascript" language="JavaScript">
+    <!--
+
+    function selectPage(sel) {
+        sel.form.submit();
+    }
+
+    //-->
+                        </script>
+                        <form class="comment_box fl wfs" action="javascript:;" onsubmit="submitComment(this)" method="post" name="commentForm" id="commentForm">
+                            <div class="evaluation">
+                                <span>商品评分：</span>
+                                <p class="stars-grey"><i class="starts-red"></i></p>
+                                <span class="starsnum fl"></span>
+                            </div>
+                            <div class="evaluation">
+                                <span>评论内容：</span>
+                                <textarea class="form-control" id="comment_area" name="content" rows="3"></textarea>
+                                <input type="hidden" name="cmt_type" value="0" />
+                                <input type="hidden" name="id" value="580" />
+                                <input type="hidden" value="5" name="comment_rank">
+                                <input type="hidden" name="email" value="" />
+                            </div>
+                            <div class="evaluation">
+                                <span style="margin-top: 13px;">验证码：</span>
+                                <input type="text" name="captcha" style="width: 100px; border: 1px solid #ccc; height: 40px;" />
+                                <img src="captcha.php?1626443733" alt="captcha" onclick="this.src='captcha.php?'+Math.random()" class="captcha">
+                            </div>
+                            <div class="evaluation">
+                                <script language="javascript" type="text/javascript">
+                                    function showDiv() {
+                                        document.getElementById('popDiv').style.display = 'block';
+                                    }
+                                    function closeDiv() {
+                                        document.getElementById('popDiv').style.display = 'none';
+                                    }
+                                </script>
+                                <a class="btn btn-danger submit-comment" data-toggle="modal" data-target="#myModal" href="javascript:void(0)" class="bnt_blue f_r">提交评论</a>
+                            </div>
+                        </form>
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="width: 450px; *margin-left: 700px; margin-top: 200px; border-radius: 0px;">
+                                    <div class="modal-header" style="background-color: #FFE6E6; padding: 28px 0; border-bottom: 1px solid #f4d4d4;">
+                                        <button type="button" class="close" data-dismiss="modal" style="margin-top: -28px; margin-right: 13px; opacity: inherit;">
+                                            <span aria-hidden="true">
+                                                <img src="http://www.ecmoban.com/content/themes/ecmoban2014/images/close.png" /></span><span class="sr-only">Close</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel" style="font-size: 23px; color: #ff9d9d; text-align: center; padding-left: 40px;">登录模板堂</h4>
+                                    </div>
+                                    <div class="modal-body" style="margin-top: 45px; border-radius: 0px; padding-bottom: 0px;">
+                                        <form class="form-horizontal" role="form" id="ECS_LOGINFORM" name="ECS_LOGINFORM" method="post" action="http://member.ecmoban.com/user.php?act=signinlogin" onsubmit="return signInlogin()">
+                                            <div class="" style="*position: relative; *height: 40px; margin-bottom: 15px;">
+                                                <!--                        <label for="inputEmail3" class="col-sm-2 control-label" style="*position: absolute;*left: 10px; *top: 10px; width: 130px; font-weight:normal;">用户名/邮箱:</label>-->
+                                                <div style="margin: 0 auto; width: 390px;">
+                                                    <input type="text" style="width: 390px; height: 45px; text-indent: 10px; border-radius: 0px; background: #f5f5f5; background-image: url(http://www.ecmoban.com/content/themes/ecmoban2014/images/user.png); background-repeat: no-repeat; background-position: 350px center;" placeholder="用户名" name="username" value="" class="form-control" id="inputEmail3">
+                                                </div>
+                                            </div>
+                                            <div class="" style="*position: relative; *height: 40px;">
+                                                <!--  <label for="inputPassword3" class="col-sm-2 control-label" style="*position: absolute;*left: 55px; *top: 10px;width: 130px; font-weight:normal;">密 码:</label>-->
+                                                <div style="margin: 0 auto; width: 390px;">
+                                                    <input type="password" style="width: 390px; height: 45px; text-indent: 10px; border-radius: 0px; background: #f5f5f5; background-image: url(http://www.ecmoban.com/content/themes/ecmoban2014/images/pwd.png); background-repeat: no-repeat; background-position: 350px center;" placeholder="密码" class="form-control" id="inputPassword3" name="password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style="margin: 0 15px; margin-top: 10px;">
+                                                <div class="fl">
+                                                    <div class="checkbox" style="*margin-left: 90px;">
+                                                        <p><a style="color: #ccc;" href="http://member.ecmoban.com/user.php?act=get_password" target="_blank">忘记密码？</a> </p>
+                                                        <p style="margin-top: 5px;">
+                                                            <label style="color: #ccc;">
+                                                                <input type="checkbox" value="1" name="remember" style="*margin-top: -1px;" id="remember" />
+                                                                自动登录
+                                                            </label>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="fr" style="margin-top: 10px;">
+                                                    <button type="submit" style="background: #ff9d9d; color: #fff; padding: 10px 45px; border: none; border-radius: 3px;">登 录</button>
+                                                </div>
+                                            </div>
+                                            <div style="background-color: #FF9d9d; height: 125px; margin: 50px -15px 0 -15px;">
+                                                <img src="http://www.ecmoban.com/content/themes/ecmoban2014/images/comment_login.jpg" style="margin-top: -16px;">
+                                                <div style="color: #fff; padding-top: 6px; text-align: center;">还没有注册帐号？ </div>
+                                                <div style="text-align: center; padding-top: 20px;"><a style="color: #ff9d9d; padding: 10px 35px; background: #fff; text-decoration: none; border-radius: 3px;" href="http://member.ecmoban.com/user.php?act=register">立即免费注册</a> </div>
+                                            </div>
+                                            <input type="hidden" name="goods_id" value="580">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            /**
+                             * 会员登录
+                             */
+                            function signIn() {
+                                var frm = document.forms['ECS_LOGINFORM'];
+
+                                if (frm) {
+                                    var username = frm.elements['username'].value;
+                                    var goods_id = frm.elements['goods_id'].value;
+                                    var password = frm.elements['password'].value;
+                                    var captcha = '';
+                                    if (frm.elements['captcha']) {
+                                        captcha = frm.elements['captcha'].value;
+                                    }
+
+                                    if (username.length == 0 || password.length == 0) {
+                                        alert("对不起，您必须完整填写用户名和密码。");
+                                        return false;
+                                    }
+                                    else {
+
+                                        $.post("http://member.ecmoban.com/user.php?act=signin", 'username=' + username + '&password=' + encodeURIComponent(password) + '&captcha=' + captcha + '&goods_id=' + goods_id, signinResponse, "json");
+
+                                    }
+                                }
+                                else {
+                                    alert('Template error!');
+                                }
+                            }
+                            /**
+                             * 会员登录验证
+                             */
+                            function signInlogin() {
+                                var frm = document.forms['ECS_LOGINFORM'];
+
+                                if (frm) {
+                                    var username = frm.elements['username'].value;
+                                    var goods_id = frm.elements['goods_id'].value;
+                                    var password = frm.elements['password'].value;
+                                    var captcha = '';
+                                    if (frm.elements['captcha']) {
+                                        captcha = frm.elements['captcha'].value;
+                                    }
+
+                                    if (username.length == 0 || password.length == 0) {
+                                        alert("对不起，您必须完整填写用户名和密码。");
+                                        return false;
+                                    }
+                                    else {
+                                        return true;
+                                    }
+                                }
+                                else {
+                                    alert('Template error!');
+                                }
+                            }
+                            function signinResponse(result) {
+                                var userName = document.forms['ECS_LOGINFORM'].elements['username'].value;
+                                var mzone = document.getElementById("ECS_MEMBERZONE");
+                                var goods_id = $("input[name='goods_id']").val();
+                                var res = result;
+
+                                if (res.error > 0) {
+                                    // 登录失败
+                                    alert(res.content);
+                                    if (res.html) {
+                                        mzone.innerHTML = res.html;
+                                        document.forms['ECS_LOGINFORM'].elements['username'].value = userName;
+                                    }
+                                }
+                                else {
+                                    if (mzone) {
+                                        mzone.innerHTML = res.content;
+                                        evalscript(res.ucdata);
+                                        //alert(res.ucdata);
+                                    }
+                                    else {
+                                        alert("Template Error!");
+                                    }
+
+                                    location.href = "goods.php?id=" + goods_id;
+
+                                }
+                            }
+                        </script>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            var cmt_empty_username = "请输入您的用户名称";
+                            var cmt_empty_email = "请输入您的电子邮件地址";
+                            var cmt_error_email = "电子邮件地址格式不正确";
+                            var cmt_empty_content = "您没有输入评论的内容";
+                            var captcha_not_null = "验证码不能为空!";
+                            var cmt_invalid_comments = "无效的评论内容!";
+
+                            /**
+                             * 提交评论信息
+                            */
+                            function submitComment(frm) {
+                                var cmt = new Object;
+
+                                //cmt.username      = frm.elements['username'].value;
+                                cmt.email = frm.elements['email'].value;
+                                cmt.content = frm.elements['content'].value;
+                                cmt.type = frm.elements['cmt_type'].value;
+                                cmt.id = frm.elements['id'].value;
+                                cmt.enabled_captcha = frm.elements['enabled_captcha'] ? frm.elements['enabled_captcha'].value : '0';
+                                cmt.captcha = frm.elements['captcha'] ? frm.elements['captcha'].value : '';
+                                cmt.rank = frm.elements['comment_rank'].value;
+
+                                // for (i = 0; i < frm.elements['comment_rank'].length; i++)
+                                // {
+                                //    if (frm.elements['comment_rank'][i].checked)
+                                //    {
+                                //       cmt.rank = frm.elements['comment_rank'][i].value;
+                                //     }
+                                //  }
+
+                                //  if (cmt.username.length == 0)
+                                //  {
+                                //     alert(cmt_empty_username);
+                                //     return false;
+                                //  }
+
+
+
+                                if (cmt.content.length == 0) {
+                                    alert(cmt_empty_content);
+                                    return false;
+                                }
+
+                                if (cmt.enabled_captcha > 0 && cmt.captcha.length == 0) {
+                                    alert(captcha_not_null);
+                                    return false;
+                                }
+
+                                Ajax.call('comment.php', 'cmt=' + $.toJSON(cmt), commentResponse, 'POST', 'JSON');
+                                return false;
+                            }
+
+                            /**
+                             * 处理提交评论的反馈信息
+                            */
+                            function commentResponse(result) {
+                                if (result.message) {
+                                    alert(result.message);
+                                }
+
+                                if (result.error == 0) {
+                                    var layer = document.getElementById('ECS_COMMENT');
+
+                                    if (layer) {
+                                        layer.innerHTML = result.content;
+                                    }
+                                }
+                            }
+
+                            //]]>
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="content-item j-content-item fl wfs" style="display: none;">
+                <a class="fl" target="_blank" href="http://www.ecmoban.com/kongjian.php">
+                    <img src="http://www.ecmoban.com/content/themes/ecmoban2014/images/cover-page-con3-1.png" width="1170" alt=""></a>
+                <h3 class="advantage-title fl wfs">选择模板建站的理由</h3>
+                <ul class="advantage-items">
+                    <li class="item-1"><b>快速交付</b><br>
+                        <span>1个工作日交付精美网站</span>
+                        <p>挑选一套最适合您的商城模板，再选择一款主机，我们会在当天安装调试交付给您，让您尽快操作后台开始生意。</p>
+                    </li>
+                    <li class="item-2"><b>精美模板</b><br>
+                        <span>几百套精美模板任您选</span>
+                        <p>模板堂的模板追求质量与细节，代码最优，功能最强，细节把握最精致，目前已经拥有了上百套各行业精品模板任您选。</p>
+                    </li>
+                    <li class="item-3"><b>个性化调整</b><br>
+                        <span>模板并非人人一样</span>
+                        <p>您可以给我们提交您的想法，我们的资深技术人员会为您做一些与众不同的调整，我们也会给出最合理的工期与修改费用。</p>
+                    </li>
+                    <li class="item-4"><b>功能齐全</b><br>
+                        <span>拥有最为全面的网店功能</span>
+                        <p>ecshop系统拥有最为全面的电子商务功能，包括会员管理，订单管理，模板管理，系统设置，并整合了业内主流的配送方式，支付方式，安装即用。</p>
+                    </li>
+                    <li class="item-5"><b>维护简单</b><br>
+                        <span>人性化的后台管理</span>
+                        <p>设置模板，设置分类，添加产品，替换广告，几乎所有操作都在后台管理。人性化的后台操作让你上手更简单。</p>
+                    </li>
+                    <li class="item-6"><b>第三方应用</b><br>
+                        <span>集成众多第三方应用</span>
+                        <p>流量统计，网页分享，快捷登陆，在线客服qq,msn,旺旺等都可以接入整合。</p>
+                    </li>
+                    <li class="item-7"><b>SEO优化</b><br>
+                        <span>提升网站搜索排名</span>
+                        <p>可以针对全网站或单个产品和文章进行关键词设置，实现seo优化，提升网站搜索排名。</p>
+                    </li>
+                    <li class="item-8"><b>售后服务</b><br>
+                        <span>模板堂品牌保障</span>
+                        <p>强大的售后服务团队，为您提供全方位的售后服务，保障您网站的维护与运行。</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-item j-content-item fl wfs" style="display: none; height: 250px;">
+                <h2>暂时没有</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_Footer")
+
+<script>
+
+    //放大镜效果
+    $(".j-details-mid-item").jqueryzoom({
+        xzoom: 440,
+        yzoom: 440,
+        offset: 10,
+        position: "right",
+        preload: 1,
+        lens: 1
+    });
+    $(".j-canvas-container li").bind("click", function () {
+        var data = '';
+        data = $(this).find("img").attr("data");
+        if (data) {
+            var reg = /mp4/;
+            if (reg.test(data)) {
+                $(".j-details-mid-item").html('<div style="width: 400px;height: 400px;overflow:hidden;"><iframe src="http://player.ecmoban.com/player.php/gid/580/v.swf?width=400&height=400" scrolling="no" allowfullscreen="" frameborder="0" height="400" width="400"></iframe></div>');
+            } else {
+                $(".j-details-mid-item").html('<embed type="application/x-shockwave-flash" class="edui-faked-video" pluginspage="http://www.macromedia.com/go/getflashplayer" src="' + data + '" width="400" height="400" wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true">');
+            }
+            return;
+        }
+        $(".j-details-mid-item").html('<img src="" jqimg="" alt="">');
+        var src = $(this).find("img").attr("src");
+        $(".j-details-mid-item img").eq(0).attr({
+            src: src.replace("\/n5\/", "\/n1\/"),
+            jqimg: src.replace("\/n5\/", "\/n0\/")
+        });
+    });
+    //导航那个悬浮
+    $(".j-nav").posfixed({
+        distance: 0,
+        pos: "top",
+        type: "while",
+        hide: false
+    });
+    //搜索框下拉框效果
+    $(".search-box").mousedown(function () {
+        $(".j-search-history").show();
+    });
+    $("form[name='searchForm']").mouseleave(function () {
+        $(".j-search-history").hide();
+    })
+    function clear_search() {
+        $.post('search.php?act=clear', '', clear_searchhtml, 'JSON');
+    }
+    function clear_searchhtml() {
+        $('.history-items').html('');
+    }
+
+
+</script>

@@ -58,15 +58,35 @@
             .attr .a-value{float:left;}
             .attr .a-value li{float:left;margin-left:25px;}
             .attr .a-value li a{padding:2px 5px;}
+            .attr .a-value li .now{ color: #fff;background-color: #FC7878;padding:2px 5px;}
+            /*.attr .a-value li .now b{ width:14px; height:14px; display:block; position:absolute; right:4px; top:3px; background: url(/content/images/cha.gif) 0 0px;}*/
             .attr .a-value li span{ color: #fff;background-color: #FC7878;padding:2px 5px;}
+            
 
             .tool{font-size:12px;margin-top:10px;}
             .tool .t-order{float:left;}
             .tool .t-order a{float:left;width: 50px;height: 30px;line-height: 30px;color: #333;text-align: center;background-color: #fff;border-right: 1px solid #F2F2F2;}
             .tool .page{float:right;}
         </style>
-		<div class="sort wfs clearfix" style="padding-bottom:5px;">
+		<div class="sort wfs clearfix">
             <div class="attr">
+                @{
+                    if (Model.ProductSearch.Attr.Length > 0)
+                    {
+                        <div class="a-item">
+                            <div class="a-key">已选择：</div>
+                            <div class="a-value">
+                                <ul>
+                                    @foreach (var attrArray in Model.ProductSearch.Attr.Split(';'))
+                                    {
+                                        var attr = attrArray.Split(':');
+                                        <li><a href="@ProductUrlFactory.GetListUrl(Model.ProductSearch, -1, attr[0] + ":")" class="now">@attr[1]<b></b></a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                 } 
                 @{
                     if (Model.CateAttrList != null && Model.CateAttrList.Count > 0)
                     {

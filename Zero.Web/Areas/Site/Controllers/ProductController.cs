@@ -82,31 +82,31 @@ namespace Zero.Web.Areas.Site.Controllers
             return View(model);
         }
 
-        //public ActionResult Detail()
-        //{
-        //    int productId = RequestHelper.QueryInt("productId");
+        public ActionResult Detail()
+        {
+            int productId = RequestHelper.QueryInt("productId");
 
-        //    ProductDetailModel model = new ProductDetailModel();
+            ProductDetailModel model = new ProductDetailModel();
 
-        //    if (productId > 0)
-        //    {
-        //        model.Product = _productService.GetById(productId);
-        //        model.Product.Desc = _productService.GetDescById(productId);
-        //    }
+            if (productId > 0)
+            {
+                model.Product = _productService.GetById(productId);
+                model.Product.Desc = _productService.GetDescById(productId);
+            }
 
-        //    if (model.Product == null)
-        //    {
-        //        Response.Redirect("http://w.zero.com/");
-        //    }
+            if (model.Product == null)
+            {
+                Response.Redirect("http://w.zero.com/");
+            }
 
-        //    if (model.Product.CateId > 0)
-        //    {
-        //        model.CateList = _cateService.GetPath(model.Product.CateId);
-        //    }
+            if (model.Product.CateId > 0)
+            {
+                model.CateList = _cateService.GetPath(model.Product.CateId);
+            }
 
-        //    model.SkuList = JsonHelper.Serialize(_productService.GetSkuList(productId));
+            model.SkuList = JsonHelper.Serialize(_productService.GetSkuList(productId));
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
     }
 }
