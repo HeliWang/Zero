@@ -23,13 +23,13 @@
             $.extend(settings, configSettings);
 
             //initial
-            if($.browser.msie&&$.browser.version==6.0){
-                $("html").css("overflow","hidden");
-                $("body").css({
-                    height:"100%",
-                    overflow:"auto"
-                });
-            }
+            //if($.browser.msie&&$.browser.version==6.0){
+            //    $("html").css("overflow","hidden");
+            //    $("body").css({
+            //        height:"100%",
+            //        overflow:"auto"
+            //    });
+            //}
             
             var obj = this;
             var initPos = $(obj).offset().top;
@@ -37,20 +37,20 @@
             var anchoredPos = settings.distance;
 
             if(settings.type=="while"){
-                if($.browser.msie&&$.browser.version==6.0){
-                    $("body").scroll(function(event) {
-                        var objTop = $(obj).offset().top - $("body").scrollTop();
-                        if(objTop<=settings.distance){
-                            $(obj).css("position","absolute");
-                            $(obj).css("top",settings.distance+"px");
-                            $(obj).css("left",initPosLeft+"px");
-                        }
-                        if($(obj).offset().top<=initPos){                       
-                            $(obj).css("position","static");
-                        }
-                    });
+                //if($.browser.msie&&$.browser.version==6.0){
+                //    $("body").scroll(function(event) {
+                //        var objTop = $(obj).offset().top - $("body").scrollTop();
+                //        if(objTop<=settings.distance){
+                //            $(obj).css("position","absolute");
+                //            $(obj).css("top",settings.distance+"px");
+                //            $(obj).css("left",initPosLeft+"px");
+                //        }
+                //        if($(obj).offset().top<=initPos){                       
+                //            $(obj).css("position","static");
+                //        }
+                //    });
                     
-                }else{
+                //}else{
                     $(window).scroll(function(event) {
 
                         if(settings.direction == "top"){
@@ -81,7 +81,7 @@
 
 
                     });
-                }
+                //}
             }
             
             if(settings.type=="always"){

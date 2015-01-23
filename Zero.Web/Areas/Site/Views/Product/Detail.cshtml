@@ -35,11 +35,14 @@
                 <div class="canvas">
                     <ul class="canvas-container j-canvas-container" style="top: 0;">
                         @{
-                            foreach(var imgUrl in Model.Product.Photo.Split('|'))
+                            if(Model.Product.PhotoList!=null)
                             {
-                              <li class="canvas-container-li j-canvas-container-li now">
-                                <img src="@imgUrl" alt="" />
-                              </li>
+                                foreach(var photo in Model.Product.PhotoList)
+                                {
+                                  <li class="canvas-container-li j-canvas-container-li now">
+                                    <img src="@photo.Url" alt="" />
+                                  </li>
+                                }
                             }
                          }
 
@@ -86,34 +89,233 @@
                     <div class="discount-msg-two" style="padding-bottom: 10px;">
                         <p class="price" id="ECS_GOODS_AMOUNT">￥5500元</p>
                     </div>
-          <div class="evaluation score-wrap">
-              <div class="score"><em style="margin-left: 5px;">评价</em> <span class="evaluation-stars-grey"><i class="evaluation-stars-red" style="width: 100px;"></i></span><b class="evaluation-b">(已有<a href="javascript:;" onclick="comment_location()">0人</a>评价)</b> </div>
-              <!--
-                        <div class="score-bottom">
-                            <div class="line clearfix">
-                                <span class="span1">好评</span>
-                                <div class="span2" title="0人好评 0%">
-                                    <div class="span2in" style=" width:0%;"></div>
-                                </div>
-                                <span class="span3">(0%)</span>
-                            </div>
-                            <div class="line clearfix">
-                                <span class="span1">中评</span>
-                                <div class="span2" title="0人中评 0%">
-                                    <div class="span2in"  style=" width:0%;"></div>
-                                </div>
-                                <span class="span3">(0%)</span>
-                            </div>
-                            <div class="line clearfix">
-                                <span class="span1">差评</span>
-                                <div class="span2" title="0人差评 0%">
-                                    <div class="span2in"  style=" width:0%;"></div>
-                                </div>
-                                <span class="span3">(0%)</span>
-                            </div>
-                        </div>-->
-          </div>
-                    <p class="make fl wfs"><a class="make-cart fl" href="javascript:addToCart(580)">立即购买</a> <a class="make-show fl" href="http://www.ecmoban.com/mb/shunfengyouxuan2015" target="_blank"><i></i>查看演示</a> </p>
+                  @*<div class="evaluation score-wrap">
+                      <div class="score"><em style="margin-left: 5px;">评价</em> <span class="evaluation-stars-grey"><i class="evaluation-stars-red" style="width: 100px;"></i></span><b class="evaluation-b">(已有<a href="javascript:;" onclick="comment_location()">0人</a>评价)</b> </div>
+                      <!--
+                                <div class="score-bottom">
+                                    <div class="line clearfix">
+                                        <span class="span1">好评</span>
+                                        <div class="span2" title="0人好评 0%">
+                                            <div class="span2in" style=" width:0%;"></div>
+                                        </div>
+                                        <span class="span3">(0%)</span>
+                                    </div>
+                                    <div class="line clearfix">
+                                        <span class="span1">中评</span>
+                                        <div class="span2" title="0人中评 0%">
+                                            <div class="span2in"  style=" width:0%;"></div>
+                                        </div>
+                                        <span class="span3">(0%)</span>
+                                    </div>
+                                    <div class="line clearfix">
+                                        <span class="span1">差评</span>
+                                        <div class="span2" title="0人差评 0%">
+                                            <div class="span2in"  style=" width:0%;"></div>
+                                        </div>
+                                        <span class="span3">(0%)</span>
+                                    </div>
+                                </div>-->
+                  </div>*@
+
+                    <div class="goodsInfo">
+                        <style>
+                            .z-sku dl,.z-base dl,.z-quantity dl{clear:both;font-family: "Microsoft Yahei";font-size: 14px;font-weight: 400;color: #666;}
+                            .z-sku dt,.z-base dt,.z-quantity dt{float:left;width:60px;height:25px;line-height:25px;}
+                            .z-sku dd,.z-base dd,.z-quantity dd{float:left;padding-left:5px;}
+
+                            .z-base dd{height:25px;line-height:25px; }
+
+                            .z-sku dl{}
+                            .z-sku li{ float:left;margin-bottom:5px;margin-right:5px;}
+                            /*.z-sku li span {display:block;padding:3px 2px;}*/
+                            .z-sku li a{border: #c8c9cd 2px solid;text-align: center; display: block;  color: #000; font-size:12px;padding:3px 6px;}
+                            .z-sku li a:hover {border:#cb0404 2px solid;cursor:pointer;}
+                            .z-sku li a:focus {outline-style:none;}
+                            .z-sku .selected a{border:#cb0404 2px solid; background: url("/content/images/test.gif") no-repeat bottom right;  }
+                            .z-sku .selected a:hover {border: #cb0404 2px solid; background: url("/content/images/test.gif") no-repeat bottom right;}
+
+                            .z-btn { margin-top:10px;cursor:pointer;}
+                            .z-btn a{display: block;float: left;margin-right:5px;width:100px;height: 32px;color:#fff;font-size: 16px;line-height:30px; font-weight: 400;text-align:center;}
+                            .z-btn .z-buy{background-color:#FF4146}
+                            .z-btn .z-cart{background-color:#5281B4}
+                        </style>
+                        <div>
+                            <input type="hidden" id="ProductId" value="@Model.Product.ProductId" />
+                            <input type="hidden" id="SkuList" value="@Model.SkuList" />
+                            <a href="javascript:collect(414)" class="ico_shoucang  ">
+                                <div class="aa1">收藏</div>
+                                <div class="aa2">2</div>
+                            </a>
+                        </div>
+                        <div class="z-base" >
+                            <dl><dt class="show_goods_amount">促销单价</dt><dd><b class="shop">￥7000元</b></dd></dl>
+                            <dl><dt class="show_goods_amount">一口价</dt><dd><b class="shop">￥6000元</b></dd></dl>
+                        </div>
+                        <div class="z-sku clearfix">
+                            @*<dl>
+                                <dt>颜色</dt>
+                                <dd>
+                                    <ul>
+                                        <li class="selected"><a><span>白色</span></a></li>
+                                        <li><a><span>黑色</span></a></li>
+                                        <li><a><span>蓝色</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>尺码</dt>
+                                <dd>
+                                    <ul>
+                                        <li><a><span>X</span></a></li>
+                                        <li class="selected"><a><span>L</span></a></li>
+                                        <li><a><span>XL</span></a></li>
+                                    </ul>
+                                </dd>
+                            </dl> 
+                            <dl>
+                                <dt>数量</dt>
+                                <dd>
+                                    <input type="text" style="width:50px;height:16px;"/> 件
+                                    库存(0)件
+                                </dd>
+                            </dl>  *@                            
+                        </div>
+                        <div class="z-quantity clearfix">
+                            <dl>
+                                <dt>数量</dt>
+                                <dd>
+                                    <input id="quantity" type="text" style="width:50px;height:16px;"/> 件
+                                    库存(0)件
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="z-btn">
+                            <a class="z-buy"><b>立即购买</b></a>
+                            <a class="z-cart"><b>加入购物车</b></a>
+                        </div>
+                        <script>
+                            $(function () {
+
+                                ///----加载规格----///
+
+                                function LoadAttr() {
+                                    var skuList = $("#SkuList").val();
+
+                                    //var skuArray = [{ attr: '1:1:颜色:红色,2:5:尺码:37,4:13:品牌:耐克', quantity: 10 }, { attr: '1:1:颜色:红色,2:6:尺码:38,4:13:品牌:耐克', quantity: 10 }];
+
+                                    if (skuList == "[]") return false;
+
+                                    var skuArray = eval('(' + skuList + ')');
+
+                                    var attrArray = skuArray[0].Attr.split(",");
+
+                                    var dl = [];
+                                    var dt = [];
+                                    var dd = [];
+                                    var ul = [];
+                                    var valueArray = [];
+
+                                    for (var i = 0; i < attrArray.length; i++) {
+                                        var key = attrArray[i].split(":")[2];
+                                        dl[i] = $("<dl></dl>");
+                                        dt[i] = $("<dt></dt>").text(key);
+                                        dd[i] = $("<dd></dd>");
+                                        ul[i] = $("<ul></ul>");
+                                        dd[i].append(ul[i]);
+                                        dl[i].append(dt[i]).append(dd[i]);
+                                        valueArray[i] = [];
+                                    }
+
+                                    for (var j = 0; j < skuArray.length; j++) {
+                                        attrArray = skuArray[j].Attr.split(",");
+                                        for (var i = 0; i < attrArray.length; i++) {
+                                            if (valueArray[i].indexOf(attrArray[i]) == -1) {
+                                                valueArray[i].push(attrArray[i]);
+                                            }
+                                        }
+                                    }
+
+                                    for (var i = 0; i < valueArray.length; i++) {
+                                        var li = [];
+                                        for (var j = 0; j < valueArray[i].length; j++) {
+                                            var span = $("<span></span>").text(valueArray[i][j].split(":")[3]);
+                                            var a = $("<a></a>").append(span).attr("name", valueArray[i][j]);
+                                            li[j] = $("<li></li>").append(a);
+
+                                            li[j].click(function () {
+                                                $(this).siblings(".selected").removeClass("selected");
+                                                $(this).toggleClass("selected");
+                                            });
+                                        }
+                                        ul[i].append(li);
+                                    }
+
+                                    $(".z-sku").empty().append(dl);
+                                }
+
+                                LoadAttr();
+
+                                ///-----提交数据------///
+                                $(".z-buy").click(function () {
+                                    alert("立即购买");
+                                });
+
+                                $(".z-cart").click(function () {
+                                    addCart();
+                                });
+
+                                function addCart() {
+                                    var sku = $(".z-sku dl");
+                                    var selectSku = $(".z-sku .selected");
+                                    var quantity = $("#quantity").val();
+                                    var productId = $("#ProductId").val();
+
+                                    if (selectSku.length != sku.length) {
+                                        alert("请选择完整的属性！"); return false;
+                                    }
+                                    if (quantity == "") {
+                                        alert("请填写正确的数字"); return false;
+                                    }
+                                    if (productId == "") {
+                                        alert("无商品编号"); return false;
+                                    }
+                                    var attr = "";
+
+                                    selectSku.each(function () {
+                                        attr += $(this).find("a").attr("name");
+                                        attr += ",";
+                                    });
+
+                                    if (attr.length > 0) {
+                                        attr = attr.substring(0, attr.length - 1);
+                                    }
+
+                                    var parma = { ProductId: productId, Attr: attr, Quantity: quantity };
+
+                                    $.ajax({
+                                        url: "/Cart/SetCartQuantity",
+                                        type: "Post",
+                                        data: parma,
+                                        dataType: "json",
+                                        beforeSend: function () {
+                                        },
+                                        success: function (data) {
+                                            alert(data.Message);
+                                        },
+                                        error: function () {
+                                            alert('系统异常，请重试或联系技术');
+                                        }
+                                    });
+                                }
+                            });
+                        </script> 
+                    </div>
+
+                   @* <p class="make fl wfs">
+
+                        <a class="make-cart fl" href="javascript:addToCart(580)">立即购买</a> <a class="make-show fl" href="http://www.ecmoban.com/mb/shunfengyouxuan2015" target="_blank"><i></i>查看演示</a> 
+                    </p>*@
+                    
                     <div class="offer j-offer">
                         <span class="offer-give">送</span> <span class="offer-fold">折</span> <span class="offer-less">减</span>
                         <p class="offer-item offer-give j-offer-item"><em></em><a href="http://www.ecmoban.com/kongjian.php" title="买空间+模板送域名" target="_blank">买空间+模板送域名</a> <a href="http://www.ecmoban.com/goods-250.html" title="满3000送图片批量上传插件" target="_blank">满3000送图片批量上传插件</a> </p>

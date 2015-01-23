@@ -149,5 +149,16 @@ namespace Zero.Service.Products
             return query.ToList();
         }
 
+        public List<ProductPhoto> GetPhotoListById(int productId)
+        {
+            var query = _productPhotoRepository.Table;
+            query = from p in query
+                    where p.ProductId == productId
+                    select p;
+
+            query = query.OrderByDescending(p => p.PhotoId);
+            return query.ToList();
+        }
+
     }
 }
