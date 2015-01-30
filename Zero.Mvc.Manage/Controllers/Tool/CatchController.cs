@@ -29,7 +29,7 @@ namespace Zero.Mvc.Manage.Controllers.Tool
             //string content = @"dsfgsdfg:url(../images/category-trangle-bg.png);";
             //string thumbnail = @"(.*)\/tb\/([a-zA-Z0-9_\-\/]+)\/([a-zA-Z0-9]+)_(\d+)x(\d+)_(\d+)\.(jpg|gif|png|bmp)$";
 
-            string regu = @"url\((\.{0,2})\/images\/.{0,}\)";
+            string regu = @"url\((\.{0,2})\/img\/.{0,}\)";
 
             MatchCollection matches = Regex.Matches(content, regu);
 
@@ -38,7 +38,7 @@ namespace Zero.Mvc.Manage.Controllers.Tool
                 var imgUrl = matche.ToString();
                 imgUrl = imgUrl.Replace("url(..", "").Replace(")", "");
                 var saveImgUrl = site.SaveUrl + imgUrl;
-                imgUrl = string.Format("http://www.ecmoban.com/content/themes/ecmoban2014{0}", imgUrl);
+                imgUrl = string.Format("http://www.flc.com.br/m/site{0}", imgUrl);
 
                 WebClient client = new WebClient();
 
