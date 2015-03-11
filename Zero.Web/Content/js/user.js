@@ -53,37 +53,36 @@ function userEdit()
 /* 会员修改密码 */
 function editPassword()
 {
-  var frm              = document.forms['formPassword'];
-  var old_password     = frm.elements['old_password'].value;
+  var frm              = document.forms['formupdatePassword'];
+//  var old_password     = frm.elements['old_password'].value;
   var new_password     = frm.elements['new_password'].value;
   var confirm_password = frm.elements['comfirm_password'].value;
 
   var msg = '';
   var reg = null;
 
-  if (old_password.length == 0)
-  {
-    msg += old_password_empty + '\n';
-  }
+//  if (old_password.length == 0)
+//  {
+//    msg += old_password_empty + '\n';
+//  }
 
   if (new_password.length == 0)
   {
-    msg += new_password_empty + '\n';
+    msg += '新密码不能为空！' + '\n';
   }
 
   if (confirm_password.length == 0)
   {
-    msg += confirm_password_empty + '\n';
+    msg += '确认密码不能为空！' + '\n';
   }
 
   if (new_password.length > 0 && confirm_password.length > 0)
   {
     if (new_password != confirm_password)
     {
-      msg += both_password_error + '\n';
+      msg += '两次密码不一致！' + '\n';
     }
   }
-
   if (msg.length > 0)
   {
     alert(msg);
@@ -142,18 +141,18 @@ function submitPwdInfo()
   var errorMsg = '';
   if (user_name.length == 0)
   {
-    errorMsg += user_name_empty + '\n';
+    errorMsg += '用户名不能为空！' + '\n';
   }
 
   if (email.length == 0)
   {
-    errorMsg += email_address_empty + '\n';
+    errorMsg += '邮箱地址不能为空！' + '\n';
   }
   else
   {
     if ( ! (Utils.isEmail(email)))
     {
-      errorMsg += email_address_error + '\n';
+      errorMsg += '邮箱地址不正确！' + '\n';
     }
   }
 
@@ -162,8 +161,8 @@ function submitPwdInfo()
     alert(errorMsg);
     return false;
   }
-
   return true;
+  
 }
 
 /* *
@@ -371,8 +370,6 @@ function is_registered( username )
         document.forms['formUser'].elements['Submit'].disabled = 'disabled';
         return false;
     }
-
-
     //Ajax.call( 'user.php?act=is_registered', 'username=' + username, registed_callback , 'GET', 'TEXT', true, true );
 }
 
@@ -415,6 +412,12 @@ function checkEmail(email)
   //Ajax.call( 'user.php?act=check_email', 'email=' + email, check_email_callback , 'GET', 'TEXT', true, true );
 }
 
+function checkCode(code) {
+    if (code == '') {
+        document.getElementById('code_notice').innerHTML = msg_code_blank;
+    }
+}
+
 function check_email_callback(result)
 {
   if ( result == 'ok' )
@@ -429,6 +432,42 @@ function check_email_callback(result)
   }
 }
 
+function checkEmailsecure(email)
+{
+  var submit_disabled = false;
+  
+  if (email == '')
+  {
+    document.getElementById('email_notice').innerHTML = msg_email_blank;
+    submit_disabled = true;
+  }
+  else if (!Utils.isEmail(email))
+  {
+    document.getElementById('email_notice').innerHTML = msg_email_format;
+    submit_disabled = true;
+  }
+ 
+  if( submit_disabled )
+  {
+    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+    return false;
+  }
+  Ajax.call( 'user.php?act=check_newemail', 'email=' + email, check_email_callbacksecure , 'GET', 'TEXT', true, true );
+}
+
+function check_email_callbacksecure(result)
+{
+  if ( result == 'ok' )
+  {
+    document.getElementById('email_notice').innerHTML = '<font style="color:#428bca;">* 可以使用</font>';
+    document.forms['formUser'].elements['Submit'].disabled = '';
+  }
+  else
+  {
+    document.getElementById('email_notice').innerHTML = msg_email_registered;
+    document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+  }
+}
 /* *
  * 处理注册用户
  */

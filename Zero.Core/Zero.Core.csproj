@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="Config\DataBase.cs" />
     <Compile Include="Config\SiteConfig.cs" />
+    <Compile Include="Web\DownloadFile.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Web\IPage.cs" />
     <Compile Include="Web\Page.cs" />
     <Compile Include="Data\SqlHelper.cs" />

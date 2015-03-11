@@ -123,9 +123,9 @@ namespace Zero.Core.Web
                 //随机字体
                 fontIndex = rand.Next(3);
                 //随机字体大小
-                fontSize = rand.Next(12, 13);
+                fontSize = rand.Next(15, 17);
                 //随机字体位置，y轴为参考点
-                PositionY = rand.Next(1, 2);
+                PositionY = rand.Next(4, 6);
 
                 nRed = rand.Next(255) % 228;
                 nGreen = rand.Next(255) % 228;

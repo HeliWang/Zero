@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+
+<div class="fl wfs bcf7">
+    <div class="regist-process-wrapper">
+        <div class="regist-process-body fl wfs">
+
+            <form id="loginForm" name="formLogin" action="user.php" method="post" onsubmit="return userLogin()">
+                <div class="regist-process-login-left fl">
+                    <h2 class="title">登录</h2>
+                    <input class="form-control text" name="username" id="username" type="text" placeholder="用户名/邮箱地址/手机号">
+                    <input class="form-control text" name="password" id="password" type="password" placeholder="密码">
+                    <input class="btn btn-danger login-btn" type="submit" name="submit" value="登录" />
+                    <div class="operates fl wfs">
+                        <a class="fr" href="user.php?act=get_password">忘记密码</a>
+                        <p>
+                            <input type="hidden" name="act" value="act_login" />
+                            <input type="hidden" name="back_act" value="./index.php" />
+                            <input type="checkbox" value="1" name="remember" id="remember" />
+                            下次自动登录<span>使用公用电脑勿选</span>
+                        </p>
+                    </div>
+                    <div class="other-login fl">
+                        <a class="qq" href="javascript:toQzoneLogin();">qq</a>
+                        <a class="sina" href="user.php?act=sina" target="_blank">新浪微博</a>
+                        <a class="alipay" href="user.php?act=alipay" target="_blank">支付宝</a>
+                        <a class="weixin" href="user.php?act=wechat" target="_blank">微信</a>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="regist-process-login-right fr">
+                <h2 class="title">没有账号？立即注册</h2>
+                <a class="btn btn-info free-registe" href="reg">免费注册</a>
+                <img class="mid-r-img" src="http://member.ecmoban.com/content/themes/ecmoban2014/images/register-reg-4.png" alt="">
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+ <script>
+    $("#username").click(function(e){
+        Tools.focus(e,"用户名 / 邮箱 /手机号");
+    });
+    $("#password").click(function(e){
+        Tools.focus(e,"密码");
+    });
+        
+    $(".mid-l-login").click(function(){
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var msg = "";
+        if(username == ""){
+            msg += Tools.message.username+"\r\n";
+        }
+        if(password == ""){
+            msg += Tools.message.password+"\r\n";
+        }
+        if(msg){alert(msg); return false;}
+        $("#loginForm").submit();
+    });
+</script>

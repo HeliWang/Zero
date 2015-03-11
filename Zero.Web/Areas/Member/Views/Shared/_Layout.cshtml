@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="Generator" content="ECSHOP v2.7.3" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <title>用户中心_ECSHOP模板堂</title>
+    <link rel="shortcut icon" href="http://www.ecmoban.com/favicon.ico" />
+    <link rel="stylesheet" href="/content/default/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/content/default/css/index.css">
+
+
+    <script src="/content/js/jquery.min.js"></script>
+    <script src="/content/js/bootstrap.min.js"></script>
+    <script src="/content/js/utiles_register.js"></script>
+    <script src="/content/js/tools.js"></script>
+    <script src="/content/js/user.js"></script>
+
+    <script type="text/javascript" src="http://member.ecmoban.com/content/themes/ecmoban2014/js/utils.js"></script>
+
+</head>
+<body>
+    <script type="text/javascript">
+        var process_request = "正在处理您的请求...";
+    </script>
+
+    <div class="head fl wfs">
+        <div class="cover-page-wrapper">
+            <a class="fl" href="http://www.ecmoban.com">
+                <img src="http://member.ecmoban.com/content/themes/ecmoban2014/images/logo.png" title="ecshop ecshop模板 ecshop插件" alt="ecshop ecshop模板 ecshop插件"></a>
+            <script type="text/javascript">
+        
+        <!--
+    function checkSearchForm()
+    {
+        if(document.getElementById('keyword').value)
+        {
+            return true;
+        }
+        else
+        {
+            alert("请输入搜索关键词！");
+            return false;
+        }
+    }
+    -->
+        
+            </script>
+            <form id="searchForm" name="searchForm" method="get" action="http://www.ecmoban.com/search.php" onsubmit="return checkSearchForm()" class="search-product fl">
+                <input name="k_template" type="hidden" class="k_value" value="0">
+                <input name="keywords" type="text" id="keyword" value="" class="form-control search-box" />
+                <input class="submit" type="submit" style="border: none; cursor: pointer;">
+            </form>
+            <font id="ECS_MEMBERZONE">
+         <p class="head-operates-logined fr">
+             <a href="/member/user/login" class="login">登录</a>
+               <a href="http://member.ecmoban.com/user.php?act=collection_list" class="watch">关注</a>
+             <a href="http://member.ecmoban.com/user.php?act=question" class="quest">提问</a>
+         </p>
+     </font>
+        </div>
+    </div>
+
+    <div class="blank"></div>
+
+    @RenderBody()
+
+
+    <div class="blank"></div>
+
+    <div class="regist-process-foot fl wfs">
+        <p class="copyright">&copy; 2005-2015 ufo 版权所有，并保留所有权利。</p>
+        <p class="address">厦门市岭兜小区2里9号楼202室 外星人工作室 </p>
+    </div>
+
+
+</body>
+</html>

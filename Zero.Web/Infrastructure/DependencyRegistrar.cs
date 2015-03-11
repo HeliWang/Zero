@@ -27,6 +27,13 @@ namespace Zero.Web.Infrastructure
             #region
             builder.RegisterType<Zero.Web.Areas.Site.Controllers.HomeController>();
             builder.RegisterType<Zero.Web.Areas.Site.Controllers.ProductController>();
+            builder.RegisterType<Zero.Web.Areas.Site.Controllers.CartController>();
+            builder.RegisterType<Zero.Web.Areas.Site.Controllers.OrderController>();
+            #endregion
+
+
+            #region
+            builder.RegisterType<Zero.Web.Areas.Member.Controllers.HomeController>();
             #endregion
 
 

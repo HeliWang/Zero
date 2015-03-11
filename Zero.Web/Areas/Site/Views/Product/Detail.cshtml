@@ -83,12 +83,7 @@
             <form action="javascript:addToCart(580)" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
                 <input style="display: none" name="number" type="text" id="number" value="1" size="4" onblur="changePrice()" />
                 <div class="right fr">
-                    <div class="discount-msg">
-                        <h3>@Model.Product.ProductName</h3>
-                    </div>
-                    <div class="discount-msg-two" style="padding-bottom: 10px;">
-                        <p class="price" id="ECS_GOODS_AMOUNT">￥5500元</p>
-                    </div>
+                    
                   @*<div class="evaluation score-wrap">
                       <div class="score"><em style="margin-left: 5px;">评价</em> <span class="evaluation-stars-grey"><i class="evaluation-stars-red" style="width: 100px;"></i></span><b class="evaluation-b">(已有<a href="javascript:;" onclick="comment_location()">0人</a>评价)</b> </div>
                       <!--
@@ -117,39 +112,54 @@
                                 </div>-->
                   </div>*@
 
-                    <div class="goodsInfo">
-                        <style>
-                            .z-sku dl,.z-base dl,.z-quantity dl{clear:both;font-family: "Microsoft Yahei";font-size: 14px;font-weight: 400;color: #666;}
-                            .z-sku dt,.z-base dt,.z-quantity dt{float:left;width:60px;height:25px;line-height:25px;}
-                            .z-sku dd,.z-base dd,.z-quantity dd{float:left;padding-left:5px;}
+                    <style>
 
-                            .z-base dd{height:25px;line-height:25px; }
+                        .z-sku dl,.z-base dl,.z-amount dl{clear:both;font-family: "Microsoft Yahei";font-size:12px;font-weight: 200;color: #666;margin-top:10px;}
+                        .z-sku dt,.z-base dt,.z-amount dt{float:left;width:40px;height:25px;line-height:25px;}
+                        .z-sku dd,.z-base dd,.z-amount dd{float:left;padding-left:5px;}
 
-                            .z-sku dl{}
-                            .z-sku li{ float:left;margin-bottom:5px;margin-right:5px;}
-                            /*.z-sku li span {display:block;padding:3px 2px;}*/
-                            .z-sku li a{border: #c8c9cd 2px solid;text-align: center; display: block;  color: #000; font-size:12px;padding:3px 6px;}
-                            .z-sku li a:hover {border:#cb0404 2px solid;cursor:pointer;}
-                            .z-sku li a:focus {outline-style:none;}
-                            .z-sku .selected a{border:#cb0404 2px solid; background: url("/content/images/test.gif") no-repeat bottom right;  }
-                            .z-sku .selected a:hover {border: #cb0404 2px solid; background: url("/content/images/test.gif") no-repeat bottom right;}
+                        .z-base dd{height:25px;line-height:25px; }
 
-                            .z-btn { margin-top:10px;cursor:pointer;}
-                            .z-btn a{display: block;float: left;margin-right:5px;width:100px;height: 32px;color:#fff;font-size: 16px;line-height:30px; font-weight: 400;text-align:center;}
-                            .z-btn .z-buy{background-color:#FF4146}
-                            .z-btn .z-cart{background-color:#5281B4}
-                        </style>
+                        .z-sku dl{}
+                        .z-sku li{ float:left;margin-bottom:5px;margin-right:5px;}
+                        /*.z-sku li span {display:block;padding:3px 2px;}*/
+                        .z-sku li a{border: #c8c9cd 2px solid;text-align: center; display: block;  color: #000; padding:3px 6px;}
+                        .z-sku li a:hover {border:#cb0404 2px solid;cursor:pointer;}
+                        .z-sku li a:focus {outline-style:none;}
+                        .z-sku .selected a{border:#cb0404 2px solid; background: url("/content/images/test.gif") no-repeat bottom right;  }
+                        .z-sku .selected a:hover {border: #cb0404 2px solid; background: url("/content/images/test.gif") no-repeat bottom right;}
+
+                        .z-amount .tool{float:left;border:#c8c9cd 2px solid;text-align:center;padding:0 2px;}
+                        .z-amount .tool span{display:inline-block}
+
+                        .z-amount .reduce{width:15px;cursor:pointer;}
+                        .z-amount .add{width:15px;cursor:pointer;}
+                        .z-amount .num{width:50px;height:25px;text-align:right;text-align:center;border-top:0;border-right:#c8c9cd 2px solid;border-bottom:0;border-left:#c8c9cd 2px solid;}
+
+                        .z-amount .stock{float:left;padding:0 5px;line-height:30px;}
+
+                        .z-btn { margin-top:10px;cursor:pointer;}
+                        .z-btn a{display: block;float: left;margin-right:5px;width:100px;height: 32px;color:#fff;font-size: 16px;line-height:30px; font-weight: 400;text-align:center;}
+                        .z-btn .z-buy{background-color:#FF4146}
+                        .z-btn .z-cart{background-color:#5281B4}
+                    </style>
+
+                    <div class="z-goods">
                         <div>
                             <input type="hidden" id="ProductId" value="@Model.Product.ProductId" />
                             <input type="hidden" id="SkuList" value="@Model.SkuList" />
-                            <a href="javascript:collect(414)" class="ico_shoucang  ">
-                                <div class="aa1">收藏</div>
-                                <div class="aa2">2</div>
-                            </a>
                         </div>
-                        <div class="z-base" >
-                            <dl><dt class="show_goods_amount">促销单价</dt><dd><b class="shop">￥7000元</b></dd></dl>
-                            <dl><dt class="show_goods_amount">一口价</dt><dd><b class="shop">￥6000元</b></dd></dl>
+                        <div class="discount-msg">
+                            <h3>@Model.Product.ProductName</h3>
+                        </div>
+                        <div class="discount-msg-two" style="padding-bottom:10px;">
+                            <div class="price">￥5500元</div>
+                            @*<div>
+                                <a>
+                                    <div class="aa1">收藏</div>
+                                    <div class="aa2">2</div>
+                                </a>
+                            </div>*@
                         </div>
                         <div class="z-sku clearfix">
                             @*<dl>
@@ -180,12 +190,16 @@
                                 </dd>
                             </dl>  *@                            
                         </div>
-                        <div class="z-quantity clearfix">
+                        <div class="z-amount clearfix">
                             <dl>
-                                <dt>数量</dt>
+                                <dt>数量：</dt>
                                 <dd>
-                                    <input id="quantity" type="text" style="width:50px;height:16px;"/> 件
-                                    库存(0)件
+                                    <div class="tool">
+                                        <span class="reduce">-</span>
+                                        <span><input class="num" type="text" value="1"/></span>
+                                        <span class="add">+</span> 
+                                    </div>
+                                    <div class="stock">件 库存(0)件</div>
                                 </dd>
                             </dl>
                         </div>
@@ -218,7 +232,7 @@
                                     for (var i = 0; i < attrArray.length; i++) {
                                         var key = attrArray[i].split(":")[2];
                                         dl[i] = $("<dl></dl>");
-                                        dt[i] = $("<dt></dt>").text(key);
+                                        dt[i] = $("<dt></dt>").text(key+"：");
                                         dd[i] = $("<dd></dd>");
                                         ul[i] = $("<ul></ul>");
                                         dd[i].append(ul[i]);
@@ -312,7 +326,6 @@
                     </div>
 
                    @* <p class="make fl wfs">
-
                         <a class="make-cart fl" href="javascript:addToCart(580)">立即购买</a> <a class="make-show fl" href="http://www.ecmoban.com/mb/shunfengyouxuan2015" target="_blank"><i></i>查看演示</a> 
                     </p>*@
                     
@@ -331,7 +344,7 @@
             </form>
         </div>
         <form name="m_goods_1" method="post" action="" onsubmit="return false;" class="clearfix">
-            <div class="package fl wfs">
+            @*<div class="package fl wfs">
                 <h4 class="fl wfs">套餐搭配</h4>
                 <img class="thumb fl" src="http://upfile.ecmoban.com/images/201501/thumb_img/580_thumb_G_1421695475742.png" title="ECSHOP模板堂顺风优选2015最新旗舰版+团购" alt="ECSHOP模板堂顺风优选2015最新旗舰版+团购">
                 <input class="m_goods_body m_goods_1" item="m_goods_1" type="checkbox" style="display: none;" value="580" data="5500.00" spare="0" stock="0" />
@@ -371,7 +384,7 @@
                     <input type="hidden" name="m_goods_1_number" value="1" />
                     <a class="btn btn-danger" href="javascript:addMultiToCart('m_goods_1', '580');">立即抢购</a>
                 </p>
-            </div>
+            </div>*@
         </form>
         <div class="content fl wfs">
             <div class="content-icons fl wfs" style="position: relative;">
@@ -379,101 +392,29 @@
                 <ul class="mainLeftNav">
                     <li class="cur">产品描述</li>
                     <li>用户评价</li>
-                    <li>模板搭配优势</li>
+                    <li>售后保障</li>
                 </ul>
                 <!--<h5>包含插件</h5>-->
             </div>
             <div class="content-item j-content-item content-package fl wfs" style="display: block;">
                 <dl class="content-item-dl fl wfs">
                     <dt>产品信息</dt>
-                    <dd>货号：000580</dd>
-                    <dd title="ECSHOP模板堂顺风优选2015最新旗舰版+团购">模板名称：ECSHOP模板堂顺风...</dd>
-                    <dd>浏览量：396</dd>
-                    <dd>主题：时尚简约</dd>
-                    <dd>色系：绿色</dd>
+
+                    @{
+                        if (!string.IsNullOrEmpty(Model.Product.BaseAttr))
+                        {
+                            var attrList = Model.Product.BaseAttr.Split(';');
+                            foreach(var attr in attrList)
+                            {
+                                var attrArray = attr.Split(':');
+                                 <dd>@attrArray[2]：@attrArray[3]</dd>
+                            }
+                        }
+                     }
                 </dl>
                 <div class="desc fl wfs" style="margin-top: 20px;">
-                    <div>
-                        <div style="width: 1170px; height: 550px; margin-top: 20px; background: #fff url(http://www.ecmoban.com/content/themes/ecmoban2014/images/video-bg.png) no-repeat center center">
-                            <div style="float: left; width: 675px; height: 418px; margin-left: 248px; margin-top: 40px;">
-                                <iframe src="http://player.ecmoban.com/player.php/gid/580/v.swf?width=675&height=418" scrolling="no" allowfullscreen="" frameborder="0" height="418" width="675"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <h6><span style="font-size: 14px;">ECSHOP模板堂顺风优选2015最新旗舰版+团购
-                        <br />
-                        顺风优选2015最新旗舰版+团购，一款时尚简洁的综合通用类模板，整站宽屏，头部含多个下拉菜单、购物车及搜索功能，底部可添加二维码，方便扫描；首页商品楼层功能，调用限时抢购和下期限时抢购功能，底部调用评论功能，添加了邮件订阅。二级分类页新增自定义组合筛选、商品排序、翻页等功能；商品详情页开发单选属性、数量加减、剩余件数、加入购物车、加入成功弹窗等功能；团购页活动剩余时间倒计时效果，可显示商品的折扣，购买人数以及剩余时间和商品详情。购物流程一目了然，其他页面新增多种jquery兼容特效，整站采用 Div+Css布局，兼容良好，模板前端代码优化并重构，速度提升50%！<br />
-                        我们是ECSHOP模板堂，我们只做最强模板！本款模板可搭配&nbsp;&nbsp; <a target="_blank" href="http://www.ecmoban.com/category-40-b0.html">&gt;&gt;&gt;ECTouch&lt;&lt;&lt;</a>&nbsp;&nbsp; <a target="_blank" href="http://www.ecmoban.com/goods-314.html">&gt;&gt;&gt;APP商创版手机端&lt;&lt;&lt;</a><br />
-                        如需更强模板组合，请查看<a target="_blank" href="http://www.ecmoban.com/topic/djd/">&gt;&gt;&gt;大京东—最强行业解决方案&lt;&lt;&lt;</a>模板堂强力推荐</span></h6>
-                    <p>
-                        <br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216499987588.png" title="14216499987588.png" alt="000_01.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500087749.png" title="14216500087749.png" alt="000_02.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500257579.png" title="14216500257579.png" alt="000_03.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500342827.png" title="14216500342827.png" alt="000_04.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500543764.png" title="14216500543764.png" alt="000_05.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500624600.png" title="14216500624600.png" alt="000_06.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500708833.png" title="14216500708833.png" alt="000_07.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500774220.png" title="14216500774220.png" alt="000_08.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500868024.png" title="14216500868024.png" alt="000_09.png" /><br />
-                    </p>
-                    <p>
-                        <img src="http://upfile.ecmoban.com/data/descimg/20150119/14216500955926.png" title="14216500955926.png" alt="000_10.png" />
-                    </p>
+                    @(new HtmlString(Model.Product.Desc.Desc))
                 </div>
-                <script>
-                    $(".list-paddingleft-2").append($(".list-paddingleft-2").html());
-                    var canvas_width = 309;     //画布宽度
-                    var img_nums = $(".list-paddingleft-2 li").length / 2;
-                    var l_now;             //用来存储大图滚动的参数
-                    var handle_select = '.prev,.next'; //左右按钮选择器
-                    var reg = /next/;
-
-                    $(".list-paddingleft-2").css('width', img_nums * canvas_width * 2 + "px").css('left', -img_nums * canvas_width + "px");
-                    var SlideMovie = function (obj) {
-                        var l = parseInt($(".list-paddingleft-2").css('left'));
-                        //防止客户连续快速点击
-                        if (l % canvas_width != 0) return;
-                        //判断当前是否是右测按钮，还是测的按钮或者是自动滑动
-                        if (typeof (obj) == "undefined" || reg.test(obj.attr("class"))) {
-                            l_now = l - canvas_width;
-                        } else {
-                            l_now = l + canvas_width;
-                        }
-                        //$(".j-icons span").eq((((-l_now)/canvas_width)%img_nums)).addClass('now').siblings('span').removeClass('now');
-                        $(".list-paddingleft-2").animate({ left: l_now + 'px' }, 'normal', function () {
-                            if (l_now == 0) {
-                                $(".list-paddingleft-2").css("left", -canvas_width * img_nums + "px");
-                            }
-                            if (l_now == -canvas_width * img_nums * 2 + canvas_width) {
-                                $(".list-paddingleft-2").css("left", -canvas_width * (img_nums - 1) + "px");
-                            }
-                        });
-                    }
-                    // 左右按钮点击效果
-                    $(handle_select).click(function () {
-                        var obj = $(this);
-                        SlideMovie(obj);
-                    });
-                </script>
             </div>
             <div class="content-item j-content-item fl wfs" style="display: none;">
                 <div class="content-item-comments fl wfs">
@@ -487,13 +428,13 @@
                         <form name="selectPageForm" action="/goods.php" method="get">
                         </form>
                         <script type="Text/Javascript" language="JavaScript">
-    <!--
+                        <!--
 
-    function selectPage(sel) {
-        sel.form.submit();
-    }
+                        function selectPage(sel) {
+                            sel.form.submit();
+                        }
 
-    //-->
+                        //-->
                         </script>
                         <form class="comment_box fl wfs" action="javascript:;" onsubmit="submitComment(this)" method="post" name="commentForm" id="commentForm">
                             <div class="evaluation">
@@ -788,6 +729,16 @@
 @Html.Partial("_Footer")
 
 <script>
+
+    $(function () {
+        $(".mainLeftNav li").click(function () {
+            $(".mainLeftNav li").removeAttr("class");
+            $(this).addClass("cur");
+            $(".content-item").css("display", "none");
+            $(".content-item").eq($(this).index()).css("display", "block");
+
+        });
+    });
 
     //放大镜效果
     $(".j-details-mid-item").jqueryzoom({

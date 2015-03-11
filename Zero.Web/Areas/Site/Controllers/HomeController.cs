@@ -9,6 +9,7 @@ using System.IO;
 using Zero.Web.Models;
 using Zero.Service.News;
 using Zero.Service.Products;
+using Zero.Core.Web;
 
 namespace Zero.Web.Areas.Site.Controllers
 {
@@ -32,5 +33,13 @@ namespace Zero.Web.Areas.Site.Controllers
             return View(indexModel);
         }
 
+        public ActionResult GetAuthCode()
+        {
+            AuthCode authCode = new AuthCode();
+            authCode.ImgWidth = 75;
+            authCode.ImgHeight = 25;
+            byte[] bytes = authCode.CreateAuthCode(4);
+            return File(bytes, @"image/jpeg");
+        }
     }
 }
