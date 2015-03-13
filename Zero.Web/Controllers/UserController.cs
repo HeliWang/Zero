@@ -61,7 +61,7 @@ namespace Zero.Web.Controllers
                 resultInfo = _userServices.Register(user);
 
                 //成功后登入并跳转
-                Response.Redirect("/user/");
+                Response.Redirect("/member/");
             }
 
             return View(resultInfo);

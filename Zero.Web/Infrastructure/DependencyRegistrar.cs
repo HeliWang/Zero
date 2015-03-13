@@ -34,6 +34,7 @@ namespace Zero.Web.Infrastructure
 
             #region
             builder.RegisterType<Zero.Web.Areas.Member.Controllers.HomeController>();
+            builder.RegisterType<Zero.Web.Areas.Member.Controllers.UserController>();
             #endregion
 
 
@@ -63,6 +64,10 @@ namespace Zero.Web.Infrastructure
 
             builder.RegisterType<NewsService>().As<INewsService>().InstancePerHttpRequest();
             builder.RegisterType<UserServices>().As<IUserServices>().InstancePerHttpRequest();
+
+
+
+
             // then
             var container = builder.Build();
 

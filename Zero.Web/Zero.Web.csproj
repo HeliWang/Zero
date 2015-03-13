@@ -379,7 +379,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Member\Models\" />
-    <Folder Include="Areas\Member\Views\Home\" />
     <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
@@ -501,6 +500,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Member\Views\User\Reg.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\User\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

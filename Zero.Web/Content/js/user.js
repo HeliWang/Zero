@@ -277,12 +277,12 @@ function userLogin()
 
   if (username.length == 0)
   {
-    msg += username_empty + '\n';
+    msg += "用户名不能为空" + '\n';
   }
 
   if (password.length == 0)
   {
-    msg += password_empty + '\n';
+    msg += "密码不能为空" + '\n';
   }
 
   if (msg.length > 0)
@@ -313,10 +313,12 @@ function check_password( password )
     if ( password.length < 6 )
     {
         document.getElementById('password_notice').innerHTML = password_shorter;
+        return false;
     }
     else
     {
         document.getElementById('password_notice').innerHTML = msg_can_rg;
+        return true;
     }
 }
 
@@ -332,10 +334,12 @@ function check_conform_password( conform_password )
     if ( conform_password != password )
     {
         document.getElementById('conform_password_notice').innerHTML = confirm_password_invalid;
+        return false;
     }
     else
     {
         document.getElementById('conform_password_notice').innerHTML = msg_can_rg;
+        return true;
     }
 }
 
@@ -370,6 +374,9 @@ function is_registered( username )
         document.forms['formUser'].elements['Submit'].disabled = 'disabled';
         return false;
     }
+
+    registed_callback("true");
+    return true;
     //Ajax.call( 'user.php?act=is_registered', 'username=' + username, registed_callback , 'GET', 'TEXT', true, true );
 }
 
@@ -409,12 +416,22 @@ function checkEmail(email)
     document.forms['formUser'].elements['Submit'].disabled = 'disabled';
     return false;
   }
-  //Ajax.call( 'user.php?act=check_email', 'email=' + email, check_email_callback , 'GET', 'TEXT', true, true );
+    //Ajax.call( 'user.php?act=check_email', 'email=' + email, check_email_callback , 'GET', 'TEXT', true, true );
+
+  check_email_callback("ok");
+  return true;
 }
 
 function checkCode(code) {
     if (code == '') {
-        document.getElementById('code_notice').innerHTML = msg_code_blank;
+        document.getElementById('code_notice').innerHTML = "-验证码不能为空";
+        document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+        return false;
+    }
+    else {
+        document.getElementById('code_notice').innerHTML = "-可以注册";
+        document.forms['formUser'].elements['Submit'].disabled = 'disabled';
+        return true;
     }
 }
 

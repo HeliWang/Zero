@@ -21,9 +21,9 @@ namespace Zero.Web.Areas.Member.Controllers
         public ActionResult GetAuthCode()
         {
             AuthCode authCode = new AuthCode();
-            authCode.ImgWidth = 100;
-            authCode.ImgHeight = 40;
-            byte[] bytes = authCode.CreateAuthCode(5);
+            authCode.ImgWidth = 80;
+            authCode.ImgHeight = 35;
+            byte[] bytes = authCode.CreateAuthCode(4);
             return File(bytes, @"image/jpeg");
         }
     }
