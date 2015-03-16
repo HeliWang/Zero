@@ -21,7 +21,16 @@ namespace Zero.Service.Users
 
         public ResultInfo Login(string userName, string password)
         {
+            var query = _userRepository.Table;
 
+            query = from u in query
+                       where u.UserName == userName
+                       select u;
+
+            var user = query.DefaultIfEmpty();
+
+            
+            
             return new ResultInfo("登入成功");
         }
 

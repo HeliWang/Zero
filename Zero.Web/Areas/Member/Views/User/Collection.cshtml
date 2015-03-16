@@ -1,0 +1,246 @@
+﻿@{
+    Layout = "~/Areas/Member/Views/Shared/_Center.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<div class="member-favorite fr w955">
+    <h3 class="operate-title mt20">我的关注</h3>
+    <div class="operate-items mt20"> <a class="j-item now" href="user.php?act=collection_list">全部关注</a> <a class="j-item " href="user.php?act=collection_list&cat_id=9">商业模板</a> <a class="j-item " href="user.php?act=collection_list&cat_id=6">免费模板</a> <a class="j-item " href="user.php?act=collection_list&cat_id=23">插件</a> <a class="j-item " href="user.php?act=collection_list&cat_id=34">手机端</a> </div>
+    <div class="favorite" style="display:block;">
+    <ul class="favorite-items">
+        <li class="item">
+        <p style="width:70px;"><a target="_blank" href="http://www.ecmoban.com/goods-598.html"><img src="http://upfile.ecmoban.com/images/201502/thumb_img/598_thumb_G_1423796402056.png" alt="" width="70"></a></p>
+        <p style="margin-left:10px;line-height: 70px;vertical-align: middle;"> <a target="_blank" href="http://www.ecmoban.com/goods-598.html">ECSHOP模板堂淘宝网2015最强旗舰版 全网首发+团购</a> </p>
+        <span>最近更新：2015-03-12 17:40:02</span> <b><a target="_blank" href="http://www.ecmoban.com/goods-598.html">预览</a><i></i><a href="javascript:if (confirm('您确定要从收藏夹中删除选定的商品吗？')) location.href='user.php?act=delete_collection&collection_id=2521'">删除</a></b> </li>
+    </ul>
+    <form name="selectPageForm" class="pageForm" action="/user.php" method="get">
+        <div class="fl wfs">
+        <ul class="pagination pages">
+        </ul>
+        </div>
+    </form>
+    <script type="Text/Javascript" language="JavaScript">
+    <!--
+
+    function selectPage(sel) {
+        sel.form.submit();
+    }
+
+    //-->
+    </script> 
+    </div>
+</div>
+<script>
+
+	$('.js_select').chosen({
+// add_class: "down-menu-language",
+no_results_text: "未找到搜索内容!",
+allow_single_deselect: true,
+disable_search_threshold: 5
+});
+
+//给th中的select加修改事件
+$('.questlist tr select[data-trigger="search"]').on('change', function(){
+	var $this = $(this);
+	var url = $this.closest('tr').attr('data-url')?$this.closest('tr').attr('data-url'):'user.php?act=ask_list';
+	var name = $this.attr('name');
+	var val = $this.val();
+// console.log(url + '&' + name + '=' + val);
+window.location.href = url + '&' + name + '=' + val;
+});
+
+//点击添加保密信息的事件     
+$("#addSecret").bind('click',function(e){
+	e.preventDefault();
+});
+
+//发起提问的表单验证
+$('#askForm').on('submit', function(e){
+	var $this = $(this);
+	var title = $this.find('input[name="title"]').val();
+	var info = $this.find('textarea[name="content"]');
+
+	if($this.find('select[name="oid"] option:selected').val() == 0 || $this.find('select[name="oid"] option:selected').val() == ''){
+		smoke.alert('请先选择产品类型');
+	}else if(title.length == 0){
+		smoke.alert('请填写问题标题');
+	}else if(info.length == 0){
+		smoke.alert('请填写问题内容');
+	}else{
+		$('#askForm').trigger('submit');
+		return true;
+	}
+	e.preventDefault();
+});
+
+//发起提问的产品类型变更时
+$('#askForm select[name="oid"]').on('change', function(){
+	var protype = $(this).find('option:selected').attr('data-protype');
+	$('#askForm').find('input[name="protype"]').val(protype);
+})
+
+//发起提问服务器填写框的触发事件
+$('select[name="suptype"]').on('change', function(){
+	if($(this).find('option:selected').val() == 1){
+		$('.ask-items-group').removeClass('hide');
+	}else{
+		$('.ask-items-group').addClass('hide');
+	}
+});
+
+$(function(){
+//
+var cursorPosition = {
+	get: function (textarea) {
+		var rangeData = {text: "", start: 0, end: 0};
+
+if (textarea.setSelectionRange) { // W3C
+	textarea.focus();
+	rangeData.start= textarea.selectionStart;
+	rangeData.end = textarea.selectionEnd;
+	rangeData.text = (rangeData.start != rangeData.end) ? textarea.value.substring(rangeData.start, rangeData.end): "";
+} else if (document.selection) { // IE
+	textarea.focus();
+	var i,
+	oS = document.selection.createRange(),
+	oR = document.body.createTextRange();
+	oR.moveToElementText(textarea);
+
+	rangeData.text = oS.text;
+	rangeData.bookmark = oS.getBookmark();
+
+	for (i = 0; oR.compareEndPoints('StartToStart', oS) < 0 && oS.moveStart("character", -1) !== 0; i ++) {
+
+		if (textarea.value.charAt(i) == '\r' ) {
+			i ++;
+		}
+	}
+	rangeData.start = i;
+	rangeData.end = rangeData.text.length + rangeData.start;
+}
+
+return rangeData;
+},
+
+set: function (textarea, rangeData) {
+	var oR, start, end;
+	if(!rangeData) {
+		alert("You must get cursor position first.")
+	}
+	textarea.focus();
+if (textarea.setSelectionRange) { // W3C
+	textarea.setSelectionRange(rangeData.start, rangeData.end);
+} else if (textarea.createTextRange) { // IE
+	oR = textarea.createTextRange();
+
+	if(textarea.value.length === rangeData.start) {
+		oR.collapse(false);
+		oR.select();
+	} else {
+		oR.moveToBookmark(rangeData.bookmark);
+		oR.select();
+	}
+}
+},
+
+add: function (textarea, rangeData, text) {
+	var oValue, nValue, oR, sR, nStart, nEnd, st;
+	this.set(textarea, rangeData);
+
+if (textarea.setSelectionRange) { // W3C
+	oValue = textarea.value;
+	nValue = oValue.substring(0, rangeData.start) + text + oValue.substring(rangeData.end);
+//nStart = nEnd = rangeData.start + text.length;
+
+// 光标在<!--{}-->里面
+nStart = nEnd = rangeData.start + 1;
+
+st = textarea.scrollTop;
+textarea.value = nValue;
+// Fixbug:
+// After textarea.values = nValue, scrollTop value to 0
+if(textarea.scrollTop != st) {
+	textarea.scrollTop = st;
+}
+textarea.setSelectionRange(nStart, nEnd);
+} else if (textarea.createTextRange) { // IE
+	sR = document.selection.createRange();
+	sR.text = text;
+	sR.setEndPoint('StartToEnd', sR);
+	sR.select();
+}
+}
+}
+
+var faq_content = $("#quest-infos")[0],
+faq_char = "{}",
+faq_char_length = 1;
+$("#addSecret").bind('click',function(e){
+	e.preventDefault();
+	var pos = cursorPosition.get(faq_content);
+	cursorPosition.add(faq_content,pos,faq_char);
+});
+})
+
+
+
+// // 我的收藏 javascript
+// //点击切换
+// $(".j-item").click(function(){
+//     $(this).addClass("now").siblings(".j-item").removeClass("now");
+//     $(".favorite").eq($(this).index()).show().siblings(".favorite").hide();
+// });
+// // 问题列表 js
+// //选项卡展开
+// $(".j-lists").click(function(e){
+//     $(".j-lists").not($(this)).find(".j-option-box").hide();
+//     $(this).find(".j-option-box").toggle();
+//     //阻止冒泡
+//     e.stopPropagation();
+// });
+// // 选项框隐藏
+// $(document).click(function(){
+//     $(".j-lists").find(".j-option-box").hide();
+// });
+// //选择选项卡中的内容,并初始化value值
+// $(".j-option-box span").click(function(e){
+
+//     var spanText = $(this).html();
+//     $(this).parent().siblings("p").find("span").html(spanText);
+//     //隐藏选项卡
+//     $(this).parent().hide();
+//     //阻止冒泡
+//     e.stopPropagation();
+// });
+// // 发起提问 js
+// //选项卡展开
+// $(".j-select").click(function(e){
+//     $(".j-select").find(".j-option-box").hide();
+//     $(this).find(".j-option-box").show();
+//     //阻止冒泡
+//     e.stopPropagation();
+// });
+// //选项框隐藏
+// $(document).click(function(){
+//     $(".j-select").find(".j-option-box").hide();
+// });
+// //提交验证
+// $(".j-confirm-modify").click(function(){
+//     alert($("goodsId").val());
+//     // $("#askForm").submit();
+// });
+// // 按问题标题
+// $(".j-titles-select").click(function(e){
+//       $(".j-titles-items").show();
+// });
+// $(".j-titles-items span").click(function(e){
+
+//     var spanText = $(this).html();
+//     $(this).parent().siblings("p").find("span").html(spanText);
+//     //隐藏选项卡
+//     $(this).parent().hide();
+//     //阻止冒泡
+//     e.stopPropagation();
+// });
+
+</script> 

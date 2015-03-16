@@ -1,6 +1,75 @@
 ﻿@{
-    Layout = "~/Areas/Member/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Member/Views/Shared/_Center.cshtml";
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="member-index fr w955">
+    <div class="left fl">
+    <h3>亲爱的糖粉， 欢迎您回到 ecshop模板堂！</h3>
+    <p class="msg">您的余额：<span>￥0.00元</span></p>
+    <p class="msg">您的等级：<span>注册用户</span></p>
+    <p class="msg">身份验证： 
+        (邮箱未验证， <a href="javascript:sendHashMail()">验证邮箱</a>) </p>
+    <dl class="orders-items fl wfs">
+        <dt class="fl wfs">
+        <h4 class="fl">最新订单</h4>
+        <a class="btn btn-danger btn-xs fr" href="http://member.ecmoban.com/user.php?act=order_list&num=1
+						">更多订单</a> </dt>
+        <dd class="item fl wfs">
+        <div class="order-msg"> <span>订单号：<i><a href="user.php?act=order_detail&order_id=5021" style="color: #00ACAC;">2014102499569</a></i></span> <span>成交日期：2014-10-24 17:57:53 </span> <span>收货人：潘忠伟 </span> </div>
+        <div class="order-content fl wfs"> <a href="http://www.ecmoban.com/goods.php?id=518" target="blank"><img src="http://upfile.ecmoban.com/images/201409/thumb_img/518_thumb_G_1412037794921.jpg" alt="ECSHOP模板堂本来生活网2014全网首发+团购"></a>
+            <div class="title">
+            <div> <a href="http://www.ecmoban.com/goods.php?id=518" target="blank">ECSHOP模板堂本来生活网2014全网首发+团购</a></div>
+            </div>
+        </div>
+        <div class="order-content fl wfs"> <a href="http://www.ecmoban.com/goods.php?id=537" target="blank"><img src="http://upfile.ecmoban.com/images/201410/thumb_img/537_thumb_G_1413314272526.png" alt="ECSHOP模板堂美味七七最新模板+积分换购"></a>
+            <div class="title">
+            <div> <a href="http://www.ecmoban.com/goods.php?id=537" target="blank">ECSHOP模板堂美味七七最新模板+积分换购</a></div>
+            </div>
+        </div>
+        <div class="order-content fl wfs"> <a href="http://www.ecmoban.com/goods.php?id=520" target="blank"><img src="http://upfile.ecmoban.com/images/201410/thumb_img/520_thumb_G_1412703914171.png" alt="ECSHOP模板堂商家入驻插件5.0超级至尊版"></a>
+            <div class="title">
+            <div> <a href="http://www.ecmoban.com/goods.php?id=520" target="blank">ECSHOP模板堂商家入驻插件5.0超级至尊版</a></div>
+            </div>
+        </div>
+        <div class="order-price-details">
+            <p class="price">￥29000.00元</p>
+            <b style="margin-right:20px;"> 未付款&nbsp;&nbsp;未发货 </b> </div>
+        </dd>
+        <dd class="item fl wfs">
+        <div class="order-msg"> <span>订单号：<i><a href="user.php?act=order_detail&order_id=4912" style="color: #00ACAC;">2014102126659</a></i></span> <span>成交日期：2014-10-21 18:22:26 </span> <span>收货人：潘忠伟 </span> </div>
+        <div class="order-content fl wfs"> <a href="http://www.ecmoban.com/goods.php?id=501" target="blank"><img src="http://upfile.ecmoban.com/images/201410/thumb_img/501_thumb_G_1412814384801.png" alt="ECSHOP模板堂麦包包豪华至尊版模板+晒单+团购"></a>
+            <div class="title">
+            <div> <a href="http://www.ecmoban.com/goods.php?id=501" target="blank">ECSHOP模板堂麦包包豪华至尊版模板+晒单+团购</a></div>
+            </div>
+        </div>
+        <div class="order-price-details">
+            <p class="price">￥7000.00元</p>
+            <b style="margin-right:20px;"> 未付款&nbsp;&nbsp;未发货 </b> </div>
+        </dd>
+        <dd class="item fl wfs">
+        <div class="order-msg"> <span>订单号：<i><a href="user.php?act=order_detail&order_id=4911" style="color: #00ACAC;">2014102119383</a></i></span> <span>成交日期：2014-10-21 18:21:06 </span> <span>收货人：潘忠伟 </span> </div>
+        <div class="order-content fl wfs"> <a href="http://www.ecmoban.com/goods.php?id=462" target="blank"><img src="http://upfile.ecmoban.com/images/201410/thumb_img/462_thumb_G_1413253197847.png" alt="【模板堂案例】添香辐射"></a>
+            <div class="title">
+            <div> <a href="http://www.ecmoban.com/goods.php?id=462" target="blank">【模板堂案例】添香辐射</a></div>
+            </div>
+        </div>
+        <div class="order-content fl wfs"> <a href="http://www.ecmoban.com/goods.php?id=500" target="blank"><img src="http://upfile.ecmoban.com/images/201409/thumb_img/500_thumb_G_1412041119545.png" alt="ECSHOP模板堂天猫商城升级旗舰版+团购"></a>
+            <div class="title">
+            <div> <a href="http://www.ecmoban.com/goods.php?id=500" target="blank">ECSHOP模板堂天猫商城升级旗舰版+团购</a></div>
+            </div>
+        </div>
+        <div class="order-price-details">
+            <p class="price">￥6800.00元</p>
+            <b style="margin-right:20px;"> 未付款&nbsp;&nbsp;未发货 </b> </div>
+        </dd>
+    </dl>
+    </div>
+    <div class="right fr">
+    <div class="data">
+        <p><a href="http://member.ecmoban.com/user.php?act=profile">修改</a>您的资料</p>
+        <div> <span class="qq">Q Q：未填写</span> <span class="phone">手机：未填写</span> <span class="email">邮箱：14000682863@qq.com</span> </div>
+    </div>
+    <div class="mt20"> <a href="http://www.ecmoban.com/topic/djd/" target="_blank"><img src="http://member.ecmoban.com/content/themes/ecmoban2014/images/member-index-banner.png" title="查看详情"></a> </div>
+    </div>
+</div>

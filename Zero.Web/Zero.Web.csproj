@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Member\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Member\Controllers\TradeController.cs" />
     <Compile Include="Areas\Member\Controllers\UserController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
     <Compile Include="Areas\Site\Controllers\CartController.cs" />
@@ -506,6 +507,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Member\Views\User\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\Shared\_Center.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\User\Profile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\User\Collection.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\Trade\Order.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

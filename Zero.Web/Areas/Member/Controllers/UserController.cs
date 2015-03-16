@@ -69,5 +69,16 @@ namespace Zero.Web.Areas.Member.Controllers
             return View(resultInfo);
         }
 
+
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
+        public ActionResult Collection()
+        {
+            return View();
+        }
+
     }
 }

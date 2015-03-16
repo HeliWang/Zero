@@ -1,0 +1,331 @@
+﻿@{
+    ViewBag.Title = "Center";
+}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="Generator" content="ECSHOP v2.7.3" />
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<title>用户中心</title>
+<link rel="shortcut icon" href="http://www.ecmoban.com/favicon.ico" />
+<link rel="stylesheet" href="/content/default/css/bootstrap.min.css">
+<link rel="stylesheet" href="/content/default/css/member-center.css">
+<link rel="stylesheet" href="/content/default/css/chosen.css">
+<link rel="stylesheet" href="/content/default/css/smoke.css">
+
+<script type="text/javascript" src="/content/js/transport2.js"></script>
+<script type="text/javascript" src="/content/js/common.js"></script>
+<script type="text/javascript" src="/content/js/user.js"></script>
+<script type="text/javascript" src="/content/js/jquery.min.js"></script> 
+<script type="text/javascript" src="/content/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/content/js/member-common.js"></script>
+
+<!--[if IE 6]> 
+<script src="http://www.ecmoban.com/content/themes/ecmoban2014/js/ie6-tips.js"></script>
+<![endif]-->
+<script type="text/javascript" src="http://member.ecmoban.com/content/themes/ecmoban2014/lib/chosen/chosen.jquery.js"></script> 
+<script type="text/javascript" src="http://member.ecmoban.com/content/themes/ecmoban2014/lib/smoke/smoke.min.js"></script> 
+<!-- <script type="text/javascript" src="http://member.ecmoban.com/content/themes/ecmoban2014/lib/bootstrap.plugins.min.js"></script> --> 
+
+<script src="http://www.ecmoban.com/content/system/statics/js/ecjia.js" type="text/javascript"></script> 
+<script src="http://www.ecmoban.com/content/system/statics/js/ecjia.listtable.js" type="text/javascript"></script> 
+<script src="http://www.ecmoban.com/content/system/statics/js/ecjia.common.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+
+
+<div class="top fl wfs fz12">
+  <div class="wrapper">
+    <div class="left fl">尊敬用户，欢迎登陆管理中心！</div>
+    <div class="right fr" > 您的账号：U.F.O <a href="http://member.ecmoban.com/user.php?act=secure">[修改密码]</a> <a href="http://member.ecmoban.com/user.php?act=logout">[退出登录]</a> </div>
+  </div>
+</div>
+<div class="head fl wfs">
+  <div class="wrapper"> <a class="logo" href="http://www.ecmoban.com"><img src="http://member.ecmoban.com/content/themes/ecmoban2014/images/logo.png" alt="ECSHOP模板堂"></a>
+    <div class="nav"> <a class="index" href="http://www.ecmoban.com">首页</a> <a class="member member-now" href="http://member.ecmoban.com/user.php">会员中心</a> <a class="order " href="http://member.ecmoban.com/user.php?act=order_list&num=1">订单中心</a> <a class="account " href="http://member.ecmoban.com/user.php?act=account_detail">帐户中心</a> <a class="service " href="http://member.ecmoban.com/user.php?act=ask_list">售后服务</a> </div>
+  </div>
+</div>
+
+<div class="module fl wfs">
+  <div class="wrapper mt20">
+    <div class="menu fl">
+      <div class="menu-body fl">
+        <div class="infos fl wfs"> <a href="/member/user/"><img class="fl" src="http://bbs.ecmoban.com/uc_server/avatar.php?uid=43595" alt="U.F.O"></a> <span class="fl">U.F.O</span><br>
+          <i class="fl">2014-10-24 17:56:57</i> </div>
+        <p class="index fl wfs"><a href="/member/user/" style="color:#ffffff">用户中心&nbsp;-&nbsp;首页</a></p>
+        <dl class="menu-dl fl wfs">
+          <dt class="menu-dt order fl wfs"><i></i>订单中心</dt>
+          <dd class="fl wfs">
+            <p><a href="/member/trade/order" >我的订单</a></p>
+          </dd>
+        </dl>
+        <dl class="menu-dl fl wfs">
+          <dt class="menu-dt member fl wfs"><i></i>会员中心</dt>
+          <dd class="fl wfs">
+            <p><a href="/member/user/profile">用户信息</a></p>
+            <p><a href="/member/user/collection"> 我的关注</a></p>
+            <p><a href="http://member.ecmoban.com/user.php?act=comment_list"> 我的评论</a></p>
+          </dd>
+        </dl>
+        <dl class="menu-dl fl wfs">
+          <dt class="menu-dt account fl wfs"><i></i>账户中心</dt>
+          <dd class="fl wfs">
+            <p><a href="http://member.ecmoban.com/user.php?act=bonus">我的红包</a></p>
+            <p><a href="http://member.ecmoban.com/user.php?act=account_detail"> 我的余额</a></p>
+          </dd>
+        </dl>
+        <dl class="menu-dl fl wfs">
+          <dt class="menu-dt service fl wfs"><i></i>售后服务</dt>
+          <dd class="fl wfs">
+            <p><a href="http://member.ecmoban.com/user.php?act=product_knowledge" >产品知识库</a></p>
+            <p><a href="http://member.ecmoban.com/user.php?act=ask_list" >问答列表</a></p>
+            <p><a href="http://member.ecmoban.com/user.php?act=question" >发起提问</a></p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    @RenderBody()
+
+  </div>
+</div>
+
+<div class="foot fl wfs fz12">
+  <p>&copy; 2005-2015 ecshop模板堂(ecmoban.com) 版权所有，并保留所有权利。常年法律顾问：上海华宏律师事务所</p>
+  <p>上海市普陀区中山北路2911号中关村科技大厦2402室 </p>
+</div>
+
+<script>
+    $(".j-add-comment").toggle(
+        function(){
+            $(this).siblings(".j-comment-box").slideDown();
+        },
+        function(){
+            $(this).siblings(".j-comment-box").slideUp();
+        }
+    );
+</script>
+
+<script>
+
+	$('.js_select').chosen({
+// add_class: "down-menu-language",
+no_results_text: "未找到搜索内容!",
+allow_single_deselect: true,
+disable_search_threshold: 5
+});
+
+//给th中的select加修改事件
+$('.questlist tr select[data-trigger="search"]').on('change', function(){
+	var $this = $(this);
+	var url = $this.closest('tr').attr('data-url')?$this.closest('tr').attr('data-url'):'user.php?act=ask_list';
+	var name = $this.attr('name');
+	var val = $this.val();
+// console.log(url + '&' + name + '=' + val);
+window.location.href = url + '&' + name + '=' + val;
+});
+
+//点击添加保密信息的事件     
+$("#addSecret").bind('click',function(e){
+	e.preventDefault();
+});
+
+//发起提问的表单验证
+$('#askForm').on('submit', function(e){
+	var $this = $(this);
+	var title = $this.find('input[name="title"]').val();
+	var info = $this.find('textarea[name="content"]');
+
+	if($this.find('select[name="oid"] option:selected').val() == 0 || $this.find('select[name="oid"] option:selected').val() == ''){
+		smoke.alert('请先选择产品类型');
+	}else if(title.length == 0){
+		smoke.alert('请填写问题标题');
+	}else if(info.length == 0){
+		smoke.alert('请填写问题内容');
+	}else{
+		$('#askForm').trigger('submit');
+		return true;
+	}
+	e.preventDefault();
+});
+
+//发起提问的产品类型变更时
+$('#askForm select[name="oid"]').on('change', function(){
+	var protype = $(this).find('option:selected').attr('data-protype');
+	$('#askForm').find('input[name="protype"]').val(protype);
+})
+
+//发起提问服务器填写框的触发事件
+$('select[name="suptype"]').on('change', function(){
+	if($(this).find('option:selected').val() == 1){
+		$('.ask-items-group').removeClass('hide');
+	}else{
+		$('.ask-items-group').addClass('hide');
+	}
+});
+
+$(function(){
+//
+var cursorPosition = {
+	get: function (textarea) {
+		var rangeData = {text: "", start: 0, end: 0};
+
+if (textarea.setSelectionRange) { // W3C
+	textarea.focus();
+	rangeData.start= textarea.selectionStart;
+	rangeData.end = textarea.selectionEnd;
+	rangeData.text = (rangeData.start != rangeData.end) ? textarea.value.substring(rangeData.start, rangeData.end): "";
+} else if (document.selection) { // IE
+	textarea.focus();
+	var i,
+	oS = document.selection.createRange(),
+	oR = document.body.createTextRange();
+	oR.moveToElementText(textarea);
+
+	rangeData.text = oS.text;
+	rangeData.bookmark = oS.getBookmark();
+
+	for (i = 0; oR.compareEndPoints('StartToStart', oS) < 0 && oS.moveStart("character", -1) !== 0; i ++) {
+
+		if (textarea.value.charAt(i) == '\r' ) {
+			i ++;
+		}
+	}
+	rangeData.start = i;
+	rangeData.end = rangeData.text.length + rangeData.start;
+}
+
+return rangeData;
+},
+
+set: function (textarea, rangeData) {
+	var oR, start, end;
+	if(!rangeData) {
+		alert("You must get cursor position first.")
+	}
+	textarea.focus();
+if (textarea.setSelectionRange) { // W3C
+	textarea.setSelectionRange(rangeData.start, rangeData.end);
+} else if (textarea.createTextRange) { // IE
+	oR = textarea.createTextRange();
+
+	if(textarea.value.length === rangeData.start) {
+		oR.collapse(false);
+		oR.select();
+	} else {
+		oR.moveToBookmark(rangeData.bookmark);
+		oR.select();
+	}
+}
+},
+
+add: function (textarea, rangeData, text) {
+	var oValue, nValue, oR, sR, nStart, nEnd, st;
+	this.set(textarea, rangeData);
+
+if (textarea.setSelectionRange) { // W3C
+	oValue = textarea.value;
+	nValue = oValue.substring(0, rangeData.start) + text + oValue.substring(rangeData.end);
+//nStart = nEnd = rangeData.start + text.length;
+
+// 光标在<!--{}-->里面
+nStart = nEnd = rangeData.start + 1;
+
+st = textarea.scrollTop;
+textarea.value = nValue;
+// Fixbug:
+// After textarea.values = nValue, scrollTop value to 0
+if(textarea.scrollTop != st) {
+	textarea.scrollTop = st;
+}
+textarea.setSelectionRange(nStart, nEnd);
+} else if (textarea.createTextRange) { // IE
+	sR = document.selection.createRange();
+	sR.text = text;
+	sR.setEndPoint('StartToEnd', sR);
+	sR.select();
+}
+}
+}
+
+var faq_content = $("#quest-infos")[0],
+faq_char = "{}",
+faq_char_length = 1;
+$("#addSecret").bind('click',function(e){
+	e.preventDefault();
+	var pos = cursorPosition.get(faq_content);
+	cursorPosition.add(faq_content,pos,faq_char);
+});
+})
+
+
+
+// // 我的收藏 javascript
+// //点击切换
+// $(".j-item").click(function(){
+//     $(this).addClass("now").siblings(".j-item").removeClass("now");
+//     $(".favorite").eq($(this).index()).show().siblings(".favorite").hide();
+// });
+// // 问题列表 js
+// //选项卡展开
+// $(".j-lists").click(function(e){
+//     $(".j-lists").not($(this)).find(".j-option-box").hide();
+//     $(this).find(".j-option-box").toggle();
+//     //阻止冒泡
+//     e.stopPropagation();
+// });
+// // 选项框隐藏
+// $(document).click(function(){
+//     $(".j-lists").find(".j-option-box").hide();
+// });
+// //选择选项卡中的内容,并初始化value值
+// $(".j-option-box span").click(function(e){
+
+//     var spanText = $(this).html();
+//     $(this).parent().siblings("p").find("span").html(spanText);
+//     //隐藏选项卡
+//     $(this).parent().hide();
+//     //阻止冒泡
+//     e.stopPropagation();
+// });
+// // 发起提问 js
+// //选项卡展开
+// $(".j-select").click(function(e){
+//     $(".j-select").find(".j-option-box").hide();
+//     $(this).find(".j-option-box").show();
+//     //阻止冒泡
+//     e.stopPropagation();
+// });
+// //选项框隐藏
+// $(document).click(function(){
+//     $(".j-select").find(".j-option-box").hide();
+// });
+// //提交验证
+// $(".j-confirm-modify").click(function(){
+//     alert($("goodsId").val());
+//     // $("#askForm").submit();
+// });
+// // 按问题标题
+// $(".j-titles-select").click(function(e){
+//       $(".j-titles-items").show();
+// });
+// $(".j-titles-items span").click(function(e){
+
+//     var spanText = $(this).html();
+//     $(this).parent().siblings("p").find("span").html(spanText);
+//     //隐藏选项卡
+//     $(this).parent().hide();
+//     //阻止冒泡
+//     e.stopPropagation();
+// });
+
+</script> 
+
+</body>
+</html>
