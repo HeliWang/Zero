@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Areas/Member/Views/Shared/_Center.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<div class="member-infos fr w955">
+    <h3 class="operate-title mt20">手机设置</h3>
+    <div class="operate-items mt20"> <a class="j-item" href="/member/user/profile">个人资料</a> <a class="j-item now" href="/member/user/secure">账户安全</a> </div>
+    <div class="infos">
+    <div class="infos-item j-infos-item" style="display:block;">
+        <form id="form" action="/member/user/emailEdit" method="post">
+        <p class="p-item top-line"> <span>手机号</span>
+            <input type="text"  id="Phone"  name="OldPassword" class="form-control" />
+        </p>
+        <p class="p-item top-line"> <span>短信验证码</span>
+            <input type="text"  id="Phone"  name="OldPassword" class="form-control" style="width:120px;" />
+            <a>获取短信验证码</a>
+        </p>
+        <p class="p-item top-line" style="padding-bottom:50px;">
+            <a class="btn btn-danger confirm-modify" onclick="ajaxSubmitForm('form','/member/user/secure')">确认提交</a>
+        </p>
+        </form>
+    </div>
+</div>
+</div>

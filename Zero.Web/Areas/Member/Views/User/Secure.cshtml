@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Areas/Member/Views/Shared/_Center.cshtml";
+    ViewBag.Title = "Index";
+}
+
+<div class="member-infos fr w955">
+    <h3 class="operate-title mt20">用户信息</h3>
+    <div class="operate-items mt20"> <a class="j-item" href="/member/user/profile">个人资料</a> <a class="j-item now" href="/member/user/secure">账户安全</a> </div>
+    <div class="infos">
+    <div class="infos-item j-infos-item">
+        <style>
+            .auth{margin:auto;width:805px;margin-bottom:10px;height:80px;border:#FF4343 1px solid}
+            .auth li{float:left;height:80px;line-height:80px;text-align:center;}
+            .auth .status{width:50px;}
+            .auth .title{width:100px;font-size:20px;}
+            .auth .msg{width:550px;border-left:#DFDFDF 1px solid;border-right:#DFDFDF 1px solid;text-align:left;padding-left:10px; }
+            .auth .action{width:100px;}
+        </style>
+        <form id="form" action="/member/user/Profile" method="post">
+        <div class="auth clearfix">
+            <ul>
+                <li class="status">√</li>
+                <li class="title">登录密码</li>
+                <li class="msg">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</li>
+                <li class="action"><a href="/member/user/password">修改</a></li>
+            </ul>
+        </div>
+        <div class="auth clearfix">
+            <ul>
+                <li class="status">√</li>
+                <li class="title">邮箱认证</li>
+                <li class="msg">您验证的邮箱： 7*****4@qq.com</li>
+                <li class="action"><a href="/member/user/email">修改</a></li>
+            </ul>
+        </div>
+        <div class="auth clearfix">
+            <ul>
+                <li class="status">√</li>
+                <li class="title">手机认证</li>
+                <li class="msg">您验证的手机： 138*****201   若已丢失或停用，请立即更换，避免账户被盗</li>
+                <li class="action"><a href="/member/user/phone">修改</a></li>
+            </ul>
+        </div>
+        @*<div class="auth clearfix">
+            <ul>
+                <li class="status">√</li>
+                <li class="title">密保设置</li>
+                <li class="msg">请填写邮箱，并根据邮箱进行认证</li>
+                <li class="action">修改</li>
+            </ul>
+        </div>*@
+        </form>
+    </div>
+</div>
+</div>

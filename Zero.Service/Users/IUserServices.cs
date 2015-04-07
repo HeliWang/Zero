@@ -16,6 +16,10 @@ namespace Zero.Service.Users
 
         ResultInfo Register(User user);
 
+        ResultInfo Edit(User user);
+
+        User GetById(int userId);
+
         ResultInfo IsExist(string key, string value);
     }
 }

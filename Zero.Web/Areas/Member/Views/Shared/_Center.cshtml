@@ -17,12 +17,13 @@
 <link rel="stylesheet" href="/content/default/css/chosen.css">
 <link rel="stylesheet" href="/content/default/css/smoke.css">
 
-<script type="text/javascript" src="/content/js/transport2.js"></script>
-<script type="text/javascript" src="/content/js/common.js"></script>
-<script type="text/javascript" src="/content/js/user.js"></script>
-<script type="text/javascript" src="/content/js/jquery.min.js"></script> 
-<script type="text/javascript" src="/content/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/content/js/member-common.js"></script>
+<script type="text/javascript" src="/content/default/js/transport2.js"></script>
+<script type="text/javascript" src="/content/default/js/common.js"></script>
+<script type="text/javascript" src="/content/default/js/user.js"></script>
+<script type="text/javascript" src="/content/default/js/jquery.min.js"></script> 
+<script type="text/javascript" src="/content/default/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/content/default/js/member-common.js"></script>
+<script type="text/javascript" src="/content/default/js/jquery.form.js"></script>
 
 <!--[if IE 6]> 
 <script src="http://www.ecmoban.com/content/themes/ecmoban2014/js/ie6-tips.js"></script>
@@ -111,7 +112,39 @@
         }
     );
 </script>
-
+<script>
+    function ajaxSubmitForm(form) {
+        var options = {};
+        $(form).ajaxSubmit({
+            beforeSubmit: function (formData, jqForm, options) {
+                return true;
+            },
+            success: function (responseText, statusText, xhr, $form) {
+                alert(responseText.Message);
+            },
+            error: function () {
+                alert('系统异常，请重试或联系技术');
+            }
+        });
+    }
+    function ajaxSubmitForm(form,url) {
+        var options = {};
+        $(form).ajaxSubmit({
+            beforeSubmit: function (formData, jqForm, options) {
+                return true;
+            },
+            success: function (responseText, statusText, xhr, $form) {
+                alert(responseText.Message);
+                if (responseText.Status == 0) {
+                    window.location.href = url;
+                }
+            },
+            error: function () {
+                alert('系统异常，请重试或联系技术');
+            }
+        });
+    }
+</script>
 <script>
 
 	$('.js_select').chosen({

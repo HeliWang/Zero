@@ -41,6 +41,18 @@ namespace Zero.Service.Users
             return new ResultInfo("注册成功");
         }
 
+        public ResultInfo Edit(User user)
+        {
+            _userRepository.Update(user);
+
+            return new ResultInfo("修改成功");
+        }
+
+        public User GetById(int userId)
+        {
+            return _userRepository.GetById(userId);
+        }
+
         public ResultInfo IsExist(string key, string value)
         {
 

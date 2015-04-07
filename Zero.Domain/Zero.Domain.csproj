@@ -57,6 +57,7 @@
     <Compile Include="News\NewsItem.cs" />
     <Compile Include="News\NewsSearch.cs" />
     <Compile Include="News\Tag.cs" />
+    <Compile Include="Sys\Code.cs" />
     <Compile Include="Tool\Site.cs" />
     <Compile Include="Trades\Cart.cs" />
     <Compile Include="Trades\Order.cs" />
@@ -78,7 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Message\" />
-    <Folder Include="Sys\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

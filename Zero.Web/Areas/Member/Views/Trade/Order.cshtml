@@ -1,5 +1,24 @@
 ﻿@{
-    ViewBag.Title = "Order";
+    Layout = "~/Areas/Member/Views/Shared/_Center.cshtml";
+    ViewBag.Title = "Index";
 }
 
-<h2>Order</h2>
+<div class="member-orders fr w955">
+    <h3 class="operate-title mt20">我的订单</h3>
+    <div class="operate-items mt20"> <a class="j-item now" href="user.php?act=order_list&num=1">最近一个月订单</a> <a class="j-item " href="user.php?act=order_list&num=2">最近三个月订单</a> <a class="j-item " href="user.php?act=order_list&num=3">三个月之前订单</a> </div>
+    <div class="orders j-orders" style="display:block;">
+    <ul class="orders-items">
+        <li class="fl wfs">
+        <div class="orders-list-no fl wfs"> <img src="http://member.ecmoban.com/content/themes/ecmoban2014/images/orders-list-no.png" alt="">
+            <p>您还没有在模模板堂买过东西哦，快去逛逛吧~</p>
+        </div>
+        </li>
+    </ul>
+    <form name="selectPageForm" class="pageForm" action="/user.php" method="get">
+        <div class="fl wfs">
+        <ul class="pagination pages">
+        </ul>
+        </div>
+    </form>
+    </div>
+</div> 

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /**
  * 会员中心 css
  * @authors Your Name (you@example.org)
@@ -1086,6 +1086,7 @@ a{cursor: pointer;}
     margin-left: 80px;
     background-color: #EF353D;
     border-radius: 5px;
+    line-height:27px;
 }
 /*
  * 会员中心--我的收藏

@@ -520,6 +520,24 @@
   <ItemGroup>
     <Content Include="Areas\Member\Views\Trade\Order.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\default\js\jquery.min.bak" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\User\Secure.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\User\Password.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\User\Phone.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\User\Email.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Member\Views\User\Protection.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

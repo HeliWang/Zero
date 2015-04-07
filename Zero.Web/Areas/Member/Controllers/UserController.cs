@@ -65,12 +65,89 @@ namespace Zero.Web.Areas.Member.Controllers
                 //成功后登入并跳转
                 Response.Redirect("/member/user/");
             }
-
+          
             return View(resultInfo);
         }
 
 
         public ActionResult Profile()
+        {
+            var user = _userServices.GetById(1);
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Profile(User user)
+        {
+            ResultInfo resultInfo = new ResultInfo(1, "传递的参数有误");
+
+            if (ModelState.IsValid)
+            {
+                var oldUser = _userServices.GetById(1);
+                oldUser.UserName = user.UserName;
+                oldUser.RealName = user.RealName;
+                oldUser.Nick = user.Nick;
+                oldUser.QQ = user.QQ;
+
+                resultInfo = _userServices.Edit(oldUser);
+            }
+
+            return Json(resultInfo);
+        }
+
+        public ActionResult Secure()
+        {
+            return View();
+        }
+
+        public ActionResult Password()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PasswordEdit()
+        {
+            var oldPassword = RequestHelper.Form("oldPassword");
+            var newPassword = RequestHelper.Form("newPassword");
+            var confimPassword = RequestHelper.Form("confimPassword");
+
+            ResultInfo resultInfo = new ResultInfo(1, "传递的参数有误");
+
+            if (ModelState.IsValid)
+            {
+                if (newPassword != confimPassword)
+                {
+                    resultInfo = new ResultInfo(1, "两次密码输入不正确");
+                    return Json(resultInfo); 
+                }
+
+                var oldUser = _userServices.GetById(1);
+
+                if (oldUser.Password != oldPassword)
+                {
+                    resultInfo = new ResultInfo(1, "请输入正确的旧密码");
+                    return Json(resultInfo); 
+                }
+
+                oldUser.Password = newPassword;
+                resultInfo = _userServices.Edit(oldUser);
+            }
+
+            return Json(resultInfo);
+        }
+
+        public ActionResult Phone()
+        {
+            return View();
+        }
+
+        public ActionResult Email()
+        {
+            return View();
+        }
+
+        public ActionResult Protection()
         {
             return View();
         }
