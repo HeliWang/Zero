@@ -61,6 +61,7 @@
     <Compile Include="Mapping\News\NewsDetailMap.cs" />
     <Compile Include="Mapping\News\NewsItemMap.cs" />
     <Compile Include="Mapping\News\TagMap.cs" />
+    <Compile Include="Mapping\Sys\CodeMap.cs" />
     <Compile Include="Mapping\Trades\CartMap.cs" />
     <Compile Include="Mapping\Products\ProductDescMap.cs" />
     <Compile Include="Mapping\Products\ProductMap.cs" />
@@ -163,6 +164,10 @@
     <Compile Include="Migrations\201410101342470_UpdateYes2.Designer.cs">
       <DependentUpon>201410101342470_UpdateYes2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504080931431_AddCode.cs" />
+    <Compile Include="Migrations\201504080931431_AddCode.Designer.cs">
+      <DependentUpon>201504080931431_AddCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -251,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201410101342470_UpdateYes2.resx">
       <DependentUpon>201410101342470_UpdateYes2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504080931431_AddCode.resx">
+      <DependentUpon>201504080931431_AddCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

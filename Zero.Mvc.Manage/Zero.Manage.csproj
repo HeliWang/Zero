@@ -135,6 +135,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\News\NewsController.cs" />
     <Compile Include="Controllers\Products\ProductController.cs" />
+    <Compile Include="Controllers\Sys\CodeController.cs" />
     <Compile Include="Controllers\Tool\CatchController.cs" />
     <Compile Include="Controllers\Trades\OrderController.cs" />
     <Compile Include="Controllers\Upload\PhotoController.cs" />
@@ -657,6 +658,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Catch\CatchIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Code\CodeIndex.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

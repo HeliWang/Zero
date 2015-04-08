@@ -90,6 +90,11 @@
 					<li><span><a onclick="openTab('网页抓取','@Url.Action("catchIndex", "catch")')">自定义列表</a></span></li>
 				</ul>
 			</div>
+            <div title="系统管理" style="overflow: auto; padding: 10px;">
+				<ul class="easyui-tree">
+					<li><span><a onclick="openTab('验证码列表','@Url.Action("codeIndex", "code")')">验证码列表</a></span></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;"></div>

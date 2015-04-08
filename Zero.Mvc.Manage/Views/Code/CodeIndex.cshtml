@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Views/Shared/Tab/_Index.cshtml";
+    ViewBag.Title = "NewsIndex";
+}
+
+<!-- 列表 -->
+<table id="grid"></table>
+
+<!-- 工具栏 -->
+<div id="toolbar">
+    <div>
+        <a href="#" id="add"  class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+        <a href="#" id="edit" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
+        <a href="#" id="remove" class="easyui-linkbutton" iconCls="icon-remove" plain="true">移除</a>
+        <a href="#" id="reload" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
+        
+    </div>
+   @* <div>
+        Date From: <input class="easyui-datebox" style="width:80px">
+        To: <input class="easyui-datebox" style="width:80px">
+        Language: 
+        <select class="easyui-combobox" panelHeight="auto" style="width:100px">
+            <option value="java">Java</option>
+            <option value="c">C</option>
+            <option value="basic">Basic</option>
+            <option value="perl">Perl</option>
+            <option value="python">Python</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-search">Search</a>
+    </div>*@
+</div>
+
+<script type="text/javascript">
+
+    var controller = "Code";
+    var controllerName = "验证码";
+
+    $(function () {
+
+        //加载网格(搜索中文版对照属性，来配置)
+        $('#grid').datagrid({
+            title: '验证码列表',
+            collapsible: true,
+            rownumbers: true,
+            url: '/Code/CodeList',
+            method: 'get',
+            loadMsg: '正在加载数据...',
+            //idField: 'ProductId',
+            fitColumns: false,
+            width: 1180,
+            height: 630,
+            pagination: true,
+            pageSize: 30,
+            pageList: [10, 20, 30, 40, 50, 100],
+            frozenColumns: [[
+                { field: 'CodeId', checkbox: true },
+                { field: 'UserId', title: '用户编号',  align: 'center' },
+                { field: 'Operater', title: '操作人', algin: 'center' },
+                { field: 'CodeType', title: '验证码用途', algin: 'center' },
+                { field: 'SendType', title: '发送方式', algin: 'center', formatter: timeFormat },
+                { field: 'SendNo', title: '发送号码', algin: 'center', formatter: timeFormat },
+                { field: 'Content', title: '内容', align: 'center', formatter: operateFormat },
+                { field: 'Restult', title: '返回', align: 'center', formatter: operateFormat },
+                { field: 'Status', title: '状态', align: 'center', formatter: operateFormat },
+                { field: 'CreateTime', title: '创建时间', align: 'center', formatter: operateFormat },
+                { field: 'UpdateTime', title: '修改时间', align: 'center', formatter: operateFormat },
+                { field: 'DetailUrl', hidden: true },
+            ]],
+            onLoadError: function () {
+                $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
+            },
+            toolbar: '#toolbar',
+
+            //openParentTab('商品添加部分', '/Product/ProductAddPart');
+        });
+
+        function operateFormat(value, row, index) {
+            var html = "";
+            html += openParentTabLinkButton('修改', '/News/NewsEdit?NewsId=' + row.id, row.id);
+            html += " | ";
+            html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除</a>";
+            return html;
+        }
+
+        function photoFormat(value, row, index) {
+            if (value == null) return '';
+            return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value.split("|")[0] + '" width="100" height="100"/></a>';
+        }
+    });
+</script>

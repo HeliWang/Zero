@@ -67,6 +67,8 @@
     <Compile Include="News\NewsCateService.cs" />
     <Compile Include="News\NewsServices.cs" />
     <Compile Include="Products\IProductService.cs" />
+    <Compile Include="Sys\CodeServices.cs" />
+    <Compile Include="Sys\ICodeServices.cs" />
     <Compile Include="Trades\CartService.cs" />
     <Compile Include="Trades\ICartService.cs" />
     <Compile Include="Trades\IOrderService.cs" />
