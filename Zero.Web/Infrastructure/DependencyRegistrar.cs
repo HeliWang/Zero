@@ -14,6 +14,7 @@ using Zero.Service.News;
 using Zero.Service.Trades;
 using Zero.Service.Customs;
 using Zero.Service.Users;
+using Zero.Service.Sys;
 using Zero.Domain.Cates;
 
 namespace Zero.Web.Infrastructure
@@ -36,6 +37,7 @@ namespace Zero.Web.Infrastructure
             builder.RegisterType<Zero.Web.Areas.Member.Controllers.HomeController>();
             builder.RegisterType<Zero.Web.Areas.Member.Controllers.UserController>();
             builder.RegisterType<Zero.Web.Areas.Member.Controllers.TradeController>();
+            builder.RegisterType<Zero.Web.Areas.Member.Controllers.SysController>();
             #endregion
 
 
@@ -65,7 +67,7 @@ namespace Zero.Web.Infrastructure
 
             builder.RegisterType<NewsService>().As<INewsService>().InstancePerHttpRequest();
             builder.RegisterType<UserServices>().As<IUserServices>().InstancePerHttpRequest();
-
+            builder.RegisterType<CodeService>().As<ICodeService>().InstancePerHttpRequest();
 
 
 

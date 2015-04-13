@@ -18,6 +18,8 @@ namespace Zero.Service.Users
 
         ResultInfo Edit(User user);
 
+        ResultInfo PhoneBind(int userId, string phone, string code);
+
         User GetById(int userId);
 
         ResultInfo IsExist(string key, string value);

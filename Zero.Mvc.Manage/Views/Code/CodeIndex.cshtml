@@ -53,26 +53,60 @@
             pageSize: 30,
             pageList: [10, 20, 30, 40, 50, 100],
             frozenColumns: [[
-                { field: 'CodeId', checkbox: true },
+                { field: 'id', checkbox: true },
+                { field: 'CodeId', title: '编号', align: 'center' },
                 { field: 'UserId', title: '用户编号',  align: 'center' },
                 { field: 'Operater', title: '操作人', algin: 'center' },
-                { field: 'CodeType', title: '验证码用途', algin: 'center' },
-                { field: 'SendType', title: '发送方式', algin: 'center', formatter: timeFormat },
-                { field: 'SendNo', title: '发送号码', algin: 'center', formatter: timeFormat },
-                { field: 'Content', title: '内容', align: 'center', formatter: operateFormat },
-                { field: 'Restult', title: '返回', align: 'center', formatter: operateFormat },
-                { field: 'Status', title: '状态', align: 'center', formatter: operateFormat },
-                { field: 'CreateTime', title: '创建时间', align: 'center', formatter: operateFormat },
-                { field: 'UpdateTime', title: '修改时间', align: 'center', formatter: operateFormat },
+                { field: 'CodeType', title: '验证码用途', algin: 'center', formatter: codeTypeFormat },
+                { field: 'SendType', title: '发送方式', algin: 'center', formatter: sendTypeFormat },
+                { field: 'SendNo', title: '发送号码', algin: 'center' },
+                { field: 'Num', title: '验证码', algin: 'center' },
+                { field: 'Content', title: '内容', align: 'center' },
+                { field: 'Restult', title: '发送结果', align: 'center' },
+                { field: 'Status', title: '状态', align: 'center', formatter: statusFormat },
+                { field: 'CreateTime', title: '创建时间', align: 'center', formatter: timeFormat },
+                { field: 'UpdateTime', title: '修改时间', align: 'center', formatter: timeFormat },
                 { field: 'DetailUrl', hidden: true },
             ]],
             onLoadError: function () {
                 $.messager.alert('提醒', '数据加载错误，请重试或重新登入系统');
             },
             toolbar: '#toolbar',
-
-            //openParentTab('商品添加部分', '/Product/ProductAddPart');
         });
+
+        function codeTypeFormat(value, row, index) {
+            switch (value)
+            {
+                case 0:
+                    return "验证手机";
+                default:
+                    return "未知类型";
+            }
+        }
+
+        function sendTypeFormat(value, row, index) {
+            switch (value) {
+                case 0:
+                    return "手机";
+                case 1:
+                    return "邮件";
+                default:
+                    return "未知方式";
+            }
+        }
+
+        function statusFormat(value, row, index) {
+            switch (value) {
+                case -1:
+                    return "发送失败";
+                case 0:
+                    return "发送成功";
+                case 1:
+                    return "已验证";
+                default:
+                    return "未知状态";
+            }
+        }
 
         function operateFormat(value, row, index) {
             var html = "";
@@ -80,11 +114,6 @@
             html += " | ";
             html += "<a href=\"javascript:void(0);\" onclick=\"operateAjax({ action: 'delete', ids:" + row.id + " })\">删除</a>";
             return html;
-        }
-
-        function photoFormat(value, row, index) {
-            if (value == null) return '';
-            return '<a href="' + row.DetailUrl + '" target="_blank"><img src="' + value.split("|")[0] + '" width="100" height="100"/></a>';
         }
     });
 </script>

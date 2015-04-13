@@ -142,6 +142,16 @@ namespace Zero.Web.Areas.Member.Controllers
             return View();
         }
 
+        public ActionResult PhoneBind()
+        {
+            var phone = RequestHelper.Form("phone");
+            var code = RequestHelper.Form("code");
+
+            ResultInfo resultInfo = _userServices.PhoneBind(1, phone, code);
+
+            return Json(resultInfo);
+        }
+
         public ActionResult Email()
         {
             return View();

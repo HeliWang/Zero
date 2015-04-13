@@ -28,6 +28,25 @@ namespace Zero.Core.Web
         }
 
         /// <summary>
+        /// 获取数字指定的随机数
+        /// </summary>
+        /// <param name="lenght">长度</param>
+        public static string GetRandomNum(int lenght)
+        {
+            StringBuilder sb = new StringBuilder();
+            Random rand = new Random();
+
+            string code = "0123456789";
+            char[] codes = code.ToCharArray();
+
+            for (int i = 0; i < lenght; i++)
+            {
+                sb.Append(codes[rand.Next(0, code.Length)].ToString());
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
         /// 字符串专浮点类型
         /// </summary>
         public static bool StrToFloat(string text)

@@ -6,6 +6,24 @@ using System.Threading.Tasks;
 
 namespace Zero.Domain.Sys
 {
+    public enum CodeType
+    {
+        验证手机=0,
+    }
+
+    public enum SendType
+    {
+        手机=0,
+        邮件=1,
+    }
+
+    public enum CodeStatus
+    {
+        发送失败 = -1,
+        发送成功 = 0,
+        已验证 = 1,
+    }
+
     /// <summary>
     /// 验证码
     /// </summary>
@@ -31,12 +49,12 @@ namespace Zero.Domain.Sys
         /// <summary>
         /// 验证码类型
         /// </summary>
-        public string CodeType { get; set; }
+        public int CodeType { get; set; }
 
         /// <summary>
         /// 发送方式
         /// </summary>
-        public string SendType { get; set; }
+        public int SendType { get; set; }
 
         /// <summary>
         /// 发送号码 
@@ -61,7 +79,7 @@ namespace Zero.Domain.Sys
         /// <summary>
         /// 状态
         /// </summary>
-        public int Status { get; set; }
+        public int CodeStatus { get; set; }
 
         /// <summary>
         /// 创建时间

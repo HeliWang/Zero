@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Member\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Member\Controllers\SysController.cs" />
     <Compile Include="Areas\Member\Controllers\TradeController.cs" />
     <Compile Include="Areas\Member\Controllers\UserController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
