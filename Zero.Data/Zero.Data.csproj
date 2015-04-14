@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201504100931226_UpdateCode2.Designer.cs">
       <DependentUpon>201504100931226_UpdateCode2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504140343253_UpdateCode3.cs" />
+    <Compile Include="Migrations\201504140343253_UpdateCode3.Designer.cs">
+      <DependentUpon>201504140343253_UpdateCode3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EfDbContext.cs" />
     <Compile Include="EfRepository.cs" />
@@ -273,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504100931226_UpdateCode2.resx">
       <DependentUpon>201504100931226_UpdateCode2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504140343253_UpdateCode3.resx">
+      <DependentUpon>201504140343253_UpdateCode3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

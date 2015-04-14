@@ -134,6 +134,7 @@
                 return true;
             },
             success: function (responseText, statusText, xhr, $form) {
+                debugger
                 alert(responseText.Message);
                 if (responseText.Status == 0) {
                     window.location.href = url;

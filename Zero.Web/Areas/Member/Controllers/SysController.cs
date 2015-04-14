@@ -32,14 +32,8 @@ namespace Zero.Web.Areas.Member.Controllers
             code.CodeType = codeType;
             code.SendType = sendType;
             code.SendNo = sendNo;
-            code.Num = Utils.GetRandomNum(6);
-            code.Content =string.Format("您的验证码为{0},请保管好你的密码。",code.Num);
-            code.Result = "<code>0</code>";
-            code.CodeStatus = (int)CodeStatus.发送成功;
-            code.CreateTime = DateTime.Now;
-            code.UpdateTime = DateTime.Now;
 
-            ResultInfo resultInfo = _codeServices.Add(code);
+            ResultInfo resultInfo = _codeServices.Send(code);
 
             return Json(resultInfo, JsonRequestBehavior.AllowGet);
         }

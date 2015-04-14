@@ -63,7 +63,7 @@
                 { field: 'Num', title: '验证码', algin: 'center' },
                 { field: 'Content', title: '内容', align: 'center' },
                 { field: 'Restult', title: '发送结果', align: 'center' },
-                { field: 'Status', title: '状态', align: 'center', formatter: statusFormat },
+                { field: 'CodeStatus', title: '状态', align: 'center', formatter: statusFormat },
                 { field: 'CreateTime', title: '创建时间', align: 'center', formatter: timeFormat },
                 { field: 'UpdateTime', title: '修改时间', align: 'center', formatter: timeFormat },
                 { field: 'DetailUrl', hidden: true },
@@ -78,7 +78,9 @@
             switch (value)
             {
                 case 0:
-                    return "验证手机";
+                    return "绑定手机";
+                case 1:
+                    return "绑定邮箱";
                 default:
                     return "未知类型";
             }

@@ -8,13 +8,15 @@
     <div class="operate-items mt20"> <a class="j-item" href="/member/user/profile">个人资料</a> <a class="j-item now" href="/member/user/secure">账户安全</a> </div>
     <div class="infos">
     <div class="infos-item j-infos-item" style="display:block;">
-        <form id="form" action="/member/user/emailEdit" method="post">
+        <form id="form" action="/member/user/emailBind" method="post">
         <p class="p-item top-line"> <span>邮箱</span>
             <input type="text"  id="Email"  name="Email" class="form-control" />
         </p>
         <p class="p-item top-line"> <span>邮箱验证码</span>
-            <input type="text"  id="Code"  name="Code" class="form-control" style="width:120px;" />
-            <a>获取短信验证码</a>
+            <input type="text"  id="Num"  name="Num" class="form-control" style="width:120px;" />
+            <i id="SendCode" style="cursor:pointer;">获取邮件验证码</i>
+            <i id="SendSucess" class="hidden">已发送，111秒后重发</i>
+            <i id="SendLoad" class="hidden"><img src="/content/images/load.gif" /></i>
         </p>
         <p class="p-item top-line" style="padding-bottom:50px;">
             <a class="btn btn-danger confirm-modify" onclick="ajaxSubmitForm('form','/member/user/secure')">确认提交</a>
@@ -23,3 +25,51 @@
     </div>
 </div>
 </div>
+<script>
+    $("#SendCode").click(function () {
+
+        var email = $("#Email").val();
+
+        if (email == "") {
+            alert("请输入邮箱地址");
+            return;
+        }
+
+        $("#SendLoad").removeClass("hidden");
+        var urlData = "/member/sys/sendCode?codeType=1&sendType=1&sendNo=" + email;
+        $.ajax({
+            type: "get",
+            url: urlData,
+            error: function () {
+                alert("网络异常，请重试或联系客服！");
+                $("#SendCode").removeClass("hidden");
+            },
+            success: function (msg) {
+                if (msg.Status == 0) {
+                    $("#SendCode").addClass("hidden");
+                    $("#SendSucess").removeClass("hidden");
+                    countdown();
+                }
+                else {
+                    alert(msg.Message);
+                    $("#SendCode").removeClass("hidden");
+                }
+            }
+        });
+        $("#SendLoad").addClass("hidden");
+    });
+
+    var timeout = 120;
+    function countdown() {
+        timeout--;
+        if (timeout == -1) {
+            timeout = 120;
+            $("#SendCode").removeClass("hidden");
+            $("#SendSucess").addClass("hidden");
+            return null;
+        }
+        $("#SendSucess").text("已发送，" + timeout + "秒后重发...");
+        setTimeout("countdown()", 1000);
+    }
+
+</script>

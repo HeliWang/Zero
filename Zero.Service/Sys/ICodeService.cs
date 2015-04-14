@@ -12,6 +12,8 @@ namespace Zero.Service.Sys
 {
     public interface ICodeService
     {
+        ResultInfo Send(Code code);
+
         ResultInfo Add(Code code);
 
         ResultInfo Edit(Code code);

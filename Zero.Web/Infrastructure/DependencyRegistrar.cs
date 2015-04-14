@@ -66,7 +66,7 @@ namespace Zero.Web.Infrastructure
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerHttpRequest();
 
             builder.RegisterType<NewsService>().As<INewsService>().InstancePerHttpRequest();
-            builder.RegisterType<UserServices>().As<IUserServices>().InstancePerHttpRequest();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerHttpRequest();
             builder.RegisterType<CodeService>().As<ICodeService>().InstancePerHttpRequest();
 
 

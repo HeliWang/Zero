@@ -8,7 +8,8 @@ namespace Zero.Domain.Sys
 {
     public enum CodeType
     {
-        验证手机=0,
+        绑定手机=0,
+        绑定邮箱=1,
     }
 
     public enum SendType
@@ -84,12 +85,12 @@ namespace Zero.Domain.Sys
         /// <summary>
         /// 创建时间
         /// </summary>
-        public DateTime? CreateTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 结束时间
         /// </summary>
-        public DateTime? UpdateTime { get; set; }
+        public DateTime UpdateTime { get; set; }
         
     }
 }

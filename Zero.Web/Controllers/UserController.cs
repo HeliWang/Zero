@@ -12,9 +12,9 @@ namespace Zero.Web.Controllers
 {
     public class UserController : Controller
     {
-        public UserServices _userServices;
+        public UserService _userServices;
 
-        public UserController(UserServices userServices)
+        public UserController(UserService userServices)
         {
             _userServices = userServices;
         }

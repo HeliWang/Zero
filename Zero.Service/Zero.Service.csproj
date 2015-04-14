@@ -82,8 +82,8 @@
     </Compile>
     <Compile Include="Upload\IPhotoService.cs" />
     <Compile Include="Upload\PhotoService.cs" />
-    <Compile Include="Users\IUserServices.cs" />
-    <Compile Include="Users\UserServices.cs" />
+    <Compile Include="Users\IUserService.cs" />
+    <Compile Include="Users\UserService.cs" />
     <Compile Include="Web References\img\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

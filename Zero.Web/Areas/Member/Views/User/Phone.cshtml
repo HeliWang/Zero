@@ -8,7 +8,7 @@
     <div class="operate-items mt20"> <a class="j-item" href="/member/user/profile">个人资料</a> <a class="j-item now" href="/member/user/secure">账户安全</a> </div>
     <div class="infos">
     <div class="infos-item j-infos-item" style="display:block;">
-        <form id="form" action="/member/user/emailEdit" method="post">
+        <form id="form" action="/member/user/phoneBind" method="post">
         <p class="p-item top-line"> <span>手机号</span>
             <input type="text"  id="Phone"  name="Phone" class="form-control" />
         </p>
@@ -51,6 +51,7 @@
                     countdown();
                 }
                 else {
+                    alert(msg.Message);
                     $("#SendCode").removeClass("hidden");
                 }
             }

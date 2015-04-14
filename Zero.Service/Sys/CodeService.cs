@@ -19,6 +19,31 @@ namespace Zero.Service.Sys
             _codeRepository = codeRepository;
         }
 
+        public ResultInfo Send(Code code)
+        {
+            //判断验证码是否正确
+            var oldCode = (from c in _codeRepository.Table
+                        where c.UserId == code.UserId && c.CodeType == code.CodeType &&c.SendType==code.SendType
+                        select c).OrderByDescending(c => c.CreateTime).FirstOrDefault();
+
+            if (oldCode != null && oldCode.CodeStatus == (int)CodeStatus.发送成功 && (DateTime.Now - oldCode.CreateTime).TotalSeconds < 120)
+            {
+                return new ResultInfo(1, "120秒才能重新获取，请等待");
+            }
+
+            
+            code.Num = Utils.GetRandomNum(6);
+            code.Content = string.Format("您的验证码为{0},请保管好你的验证码。", code.Num);
+            code.Result = "<code>0</code>";
+            code.CodeStatus = (int)CodeStatus.发送成功;
+            code.CreateTime = DateTime.Now;
+            code.UpdateTime = DateTime.Now;
+
+            _codeRepository.Add(code);
+
+            return new ResultInfo("发送成功");
+        }
+
         public ResultInfo Add(Code code)
         {
             _codeRepository.Add(code);

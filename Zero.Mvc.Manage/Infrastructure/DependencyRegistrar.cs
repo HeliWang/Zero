@@ -14,6 +14,7 @@ using Zero.Mvc.Manage.Controllers.News;
 using Zero.Mvc.Manage.Controllers.Customs;
 using Zero.Mvc.Manage.Controllers.Upload;
 using Zero.Mvc.Manage.Controllers.Sys;
+using Zero.Mvc.Manage.Controllers.User;
 using Zero.Service.Cates;
 using Zero.Service.Products;
 using Zero.Service.News;
@@ -21,6 +22,7 @@ using Zero.Service.Trades;
 using Zero.Service.Customs;
 using Zero.Service.Upload;
 using Zero.Service.Sys;
+using Zero.Service.Users;
 using Zero.Domain.Cates;
 
 
@@ -45,7 +47,7 @@ namespace Zero.Mvc.Manage.Infrastructure
             builder.RegisterType<CustomController>();
             builder.RegisterType<PhotoController>();
             builder.RegisterType<CodeController>();
-           
+            builder.RegisterType<UserController>();
 
             //service
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>));
@@ -66,6 +68,8 @@ namespace Zero.Mvc.Manage.Infrastructure
             builder.RegisterType<PhotoService>().As<IPhotoService>().InstancePerHttpRequest();
 
             builder.RegisterType<CodeService>().As<ICodeService>().InstancePerHttpRequest();
+
+            builder.RegisterType<UserService>().As<ICodeService>().InstancePerHttpRequest();
 
             // then
             var container = builder.Build();

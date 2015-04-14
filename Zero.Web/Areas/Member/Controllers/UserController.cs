@@ -12,9 +12,9 @@ namespace Zero.Web.Areas.Member.Controllers
 {
     public class UserController : Controller
     {
-        public IUserServices _userServices;
+        public IUserService _userServices;
 
-        public UserController(IUserServices userServices)
+        public UserController(IUserService userServices)
         {
             _userServices = userServices;
         }
@@ -84,7 +84,6 @@ namespace Zero.Web.Areas.Member.Controllers
             if (ModelState.IsValid)
             {
                 var oldUser = _userServices.GetById(1);
-                oldUser.UserName = user.UserName;
                 oldUser.RealName = user.RealName;
                 oldUser.Nick = user.Nick;
                 oldUser.QQ = user.QQ;
@@ -142,12 +141,13 @@ namespace Zero.Web.Areas.Member.Controllers
             return View();
         }
 
+        [HttpPost]
         public ActionResult PhoneBind()
         {
             var phone = RequestHelper.Form("phone");
-            var code = RequestHelper.Form("code");
+            var num = RequestHelper.Form("num");
 
-            ResultInfo resultInfo = _userServices.PhoneBind(1, phone, code);
+            ResultInfo resultInfo = _userServices.PhoneBind(1, phone, num);
 
             return Json(resultInfo);
         }
@@ -155,6 +155,17 @@ namespace Zero.Web.Areas.Member.Controllers
         public ActionResult Email()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult EmailBind()
+        {
+            var email = RequestHelper.Form("email");
+            var num = RequestHelper.Form("num");
+
+            ResultInfo resultInfo = _userServices.EmailBind(1, email, num);
+
+            return Json(resultInfo);
         }
 
         public ActionResult Protection()
