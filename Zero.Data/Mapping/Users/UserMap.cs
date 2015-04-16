@@ -15,7 +15,7 @@ namespace Zero.Data.Mapping.Users
             this.ToTable("User");
 
             //Ignore
-            //this.Ignore(m => m.id);
+            this.Ignore(u => u.id);
         }
     }
 }

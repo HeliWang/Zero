@@ -8,9 +8,9 @@
     <div class="operate-items mt20"> <a class="j-item" href="/member/user/profile">个人资料</a> <a class="j-item now" href="/member/user/secure">账户安全</a> </div>
     <div class="infos">
     <div class="infos-item j-infos-item" style="display:block;">
-        <form id="form" action="/member/user/phoneBind" method="post">
+        <form id="form" action="/member/user/mobileBind" method="post">
         <p class="p-item top-line"> <span>手机号</span>
-            <input type="text"  id="Phone"  name="Phone" class="form-control" />
+            <input type="text"  id="Mobile"  name="Mobile" class="form-control" />
         </p>
         <p class="p-item top-line"> <span>短信验证码</span>
             <input type="text"  id="Num"  name="Num" class="form-control" style="width:120px;" />
@@ -28,21 +28,23 @@
 <script>
     $("#SendCode").click(function () {
 
-        var phone = $("#Phone").val();
+        var mobile = $("#Mobile").val();
 
-        if (phone == "") {
+        if (mobile == "") {
             alert("请输入电话");
             return;
         }
 
         $("#SendLoad").removeClass("hidden");
-        var urlData = "/member/sys/sendCode?codeType=0&sendType=0&sendNo=" + phone;
+        $("#SendCode").addClass("hidden");
+        var urlData = "/member/sys/sendCode?codeType=0&sendType=0&sendNo=" + mobile;
         $.ajax({
             type: "get",
             url: urlData,
             error: function () {
                 alert("网络异常，请重试或联系客服！");
                 $("#SendCode").removeClass("hidden");
+                $("#SendLoad").addClass("hidden");
             },
             success: function (msg) {
                 if (msg.Status == 0) {
@@ -54,9 +56,10 @@
                     alert(msg.Message);
                     $("#SendCode").removeClass("hidden");
                 }
+                $("#SendLoad").addClass("hidden");
             }
         });
-        $("#SendLoad").addClass("hidden");
+        
     });
 
     var timeout = 120;

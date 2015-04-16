@@ -128,6 +128,7 @@
     <Compile Include="Areas\Member\Controllers\TradeController.cs" />
     <Compile Include="Areas\Member\Controllers\UserController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
+    <Compile Include="Areas\Member\Models\OrderModel.cs" />
     <Compile Include="Areas\Site\Controllers\CartController.cs" />
     <Compile Include="Areas\Site\Controllers\HomeController.cs" />
     <Compile Include="Areas\Site\Controllers\OrderController.cs" />
@@ -162,9 +163,11 @@
     <Content Include="Content\default\css\bootstrap2.min.css" />
     <Content Include="Content\default\css\chosen.css" />
     <Content Include="Content\default\css\index.css" />
-    <Content Include="Content\default\css\index2.css" />
+    <Content Include="Content\default\css\base.css" />
+    <Content Include="Content\default\css\member-center.css" />
     <Content Include="Content\default\css\share_style0_16.css" />
     <Content Include="Content\default\css\smoke.css" />
+    <Content Include="Content\default\css\副本 index.css" />
     <Content Include="Content\default\images\21.gif" />
     <Content Include="Content\default\images\app.png" />
     <Content Include="Content\default\images\category-trangle-bg.png" />
@@ -380,7 +383,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Member\Models\" />
     <Folder Include="Content\js\" />
   </ItemGroup>
   <ItemGroup>
@@ -531,7 +533,7 @@
     <Content Include="Areas\Member\Views\User\Password.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Member\Views\User\Phone.cshtml" />
+    <Content Include="Areas\Member\Views\User\Mobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Member\Views\User\Email.cshtml" />

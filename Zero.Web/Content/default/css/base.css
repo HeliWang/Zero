@@ -1,0 +1,112 @@
+﻿@charset "UTF-8";
+
+
+/*pages css*/
+.pages {
+    float: left;
+    margin-top: 20px;
+    margin-right: 350px;
+}
+.pages li a {
+    float: left;
+    margin-left: 5px;
+    color: #333;
+    border-radius: 3px;
+}
+.pages li a i.page-bg{
+    display: inline-block;
+    line-height: 1;
+    position: relative;
+    top: 1px;
+    width: 10px;
+    height: 15px;
+    overflow: hidden;
+    background: url('../images/page_bg.png');
+}
+.pages li a:hover i.page-bg{
+    background-position:9px 0px;
+}
+.pages li a i.page-right{
+    background-position:0px 15px;
+}
+.pages li a:hover i.page-right{
+    background-position:10px 15px;
+}
+.pages li a:hover {
+    color: #FE5F56;
+}
+.pages li.active a {
+    background-color: #FE5F56;
+    border-color:#FE5F56 !important;
+}
+.pages li.active a:hover {
+    background-color: #F05A50;
+}
+
+/*page css*/
+.page {
+    /*float: left;
+    margin-top: 20px;
+    margin-left: 350px;*/
+    /*border: 1px solid #ddd;*/
+    padding:20px 0;
+}
+.page .p-warp {
+    margin:auto;
+    height:30px;
+    width:800px;
+}
+.page .p-num a,.page .p-num b,.page .p-skip em, .page .p-skip a{
+     float: left;
+     margin-left: 5px;
+     line-height: 16px;
+     color: #333;
+     border-radius: 3px;
+     /*background-color: #FE5F56;*/
+}
+.page .p-num b {
+    font-weight:200;
+    padding: 4px 2px;
+}
+
+.page .p-num a, .page .p-skip a {
+    padding: 4px 6px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    cursor:pointer;
+}
+.page .p-num a:hover,.page .p-skip a:hover {
+    background-color: #EBEBEB;
+}
+.page .p-num .current {
+    color: #fff;
+    background-color: #FE5F56;
+    border-color: #FE5F56 !important;
+    
+}
+.page .p-num .current:hover {
+    cursor:default;
+    color: #fff;
+    background-color: #FE5F56;
+    border-color: #FE5F56 !important;
+    /*cursor:not-allowed;*/
+}
+
+.page .p-num .enable {
+    /*background-color: #EBEBEB;*/
+    cursor:not-allowed;
+}
+
+.page .p-skip em {
+    font-style:normal;
+    padding: 4px 3px;
+    line-height: 20px;
+}
+.page .p-skip em input{
+    width:40px;
+    height:20px;
+    text-align:right;
+}
+
+

@@ -139,7 +139,7 @@
     <Compile Include="Controllers\Tool\CatchController.cs" />
     <Compile Include="Controllers\Trades\OrderController.cs" />
     <Compile Include="Controllers\Upload\PhotoController.cs" />
-    <Compile Include="Controllers\User\UserController.cs" />
+    <Compile Include="Controllers\Users\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -662,6 +662,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Code\CodeIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\UserIndex.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

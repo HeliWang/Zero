@@ -6,6 +6,8 @@ namespace Zero.Domain.Users
 {
     public class User:BaseEntity
     {
+        public int id { get { return UserId; } }
+
         public int UserId { get; set; }
 
         /// <summary>

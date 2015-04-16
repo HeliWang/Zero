@@ -81,6 +81,13 @@ namespace Zero.Service.Trades
             return new Page<Order>(query, pageIndex, pageSize);
         }
 
+        public IPage<Order> GetList(OrderSearch search,int pageIndex, int pageSize)
+        {
+            var query = _orderRepository.Table;
+            query = query.OrderByDescending(o => o.OrderTime);
+            return new Page<Order>(query, pageIndex, pageSize);
+        }
+
         public List<Snapshot> GetSnapshotList(int orderId)
         {
             var query = _snapshotRepository.Table;

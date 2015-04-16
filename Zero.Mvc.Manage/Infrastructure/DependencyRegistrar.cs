@@ -14,7 +14,7 @@ using Zero.Mvc.Manage.Controllers.News;
 using Zero.Mvc.Manage.Controllers.Customs;
 using Zero.Mvc.Manage.Controllers.Upload;
 using Zero.Mvc.Manage.Controllers.Sys;
-using Zero.Mvc.Manage.Controllers.User;
+using Zero.Mvc.Manage.Controllers.Users;
 using Zero.Service.Cates;
 using Zero.Service.Products;
 using Zero.Service.News;
@@ -69,7 +69,7 @@ namespace Zero.Mvc.Manage.Infrastructure
 
             builder.RegisterType<CodeService>().As<ICodeService>().InstancePerHttpRequest();
 
-            builder.RegisterType<UserService>().As<ICodeService>().InstancePerHttpRequest();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerHttpRequest();
 
             // then
             var container = builder.Build();

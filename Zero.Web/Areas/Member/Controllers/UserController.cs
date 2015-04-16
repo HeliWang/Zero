@@ -136,18 +136,18 @@ namespace Zero.Web.Areas.Member.Controllers
             return Json(resultInfo);
         }
 
-        public ActionResult Phone()
+        public ActionResult Mobile()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult PhoneBind()
+        public ActionResult MobileBind()
         {
-            var phone = RequestHelper.Form("phone");
+            var mobile = RequestHelper.Form("mobile");
             var num = RequestHelper.Form("num");
 
-            ResultInfo resultInfo = _userServices.PhoneBind(1, phone, num);
+            ResultInfo resultInfo = _userServices.MobileBind(1, mobile, num);
 
             return Json(resultInfo);
         }
