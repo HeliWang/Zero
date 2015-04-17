@@ -7,14 +7,15 @@
 
 <div class="member-orders fr w955">
     <h3 class="operate-title mt20">我的订单</h3>
-    <div class="operate-items mt20"> <a class="j-item now" href="user.php?act=order_list&num=1">最近一个月订单</a> <a class="j-item " href="user.php?act=order_list&num=2">最近三个月订单</a> <a class="j-item " href="user.php?act=order_list&num=3">三个月之前订单</a> </div>
+    <div class="operate-items mt20"> 
+        <a class="j-item now" href="user.php?act=order_list&num=1">待审核</a> 
+        <a class="j-item " href="user.php?act=order_list&num=2">最近三个月订单</a> 
+        <a class="j-item " href="user.php?act=order_list&num=3">三个月之前订单</a> 
+    </div>
     <div class="orders j-orders" style="display:block;">
     <ul class="orders-items">
         <li class="fl wfs">
-        @*<div class="orders-list-no fl wfs"> 
-            <img src="/content/default/images/orders-list-no.png" alt="">
-            <p>您还没有在模模板堂买过东西哦，快去逛逛吧~</p>
-        </div>*@
+        
 
         <style>
             .orders-list {margin:auto;width:900px;border:#F0F3F4 1px solid;font-size: 12px;color: #333;font-weight:normal;text-align:center;}
@@ -22,14 +23,19 @@
             .orders-list thead th{background-color:#e7e7e7;text-align:center;border-right:#F0F3F4 1px solid;}
             .orders-list tbody th{background-color:#f2f2f2;}
             .orders-list tbody th span{display:inline-block;}
-            .orders-list tbody th .no{margin-left:10px;width:200px;}
-            .orders-list tbody th .company{margin-left:10px;width:400px;}
+            .orders-list tbody th .input{margin-left:10px;width:15px;}
+            .orders-list tbody th .time{width:120px;}
+            .orders-list tbody th .no{width:300px;}
+            .orders-list tbody th .company{width:200px;}
             .orders-list tbody th .phone{margin-left:10px;}
             .orders-list tbody td{border-right:#F0F3F4 1px solid;border-bottom:#F0F3F4 1px solid;padding:8px 0;vertical-align:top}
             .orders-list tbody .tip{background-color:#fffdee;padding-left:10px;}
         </style>
-
-        <div>
+        
+        @if (@Model.OrderPage.Items.Count > 0)
+        {
+            <div>
+            <!--
             <table class="orders-list">
                 <colgroup>
                     <col width="300"/>
@@ -46,7 +52,7 @@
                         <th>单价</th>
                         <th>数量</th>
                         <th>总额</th>
-                        <th>下单时间</th>
+                        <th>预留</th>
                         <th>状态</th>
                         <th>操作</th>
                     </tr>
@@ -61,7 +67,9 @@
                 <tbody>
                     <tr>
                         <th colspan="7">
-                            <span class="no"><input type="checkbox" /> 订单编号:26464633161</span>
+                            <span class="input"><input type="checkbox" /></span>
+                            <span class="time">2015-12-10 10:12</span>
+                            <span class="no">订单编号：26464633161</span>
                             <span class="company">一号长城</span>
                             <span class="phone">电话:138904651616</span>
                         </th>
@@ -74,7 +82,7 @@
                             400<br />
                             （含运费：20）
                         </td>
-                        <td rowspan="2">2015-12-10 10:12</td>
+                        <td rowspan="2">退货</td>
                         <td rowspan="2">已完成</td>
                         <td rowspan="2"><a>查看</a></td>
                     </tr>
@@ -97,11 +105,88 @@
                         <td>100</td>
                         <td>3</td>
                         <td>200</td>
-                        <td>2015-12-10</td>
+                        <td>退货</td>
                         <td>已完成</td>
                         <td><a>查看</a></td>
                     </tr>
                 </tbody>
+            </table>
+            -->
+            <table class="orders-list">
+                <colgroup>
+                    <col width="300"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                    <col width="100"/>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>订单信息</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>总额</th>
+                        <th>预留</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="tip" colspan="7">
+                            尊敬的客户，由于您的商品在不同库房或属于不同商家，所以您的订单被拆分为多个子订单分开配送，给您带来的不便还请谅解。
+                        </th>
+                    </tr>
+                </tbody>
+                @foreach (var order in Model.OrderPage.Items)
+                {
+                    var snapshotList = Model.SnapshotList.Where(s => s.OrderId == order.OrderId).ToList();
+                    
+                    //此处需要判断是否显示没有快照的订单
+                    if (snapshotList.Count>0)
+                    {
+                        <tbody>
+                            <tr>
+                                <th colspan="7">
+                                    <span class="input"><input type="checkbox" /></span>
+                                    <span class="time">@order.OrderTime</span>
+                                    <span class="no">订单编号：@order.OrderNo</span>
+                                    @*<span class="company">一号长城</span>
+                                    <span class="phone">电话:138904651616</span>*@
+                                </th>
+                            </tr>
+                        </tbody>
+                    }
+                    
+                    var i = 0;
+                    
+                    foreach (var snapshot in snapshotList)
+                    {
+                        <tr>
+                            <td><img width="60" height="60" /></td>
+                            <td>@snapshot.FinalPrice</td>
+                            <td>@snapshot.Quantity</td>
+
+                            @if (i==0)
+                            {
+                                <td rowspan="@snapshotList.Count">
+                                    @order.RealPay
+
+                                    @if(order.Freight>0)
+                                    {
+                                        <text><br />（含运费： @order.Freight）</text>  
+                                    }
+                                </td>
+                                <td rowspan="@snapshotList.Count">退货</td>
+                                <td rowspan="@snapshotList.Count">@order.Status</td>
+                                <td rowspan="@snapshotList.Count"><a>查看</a></td>
+                            }
+                        </tr>
+                        i++;
+                    }
+                }
             </table>
             <div id="paging" class="page" style="">
             </div>
@@ -114,6 +199,14 @@
                     digit: 1});
             </script>
         </div>
+        }
+        else
+        {
+            <div class="orders-list-no fl wfs"> 
+                <img src="/content/default/images/orders-list-no.png" alt="">
+                <p>您还没有买过东西哦，快去逛逛吧~</p>
+            </div>
+        }
         </li>
     </ul>
     <form name="selectPageForm" class="pageForm" action="/user.php" method="get">

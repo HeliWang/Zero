@@ -12,5 +12,7 @@ namespace Zero.Web.Areas.Member.Models
         public IPage<Order> OrderPage { get; set; }
 
         public OrderSearch OrderSearch { get; set; }
+
+        public List<Snapshot> SnapshotList { get; set; }
     }
 }

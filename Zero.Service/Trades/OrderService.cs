@@ -100,5 +100,18 @@ namespace Zero.Service.Trades
 
             return query.ToList();
         }
+
+        public List<Snapshot> GetSnapshotList(List<int> orderIds)
+        {
+            var query = _snapshotRepository.Table;
+
+            query = from s in query
+                    where orderIds.Contains(s.OrderId) 
+                    select s;
+
+            query = query.OrderByDescending(s => s.CreateTime);
+
+            return query.ToList();
+        }
     }
 }

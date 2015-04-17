@@ -19,5 +19,7 @@ namespace Zero.Service.Trades
         IPage<Order> GetList(int pageIndex, int pageSize);
 
         List<Snapshot> GetSnapshotList(int orderId);
+
+        List<Snapshot> GetSnapshotList(List<int> orderIds);
     }
 }
