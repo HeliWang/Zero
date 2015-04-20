@@ -1,0 +1,174 @@
+﻿@{
+    Layout = "~/Views/Shared/Order/_Layout.cshtml";
+    ViewBag.Title = "Detail";
+}
+
+@model List<Zero.Domain.Trades.Cart>
+
+<div class="block950">
+
+    <div class="step step1">
+        <ul class="ul1">
+            我的购物车
+        </ul>
+        <ul class="ul2">
+            填写购物信息
+        </ul>
+        <ul class="ul2">
+            成功提交订单
+        </ul>
+    </div>
+
+
+    <div class="flowBox">
+        <style type="text/css">
+            .tbCartList .selected {background-color:#fffdee}
+            .tbCartList .final_price {color:#d95854;font-size:16px;}
+            .tbCartList .td_name div{float:left;margin:10px 0 0 10px;text-align:left;}
+            .tbCartList td{padding-left:0;padding-bottom:0;}
+        </style>
+     
+        <table class="tbCartList" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="">
+            <tr>
+                <th bgcolor="#ffffff" style="width: 50px;"><input type="checkbox" id="check_all" /><label for="check_all">全选</label></th>
+                <th bgcolor="#ffffff" style="width: 400px;">商品名称</th>
+                <th bgcolor="#ffffff" style="width: 120px;">规格</th>
+                <!--  <th bgcolor="#ffffff">市场价</th> -->
+                <th bgcolor="#ffffff">本店价</th>
+                <th bgcolor="#ffffff">购买数量</th>
+                <th bgcolor="#ffffff">小计</th>
+                <th bgcolor="#ffffff" class="norBorder">操作</th>
+            </tr>
+            @foreach (var cart in @Model)
+            {
+            <tr class="selected">
+                <td><input type="checkbox" checked class="cart_id" value="@cart.CartId" /></td>
+                <td class="td_name" align="center">
+                    <div class="p-img">
+                        <a href="@cart.Product.DetailUrl" target="_blank">
+                            <img style=" border: 1px solid #ccc; margin-bottom: 10px;" src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(cart.Product.Photo, 50,50)" border="0" title="" />
+                        </a>
+                    </div>
+                    <div class="p-detail">
+                        <a href="@cart.Product.DetailUrl" target="_blank">@cart.Product.ProductName</a>
+                        @*<p style="color: #999">商品编号：@cart.ProductId</p>*@
+                    </div>
+                </td>
+                <td style=" text-align:left;padding-left:10px;">
+                    @foreach (var attrList in cart.Attr.Split(','))
+                    {
+                        var attr=attrList.Split(':');
+                        @(attr[2] + ":" + attr[3]);
+                        <text><br /></text>
+                    }
+                </td>
+                <td class="td_price">￥@cart.Sku.Price.ToString()元</td>
+                <td>
+                    <input type="text" name="goods_number[1380]" id="goods_number_1380" value="@cart.Quantity" size="4" class="inputBg" style="text-align: center; width: 60px;" onkeydown="showdiv(this)" />
+                </td>
+                <td class="td_price">￥<span class="total_price">@(cart.Sku.Price * cart.Quantity)</span>元</td>
+                <td class="norBorder textLink">
+                    <a href="javascript:void(0)" onclick="removeCart(@cart.CartId)">删除</a>
+                </td>
+            </tr>
+            }
+        </table>
+        <table class="tbCartList" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+            <tr>
+                <td bgcolor="#ffffff" class="norBorder" style="text-align: left; background: #f5f5f5; padding-left: 5px;border-bottom: 2px solid #dadada">
+                    <input type="checkbox" id="check_all" /><label for="check_all">全选</label>&nbsp;&nbsp;
+                    <input type="button" value="清空购物车" class="bnt_blue_1" onclick="location.href = 'flow.php?step=clear'" />&nbsp;&nbsp;
+                    <input name="submit" type="submit" class="bnt_blue_1" value="更新购物车" />
+                </td>
+                <td bgcolor="#ffffff" class="norBorder" style="text-align: right; font-weight:bold; background: #f5f5f5; padding-right: 10px; border-bottom: 2px solid #dadada">
+                    总计：<span class="final_price">￥0.00</span> 元
+                </td>
+            </tr>
+        </table>
+        <table style="margin-top: 10px;" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#dddddd">
+            <tr>
+                <td bgcolor="#ffffff"><a href="./">
+                    <img src="/content/images/continue.gif" alt="continue" /></a></td>
+                <td bgcolor="#ffffff" style="text-align: right">
+                    <form id="OrderConfim" action="/Order/Confim" method="post">
+                        <input type="hidden" id="CartIds" name="CartIds" />
+                        <a href="javascript:void(0)" class="cart_submit"><img src="/content/images/checkout.gif" alt="checkout" /></a>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            $(function () {
+                loadCart();
+
+                function loadCart() {
+                    var totalPrice = $(".total_price");
+                    var finalPrice = 0;
+
+                    totalPrice.each(function (i) {
+                        var price = $(this).html();
+                        finalPrice += (parseFloat(price));
+                    });
+
+                    $(".final_price").html("￥" + finalPrice);
+                }
+
+                $(".cart_id").each(function () {
+                    $(this).click(function () {
+                        $(this).parent().parent().toggleClass("selected");
+
+                    });
+                });
+
+
+                $(".cart_submit").click(function () {
+                    var selectedCart = $(".cart_id:checked");
+
+                    var cartIds = "";
+
+                    selectedCart.each(function () {
+                        cartIds += $(this).val() + ",";
+                    });
+
+                    if (cartIds == "") {
+                        alert("请至少选择一件商品！"); return false;
+                    }
+
+                    cartIds = cartIds.substring(0, cartIds.length - 1);
+
+                    $("#CartIds").val(cartIds);
+                    $("#OrderConfim").submit();
+                });
+
+            });
+
+            function removeCart(ids) {
+                if (confirm("确定删除选项？") == true) {
+                    var parma = { CartIds: ids };
+
+                    $.ajax({
+                        url: "/Cart/RemoveCart",
+                        type: "Post",
+                        data: parma,
+                        dataType: "json",
+                        beforeSend: function () {
+                        },
+                        success: function (data) {
+                            //alert(data.Message);
+                            location.href = "/cart/";
+                        },
+                        error: function () {
+                            alert('系统异常，请重试或联系技术');
+                        }
+                    });
+                }
+            }
+
+        </script>
+    </div>
+
+    <div class="blank"></div>
+
+
+</div>
