@@ -278,10 +278,28 @@
                                     addCart();
                                 });
 
+                                $(".add").click(function () {
+                                    var num = $(".num");
+                                    var quantity = parseInt(num.val());
+                                    quantity=quantity+1;
+                                    num.val(quantity);
+                                });
+
+                                $(".reduce").click(function () {
+                                    var num = $(".num");
+                                    var quantity = parseInt(num.val());
+                                    quantity = quantity - 1;
+                                    
+                                    if (quantity > 0) {
+                                        num.val(quantity);
+                                    }
+                                });
+
+
                                 function addCart() {
                                     var sku = $(".z-sku dl");
                                     var selectSku = $(".z-sku .selected");
-                                    var quantity = $("#quantity").val();
+                                    var quantity = $(".num").val();
                                     var productId = $("#ProductId").val();
 
                                     if (selectSku.length != sku.length) {
