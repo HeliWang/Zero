@@ -1,4 +1,4 @@
-﻿@{
+﻿canvas@{
     Layout = "~/Areas/Site/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 }
@@ -37,11 +37,13 @@
                         @{
                             if(Model.Product.PhotoList!=null)
                             {
+                                var i=0;
                                 foreach(var photo in Model.Product.PhotoList)
                                 {
-                                  <li class="canvas-container-li j-canvas-container-li now">
-                                    <img src="@photo.Url" alt="" />
+                                  <li class="canvas-container-li j-canvas-container-li @if(i==0){<text>now</text>}">
+                                    <img src="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(photo.Url, 100,100)" data="@Zero.Domain.PhotoUrlFactory.GetPhotoUrl(photo.Url, 400,400)" alt="" />
                                   </li>
+                                    i++;
                                 }
                             }
                          }
@@ -786,6 +788,27 @@
             jqimg: src.replace("\/n5\/", "\/n0\/")
         });
     });
+
+    // 左侧小图上下切换和滑动
+    $(".j-canvas-container-li").click(function () {
+        $(this).addClass("now").siblings(".j-canvas-container-li").removeClass("now");
+        $(".j-details-mid-item").eq($(this).index()).show().siblings(".j-details-mid-item").hide();
+    });
+    $(".j-up-down-btn").click(function () {
+        Slide.SlideParams = {
+            l_width: 75,                         //每一个子元素的宽度
+            l_area: 375,                        //展示的舞台的宽度
+            l_nums: 5,                          //舞台可以展示的元素的个数
+            l_totals: $(".canvas-container-li").length,  //元素的总数量
+            l_map: ".j-canvas-container",            //移动的画布
+            l_now: 0,                          //用来存储大图滚动的参数
+            reg: /down-icon/,                       //用来判断是上下哪一个按钮点击
+            l_path: "top"
+        };
+        var obj = $(this);
+        Slide.SlideMovie(obj);
+    });
+
     //导航那个悬浮
     $(".j-nav").posfixed({
         distance: 0,

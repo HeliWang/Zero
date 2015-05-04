@@ -29,34 +29,34 @@
     <script src="/content/default/js/posfixed.js"></script>
     <script>
 
-        //放大镜效果
-        $(".j-details-mid-item").jqueryzoom({
-            xzoom: 440,
-            yzoom: 440,
-            offset: 10,
-            position: "right",
-            preload: 1,
-            lens: 1
-        });
-        $(".j-canvas-container li").bind("click", function () {
-            var data = '';
-            data = $(this).find("img").attr("data");
-            if (data) {
-                var reg = /mp4/;
-                if (reg.test(data)) {
-                    $(".j-details-mid-item").html('<div style="width: 400px;height: 400px;overflow:hidden;"><iframe src="http://player.ecmoban.com/player.php/gid//v.swf?width=400&height=400" scrolling="no" allowfullscreen="" frameborder="0" height="400" width="400"></iframe></div>');
-                } else {
-                    $(".j-details-mid-item").html('<embed type="application/x-shockwave-flash" class="edui-faked-video" pluginspage="http://www.macromedia.com/go/getflashplayer" src="' + data + '" width="400" height="400" wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true">');
-                }
-                return;
-            }
-            $(".j-details-mid-item").html('<img src="" jqimg="" alt="">');
-            var src = $(this).find("img").attr("src");
-            $(".j-details-mid-item img").eq(0).attr({
-                src: src.replace("\/n5\/", "\/n1\/"),
-                jqimg: src.replace("\/n5\/", "\/n0\/")
-            });
-        });
+        ////放大镜效果
+        //$(".j-details-mid-item").jqueryzoom({
+        //    xzoom: 440,
+        //    yzoom: 440,
+        //    offset: 10,
+        //    position: "right",
+        //    preload: 1,
+        //    lens: 1
+        //});
+        //$(".j-canvas-container li").bind("click", function () {
+        //    var data = '';
+        //    data = $(this).find("img").attr("data");
+        //    if (data) {
+        //        var reg = /mp4/;
+        //        if (reg.test(data)) {
+        //            $(".j-details-mid-item").html('<div style="width: 400px;height: 400px;overflow:hidden;"><iframe src="http://player.ecmoban.com/player.php/gid//v.swf?width=400&height=400" scrolling="no" allowfullscreen="" frameborder="0" height="400" width="400"></iframe></div>');
+        //        } else {
+        //            $(".j-details-mid-item").html('<embed type="application/x-shockwave-flash" class="edui-faked-video" pluginspage="http://www.macromedia.com/go/getflashplayer" src="' + data + '" width="400" height="400" wmode="transparent" play="true" loop="false" menu="false" allowscriptaccess="never" allowfullscreen="true">');
+        //        }
+        //        return;
+        //    }
+        //    $(".j-details-mid-item").html('<img src="" jqimg="" alt="">');
+        //    var src = $(this).find("img").attr("src");
+        //    $(".j-details-mid-item img").eq(0).attr({
+        //        src: src.replace("\/n5\/", "\/n1\/"),
+        //        jqimg: src.replace("\/n5\/", "\/n0\/")
+        //    });
+        //});
         //导航那个悬浮
         $(".j-nav").posfixed({
             distance: 0,
