@@ -637,6 +637,7 @@ li {
     float: right;
     width: 154px;
     background-color: #4E4E4E;
+    position: relative; z-index: 15;
 }
 .nav .cart a{ display: block}
 .nav .cart i {

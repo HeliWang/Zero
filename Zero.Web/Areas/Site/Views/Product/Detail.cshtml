@@ -1,4 +1,4 @@
-﻿canvas@{
+﻿@{
     Layout = "~/Areas/Site/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 }
@@ -271,6 +271,24 @@
 
                                 LoadAttr();
 
+                                function CheckBuy() {
+                                    var sku = $(".z-sku dl");
+                                    var selectSku = $(".z-sku .selected");
+                                    var quantity = $(".num").val();
+                                    var productId = $("#ProductId").val();
+
+                                    if (selectSku.length != sku.length) {
+                                        alert("请选择完整的属性！"); return false;
+                                    }
+                                    if (quantity == "") {
+                                        alert("请填写正确的数字"); return false;
+                                    }
+                                    if (productId == "") {
+                                        alert("无商品编号"); return false;
+                                    }
+                                    return true;
+                                }
+
                                 ///-----提交数据------///
                                 $(".z-buy").click(function () {
                                     alert("立即购买");
@@ -281,19 +299,23 @@
                                 });
 
                                 $(".add").click(function () {
-                                    var num = $(".num");
-                                    var quantity = parseInt(num.val());
-                                    quantity=quantity+1;
-                                    num.val(quantity);
+                                    if (CheckBuy()) {
+                                        var num = $(".num");
+                                        var quantity = parseInt(num.val());
+                                        quantity = quantity + 1;
+                                        num.val(quantity);
+                                    }
                                 });
 
                                 $(".reduce").click(function () {
-                                    var num = $(".num");
-                                    var quantity = parseInt(num.val());
-                                    quantity = quantity - 1;
-                                    
-                                    if (quantity > 0) {
-                                        num.val(quantity);
+                                    if (CheckBuy()) {
+                                        var num = $(".num");
+                                        var quantity = parseInt(num.val());
+                                        quantity = quantity - 1;
+
+                                        if (quantity > 0) {
+                                            num.val(quantity);
+                                        }
                                     }
                                 });
 
