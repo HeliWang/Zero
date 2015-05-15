@@ -20,12 +20,12 @@ $(function () {
 		f:"nav-menus",
 		s:"j-categorys"
 	});
-	// 导航右侧的购物车弹出框
-	slideMenu({
-		f:"cart",
-		s:"car_ul"
+	//// 导航右侧的购物车弹出框
+	//slideMenu({
+	//	f:"cart",
+	//	s:"car_ul"
 
-	});
+	//});
 	//登录过后的弹出框
 	slideMenu({
 		f:"j-user-img",

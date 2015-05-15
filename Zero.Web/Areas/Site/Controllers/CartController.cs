@@ -57,5 +57,14 @@ namespace Zero.Web.Areas.Site.Controllers
 
             return Json(resultInfo);
         }
+
+        public ActionResult GetCart()
+        {
+            User user = new User();
+            user.UserId = 1;
+            user.GuestId = "";
+            List<Cart> cartList = _cartService.GetCartList(user);
+            return Json(cartList);
+        }
     }
 }
