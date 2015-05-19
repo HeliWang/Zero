@@ -296,27 +296,42 @@
                     }
 
                     function loadCar(data) {
-                        var totalCount = 0;
-                        var totalMoney = 0;
-                        for (var i=0; i < data.length; i++) {
-                            totalCount++;
-                            
-                        }
+                        
 
-                        if (totalCount > 0) {
+                        if (data == "") {
+
+                            var totalCount = 0;
+                            var totalMoney = 0;
+
+                            var li = [];
+                            for (var i = 0; i < data.length; i++) {
+                                totalCount++;
+                                li[i] = $("<li class=\"clearfix\"></li>");
+
+                                var photoDiv = $("<div class=\"fl photo\"><div></div></div>");
+                                var photoA = $("<a></a>").attr("href", data.Product.DetailUrl);
+                                var photoImg = $("<img/>").attr("src", data.ProductPhoto.ProductPhoto);
+                                photoDiv.append(photoA.append(photoImg));
+                                li[i].append(photoDiv);
+
+                                
+                                
+                            }
+
+
                             $(".total_amount").text(totalCount);
                             
                         }
 
                         $(".cart").hover(function () {
-                            if (totalCount == 0) {
+                            if (data == "") {
                                 $(".car_no").removeClass("hidden");
                             }
                             else {
                                 $(".car_ul").removeClass("hidden");
                             }
                         }, function () {
-                            if (totalCount == 0) {
+                            if (data == "") {
                                 $(".car_no").addClass("hidden");
                             }
                             else {
