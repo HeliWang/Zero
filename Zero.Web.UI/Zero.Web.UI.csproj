@@ -109,6 +109,7 @@
     <Content Include="page\tree\base.html" />
     <Content Include="page\tree\checkbox.html" />
     <Content Include="page\tree\expand.html" />
+    <Content Include="page\validate.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

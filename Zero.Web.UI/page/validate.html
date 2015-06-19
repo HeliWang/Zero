@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+</head>
+<body>
+    <form>
+        用户名<input type="text" id="UserName"/>
+        <input type="button" id="submit" value=" 提交 " />
+    </form>
+</body>
+</html>
+
+<script>
+
+    function isArray(o) {
+        return Object.prototype.toString.call(o) === '[object Array]';
+    }
+
+    String.format = function () {
+        var formatStr = arguments[0];
+        if (typeof formatStr === 'string') {
+            var pattern,
+                length = arguments.length;
+            for (var i = 1; i < length; i++) {
+                pattern = new RegExp('\\{' + (i - 1) + '\\}', 'g');
+                formatStr = formatStr.replace(pattern, arguments[i]);
+            }
+        } else {
+            formatStr = '';
+        }
+        return formatStr;
+    };
+
+    $(function () {
+      
+        function ceshi() {
+
+            //$.zero.validate.defaults.rules = {
+            //    required: {
+            //        validator: function (value, param) {
+            //            if (value == "") {
+            //                return false;
+            //            }
+            //        },
+            //        message: '该栏目不能放空，请填写'
+            //    },
+            //    number: {
+            //        validator: function (value, param) {
+            //            return /^\d+$/.test(value);
+            //        },
+            //        message: '请输入数字'
+            //    },
+            //    lenght: {
+            //        validator: function (value, param) {
+            //            var message = $.zero.validate.defaults.rules.lenght.message;
+            //            if (value.lenght < param[0]) {
+            //                message = String.format("该栏目长度不能小于个{0}字符", param[0]);
+            //                return false;
+            //            }
+
+            //            if (value.lenght > param[1]) {
+            //                message = String.format("该栏目长度不能小于个{0}字符", param[0]);
+            //                return false;
+            //            }
+            //        },
+            //        message: ''
+            //    }
+            //}
+        }
+
+       
+        $.fn.validate = function (option) {
+            var setting = {
+                required: false,
+            }
+            $.extend(setting, option);
+
+            var value = $(this).val();
+
+            var result = '';
+            //if (setting.required == true) {
+            //    alert((setting.required));
+            //    result = $.fn.validate.rules[setting.required]();
+            //    alert(result);
+            //}
+
+            //if (result.length > 0) {
+            //    alert(result);
+            //}
+  
+            for (var rule in setting) {
+                var param = [];
+
+                if (isArray(setting[rule]) == false) {
+                    param[0] = setting[rule];
+                }
+                else {
+                    param = setting[rule];
+                }
+
+                if (rule == "type") {
+                    result = $.fn.validate.rules[setting[rule]](value);
+                }
+                else {
+                    result = $.fn.validate.rules[rule](value, param);
+                }
+
+                if (result != '') {
+                    alert(result);
+                    break;
+                }
+            }
+        }
+
+
+        $("#submit").click(function () {
+
+            $("#UserName").validate({
+                required: true,
+                type: 'number',
+                lenght: [0, 1],
+            })
+
+        });
+
+
+        $.fn.validate.methods = function () {
+        }
+
+        $.fn.validate.defaults = function () {
+
+        }
+
+        $.fn.validate.rules = {
+            required: function (value, param) {
+                if (value == "" && param[0] == true) {
+                    return '该栏目不能放空，请填写';
+                }
+                return '';
+            },
+            number: function (value, param) {
+                if (!/^\d+$/.test(value)) {
+                    return '请输入数字';
+                }
+                return '';
+            },
+            lenght: function (value, param) {
+                if (value.length < param[0]) {
+                    return String.format("该栏目长度不能小于个{0}字符", param[0]);
+                }
+
+                if (value.length > param[1]) {
+                    return String.format("该栏目长度不能小于个{0}字符", param[0]);
+                }
+                return '';
+            },
+        }
+
+
+
+        function validate() {
+
+
+            //var box = $(".validatebox");
+            //box.each(function () {
+            //    var value = $(this).val();
+            //    var rule = $(this).attr("data-options");
+
+
+            //    //rule = "'required[true]','type[number]','lenght[0,1]'";
+
+            //    rule = "{ required: true,type:'number', lenght:[0, 1],ajax:['http://www.baidu.com'] }";
+            //});
+
+            
+
+            var option = {
+                id: "#baidu",
+                required: true,
+                type: 'number',
+                lenght: [0, 1],
+                min: 5,
+                max: 10,
+            }
+        }
+    });
+</script>
