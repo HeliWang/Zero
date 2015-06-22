@@ -4,11 +4,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <style>
+        .normal{}
+        .success{}
+        .fail{}
+    </style>
 </head>
 <body>
     <form>
-        用户名<input type="text" id="UserName"/>
+        用户名:<input type="text" id="UserName"/>
+        <div id="tip_UserName">请填写正确的用户名。</div>
+
         <input type="button" id="submit" value=" 提交 " />
+        
     </form>
 </body>
 </html>
@@ -70,6 +78,10 @@
             //    }
             //}
         }
+       
+        function show(name) {
+
+        }
 
        
         $.fn.validate = function (option) {
@@ -79,18 +91,10 @@
             $.extend(setting, option);
 
             var value = $(this).val();
+            var tipId = String.format("#tip_{0}", $(this).attr("name"));
+            var tip = $(tipId);
+            var result = "";
 
-            var result = '';
-            //if (setting.required == true) {
-            //    alert((setting.required));
-            //    result = $.fn.validate.rules[setting.required]();
-            //    alert(result);
-            //}
-
-            //if (result.length > 0) {
-            //    alert(result);
-            //}
-  
             for (var rule in setting) {
                 var param = [];
 
@@ -108,11 +112,13 @@
                     result = $.fn.validate.rules[rule](value, param);
                 }
 
-                if (result != '') {
-                    alert(result);
+                if (result != "") {
+                    tip.addClass("fail").text(result);
                     break;
                 }
             }
+
+            tip.addClass("success").text("填写正确");
         }
 
 
@@ -120,8 +126,9 @@
 
             $("#UserName").validate({
                 required: true,
-                type: 'number',
-                lenght: [0, 1],
+                type: 'decimal',
+                //lenght: [0, 1],
+                size:[0,10]
             })
 
         });
@@ -143,7 +150,13 @@
             },
             number: function (value, param) {
                 if (!/^\d+$/.test(value)) {
-                    return '请输入数字';
+                    return '请输入正确数字';
+                }
+                return '';
+            },
+            decimal: function (value, param) {
+                if (!/^-?\d+(\.\d{1,2})?$/.test(value)) {
+                    return '请输入正确数字，最多保留2位小数';
                 }
                 return '';
             },
@@ -153,38 +166,20 @@
                 }
 
                 if (value.length > param[1]) {
-                    return String.format("该栏目长度不能小于个{0}字符", param[0]);
+                    return String.format("该栏目长度不能大于个{0}字符", param[1]);
                 }
                 return '';
             },
-        }
+            size: function (value, param) {
+                if (parseFloat(value) < param[0]) {
+                    return String.format("该栏目数字不能小于个{0}", param[0]);
+                }
 
-
-
-        function validate() {
-
-
-            //var box = $(".validatebox");
-            //box.each(function () {
-            //    var value = $(this).val();
-            //    var rule = $(this).attr("data-options");
-
-
-            //    //rule = "'required[true]','type[number]','lenght[0,1]'";
-
-            //    rule = "{ required: true,type:'number', lenght:[0, 1],ajax:['http://www.baidu.com'] }";
-            //});
-
-            
-
-            var option = {
-                id: "#baidu",
-                required: true,
-                type: 'number',
-                lenght: [0, 1],
-                min: 5,
-                max: 10,
-            }
+                if (parseFloat(value) > param[1]) {
+                    return String.format("该栏目数字不能大于个{0}", param[1]);
+                }
+                return '';
+            },
         }
     });
 </script>
