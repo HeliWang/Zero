@@ -5,15 +5,19 @@
     <title></title>
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <style>
-        .normal{}
-        .success{}
-        .fail{}
+        .normal{color:#808080;}
+        .success{color:#b6ff00;}
+        .fail{color:#ff6a00;}
     </style>
 </head>
 <body>
-    <form>
-        用户名:<input type="text" id="UserName"/>
-        <div id="tip_UserName">请填写正确的用户名。</div>
+    <form id="form1">
+        用户名：<input type="text" id="UserName" class="validateBox"/>
+        <div id="tip_UserName">请填写正确的用户名。</div><br />
+        用户名：<input type="text" id="Password" class="validateBox"/>
+        <div id="tip_Password">请填写正确的用户名。</div><br />
+        用户名：<input type="text" id="NickName" class="validateBox"/>
+        <div id="tip_NickName">请填写正确的用户名。</div><br />
 
         <input type="button" id="submit" value=" 提交 " />
         
@@ -79,23 +83,18 @@
             //}
         }
        
-        function show(name) {
-
-        }
-
-       
-        $.fn.validate = function (option) {
-            var setting = {
-                required: false,
-            }
-            $.extend(setting, option);
-
-            var value = $(this).val();
-            var tipId = String.format("#tip_{0}", $(this).attr("name"));
-            var tip = $(tipId);
+        function checkValue(target, setting) {
+            var value = $(target).val();
+         
+            var tip = $(setting.tip.id);
             var result = "";
 
+            var isValid = true;
             for (var rule in setting) {
+                if (rule == "tip") {
+                    continue;
+                }
+
                 var param = [];
 
                 if (isArray(setting[rule]) == false) {
@@ -113,33 +112,83 @@
                 }
 
                 if (result != "") {
-                    tip.addClass("fail").text(result);
+                    isValid = false;
+                    $(target).attr("validateResult", "fail");
+                    tip.attr("class", "fail").text(result);
                     break;
                 }
             }
 
-            tip.addClass("success").text("填写正确");
+            if (isValid == true) {
+                $(target).attr("validateResult", "success");
+                tip.attr("class", "success").text("填写正确");
+            }
         }
 
+        $.fn.form = function (option, param) {
+            if (typeof (option) == "string") {
+                return $.fn.form.methods[option](this, param);
+            }
+        }
 
-        $("#submit").click(function () {
+        $.fn.form.methods = {
+            validate: function (target, param) {
+                $(target).find("[validateResult='normal']").each(function () {
+                    $(this).blur();
+                });
+                
+                if ($(target).find("[validateResult='fail']").length == 0) {
+                    return true;
+                }
 
-            $("#UserName").validate({
-                required: true,
-                type: 'decimal',
-                //lenght: [0, 1],
-                size:[0,10]
-            })
+                return false;
+            }
+        }
+      
+        $.fn.validate = function (option) {
+            var setting = {
+                required: false,
+                tip: { id: '', message: '' }
+            }
+            $.extend(setting, option);
 
+            setting.tip.id = String.format("#tip_{0}", this.selector.replace("#", ""));
+            setting.tip.message = $(setting.tip.id).text();
+            $(this).attr("validateResult", "normal");
+
+            $(this).blur(function () {
+                checkValue(this, setting)
+            });
+
+            $(this).keyup(function () {
+
+                checkValue(this, setting)
+            });
+
+            $(this).focus(function () {
+                $(setting.tip.id).attr("class", "normal").text(setting.tip.message);
+            });
+        }
+        
+        $("#UserName").validate({
+            required: true,
+            lenght: [0, 5],
         });
 
+        $("#Password").validate({
+            required: true,
+            lenght: [0, 5],
+        });
 
-        $.fn.validate.methods = function () {
-        }
+        $("#NickName").validate({
+            required: true,
+            type: 'number',
+            lenght: [0, 10],
+        });
 
-        $.fn.validate.defaults = function () {
-
-        }
+        $("#submit").click(function () {
+            $("#form1").form("validate");
+        });
 
         $.fn.validate.rules = {
             required: function (value, param) {
@@ -176,10 +225,18 @@
                 }
 
                 if (parseFloat(value) > param[1]) {
-                    return String.format("该栏目数字不能大于个{0}", param[1]);
+                    return String.format("该栏目数字不能大于个{0}。", param[1]);
                 }
                 return '';
             },
+        }
+
+        $.fn.validate.methods = function () {
+        }
+
+        $.fn.validate.defaults = {
+            required: false,
+            tip: { id: '', message: '' }
         }
     });
 </script>
